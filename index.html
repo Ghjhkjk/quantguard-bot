@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuantGuard AI v7.8 | OKX 實時總資產 × 兩半資金池多單與實時收益率終端</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                screens: {
+                    'sm': '640px',
+                    'md': '768px',
+                    'lg': '960px',
+                    'xl': '1280px',
+                },
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #060911; color: #f8fafc; overflow-x: hidden; }
+        .glass-card {
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(51, 65, 85, 0.6);
+        }
+        .kpi-card-link {
+            transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+        .kpi-card-link:hover {
+            transform: translateY(-2px);
+            border-color: rgba(99, 102, 241, 0.8);
+            box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.22);
+        }
+        .nav-item { transition: all 0.18s ease; }
+        .nav-item.active {
+            background: linear-gradient(90deg, rgba(79, 70, 229, 0.28) 0%, rgba(15, 23, 42, 0.1) 100%);
+            border-left: 3px solid #6366f1;
+            color: #ffffff;
+            font-weight: 600;
+        }
+        .mode-pill { transition: all 0.2s ease; }
+        .mode-pill.active-dual {
+            background: linear-gradient(135deg, #4f46e5 0%, #0ea5e9 100%);
+            color: white;
+            box-shadow: 0 0 15px rgba(79, 70, 229, 0.45);
+        }
+        .mode-pill.active-crypto {
+            background: linear-gradient(135deg, #f59e0b 0%, #ec4899 100%);
+            color: white;
+            box-shadow: 0 0 15px rgba(245, 158, 11, 0.45);
+        }
+        .mode-pill.active-twse {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.45);
+        }
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.45; }
+        }
+        .live-dot { animation: pulseGlow 1.5s infinite; }
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: #090d16; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col selection:bg-indigo-500 selection:text-white">
+
+    <!-- 隱藏檔案上傳器：支援手動匯入 live_data.json -->
+    <input type="file" id="jsonFileInput" accept=".json" class="hidden" onchange="handleManualJsonUpload(event)">
+
+    <!-- 頂部全域導覽列 -->
+    <header class="sticky top-0 z-40 glass-card border-b border-slate-800 px-3 lg:px-6 py-2.5">
+        <div class="flex flex-wrap items-center justify-between gap-2">
+            <div class="flex items-center space-x-2.5">
+                <button onclick="toggleMobileSidebar()" class="lg:hidden p-2 rounded-lg bg-slate-800/80 text-slate-200 hover:text-white border border-slate-700" aria-label="開啟選單">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+                <div onclick="switchView('overview')" class="w-8 h-8 lg:w-9 lg:h-9 rounded-xl bg-gradient-to-br from-indigo-500 via-sky-500 to-emerald-500 flex items-center justify-center shadow-lg shadow-indigo-500/20 cursor-pointer">
+                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                    </svg>
+                </div>
+                <div>
+                    <div class="flex items-center space-x-2">
+                        <span onclick="switchView('overview')" class="text-sm lg:text-base font-bold tracking-tight text-white cursor-pointer">QuantGuard <span class="text-indigo-400">AI</span></span>
+                        <span class="text-[10px] font-mono uppercase px-1.5 py-0.5 rounded bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">v7.8 GitHub 24/7 版</span>
+                        <span id="apiSyncBadge" class="hidden sm:inline-block text-[10px] font-mono px-2 py-0.5 rounded bg-amber-500/15 text-amber-300 border border-amber-500/30">⏳ 自動同步 live_data.json 中...</span>
+                    </div>
+                    <p class="text-[11px] text-slate-400 hidden lg:block">OKX 資產總額實時置頂 × 兩半資金池 (每半3單不同原因) × 底下實時顯示持有訂單金額與收益率</p>
+                </div>
+            </div>
+
+            <!-- 中央切換器 -->
+            <div class="flex items-center bg-slate-950/90 p-1 rounded-xl border border-slate-800 space-x-1 overflow-x-auto max-w-full">
+                <button onclick="setAllocationMode('dual')" id="btn-mode-dual" class="mode-pill active-dual px-2.5 py-1.5 rounded-lg text-[11px] lg:text-xs font-medium whitespace-nowrap flex items-center space-x-1">
+                    <span>⚖️ 雙市場實盤</span>
+                </button>
+                <button onclick="setAllocationMode('crypto')" id="btn-mode-crypto" class="mode-pill text-slate-400 hover:text-white px-2.5 py-1.5 rounded-lg text-[11px] lg:text-xs font-medium whitespace-nowrap flex items-center space-x-1">
+                    <span>🪙 虛擬幣 (兩半資金池)</span>
+                </button>
+                <button onclick="setAllocationMode('twse')" id="btn-mode-twse" class="mode-pill text-slate-400 hover:text-white px-2.5 py-1.5 rounded-lg text-[11px] lg:text-xs font-medium whitespace-nowrap flex items-center space-x-1">
+                    <span>🇹🇼 台股 (目前 0%)</span>
+                </button>
+            </div>
+
+            <!-- 右側按鈕 -->
+            <div class="flex items-center space-x-2">
+                <button onclick="document.getElementById('jsonFileInput').click()" class="text-xs px-3 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white border border-indigo-400/40 transition font-bold shadow-lg">
+                    📂 匯入 live_data.json
+                </button>
+                <button onclick="switchView('order-history')" class="hidden sm:inline-block text-xs px-2.5 py-1.5 rounded-lg bg-sky-500/15 hover:bg-sky-500/25 text-sky-300 border border-sky-500/30 transition font-medium">
+                    📜 歷史交易明細
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- AI 即時決策狀態列 -->
+    <div id="aiLiveDecisionBar" class="bg-slate-900/90 border-b border-slate-800 px-4 lg:px-6 py-2 text-xs flex flex-wrap items-center justify-between gap-2">
+        <div class="flex flex-wrap items-center gap-2">
+            <span class="px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 font-mono text-[10px]">🧠 兩半資金池最新執行狀態</span>
+            <span id="aiLiveActionText" class="text-slate-200 font-medium">等待同步 live_data.json（若部署於 GitHub Pages 將每 3 秒自動讀取最新產出之數據）</span>
+        </div>
+        <div id="liveTickerBar" class="font-mono text-[11px] text-emerald-400">
+            BTC: -- | ETH: -- | SOL: --
+        </div>
+    </div>
+
+    <!-- 主體佈局 -->
+    <div class="flex-1 flex overflow-hidden relative">
+        
+        <div id="mobileOverlay" onclick="toggleMobileSidebar()" class="fixed inset-0 bg-black/60 z-30 hidden lg:hidden"></div>
+
+        <!-- 左側導覽選單 -->
+        <aside id="sidebarMenu" class="fixed lg:static inset-y-0 left-0 z-40 w-72 glass-card border-r border-slate-800 flex flex-col justify-between shrink-0 select-none overflow-y-auto transform -translate-x-full lg:translate-x-0 transition-transform duration-200 ease-in-out">
+            <div class="p-3.5 space-y-4">
+                
+                <div class="p-3 rounded-xl bg-slate-900/95 border border-indigo-500/30 space-y-2">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-bold text-white">🤖 GitHub 24/7 自動喚醒</span>
+                        <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300">ACTIVE</span>
+                    </div>
+                    <p class="text-[11px] text-slate-400 leading-relaxed">
+                        資金拆分為 <span class="text-indigo-300 font-mono">Half-A</span> 與 <span class="text-amber-300 font-mono">Half-B</span> 兩半，每一半可依不同原因同時抓約 3 張訂單下單。
+                    </p>
+                </div>
+
+                <div>
+                    <div class="text-[10px] font-mono uppercase tracking-wider text-slate-400 px-3 mb-1.5">🌐 核心戰情與真實帳本</div>
+                    <nav class="space-y-1">
+                        <button onclick="switchView('overview')" id="nav-overview" class="nav-item active w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs text-slate-300 hover:text-white hover:bg-slate-800/50">
+                            <span>📊 實時總資產與持有訂單首頁</span>
+                            <span id="sidebarActivePosBadge" class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300">0 持倉</span>
+                        </button>
+                        <button onclick="switchView('order-history')" id="nav-order-history" class="nav-item w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs text-slate-300 hover:text-white hover:bg-slate-800/50">
+                            <span>📜 歷史交易訂單明細</span>
+                            <span id="sidebarOrderCountBadge" class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-sky-500/20 text-sky-300">0 筆</span>
+                        </button>
+                        <button onclick="switchView('macro-shield')" id="nav-macro-shield" class="nav-item w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs text-slate-300 hover:text-white hover:bg-slate-800/50">
+                            <span>🛡️ 兩半資金池與寬止損說明</span>
+                            <span class="text-[10px] font-mono text-emerald-400">v7.8</span>
+                        </button>
+                        <button onclick="switchView('audit-forger')" id="nav-audit-forger" class="nav-item w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs text-slate-300 hover:text-white hover:bg-slate-800/50">
+                            <span>🔍 財會雙向勾稽與防偽造文書</span>
+                            <span class="text-[10px] font-mono text-emerald-400">SHA-256</span>
+                        </button>
+                    </nav>
+                </div>
+
+                <!-- 虛擬貨幣專區 -->
+                <div class="pt-2 border-t border-slate-800/80">
+                    <button onclick="toggleSubmenu('cryptoSubmenu', 'cryptoArrow')" class="w-full flex items-center justify-between px-3 py-1.5 text-xs font-bold text-amber-400 hover:text-amber-300">
+                        <span>🪙 虛擬貨幣專區 (OKX 實盤)</span>
+                        <svg id="cryptoArrow" class="w-3.5 h-3.5 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div id="cryptoSubmenu" class="mt-1 space-y-1 pl-2 border-l border-amber-500/30 ml-3">
+                        <button onclick="switchView('crypto-main')" id="nav-crypto-main" class="nav-item w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs text-slate-300 hover:text-white hover:bg-slate-800/50">
+                            <span>⚡ 兩半資金池與多原因配資</span>
+                            <span class="text-[10px] font-mono text-amber-400">Half A/B</span>
+                        </button>
+                        <button onclick="switchView('crypto-anti-fake')" id="nav-crypto-anti-fake" class="nav-item w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs text-slate-300 hover:text-white hover:bg-slate-800/50">
+                            <span>🛡️ 動態止盈與防洗盤寬止損</span>
+                            <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300">ATR防洗盤</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 台股穩健專區 -->
+                <div class="pt-2 border-t border-slate-800/80">
+                    <button onclick="toggleSubmenu('twseSubmenu', 'twseArrow')" class="w-full flex items-center justify-between px-3 py-1.5 text-xs font-bold text-emerald-400 hover:text-emerald-300">
+                        <span>🇹🇼 台股穩健專區 (目前未建倉)</span>
+                        <svg id="twseArrow" class="w-3.5 h-3.5 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div id="twseSubmenu" class="mt-1 space-y-1 pl-2 border-l border-emerald-500/30 ml-3">
+                        <button onclick="switchView('twse-guaranteed')" id="nav-twse-guaranteed" class="nav-item w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs text-slate-300 hover:text-white hover:bg-slate-800/50">
+                            <span>🛡️ 動盪防禦穩定股與保本鎖利</span>
+                            <span class="text-[10px] font-mono text-slate-400">0.00%</span>
+                        </button>
+                        <button onclick="switchView('twse-SafeStocks')" id="nav-twse-SafeStocks" class="nav-item w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs text-slate-300 hover:text-white hover:bg-slate-800/50">
+                            <span>🏦 股災/戰爭避險標的庫詳情</span>
+                            <span class="text-[10px] font-mono text-emerald-300">標的清單</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 選單最後一個選項 -->
+                <div class="pt-3 border-t border-slate-800">
+                    <div class="text-[10px] font-mono uppercase tracking-wider text-slate-400 px-3 mb-1.5">💬 情報提供與問題回報</div>
+                    <button onclick="switchView('user-intel')" id="nav-user-intel" class="nav-item w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-xs text-amber-300 hover:text-white bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30">
+                        <span>📢 用戶新聞回報與 AI 裁決</span>
+                        <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-200">AI 審核</span>
+                    </button>
+                </div>
+
+            </div>
+
+            <!-- 底部真實餘額狀態 -->
+            <div class="p-3.5 border-t border-slate-800 bg-slate-950/60 space-y-1.5">
+                <div class="flex items-center justify-between text-[11px]">
+                    <span class="text-slate-400 flex items-center space-x-1.5">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 live-dot"></span>
+                        <span>OKX 資產總額</span>
+                    </span>
+                    <span id="sidebarCapitalText" class="font-mono text-emerald-400 font-bold">$0.00</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- 右側主內容區 -->
+        <main class="flex-1 overflow-y-auto p-3.5 lg:p-6 space-y-6">
+
+            <!-- 視圖 1：實時總資產與持有訂單首頁 (OVERVIEW) -->
+            <section id="view-overview" class="space-y-6">
+                
+                <!-- 🌟 最上方：OKX 顯示的資產總額實時看板 + 兩半資金池狀態 -->
+                <div class="glass-card rounded-2xl p-5 border-2 border-indigo-500/50 bg-gradient-to-r from-slate-900 via-indigo-950/40 to-slate-900 shadow-xl">
+                    <div class="flex flex-wrap items-center justify-between gap-4">
+                        <div>
+                            <div class="flex items-center space-x-2">
+                                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 live-dot"></span>
+                                <span class="text-xs font-mono uppercase tracking-wider text-indigo-300">OKX Real-Time Total Asset Equity (OKX 實時資產總額)</span>
+                            </div>
+                            <div class="mt-2 flex flex-wrap items-baseline gap-3">
+                                <h1 id="heroOkxTotalAsset" class="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-mono text-white tracking-tight">$0.00 <span class="text-lg font-normal text-slate-400">USDT</span></h1>
+                                <span id="heroTotalUnrealizedBadge" class="text-sm font-mono font-bold px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300">實時浮盈: $0.00 (0.00%)</span>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs font-mono bg-slate-950/80 p-3.5 rounded-xl border border-slate-800">
+                            <div>
+                                <span class="text-slate-400 block text-[10px]">第一半資金池 (Half-A 預算)</span>
+                                <span id="heroHalfABudget" class="text-indigo-300 font-bold text-sm">$0.00</span>
+                                <span class="text-[10px] text-slate-500 block">可抓 ~3 張技術單</span>
+                            </div>
+                            <div>
+                                <span class="text-slate-400 block text-[10px]">第二半資金池 (Half-B 預算)</span>
+                                <span id="heroHalfBBudget" class="text-amber-300 font-bold text-sm">$0.00</span>
+                                <span class="text-[10px] text-slate-500 block">可抓 ~3 張新聞單</span>
+                            </div>
+                            <div class="col-span-2 sm:col-span-1 border-t sm:border-t-0 sm:border-l border-slate-800 pt-2 sm:pt-0 sm:pl-3">
+                                <span class="text-slate-400 block text-[10px]">可用現金 / 已用保證金</span>
+                                <span id="heroFreeUsedText" class="text-emerald-400 font-bold text-xs">$0.00 / $0.00</span>
+                                <span class="text-[10px] text-slate-500 block">台股部位: 0.00% ($0)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 🌟 底下第一核心區塊：🔥 目前持有訂單 (包含訂單金額與實時收益率) -->
+                <div class="glass-card rounded-xl p-4 lg:p-5 border border-amber-500/50 shadow-lg">
+                    <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+                        <div class="flex items-center space-x-2">
+                            <span class="w-2.5 h-2.5 rounded-full bg-amber-400 live-dot"></span>
+                            <h3 class="text-base lg:text-lg font-bold text-white">🔥 目前持有訂單 (OKX Active Positions — 訂單金額與實時收益率)</h3>
+                            <span id="kpiActivePosCountBadge" class="text-xs font-mono px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30">0 筆持倉中</span>
+                        </div>
+                        <span class="text-xs font-mono text-slate-400">直接同步 OKX 倉位之訂單金額、進場價與實時收益率</span>
+                    </div>
+
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="border-b border-slate-800 bg-slate-900/90 text-[11px] font-mono text-slate-300 uppercase">
+                                    <th class="py-3 px-3">持有合約標的</th>
+                                    <th class="py-3 px-3">方向 / 槓桿 / 張數</th>
+                                    <th class="py-3 px-3">💰 訂單金額 (保證金 / 總名目價值)</th>
+                                    <th class="py-3 px-3">進場均價 ➔ 當前現價</th>
+                                    <th class="py-3 px-3">動態止盈 / 寬止損設定</th>
+                                    <th class="py-3 px-3 text-right">📈 實時收益率 (ROI) & 損益金額</th>
+                                </tr>
+                            </thead>
+                            <tbody id="activePositionsTableBody" class="divide-y divide-slate-800/70 text-xs font-mono">
+                                <tr>
+                                    <td colspan="6" class="py-8 text-center text-slate-400 font-sans">
+                                        📭 尚未載入持倉數據。請點擊右上角「📂 匯入 live_data.json」或等待 GitHub Actions 自動同步！
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- 4 張關鍵指標摘要卡片 -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
+                    <div class="glass-card rounded-xl p-4 relative overflow-hidden border-indigo-500/40">
+                        <p class="text-xs text-slate-400 font-medium">OKX 資產總額 (Total Equity)</p>
+                        <div class="mt-2 flex items-baseline space-x-2">
+                            <h2 id="kpiTotalEquity" class="text-2xl font-bold font-mono text-white">$0.00</h2>
+                            <span id="kpiTotalRoi" class="text-xs font-mono font-semibold px-1.5 py-0.5 rounded bg-slate-800 text-slate-300">0.00%</span>
+                        </div>
+                        <div class="mt-3 pt-2 border-t border-slate-800/80 flex justify-between text-[11px] text-slate-400">
+                            <span id="kpiFreeUsdtLabel">可用: $0.00</span>
+                            <span id="kpiUsedUsdtLabel" class="font-mono text-indigo-300">保證金: $0.00</span>
+                        </div>
+                    </div>
+
+                    <div onclick="switchView('order-history')" class="glass-card kpi-card-link rounded-xl p-4 relative overflow-hidden border-amber-500/40">
+                        <p class="text-xs text-amber-300 font-medium">🪙 目前持有訂單實時總浮盈</p>
+                        <div class="mt-2 flex items-baseline space-x-2">
+                            <h2 id="kpiCryptoLivePnl" class="text-2xl font-bold font-mono text-slate-300">$0.00</h2>
+                            <span id="kpiCryptoLiveRoi" class="text-xs font-mono px-1.5 py-0.5 rounded bg-slate-800 text-slate-300">0.00%</span>
+                        </div>
+                        <div class="mt-3 pt-2 border-t border-slate-800/80 flex justify-between text-[11px] text-slate-400">
+                            <span>依現有持倉即時計算</span>
+                            <span class="font-mono text-amber-400">查看明細 ➔</span>
+                        </div>
+                    </div>
+
+                    <div onclick="switchView('twse-SafeStocks')" class="glass-card kpi-card-link rounded-xl p-4 relative overflow-hidden">
+                        <p class="text-xs text-slate-400 font-medium">🇹🇼 台股穩健倉 (實際部位)</p>
+                        <div class="mt-2 flex items-baseline space-x-2">
+                            <h2 id="kpiTwseRoi" class="text-2xl font-bold font-mono text-slate-400">0.00%</h2>
+                            <span class="text-xs font-mono px-1.5 py-0.5 rounded bg-slate-800 text-slate-400">$0.00 (無部位)</span>
+                        </div>
+                        <div class="mt-3 pt-2 border-t border-slate-800/80 flex justify-between text-[11px] text-slate-500">
+                            <span>未連接台股 API 誠實歸零</span>
+                            <span class="font-mono text-slate-400">0 筆持倉</span>
+                        </div>
+                    </div>
+
+                    <div onclick="switchView('order-history')" class="glass-card kpi-card-link rounded-xl p-4 relative overflow-hidden border-sky-500/40">
+                        <p class="text-xs text-sky-300 font-medium">📜 程式碼已執行之歷史交易數</p>
+                        <div class="mt-2 flex items-baseline space-x-2">
+                            <h2 id="kpiOrderTotalCount" class="text-2xl font-bold font-mono text-white">0 筆真實交易</h2>
+                            <span class="text-xs font-mono px-1.5 py-0.5 rounded bg-sky-500/15 text-sky-300">OKX 紀錄</span>
+                        </div>
+                        <div class="mt-3 pt-2 border-t border-slate-800/80 flex justify-between text-[11px] text-slate-400">
+                            <span>點擊查看程式碼做了什麼</span>
+                            <span class="font-mono text-sky-300">查閱歷史 ➔</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 10 等分動態資金池實盤映射 -->
+                <div class="glass-card rounded-xl p-4 border border-indigo-500/30">
+                    <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                        <div class="flex flex-wrap items-center gap-2">
+                            <span class="text-xs lg:text-sm font-bold text-white">🧩 兩半資金池 (Half-A / Half-B) 與台股 10 等分實盤映射</span>
+                            <span id="trancheUnitBadge" class="text-[11px] font-mono px-2 py-0.5 rounded bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">每 1 等分基準: $0.00</span>
+                        </div>
+                        <div class="flex items-center space-x-3 text-xs font-mono">
+                            <span class="text-slate-400">現有持倉實時總浮盈：</span>
+                            <span id="trancheTotalLivePnl" class="text-slate-300 font-bold text-sm">$0.00 (0.00%)</span>
+                        </div>
+                    </div>
+                    <div id="trancheGridContainer" class="grid grid-cols-2 sm:grid-cols-5 lg:grid-cols-10 gap-2.5"></div>
+                </div>
+
+                <!-- 程式碼最新執行之歷史交易預覽 -->
+                <div class="glass-card rounded-xl p-4 lg:p-5 border border-sky-500/30">
+                    <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                        <div>
+                            <h3 class="text-sm lg:text-base font-bold text-white">📜 程式碼做了什麼：最新執行之歷史交易紀錄預覽</h3>
+                            <p class="text-xs text-slate-400 mt-0.5">顯示每一筆由 Python 引擎送出的真實訂單、訂單金額、實時收益率與進場原因</p>
+                        </div>
+                        <button onclick="switchView('order-history')" class="text-xs px-3 py-1.5 rounded-lg bg-sky-500/20 hover:bg-sky-500/30 text-sky-300 border border-sky-500/30 font-mono">
+                            查看全部歷史訂單 ➔
+                        </button>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="border-b border-slate-800 bg-slate-900/80 text-[11px] font-mono text-slate-400 uppercase">
+                                    <th class="py-2.5 px-3">OKX 訂單號 / 時間</th>
+                                    <th class="py-2.5 px-3">標的 / 方向 / 訂單金額</th>
+                                    <th class="py-2.5 px-3">成交均價 ➔ 現價</th>
+                                    <th class="py-2.5 px-3">實時收益率 / 狀態</th>
+                                    <th class="py-2.5 px-3">AI 獨立下單原因</th>
+                                </tr>
+                            </thead>
+                            <tbody id="overviewRecentOrdersBody" class="divide-y divide-slate-800/70 text-xs font-mono">
+                                <tr>
+                                    <td colspan="5" class="py-6 text-center text-slate-400 font-sans">等待匯入或自動同步 live_data.json...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- 視圖 2：📜 歷史交易訂單明細 -->
+            <section id="view-order-history" class="hidden space-y-5">
+                <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-800 pb-4">
+                    <div>
+                        <span class="text-xs font-mono uppercase text-sky-400">100% Real OKX Execution History</span>
+                        <h2 class="text-xl font-bold text-white mt-0.5">📜 程式碼實際執行之歷史交易訂單明細</h2>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <button onclick="document.getElementById('jsonFileInput').click()" class="text-xs px-3 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-medium">
+                            📂 匯入最新 live_data.json
+                        </button>
+                        <button onclick="switchView('overview')" class="text-xs px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300">← 返回首頁</button>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap items-center justify-between gap-3 glass-card p-3.5 rounded-xl">
+                    <div class="flex flex-wrap items-center gap-2">
+                        <span class="text-xs text-slate-400 font-medium mr-1">篩選訂單市場：</span>
+                        <button onclick="filterOrders('all')" id="filter-btn-all" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-indigo-600 text-white shadow">
+                            ⚖️ 全部真實訂單
+                        </button>
+                        <button onclick="filterOrders('crypto')" id="filter-btn-crypto" class="px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-800 text-slate-300 hover:text-white">
+                            🪙 虛擬貨幣 (OKX 實盤)
+                        </button>
+                        <button onclick="filterOrders('twse')" id="filter-btn-twse" class="px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-800 text-slate-300 hover:text-white">
+                            🇹🇼 台股訂單 (0 筆)
+                        </button>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-xl overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="border-b border-slate-800 bg-slate-900/80 text-[11px] font-mono text-slate-400 uppercase">
+                                    <th class="py-3 px-4">OKX 訂單編號 / 時間</th>
+                                    <th class="py-3 px-4">所屬資金池 / 張數</th>
+                                    <th class="py-3 px-4">標的與執行方向</th>
+                                    <th class="py-3 px-4">槓桿 / 訂單金額</th>
+                                    <th class="py-3 px-4">實時收益率 / 止盈止損設定</th>
+                                    <th class="py-3 px-4 text-right">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody id="orderHistoryTableBody" class="divide-y divide-slate-800/70 text-xs font-mono"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 其餘保留原樣的視圖 -->
+            <section id="view-macro-shield" class="hidden space-y-6">
+                <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-800 pb-4">
+                    <h2 class="text-xl font-bold text-white">🛡️ 兩半資金池 (Half-A / Half-B) 多原因同時下單與寬止損機制</h2>
+                    <button onclick="switchView('overview')" class="text-xs px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300">← 返回首頁</button>
+                </div>
+                <div class="glass-card rounded-xl p-5 text-xs text-slate-300 leading-relaxed">
+                    系統將可用現金拆為兩半（各佔 44%），第一半專攻技術面均線突破（最多同時抓 3 張訂單），第二半專攻新聞催化與動能爆發（最多同時抓 3 張訂單），並由 GitHub Actions 每 5 分鐘自動喚醒執行。
+                </div>
+            </section>
+
+            <section id="view-crypto-main" class="hidden space-y-6">
+                <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-800 pb-4">
+                    <h2 class="text-xl font-bold text-white">🪙 虛擬貨幣專區：兩半資金池與多原因配資</h2>
+                    <button onclick="switchView('overview')" class="text-xs px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300">← 返回首頁</button>
+                </div>
+            </section>
+
+            <section id="view-crypto-anti-fake" class="hidden space-y-6">
+                <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-800 pb-4">
+                    <h2 class="text-xl font-bold text-white">🛡️ 原因導向動態止盈與 ATR 防洗盤寬止損</h2>
+                    <button onclick="switchView('overview')" class="text-xs px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300">← 返回首頁</button>
+                </div>
+            </section>
+
+            <section id="view-twse-guaranteed" class="hidden space-y-6">
+                <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-800 pb-4">
+                    <h2 class="text-xl font-bold text-white">🇹🇼 台股穩健專區 (目前未串接台股 API，實盤收益誠實顯示 0%)</h2>
+                    <button onclick="switchView('overview')" class="text-xs px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300">← 返回首頁</button>
+                </div>
+            </section>
+
+            <section id="view-twse-SafeStocks" class="hidden space-y-6">
+                <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-800 pb-4">
+                    <h2 class="text-xl font-bold text-white">🏦 台股四大避險穩定標的庫詳情</h2>
+                    <button onclick="switchView('overview')" class="text-xs px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300">← 返回首頁</button>
+                </div>
+            </section>
+
+            <section id="view-audit-forger" class="hidden space-y-6">
+                <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-800 pb-4">
+                    <h2 class="text-xl font-bold text-white">🔍 財會雙向憑證勾稽與 SHA-256 防偽造文書校驗</h2>
+                    <button onclick="switchView('overview')" class="text-xs px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300">← 返回首頁</button>
+                </div>
+            </section>
+
+            <section id="view-user-intel" class="hidden space-y-6">
+                <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-800 pb-4">
+                    <h2 class="text-xl font-bold text-white">📢 用戶情報回報與 AI 裁決紀錄</h2>
+                    <button onclick="switchView('overview')" class="text-xs px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300">← 返回首頁</button>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- 彈出視窗 Modal：確認單筆歷史交易訂單細項 -->
+    <div id="orderDetailModal" class="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="glass-card border border-indigo-500/50 rounded-2xl max-w-lg w-full p-5 space-y-4 shadow-2xl">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                <div>
+                    <span id="modalOrderMarketBadge" class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300">🟢 OKX 實盤訂單</span>
+                    <h3 id="modalOrderTitle" class="text-base font-bold text-white mt-1">真實訂單細項核對</h3>
+                </div>
+                <button onclick="closeOrderModal()" class="p-1.5 rounded-lg bg-slate-800 text-slate-400 hover:text-white">✕</button>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3 text-xs font-mono bg-slate-950/80 p-3.5 rounded-xl border border-slate-800">
+                <div>
+                    <span class="text-slate-400 block text-[10px]">交易標的 / 執行方向</span>
+                    <span id="modalAssetDir" class="text-white font-bold">--</span>
+                </div>
+                <div>
+                    <span class="text-slate-400 block text-[10px]">槓桿 / 訂單金額與張數</span>
+                    <span id="modalLeveragePool" class="text-amber-400 font-bold">--</span>
+                </div>
+                <div>
+                    <span class="text-slate-400 block text-[10px]">成交均價 ➔ 當前現價</span>
+                    <span id="modalEntryExit" class="text-slate-200">--</span>
+                </div>
+                <div>
+                    <span class="text-slate-400 block text-[10px]">實時收益率 / 名目價值</span>
+                    <span id="modalRoiPnl" class="text-emerald-400 font-bold">--</span>
+                </div>
+                <div>
+                    <span class="text-slate-400 block text-[10px]">手續費明細</span>
+                    <span id="modalFeeTax" class="text-slate-300">--</span>
+                </div>
+                <div>
+                    <span class="text-slate-400 block text-[10px]">止盈止損設定</span>
+                    <span id="modalRiskReward" class="text-indigo-300">--</span>
+                </div>
+            </div>
+
+            <div class="space-y-2 text-xs">
+                <div class="p-3 rounded-lg bg-slate-900/90 border border-slate-800">
+                    <span class="text-slate-400 font-bold block mb-1">🤖 程式碼執行原因與止盈止損依據：</span>
+                    <p id="modalAiReason" class="text-slate-200 leading-relaxed"></p>
+                </div>
+                <div class="p-2.5 rounded-lg bg-slate-950 border border-emerald-500/30 flex items-center justify-between font-mono text-[11px]">
+                    <span class="text-emerald-400">✔ 財會雙向勾稽 SHA-256 簽章：</span>
+                    <span id="modalShaHash" class="text-slate-400">--</span>
+                </div>
+            </div>
+
+            <button onclick="closeOrderModal()" class="w-full py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs">
+                確認無誤並關閉視窗
+            </button>
+        </div>
+    </div>
+
+    <script>
+        let currentMode = 'dual';
+        let currentOrderFilter = 'all';
+
+        let dynamicBaseCapital = 0.0;
+        let freeUsdtBalance = 0.0;
+        let usedUsdtMargin = 0.0;
+        let totalUnrealizedPnl = 0.0;
+        let totalCryptoRoiPct = 0.0;
+        let activePositionsList = [];
+        let orderDatabase = [];
+        let trancheLiveState = [];
+
+        function initEmptyHonestState() {
+            trancheLiveState = [];
+            for (let i = 1; i <= 7; i++) {
+                trancheLiveState.push({
+                    id: i,
+                    type: i <= 5 ? 'crypto_high' : 'crypto_low',
+                    title: i <= 3 ? `Half-A 資金倉 #${i}` : `Half-B 資金倉 #${i}`,
+                    sub: '等待同步 OKX 持倉',
+                    lev: '0x',
+                    roi: 0.0,
+                    real_pnl_usd: 0.0,
+                    style: 'border-slate-800 bg-slate-900/40'
+                });
+            }
+            for (let i = 8; i <= 10; i++) {
+                trancheLiveState.push({
+                    id: i,
+                    type: 'twse_safe',
+                    title: `台股倉位 #${i}`,
+                    sub: '未建倉 (0%)',
+                    lev: '0x',
+                    roi: 0.0,
+                    real_pnl_usd: 0.0,
+                    style: 'border-slate-800 bg-slate-900/40'
+                });
+            }
+            renderTrancheGrid();
+        }
+
+        function applyLiveJsonData(data) {
+            if (!data) return;
+
+            dynamicBaseCapital = parseFloat(data.real_usdt || 0);
+            freeUsdtBalance = parseFloat(data.free_usdt || dynamicBaseCapital);
+            usedUsdtMargin = parseFloat(data.used_usdt || 0);
+
+            const syncBadge = document.getElementById('apiSyncBadge');
+            syncBadge.className = 'hidden sm:inline-block text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/40';
+            syncBadge.innerText = `🟢 已同步 OKX 實盤 (${data.updated_at || '最新'})`;
+
+            if (data.market_prices) {
+                const btcObj = data.market_prices['BTC/USDT:USDT'] || {};
+                const ethObj = data.market_prices['ETH/USDT:USDT'] || {};
+                const solObj = data.market_prices['SOL/USDT:USDT'] || {};
+                document.getElementById('liveTickerBar').innerText =
+                    `OKX 現價 | BTC: $${(btcObj.last_price || 0).toLocaleString()} | ETH: $${(ethObj.last_price || 0).toLocaleString()} | SOL: $${(solObj.last_price || 0).toLocaleString()}`;
+            }
+
+            if (data.ai_last_decision) {
+                const ai = data.ai_last_decision;
+                document.getElementById('aiLiveActionText').innerHTML =
+                    `<span class="text-amber-300 font-bold">[${ai.action} | 確信度: ${ai.confidence}%]</span> ${ai.reason}`;
+            }
+
+            if (Array.isArray(data.active_positions)) {
+                activePositionsList = data.active_positions;
+            } else {
+                activePositionsList = [];
+            }
+
+            if (typeof data.total_unrealized_pnl === 'number') {
+                totalUnrealizedPnl = data.total_unrealized_pnl;
+                totalCryptoRoiPct = data.total_crypto_roi_pct || 0.0;
+            } else {
+                totalUnrealizedPnl = activePositionsList.reduce((acc, p) => acc + (parseFloat(p.unrealized_pnl) || 0), 0);
+                totalCryptoRoiPct = dynamicBaseCapital > 0 ? (totalUnrealizedPnl / dynamicBaseCapital) * 100 : 0.0;
+            }
+
+            renderActivePositionsTable();
+
+            if (Array.isArray(data.orders)) {
+                orderDatabase = data.orders;
+                document.getElementById('kpiOrderTotalCount').innerText = `${orderDatabase.length} 筆真實交易`;
+                document.getElementById('sidebarOrderCountBadge').innerText = `${orderDatabase.length} 筆`;
+                filterOrders(currentOrderFilter);
+                renderOverviewRecentOrders();
+            }
+
+            if (Array.isArray(data.tranches) && data.tranches.length === 10) {
+                trancheLiveState = data.tranches.map(t => {
+                    if (t.type === 'twse_safe') {
+                        return {
+                            id: t.id, type: 'twse_safe', title: `台股倉位 #${t.id}`,
+                            sub: '未連接台股 API (無部位)', lev: '0x', roi: 0.0, real_pnl_usd: 0.0,
+                            style: 'border-slate-800 bg-slate-900/40'
+                        };
+                    }
+                    const hasRealPos = Math.abs(parseFloat(t.roi || 0)) > 0;
+                    return {
+                        ...t,
+                        style: hasRealPos ? 'border-amber-500/50 bg-amber-500/10' : 'border-slate-800 bg-slate-900/40'
+                    };
+                });
+            }
+
+            renderTrancheGrid();
+        }
+
+        // 渲染底下「🔥 目前持有訂單 (含訂單金額與實時收益率)」
+        function renderActivePositionsTable() {
+            const tbody = document.getElementById('activePositionsTableBody');
+            document.getElementById('kpiActivePosCountBadge').innerText = `${activePositionsList.length} 筆持倉中`;
+            document.getElementById('sidebarActivePosBadge').innerText = `${activePositionsList.length} 持倉`;
+
+            if (activePositionsList.length === 0) {
+                tbody.innerHTML = `
+                <tr>
+                    <td colspan="6" class="py-6 text-center text-slate-400 font-sans">
+                        目前 OKX 帳戶無未平倉部位（或請點擊右上角「📂 匯入 live_data.json」載入最新檔案）。
+                    </td>
+                </tr>`;
+                return;
+            }
+
+            tbody.innerHTML = activePositionsList.map(pos => {
+                const isPos = pos.unrealized_pnl >= 0;
+                const pnlColor = isPos ? 'text-emerald-400' : 'text-rose-400';
+                const sign = isPos ? '+' : '';
+                const sideBadge = pos.side === 'LONG'
+                    ? '<span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">做多 LONG</span>'
+                    : '<span class="px-2 py-0.5 rounded bg-rose-500/20 text-rose-300 border border-rose-500/30">做空 SHORT</span>';
+
+                return `
+                <tr class="hover:bg-slate-800/50 transition">
+                    <td class="py-3 px-3 font-bold text-white text-sm">${pos.symbol}</td>
+                    <td class="py-3 px-3">
+                        ${sideBadge}
+                        <span class="ml-1 text-amber-300 font-bold">${pos.leverage}</span>
+                        <div class="text-[11px] text-slate-300 mt-0.5">數量: <span class="text-white font-bold">${pos.contracts} 張合約</span></div>
+                    </td>
+                    <td class="py-3 px-3">
+                        <div class="text-amber-300 font-bold">保證金金額: $${pos.margin_usdt.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})} USDT</div>
+                        <div class="text-slate-300 text-[11px]">合約總名目金額: $${pos.notional_usdt.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})} USDT</div>
+                    </td>
+                    <td class="py-3 px-3">
+                        <div class="text-slate-200">進場均價: $${pos.entry_price.toLocaleString()}</div>
+                        <div class="text-sky-300 text-[11px]">當前現價: $${pos.mark_price.toLocaleString()}</div>
+                    </td>
+                    <td class="py-3 px-3">
+                        <div class="text-emerald-300 text-[11px]">動態止盈: +${pos.tp_pct}%</div>
+                        <div class="text-rose-300 text-[11px]">寬幅止損: -${pos.sl_pct}%</div>
+                    </td>
+                    <td class="py-3 px-3 text-right">
+                        <div class="text-base font-extrabold ${pnlColor}">${sign}${pos.roi_pct.toFixed(2)}%</div>
+                        <div class="text-xs font-bold ${pnlColor}">${sign}$${pos.unrealized_pnl.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})} USDT</div>
+                    </td>
+                </tr>
+                `;
+            }).join('');
+        }
+
+        function renderOverviewRecentOrders() {
+            const tbody = document.getElementById('overviewRecentOrdersBody');
+            if (!orderDatabase.length) return;
+            const recent = orderDatabase.slice(0, 6);
+            tbody.innerHTML = recent.map(o => `
+                <tr class="hover:bg-slate-800/40 transition cursor-pointer" onclick="openOrderModal('${o.id}')">
+                    <td class="py-2.5 px-3">
+                        <span class="font-bold text-white">${o.id}</span>
+                        <div class="text-[10px] text-slate-400">${o.time}</div>
+                    </td>
+                    <td class="py-2.5 px-3">
+                        <span class="font-bold text-amber-300">${o.asset}</span> (${o.direction})
+                        <div class="text-[11px] text-indigo-300 font-bold">${o.pool}</div>
+                    </td>
+                    <td class="py-2.5 px-3 text-slate-200">${o.entryExit}</td>
+                    <td class="py-2.5 px-3">
+                        <div class="text-emerald-400 font-bold">${o.roi}</div>
+                        <div class="text-[10px] text-slate-400">${o.rr}</div>
+                    </td>
+                    <td class="py-2.5 px-3 font-sans text-slate-300 max-w-xs truncate">${o.reason}</td>
+                </tr>
+            `).join('');
+        }
+
+        function renderTrancheGrid() {
+            const container = document.getElementById('trancheGridContainer');
+            const unitCapital = dynamicBaseCapital / 10;
+            const halfPoolBudget = (dynamicBaseCapital * 0.88) / 2.0;
+
+            container.innerHTML = trancheLiveState.map(item => {
+                const pnlDollar = typeof item.real_pnl_usd === 'number'
+                    ? item.real_pnl_usd
+                    : (unitCapital * (item.roi / 100));
+                const roiSign = item.roi > 0 ? '+' : '';
+                const roiColor = item.roi > 0 ? 'text-emerald-400' : (item.roi < 0 ? 'text-rose-400' : 'text-slate-500');
+
+                return `
+                <div class="p-2.5 rounded-xl border ${item.style} flex flex-col justify-between transition-all duration-300 overflow-hidden">
+                    <div class="flex items-center justify-between gap-1 text-[10px] font-mono text-slate-300">
+                        <span class="shrink-0 font-bold">#${item.id}</span>
+                        <span class="px-1 py-0.5 rounded bg-slate-900/90 text-[9px] text-slate-300 truncate">${item.lev}</span>
+                    </div>
+                    <div class="my-1.5">
+                        <div class="text-[11px] font-bold text-white leading-tight truncate">${item.title}</div>
+                        <div class="text-[10px] text-slate-400 mt-0.5 truncate">${item.sub}</div>
+                    </div>
+                    <div class="pt-1.5 border-t border-slate-700/60 flex flex-col font-mono leading-tight">
+                        <span class="text-xs font-bold ${roiColor}">${roiSign}${item.roi.toFixed(2)}%</span>
+                        <span class="text-[10px] text-slate-300 mt-0.5 truncate">${pnlDollar >= 0 ? '+' : ''}$${pnlDollar.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span>
+                    </div>
+                </div>
+                `;
+            }).join('');
+
+            const pnlSign = totalUnrealizedPnl >= 0 ? '+' : '';
+            const pnlColorClass = totalUnrealizedPnl > 0 ? 'text-emerald-400' : (totalUnrealizedPnl < 0 ? 'text-rose-400' : 'text-slate-300');
+
+            // 更新最頂部醒目資產總額看板
+            document.getElementById('heroOkxTotalAsset').innerHTML = `$${dynamicBaseCapital.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})} <span class="text-lg font-normal text-slate-400">USDT</span>`;
+            document.getElementById('heroTotalUnrealizedBadge').innerText = `實時浮盈: ${pnlSign}$${totalUnrealizedPnl.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})} (${pnlSign}${totalCryptoRoiPct.toFixed(2)}%)`;
+            document.getElementById('heroHalfABudget').innerText = `$${halfPoolBudget.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+            document.getElementById('heroHalfBBudget').innerText = `$${halfPoolBudget.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+            document.getElementById('heroFreeUsedText').innerText = `$${freeUsdtBalance.toLocaleString('en-US', {maximumFractionDigits: 0})} / $${usedUsdtMargin.toLocaleString('en-US', {maximumFractionDigits: 0})}`;
+
+            document.getElementById('trancheUnitBadge').innerText = `每 1 等分基準: $${unitCapital.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+            document.getElementById('sidebarCapitalText').innerText = `$${dynamicBaseCapital.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+            document.getElementById('kpiTotalEquity').innerText = `$${dynamicBaseCapital.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+            document.getElementById('kpiFreeUsdtLabel').innerText = `可用: $${freeUsdtBalance.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+            document.getElementById('kpiUsedUsdtLabel').innerText = `保證金: $${usedUsdtMargin.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+
+            document.getElementById('kpiCryptoLivePnl').className = `text-2xl font-bold font-mono ${pnlColorClass}`;
+            document.getElementById('kpiCryptoLivePnl').innerText = `${pnlSign}$${totalUnrealizedPnl.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+            document.getElementById('kpiCryptoLiveRoi').innerText = `${pnlSign}${totalCryptoRoiPct.toFixed(2)}%`;
+            document.getElementById('kpiTotalRoi').innerText = `${pnlSign}${totalCryptoRoiPct.toFixed(2)}%`;
+            document.getElementById('trancheTotalLivePnl').className = `font-bold text-sm ${pnlColorClass}`;
+            document.getElementById('trancheTotalLivePnl').innerText = `${pnlSign}$${totalUnrealizedPnl.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})} (${pnlSign}${totalCryptoRoiPct.toFixed(2)}%)`;
+        }
+
+        async function pollLiveJsonFromLocalServer() {
+            try {
+                const res = await fetch('./live_data.json?t=' + Date.now());
+                if (!res.ok) return;
+                const data = await res.json();
+                applyLiveJsonData(data);
+            } catch (err) {}
+        }
+        setInterval(pollLiveJsonFromLocalServer, 3000);
+
+        function handleManualJsonUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const data = JSON.parse(e.target.result);
+                    applyLiveJsonData(data);
+                    alert(`✅ 成功載入 OKX 實盤數據！\n• OKX 資產總額: $${parseFloat(data.real_usdt).toLocaleString()} USDT\n• 目前持有訂單: ${data.active_positions ? data.active_positions.length : 0} 筆\n• 歷史交易訂單: ${data.orders ? data.orders.length : 0} 筆`);
+                } catch (parseErr) {
+                    alert('❌ JSON 檔案解析失敗，請確認選取的是 live_data.json！');
+                }
+            };
+            reader.readAsText(file);
+        }
+
+        function filterOrders(filterType) {
+            currentOrderFilter = filterType;
+            const filtered = orderDatabase.filter(o => filterType === 'all' ? true : o.market === filterType);
+            const tbody = document.getElementById('orderHistoryTableBody');
+
+            if (filtered.length === 0) {
+                tbody.innerHTML = `
+                <tr>
+                    <td colspan="6" class="py-10 px-4 text-center text-slate-400 font-sans">
+                        📭 目前此分類無真實交易訂單（台股未串接故為 0 筆；虛擬貨幣請匯入或同步 live_data.json 查看）。
+                    </td>
+                </tr>`;
+                return;
+            }
+
+            tbody.innerHTML = filtered.map(o => `
+                <tr class="hover:bg-slate-800/40 transition">
+                    <td class="py-3 px-4">
+                        <div class="font-bold text-white">${o.id}</div>
+                        <div class="text-[10px] text-slate-400">${o.time}</div>
+                    </td>
+                    <td class="py-3 px-4">
+                        <span class="px-2 py-0.5 rounded border text-[10px] bg-emerald-500/15 text-emerald-300 border-emerald-500/30">${o.marketBadge}</span>
+                    </td>
+                    <td class="py-3 px-4 font-sans">
+                        <div class="font-bold text-slate-200">${o.asset}</div>
+                        <div class="text-[11px] text-amber-300">${o.direction}</div>
+                    </td>
+                    <td class="py-3 px-4">
+                        <div class="text-indigo-300 font-semibold">${o.leverage}</div>
+                        <div class="text-[11px] text-amber-300 font-bold">${o.pool}</div>
+                    </td>
+                    <td class="py-3 px-4">
+                        <span class="font-bold text-xs text-emerald-400">${o.roi}</span>
+                        <div class="text-[11px] text-slate-400">${o.rr}</div>
+                    </td>
+                    <td class="py-3 px-4 text-right">
+                        <button onclick="openOrderModal('${o.id}')" class="px-3 py-1.5 rounded-lg bg-indigo-500/20 hover:bg-indigo-500/40 text-indigo-300 border border-indigo-500/30 text-xs font-sans font-medium transition">
+                            🔍 確認細項
+                        </button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function openOrderModal(orderId) {
+            const ord = orderDatabase.find(o => o.id === orderId);
+            if (!ord) return;
+            document.getElementById('modalOrderMarketBadge').innerText = ord.marketBadge;
+            document.getElementById('modalOrderTitle').innerText = `OKX 真實訂單核對 #${ord.full_id || ord.id} (${ord.time})`;
+            document.getElementById('modalAssetDir').innerText = `${ord.asset} (${ord.direction})`;
+            document.getElementById('modalLeveragePool').innerText = `${ord.leverage} | ${ord.pool}`;
+            document.getElementById('modalEntryExit').innerText = ord.entryExit;
+            document.getElementById('modalRoiPnl').innerText = `${ord.roi} | ${ord.pnl}`;
+            document.getElementById('modalFeeTax').innerText = ord.fee;
+            document.getElementById('modalRiskReward').innerText = ord.rr;
+            document.getElementById('modalAiReason').innerText = ord.reason;
+            document.getElementById('modalShaHash').innerText = `${ord.hash}`;
+            document.getElementById('orderDetailModal').classList.remove('hidden');
+        }
+
+        function closeOrderModal() {
+            document.getElementById('orderDetailModal').classList.add('hidden');
+        }
+
+        function switchView(viewId) {
+            const views = ['overview', 'order-history', 'macro-shield', 'crypto-main', 'crypto-anti-fake', 'twse-guaranteed', 'twse-SafeStocks', 'audit-forger', 'user-intel'];
+            views.forEach(v => {
+                document.getElementById('view-' + v)?.classList.add('hidden');
+                document.getElementById('nav-' + v)?.classList.remove('active');
+            });
+            document.getElementById('view-' + viewId)?.classList.remove('hidden');
+            document.getElementById('nav-' + viewId)?.classList.add('active');
+            if (window.innerWidth < 960) {
+                document.getElementById('sidebarMenu').classList.add('-translate-x-full');
+                document.getElementById('mobileOverlay').classList.add('hidden');
+            }
+        }
+
+        function toggleSubmenu(submenuId, arrowId) {
+            document.getElementById(submenuId).classList.toggle('hidden');
+            document.getElementById(arrowId).classList.toggle('rotate-180');
+        }
+
+        function toggleMobileSidebar() {
+            document.getElementById('sidebarMenu').classList.toggle('-translate-x-full');
+            document.getElementById('mobileOverlay').classList.toggle('hidden');
+        }
+
+        function setAllocationMode(mode) {
+            currentMode = mode;
+            if (mode === 'dual') filterOrders('all');
+            if (mode === 'crypto') filterOrders('crypto');
+            if (mode === 'twse') filterOrders('twse');
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            initEmptyHonestState();
+            filterOrders('all');
+            pollLiveJsonFromLocalServer();
+        });
+    </script>
+</body>
+</html>
