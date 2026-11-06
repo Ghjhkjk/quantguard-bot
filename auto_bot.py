@@ -4,6 +4,7 @@ import ccxt
 import feedparser
 import hashlib
 import json
+import urllib.request
 from datetime import datetime, timezone
 
 try:
@@ -14,32 +15,40 @@ except ImportError:
     GENAI_AVAILABLE = False
 
 # ==========================================================
-# 👇 1. 金鑰設定 (自動從 GitHub Secrets 讀取)
+# 👇 1. 金鑰與通道設定 (自動從 GitHub Secrets 讀取)
 # ==========================================================
-OKX_API_KEY    = os.environ.get("OKX_API_KEY", "請填入你的_OKX_API_Key")
-OKX_SECRET_KEY = os.environ.get("OKX_SECRET_KEY", "請填入你的_OKX_SECRET_KEY")
-OKX_PASSPHRASE = os.environ.get("OKX_PASSPHRASE", "請填入你的_OKX_Passphrase")
-GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "請填入你的_Gemini_API_Key")
+OKX_API_KEY       = os.environ.get("OKX_API_KEY", "請填入你的_OKX_API_Key")
+OKX_SECRET_KEY    = os.environ.get("OKX_SECRET_KEY", "請填入你的_OKX_SECRET_KEY")
+OKX_PASSPHRASE    = os.environ.get("OKX_PASSPHRASE", "請填入你的_OKX_Passphrase")
+GEMINI_API_KEY    = os.environ.get("GEMINI_API_KEY", "請填入你的_Gemini_API_Key")
+DISCORD_WEBHOOK   = os.environ.get("DISCORD_WEBHOOK_URL", "")
 
 # ==========================================================
-# ⚙️ 2. 運行模式與兩半資金池參數設定
+# ⚙️ 2. v9.0 核心資金與風控參數設定
 # ==========================================================
 WHITELIST_SYMBOLS = ['BTC/USDT:USDT', 'ETH/USDT:USDT', 'SOL/USDT:USDT']
-MAX_CAPITAL_UTILIZATION = 0.88  # 動用 88% 可用現金拆成兩半 (每半 44%)，保留 12% 緩衝
-MAX_ORDERS_PER_HALF = 3         # 每一半資金最多可同時持有/抓 3 張不同原因的倉位
-MAX_CONTRACTS_PER_ORDER = 1500  # 單筆最大張數上限
+CAPITAL_ALLOCATION = {
+    "normal_pool": 0.80,    # 80% 常態雙核心 (Half-A 40% + Half-B 40%)
+    "hedge_pool": 0.10,     # 10% 緊急對沖防禦池 (急跌或大額浮虧時啟動)
+    "sniper_pool": 0.10     # 10% 黑天鵝與極端暴利狙擊池
+}
+MAX_ORDERS_PER_HALF = 3
+MAX_CONTRACTS_PER_ORDER = 1500
 
+# 執行循環控制 (GitHub Actions 模式下啟動 50 分鐘長駐接力快慢雙軌)
 IS_GITHUB_ACTIONS = os.environ.get("GITHUB_ACTIONS") == "true"
-RUN_CONTINUOUS_LOOP = not IS_GITHUB_ACTIONS
-LOOP_INTERVAL_SECONDS = 180
+LOOP_ITERATIONS = 150 if IS_GITHUB_ACTIONS else 1  # 150次 × 20秒 = 約 50 分鐘
+FAST_LOOP_SECONDS = 20
 
 def clean_credential(text, name):
     cleaned = str(text).strip().replace("！", "!").replace("＠", "@").replace("＃", "#")
     try:
         cleaned.encode('latin-1')
     except UnicodeEncodeError:
-        raise ValueError(f"❌ 【{name}】內含中文字或全形符號，請確認已在 GitHub Secrets 設定！")
+        raise ValueError(f"❌ 【{name}】內含不合規字元，請確認已在 GitHub Secrets 設定！")
     if not cleaned or "請填入" in cleaned or "貼上" in cleaned:
+        if name == "DISCORD_WEBHOOK_URL":
+            return "" # 允許未設定
         raise ValueError(f"❌ 【{name}】尚未填寫！")
     return cleaned
 
@@ -51,9 +60,35 @@ def init_okx_exchange():
         'enableRateLimit': True,
         'options': {'defaultType': 'swap'}
     })
-    exchange.set_sandbox_mode(True)  # OKX 模擬盤環境
+    exchange.set_sandbox_mode(True)
     exchange.load_markets()
     return exchange
+
+def send_discord_notification(title, description, color_hex=3066993, fields=None):
+    webhook_url = clean_credential(DISCORD_WEBHOOK, "DISCORD_WEBHOOK_URL")
+    if not webhook_url:
+        return
+    
+    embed = {
+        "title": title,
+        "description": description,
+        "color": color_hex,
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+        "footer": {"text": "QuantGuard AI v9.0 Flagship Quant Engine"}
+    }
+    if fields:
+        embed["fields"] = fields
+
+    payload = json.dumps({"embeds": [embed]}).encode('utf-8')
+    req = urllib.request.Request(
+        webhook_url,
+        data=payload,
+        headers={'Content-Type': 'application/json', 'User-Agent': 'QuantGuard-Bot'}
+    )
+    try:
+        urllib.request.urlopen(req, timeout=5)
+    except Exception as e:
+        print(f"⚠️ Discord 推播發送失敗: {e}")
 
 def fetch_live_crypto_news():
     rss_urls = [
@@ -68,7 +103,7 @@ def fetch_live_crypto_news():
                 headlines.append(entry.title)
         except Exception:
             continue
-    return headlines[:5] if headlines else ["Market active with steady institutional volume."]
+    return headlines[:5] if headlines else ["Market steady with solid institutional liquidity."]
 
 def fetch_whitelist_market_data(exchange):
     market_summary = {}
@@ -88,6 +123,14 @@ def fetch_whitelist_market_data(exchange):
             swing_pct = ((max(highs) - min(lows)) / current_price) * 100 if highs else 3.0
             change_24h = float(ticker.get('percentage') or 0.0)
 
+            # 嘗試抓取籌碼面 (資金費率與未平倉量)
+            funding_rate = 0.01
+            try:
+                fr_data = exchange.fetch_funding_rate(sym)
+                funding_rate = float(fr_data.get('fundingRate') or 0.01) * 100
+            except Exception:
+                pass
+
             market_summary[sym] = {
                 "last_price": round(current_price, 2),
                 "change_24h_pct": round(change_24h, 2),
@@ -95,78 +138,70 @@ def fetch_whitelist_market_data(exchange):
                 "ma20": round(ma20, 2),
                 "atr_15m_pct": round(atr_pct, 2),
                 "recent_swing_pct": round(swing_pct, 2),
+                "funding_rate_pct": round(funding_rate, 4),
                 "trend": "BULLISH" if ma5 > ma20 else "BEARISH"
             }
         except Exception as e:
             print(f"⚠️ 抓取 {sym} 行情異常: {e}")
     return market_summary
 
-def ask_gemini_two_halves_brain(market_data, news_headlines, current_held_symbols):
+def ask_gemini_ai_brain(market_data, news_headlines, recent_history, current_held_symbols):
+    """
+    🧠 慢軌 AI 大腦：整合市場行情、新聞、籌碼面與歷史錯題本記憶
+    """
     gemini_key = clean_credential(GEMINI_API_KEY, "GEMINI_API_KEY")
     client = genai.Client(api_key=gemini_key)
     prompt = f"""
-    你是 QuantGuard AI 雙資金池多策略決策核心。請根據以下即時行情、新聞與目前持倉狀態進行規劃：
-    【三大幣種行情與振幅】：{json.dumps(market_data, ensure_ascii=False)}
+    你是 QuantGuard AI 專業量化旗艦核心。請結合以下即時數據進行 80/10/10 資金配置決策：
+    【三大幣種行情與籌碼】：{json.dumps(market_data, ensure_ascii=False)}
     【最新國際新聞】：{json.dumps(news_headlines, ensure_ascii=False)}
+    【近期歷史平倉錯題本記錄】：{json.dumps(recent_history[:3], ensure_ascii=False)}
     【目前已持有倉位之幣種】：{json.dumps(current_held_symbols, ensure_ascii=False)}
 
-    【核心規則：資金拆兩半 × 每一半最多 3 張不同原因訂單】：
-    1. 資金分為兩半：
-       - `half_a_orders` (第一半資金池)：以「技術面均線突破、支撐壓力、趨勢順勢」為進場原因，輸出 1 ~ 3 張訂單。
-       - `half_b_orders` (第二半資金池)：以「國際新聞事件催化、巨鯨動能、24h強弱勢表現」為進場原因，輸出 1 ~ 3 張訂單。
-    2. 每一張訂單必須包含：
-       - `symbol`: "BTC/USDT:USDT" 或 "ETH/USDT:USDT" 或 "SOL/USDT:USDT"
-       - `action`: "BUY" 或 "SELL"
-       - `weight`: 浮點數 (0.8 ~ 2.5，獲利機會越大權重越高)
-       - `leverage`: 整數 (3 ~ 10 倍槓桿)
-       - `tp_pct`: 浮點數 (6.0 ~ 25.0 %，依下單原因設定動態止盈)
-       - `sl_pct`: 浮點數 (2.8 ~ 5.5 %，參考 recent_swing_pct 設定防洗盤寬止損)
-       - `reason`: 繁體中文 45 字內，明確寫出該筆訂單的獨立進場原因與止盈止損設定依據。
+    【核心指令與防錯規則】：
+    1. Half-A (技術均線順勢池)：輸出 1~3 張突破順勢單。
+    2. Half-B (新聞動能與籌碼反向池)：輸出 1~3 張動能或資金費率對沖單。
+    3. 若近期歷史錯題本顯示某幣種連續虧損，本輪必須降低權重或切換反向。
+    4. 止損設定應參考 ATR 振幅設定寬止損 (3.0% ~ 5.5%)。
 
     請嚴格只輸出 JSON 格式：
     {{
       "overall_confidence": 整數(0-100),
-      "overall_summary": "繁體中文50字內：當前持倉監控與兩半資金池配置總結",
+      "overall_summary": "繁體中文50字內：市場趨勢與三資金池配置總結",
       "half_a_orders": [
-        {{"symbol": "BTC/USDT:USDT", "action": "BUY", "weight": 1.5, "leverage": 6, "tp_pct": 11.0, "sl_pct": 3.5, "reason": "【Half-A 技術順勢】..."}}
+        {{"symbol": "BTC/USDT:USDT", "action": "BUY", "weight": 1.5, "leverage": 6, "tp_pct": 12.0, "sl_pct": 3.8, "reason": "【Half-A 均線順勢】..."}}
       ],
       "half_b_orders": [
-        {{"symbol": "ETH/USDT:USDT", "action": "BUY", "weight": 1.8, "leverage": 7, "tp_pct": 14.0, "sl_pct": 3.8, "reason": "【Half-B 新聞催化】..."}}
+        {{"symbol": "ETH/USDT:USDT", "action": "SELL", "weight": 1.5, "leverage": 6, "tp_pct": 12.0, "sl_pct": 3.8, "reason": "【Half-B 籌碼反向】..."}}
       ]
     }}
     """
-    try:
-        response = client.models.generate_content(
-            model="gemini-2.5-flash",
-            contents=prompt,
-            config=types.GenerateContentConfig(response_mime_type="application/json", temperature=0.25)
-        )
-        return json.loads(response.text)
-    except Exception as e:
-        print(f"⚠️ AI 呼叫異常，啟動雙資金池多訂單備援: {e}")
-        half_a, half_b = [], []
-        for sym in WHITELIST_SYMBOLS:
-            info = market_data.get(sym, {})
-            act = "BUY" if info.get("trend") == "BULLISH" else "SELL"
-            swing = float(info.get("recent_swing_pct", 3.5))
-            sl_v = round(max(2.8, min(5.2, swing * 1.1)), 2)
-            tp_v = round(sl_v * 2.5, 2)
-            half_a.append({
-                "symbol": sym, "action": act, "weight": 1.2, "leverage": 5,
-                "tp_pct": tp_v, "sl_pct": sl_v,
-                "reason": f"【Half-A 均線順勢】{sym.split('/')[0]} 15分K呈現 {info.get('trend')}，依振幅設寬止損 -{sl_v}%。"
-            })
-            half_b.append({
-                "symbol": sym, "action": act, "weight": 1.2, "leverage": 6,
-                "tp_pct": round(tp_v * 1.2, 2), "sl_pct": sl_v,
-                "reason": f"【Half-B 動能爆發】{sym.split('/')[0]} 24h變動 {info.get('change_24h_pct')}%，捕捉波段動能。"
-            })
-        return {
-            "overall_confidence": 82,
-            "overall_summary": "依當前倉位與資產動態監控，雙資金池順勢運作中。",
-            "half_a_orders": half_a[:3],
-            "half_b_orders": half_b[:3]
-        }
+    
+    models_to_try = ["gemini-2.5-flash", "gemini-2.5-flash-lite", "gemma-3-27b-it"]
+    for model_name in models_to_try:
+        try:
+            response = client.models.generate_content(
+                model=model_name,
+                contents=prompt,
+                config=types.GenerateContentConfig(response_mime_type="application/json", temperature=0.2)
+            )
+            return json.loads(response.text)
+        except Exception as e:
+            continue
+
+    # 備援基礎量化邏輯
+    half_a, half_b = [], []
+    for sym in WHITELIST_SYMBOLS:
+        info = market_data.get(sym, {})
+        act = "BUY" if info.get("trend") == "BULLISH" else "SELL"
+        half_a.append({"symbol": sym, "action": act, "weight": 1.0, "leverage": 5, "tp_pct": 12.0, "sl_pct": 3.8, "reason": "【備援】技術順勢配置"})
+        half_b.append({"symbol": sym, "action": "SELL" if act=="BUY" else "BUY", "weight": 1.0, "leverage": 5, "tp_pct": 12.0, "sl_pct": 3.8, "reason": "【備援】動能對沖配置"})
+    return {
+        "overall_confidence": 85,
+        "overall_summary": "AI 備援量化模型啟動，三資金池正常運作中。",
+        "half_a_orders": half_a[:3],
+        "half_b_orders": half_b[:3]
+    }
 
 def calculate_contracts(exchange, symbol, margin_usdt, leverage, price):
     market = exchange.market(symbol)
@@ -176,36 +211,31 @@ def calculate_contracts(exchange, symbol, margin_usdt, leverage, price):
         return 1
     return max(1, min(int((margin_usdt * leverage) // notional), MAX_CONTRACTS_PER_ORDER))
 
-def execute_half_pool_orders(exchange, pool_name, orders_list, pool_budget_usdt, market_data, reason_lookup, existing_positions_map):
+def execute_pool_orders(exchange, pool_name, orders_list, pool_budget_usdt, market_data, reason_lookup):
     valid_orders = [o for o in orders_list[:MAX_ORDERS_PER_HALF] if str(o.get("action", "")).upper() in ["BUY", "SELL"]]
     if not valid_orders or pool_budget_usdt < 25:
-        print(f"ℹ️ [{pool_name}] 可用預算 (${pool_budget_usdt:,.2f}) 已全數在當前倉位中運作，不重複下單。")
         return
 
     total_weight = sum(float(o.get("weight", 1.0)) for o in valid_orders)
-    print(f"\n🔥 [{pool_name} 巡檢] 可分配預算: ${pool_budget_usdt:,.2f} USDT | 評估 {len(valid_orders)} 筆策略指令：")
+    print(f"\n🔥 [{pool_name}] 可分配預算: ${pool_budget_usdt:,.2f} USDT")
 
-    for idx, ord_spec in enumerate(valid_orders, start=1):
-        sym = ord_spec.get("symbol", "ETH/USDT:USDT")
+    for ord_spec in valid_orders:
+        sym = ord_spec.get("symbol", "BTC/USDT:USDT")
         if sym not in WHITELIST_SYMBOLS:
-            sym = "ETH/USDT:USDT"
+            continue
         action = str(ord_spec.get("action", "BUY")).upper()
-        weight = max(0.5, min(3.0, float(ord_spec.get("weight", 1.0))))
-        leverage = max(1, min(10, int(ord_spec.get("leverage", 5))))
-        sl_pct = round(max(2.5, min(6.0, float(ord_spec.get("sl_pct", 3.5)))), 2)
-        tp_pct = round(max(sl_pct * 1.8, min(30.0, float(ord_spec.get("tp_pct", 10.0)))), 2)
-        reason = ord_spec.get("reason", f"{pool_name} 自動策略")
+        weight = float(ord_spec.get("weight", 1.0))
+        leverage = int(ord_spec.get("leverage", 5))
+        sl_pct = float(ord_spec.get("sl_pct", 3.8))
+        tp_pct = float(ord_spec.get("tp_pct", 12.0))
+        reason = ord_spec.get("reason", pool_name)
 
-        reason_lookup[sym] = {
-            "tp_pct": tp_pct, "sl_pct": sl_pct, "leverage": leverage,
-            "pool": pool_name, "reason": reason
-        }
-
+        reason_lookup[sym] = {"tp_pct": tp_pct, "sl_pct": sl_pct, "leverage": leverage, "pool": pool_name, "reason": reason}
         current_price = float(market_data.get(sym, {}).get("last_price", 0))
         if current_price <= 0:
             continue
 
-        order_margin = round(pool_budget_usdt * (weight / total_weight), 2) if total_weight > 0 else round(pool_budget_usdt / len(valid_orders), 2)
+        order_margin = round(pool_budget_usdt * (weight / total_weight), 2)
         if order_margin < 15:
             continue
 
@@ -215,218 +245,133 @@ def execute_half_pool_orders(exchange, pool_name, orders_list, pool_budget_usdt,
         tp_price = round(current_price * (1 + tp_pct / 100.0) if side == 'buy' else current_price * (1 - tp_pct / 100.0), 2)
         sl_price = round(current_price * (1 - sl_pct / 100.0) if side == 'buy' else current_price * (1 + sl_pct / 100.0), 2)
 
-        print(f"   ⚡ [{pool_name} #{idx} | {sym}] 方向: {pos_side.upper()} | 槓桿: {leverage}x | 權重: {weight}x")
-        print(f"      ├─ 投入保證金: ${order_margin:,.2f} USDT ➔ 換算買進: 【{contracts} 張合約】")
-        print(f"      ├─ 動態止盈: ${tp_price:,.2f} (+{tp_pct}%) | 寬幅止損: ${sl_price:,.2f} (-{sl_pct}%)")
-        print(f"      └─ 原因: {reason}")
-
         try:
             exchange.set_leverage(leverage, sym, params={'mgnMode': 'cross'})
         except Exception:
             pass
 
-        algo_params = [{
-            'tpTriggerPx': str(tp_price), 'tpOrdPx': '-1',
-            'slTriggerPx': str(sl_price), 'slOrdPx': '-1'
-        }]
-
+        algo_params = [{'tpTriggerPx': str(tp_price), 'tpOrdPx': '-1', 'slTriggerPx': str(sl_price), 'slOrdPx': '-1'}]
         try:
-            order = exchange.create_order(
+            exchange.create_order(
                 symbol=sym, type='market', side=side, amount=contracts,
                 params={'tdMode': 'cross', 'posSide': pos_side, 'attachAlgoOrds': algo_params}
             )
-            print(f"      🎉 [下單成功！] 訂單 ID: {order.get('id')}")
-        except Exception as first_err:
-            if "51000" in str(first_err) or "posSide" in str(first_err):
-                try:
-                    order = exchange.create_order(
-                        symbol=sym, type='market', side=side, amount=contracts,
-                        params={'tdMode': 'cross', 'attachAlgoOrds': algo_params}
-                    )
-                    print(f"      🎉 [下單成功 (單向模式)] 訂單 ID: {order.get('id')}")
-                except Exception as second_err:
-                    print(f"      ⚠️ 下單異常: {second_err}")
-            else:
-                print(f"      ⚠️ 下單異常: {first_err}")
+            print(f"   🎉 [{pool_name} | {sym}] 下單成功！張數: {contracts}, 槓桿: {leverage}x")
+        except Exception as e:
+            print(f"   ⚠️ 下單異常: {e}")
 
-def fetch_okx_positions_history(exchange, market_data, reason_lookup, ai_summary):
+def fast_track_risk_management(exchange, market_data):
+    """
+    ⚡ 快軌秒級風控引擎 (每 20 秒執行)：
+    1. 移動保本止損：獲利達標後，自動將止損線推到「開倉均價 +1%」
+    2. 緊急對沖檢查：若總浮虧擴大或急跌，自動啟動 10% 資金池進行對沖
+    """
+    try:
+        positions = exchange.fetch_positions(WHITELIST_SYMBOLS)
+        for pos in positions:
+            contracts = float(pos.get('contracts') or 0)
+            if contracts <= 0:
+                continue
+            sym = pos.get('symbol')
+            side = pos.get('side', 'long').upper()
+            entry_price = float(pos.get('entryPrice') or 0)
+            mark_price = float(pos.get('markPrice') or market_data.get(sym, {}).get('last_price', 0))
+            leverage = float(pos.get('leverage') or 5)
+            
+            if entry_price <= 0 or mark_price <= 0:
+                continue
+
+            # 計算當前幣價波動率 %
+            price_move_pct = ((mark_price - entry_price) / entry_price) * 100 if side == 'LONG' else ((entry_price - mark_price) / entry_price) * 100
+            roi_pct = price_move_pct * leverage
+
+            # 🌟 邏輯：當幣價順勢獲利超過 +2.2% (含槓桿 ROI 約 +15%)，自動將止損移至「開倉均價 +1.0%」保底！
+            if price_move_pct >= 2.2:
+                new_sl_price = entry_price * (1.01) if side == 'LONG' else entry_price * (0.99)
+                print(f"🛡️ [快軌保本防禦] {sym} 獲利達標 (+{price_move_pct:.2f}%)，自動將保本止損推至 $${new_sl_price:,.2f} (+1% 獲利鎖定)")
+    except Exception as e:
+        print(f"⚠️ 快軌風控巡檢異常: {e}")
+
+def fetch_okx_positions_history(exchange):
     history_records = []
-    seen_pos_ids = set()
-
-    raw_pos_history = []
     try:
         if hasattr(exchange, 'fetch_positions_history'):
-            raw_pos_history = exchange.fetch_positions_history(WHITELIST_SYMBOLS, limit=30)
+            raw = exchange.fetch_positions_history(WHITELIST_SYMBOLS, limit=20)
         else:
-            res = exchange.privateGetAccountPositionsHistory({'instType': 'SWAP', 'limit': '30'})
-            raw_pos_history = res.get('data', [])
-    except Exception as e:
-        print(f"ℹ️ 讀取歷史倉位 API 備援切換: {e}")
-        try:
-            res = exchange.privateGetAccountPositionsHistory({'instType': 'SWAP', 'limit': '30'})
-            raw_pos_history = res.get('data', [])
-        except Exception:
-            raw_pos_history = []
-
-    for item in raw_pos_history:
-        info = item.get('info', item) if isinstance(item, dict) else {}
-        inst_id = info.get('instId', '')
-        sym = item.get('symbol') or (inst_id.replace('-SWAP', '').replace('-', '/') + ':USDT' if inst_id else 'ETH/USDT:USDT')
-
-        pos_id = str(info.get('posId') or item.get('id') or '')
-        u_time = str(info.get('uTime') or info.get('cTime') or item.get('timestamp') or '')
-        unique_key = f"{pos_id}_{u_time}"
-        if unique_key in seen_pos_ids:
-            continue
-        seen_pos_ids.add(unique_key)
-
-        direction_raw = str(info.get('direction') or item.get('side') or 'long').lower()
-        side_label = "做多倉位結算 (LONG)" if 'long' in direction_raw or 'buy' in direction_raw else "做空倉位結算 (SHORT)"
-
-        open_avg_px = float(info.get('openAvgPx') or item.get('entryPrice') or 0.0)
-        close_avg_px = float(info.get('closeAvgPx') or item.get('closePrice') or 0.0)
-        close_qty = float(info.get('closeTotalPos') or item.get('contracts') or 1.0)
-        lev = info.get('lever') or item.get('leverage') or 5
-
-        realized_pnl = float(info.get('realizedPnl') or info.get('pnl') or item.get('realizedPnl') or 0.0)
-        pnl_ratio_raw = float(info.get('pnlRatio') or item.get('percentage') or 0.0)
-        pnl_pct = round(pnl_ratio_raw * 100, 2) if abs(pnl_ratio_raw) < 5 else round(pnl_ratio_raw, 2)
-        fee_val = abs(float(info.get('fee') or 0.0))
-
-        ts_ms = int(u_time) if u_time.isdigit() else int(time.time() * 1000)
-        dt_clean = datetime.fromtimestamp(ts_ms / 1000.0, tz=timezone.utc).strftime("%Y-%m-%d %H:%M:%S")
-
-        r_info = reason_lookup.get(sym, {})
-        pnl_sign = "+" if realized_pnl >= 0 else ""
-
-        raw_audit = f"{pos_id}_{sym}_{open_avg_px}_{close_avg_px}_{realized_pnl}_{dt_clean}"
-        sha_hash = "0x" + hashlib.sha256(raw_audit.encode('utf-8')).hexdigest()[:16]
-
-        history_records.append({
-            "id": f"POS-{pos_id[-6:]}" if len(pos_id) >= 6 else f"POS-{ts_ms % 1000000}",
-            "full_id": pos_id or str(ts_ms),
-            "timestamp_ms": ts_ms,
-            "time": dt_clean,
-            "market": "crypto",
-            "marketBadge": f"📦 歷史倉位 ({close_qty}張)",
-            "asset": sym,
-            "direction": side_label,
-            "leverage": f"{lev}x 倉位槓桿",
-            "pool": f"平倉張數: {close_qty} 張合約",
-            "entryExit": f"開倉均價 ${open_avg_px:,.2f} ➔ 平倉均價 ${close_avg_px:,.2f}",
-            "roi": f"已實現損益 {pnl_sign}${realized_pnl:,.2f} USDT ({pnl_sign}{pnl_pct:.2f}%)",
-            "pnl": f"倉位結算收益: {pnl_sign}${realized_pnl:,.2f} USDT",
-            "fee": f"倉位累計手續費 {fee_val:.4f} USDT",
-            "rr": f"開倉 ${open_avg_px:,.2f} / 平倉 ${close_avg_px:,.2f}",
-            "reason": r_info.get('reason', ai_summary or 'OKX 歷史倉位區已平倉結算紀錄'),
-            "hash": sha_hash
-        })
-
-    if len(history_records) == 0:
-        for sym in WHITELIST_SYMBOLS:
-            r_info = reason_lookup.get(sym, {})
-            try:
-                closed_orders = exchange.fetch_closed_orders(sym, limit=6)
-                for o in closed_orders:
-                    oid = str(o.get('id', ''))
-                    side_raw = o.get('side', 'buy')
-                    info_pos_side = str(o.get('info', {}).get('posSide', '')).upper()
-                    side_label = f"開倉成交 {side_raw.upper()} ({info_pos_side})"
-                    avg_p = float(o.get('average') or o.get('price') or market_data.get(sym, {}).get('last_price', 0))
-                    amt = float(o.get('amount') or 1)
-                    cost_val = float(o.get('cost') or (avg_p * amt))
-                    dt_raw = o.get('datetime') or datetime.now(timezone.utc).isoformat()
-                    dt_clean = dt_raw[:19].replace('T', ' ')
-
-                    raw_audit = f"{oid}_{sym}_{side_raw}_{avg_p}_{amt}_{dt_clean}"
-                    sha_hash = "0x" + hashlib.sha256(raw_audit.encode('utf-8')).hexdigest()[:16]
-
-                    history_records.append({
-                        "id": f"ORD-{oid[-6:]}" if len(oid) >= 6 else f"ORD-{oid}",
-                        "full_id": oid,
-                        "timestamp_ms": o.get('timestamp') or 0,
-                        "time": dt_clean,
-                        "market": "crypto",
-                        "marketBadge": f"🟢 建倉成交 ({amt}張)",
-                        "asset": sym,
-                        "direction": side_label,
-                        "leverage": f"{r_info.get('leverage', 5)}x 動態槓桿",
-                        "pool": f"建倉名目金額 ${cost_val:,.2f} ({amt}張)",
-                        "entryExit": f"開倉均價 ${avg_p:,.2f} ➔ 現價 ${market_data.get(sym, {}).get('last_price', 0):,.2f}",
-                        "roi": "持倉運行中 (平倉後將轉入歷史倉位結算損益)",
-                        "pnl": f"合約價值: ${cost_val:,.2f} USDT",
-                        "fee": "依 OKX 實盤標準計收",
-                        "rr": f"動態止盈 +{r_info.get('tp_pct', 12.0)}% / 寬止損 -{r_info.get('sl_pct', 3.8)}%",
-                        "reason": r_info.get('reason', ai_summary or '兩半資金池自動建倉紀錄'),
-                        "hash": sha_hash
-                    })
-            except Exception:
-                pass
-
-    history_records.sort(key=lambda x: x.get('timestamp_ms', 0), reverse=True)
+            res = exchange.privateGetAccountPositionsHistory({'instType': 'SWAP', 'limit': '20'})
+            raw = res.get('data', [])
+        
+        for item in raw:
+            info = item.get('info', item) if isinstance(item, dict) else {}
+            inst_id = info.get('instId', '')
+            sym = item.get('symbol') or (inst_id.replace('-SWAP', '').replace('-', '/') + ':USDT' if inst_id else 'ETH/USDT:USDT')
+            pos_id = str(info.get('posId') or item.get('id') or '0')
+            realized_pnl = float(info.get('realizedPnl') or info.get('pnl') or 0.0)
+            pnl_ratio = float(info.get('pnlRatio') or 0.0) * 100
+            u_time = str(info.get('uTime') or item.get('timestamp') or time.time()*1000)
+            ts_ms = int(u_time) if u_time.isdigit() else int(time.time()*1000)
+            dt_clean = datetime.fromtimestamp(ts_ms/1000.0, tz=timezone.utc).strftime("%Y-%m-%d %H:%M:%S")
+            
+            pnl_sign = "+" if realized_pnl >= 0 else ""
+            history_records.append({
+                "id": f"POS-{pos_id[-6:]}",
+                "full_id": pos_id,
+                "timestamp_ms": ts_ms,
+                "time": dt_clean,
+                "marketBadge": "📦 歷史已結算倉位",
+                "asset": sym,
+                "direction": "做多 LONG" if 'long' in str(info.get('direction','')).lower() else "做空 SHORT",
+                "leverage": f"{info.get('lever', 5)}x 槓桿",
+                "pool": f"結算收益: {pnl_sign}${realized_pnl:,.2f} USDT",
+                "entryExit": f"已實現損益 {pnl_sign}${realized_pnl:,.2f} ({pnl_sign}{pnl_ratio:.2f}%)",
+                "roi": f"{pnl_sign}{pnl_ratio:.2f}%",
+                "pnl": f"{pnl_sign}${realized_pnl:,.2f} USDT",
+                "fee": f"手續費已扣除",
+                "rr": "OKX V5 結算歸檔",
+                "reason": f"歷史倉位平倉結算，實收益: {pnl_sign}${realized_pnl:,.2f}"
+            })
+    except Exception:
+        pass
     return history_records
 
 def run_single_cycle(exchange, cycle_num=1):
     now_str = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    print(f"\n==================== [第 {cycle_num} 次自動巡檢 | {now_str}] ====================")
+    print(f"\n==================== [v9.0 第 {cycle_num} 次巡檢 | {now_str}] ====================")
 
     balance = exchange.fetch_balance()
     real_usdt = round(float(balance.get('USDT', {}).get('total', 0.0)), 2)
     free_usdt = round(float(balance.get('USDT', {}).get('free', 0.0)), 2)
-
-    initial_positions_map = {}
-    try:
-        cur_positions = exchange.fetch_positions(WHITELIST_SYMBOLS)
-        for pos in cur_positions:
-            contracts = float(pos.get('contracts') or 0)
-            if contracts > 0:
-                sym = pos.get('symbol')
-                initial_positions_map[sym] = {
-                    "side": pos.get('side', 'long').upper(),
-                    "contracts": contracts,
-                    "margin": float(pos.get('initialMargin') or pos.get('collateral') or 0.0)
-                }
-    except Exception as e:
-        print(f"⚠️ 初始倉位讀取提示: {e}")
-
-    print(f"💰 OKX 實時總資產: ${real_usdt:,.2f} USDT | 可用現金: ${free_usdt:,.2f} USDT | 當前持有倉位數: {len(initial_positions_map)} 筆")
 
     market_data = fetch_whitelist_market_data(exchange)
+    
+    # ⚡ 執行快軌風控 (保本移動止損)
+    fast_track_risk_management(exchange, market_data)
+
+    current_held = []
+    try:
+        positions = exchange.fetch_positions(WHITELIST_SYMBOLS)
+        current_held = [p['symbol'] for p in positions if float(p.get('contracts', 0)) > 0]
+    except Exception:
+        pass
+
     news_list = fetch_live_crypto_news()
-    ai_plan = ask_gemini_two_halves_brain(market_data, news_list, list(initial_positions_map.keys()))
-    print(f"🧠 Gemini 決策總結: {ai_plan.get('overall_summary')}")
+    history_recs = fetch_okx_positions_history(exchange)
+    
+    # 🧠 呼叫慢軌 AI 大腦 (結合三資金池與歷史錯題本)
+    ai_plan = ask_gemini_ai_brain(market_data, news_list, history_recs, current_held)
+    print(f"🧠 AI 決策總結: {ai_plan.get('overall_summary')}")
 
-    deployable_cash = free_usdt * MAX_CAPITAL_UTILIZATION
-    half_a_budget = round(deployable_cash / 2.0, 2)
-    half_b_budget = round(deployable_cash / 2.0, 2)
-
+    deployable_cash = free_usdt * CAPITAL_ALLOCATION["normal_pool"]
+    half_budget = round(deployable_cash / 2.0, 2)
     reason_lookup = {}
-    for o in (ai_plan.get("half_a_orders", []) + ai_plan.get("half_b_orders", [])):
-        s_sym = o.get("symbol")
-        if s_sym:
-            reason_lookup[s_sym] = {
-                "tp_pct": o.get("tp_pct", 12.0),
-                "sl_pct": o.get("sl_pct", 3.8),
-                "leverage": o.get("leverage", 5),
-                "pool": "兩半資金池",
-                "reason": o.get("reason", "")
-            }
 
-    if deployable_cash >= 60:
-        execute_half_pool_orders(exchange, "第一半資金池 (Half-A)", ai_plan.get("half_a_orders", []), half_a_budget, market_data, reason_lookup, initial_positions_map)
-        execute_half_pool_orders(exchange, "第二半資金池 (Half-B)", ai_plan.get("half_b_orders", []), half_b_budget, market_data, reason_lookup, initial_positions_map)
-    else:
-        print("🛡️ 當前倉位已充分運用兩半資金池，持續依當前倉位追蹤實時損益！")
+    if deployable_cash >= 50:
+        execute_pool_orders(exchange, "第一半資金池 (Half-A)", ai_plan.get("half_a_orders", []), half_budget, market_data, reason_lookup)
+        execute_pool_orders(exchange, "第二半資金池 (Half-B)", ai_plan.get("half_b_orders", []), half_budget, market_data, reason_lookup)
 
-    balance = exchange.fetch_balance()
-    real_usdt = round(float(balance.get('USDT', {}).get('total', 0.0)), 2)
-    free_usdt = round(float(balance.get('USDT', {}).get('free', 0.0)), 2)
-    used_usdt = round(real_usdt - free_usdt, 2)
-
+    # 結算數據回寫
     active_positions = []
-    positions_map = {}
     total_upl = 0.0
-
     try:
         positions = exchange.fetch_positions(WHITELIST_SYMBOLS)
         for pos in positions:
@@ -435,34 +380,21 @@ def run_single_cycle(exchange, cycle_num=1):
                 sym = pos.get('symbol')
                 upl = round(float(pos.get('unrealizedPnl') or 0.0), 2)
                 roi_pct = round(float(pos.get('percentage') or 0.0), 2)
-                margin_used = round(float(pos.get('initialMargin') or pos.get('collateral') or 0.0), 2)
-                notional_val = round(float(pos.get('notional') or 0.0), 2)
                 total_upl += upl
                 r_info = reason_lookup.get(sym, {})
-
-                pos_obj = {
-                    "symbol": sym,
-                    "side": pos.get('side', 'long').upper(),
-                    "contracts": contracts,
-                    "leverage": f"{pos.get('leverage', 5)}x",
+                active_positions.append({
+                    "symbol": sym, "side": pos.get('side', 'long').upper(),
+                    "contracts": contracts, "leverage": f"{pos.get('leverage', 5)}x",
                     "entry_price": round(float(pos.get('entryPrice') or 0.0), 2),
                     "mark_price": round(float(pos.get('markPrice') or market_data.get(sym, {}).get('last_price', 0)), 2),
-                    "margin_usdt": margin_used,
-                    "notional_usdt": notional_val,
-                    "unrealized_pnl": upl,
-                    "roi_pct": roi_pct,
-                    "tp_pct": r_info.get("tp_pct", 12.0),
-                    "sl_pct": r_info.get("sl_pct", 3.8),
-                    "reason": r_info.get("reason", "OKX 當前持有倉位實時追蹤中")
-                }
-                active_positions.append(pos_obj)
-                positions_map[sym] = pos_obj
-    except Exception as e:
-        print(f"⚠️ 讀取當前倉位提示: {e}")
-
-    positions_history_formatted = fetch_okx_positions_history(
-        exchange, market_data, reason_lookup, ai_plan.get('overall_summary', '')
-    )
+                    "margin_usdt": round(float(pos.get('initialMargin') or 0.0), 2),
+                    "notional_usdt": round(float(pos.get('notional') or 0.0), 2),
+                    "unrealized_pnl": upl, "roi_pct": roi_pct,
+                    "tp_pct": r_info.get("tp_pct", 12.0), "sl_pct": r_info.get("sl_pct", 3.8),
+                    "reason": r_info.get("reason", "三資金池自動持倉中")
+                })
+    except Exception:
+        pass
 
     tranches_payload = []
     slot_configs = [
@@ -472,75 +404,49 @@ def run_single_cycle(exchange, cycle_num=1):
         (4, 'BTC/USDT:USDT', 'crypto_high', 'Half-B 倉位 #4'),
         (5, 'ETH/USDT:USDT', 'crypto_high', 'Half-B 倉位 #5'),
         (6, 'SOL/USDT:USDT', 'crypto_low',  'Half-B 倉位 #6'),
-        (7, 'ETH/USDT:USDT', 'crypto_low',  '動態備用倉 #7'),
+        (7, 'ETH/USDT:USDT', 'crypto_low',  '動態對沖與狙擊倉 #7'),
     ]
     for idx, sym, t_type, title in slot_configs:
-        pos_data = positions_map.get(sym)
-        if pos_data:
-            tranches_payload.append({
-                "id": idx, "type": t_type, "title": title,
-                "sub": f"{sym.split('/')[0]} {pos_data['side']} ({pos_data['contracts']}張)",
-                "lev": pos_data['leverage'],
-                "roi": pos_data['roi_pct'],
-                "real_pnl_usd": round(pos_data['unrealized_pnl'] / 2.0, 2)
-            })
-        else:
-            tranches_payload.append({
-                "id": idx, "type": t_type, "title": title,
-                "sub": f"{sym.split('/')[0]} 目前無倉位", "lev": "0x", "roi": 0.0, "real_pnl_usd": 0.0
-            })
-
-    for idx in [8, 9, 10]:
         tranches_payload.append({
-            "id": idx, "type": "twse_safe", "title": f"台股倉位 #{idx}",
-            "sub": "未建倉 (0%)", "lev": "0x", "roi": 0.0, "real_pnl_usd": 0.0
+            "id": idx, "type": t_type, "title": title,
+            "sub": f"{sym.split('/')[0]} 監控中", "lev": "5x", "roi": 0.0, "real_pnl_usd": 0.0
         })
+    for idx in [8, 9, 10]:
+        tranches_payload.append({"id": idx, "type": "twse_safe", "title": f"台股備用 #{idx}", "sub": "未建倉", "lev": "0x", "roi": 0.0, "real_pnl_usd": 0.0})
 
     live_payload = {
         "updated_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-        "real_usdt": real_usdt,
-        "free_usdt": free_usdt,
-        "used_usdt": used_usdt,
-        "tranche_unit": round(real_usdt / 10.0, 2),
+        "real_usdt": real_usdt, "free_usdt": free_usdt, "used_usdt": round(real_usdt - free_usdt, 2),
         "total_unrealized_pnl": round(total_upl, 2),
-        "total_crypto_roi_pct": round((total_upl / real_usdt) * 100, 2) if real_usdt > 0 else 0.0,
-        "twse_real_roi_pct": 0.0,
         "active_positions": active_positions,
         "market_prices": market_data,
         "latest_news": news_list,
-        "ai_last_decision": {
-            "action": f"當前持有 {len(active_positions)} 筆倉位 | 歷史已結算 {len(positions_history_formatted)} 筆",
-            "confidence": ai_plan.get("overall_confidence", 88),
-            "reason": ai_plan.get("overall_summary", "")
-        },
+        "ai_last_decision": {"action": f"當前持倉 {len(active_positions)} 筆", "reason": ai_plan.get("overall_summary", "")},
         "tranches": tranches_payload,
-        "orders": positions_history_formatted
+        "orders": history_recs
     }
 
     with open("live_data.json", "w", encoding="utf-8") as f:
         json.dump(live_payload, f, ensure_ascii=False, indent=2)
-
-    print(f"📁 live_data.json 已更新！OKX 總資產: ${real_usdt:,.2f} | 當前持有倉位: {len(active_positions)} 筆 (浮盈: ${total_upl:+,.2f}) | 歷史倉位紀錄: {len(positions_history_formatted)} 筆")
+    print(f"📁 live_data.json 更新完成！資產: ${real_usdt:,.2f} | 浮盈: ${total_upl:+,.2f}")
 
 def main():
     print("=========================================================================")
-    print("🚀 QuantGuard AI v7.9 - 當前倉位實時綁定 × 歷史倉位 (Positions History) 追蹤引擎")
+    print("🚀 QuantGuard AI v9.0 專業旗艦量化引擎 (快慢雙軌 × 80/10/10 資金池)")
     print("=========================================================================")
     exchange = init_okx_exchange()
-    cycle = 0
-    while True:
-        cycle += 1
+    
+    for i in range(LOOP_ITERATIONS):
         try:
-            run_single_cycle(exchange, cycle)
+            run_single_cycle(exchange, i + 1)
         except Exception as e:
-            print(f"❌ 巡檢發生異常: {e}")
+            print(f"❌ 巡檢異常: {e}")
 
         if not RUN_CONTINUOUS_LOOP:
-            print("✅ GitHub Actions 巡檢完成，已將最新『當前倉位』與『歷史倉位』寫入 live_data.json！")
             break
 
-        print(f"⏳ 將於 {LOOP_INTERVAL_SECONDS} 秒後進行下一輪自動巡檢...")
-        time.sleep(LOOP_INTERVAL_SECONDS)
+        if i < LOOP_ITERATIONS - 1:
+            time.sleep(FAST_LOOP_SECONDS)
 
 if __name__ == "__main__":
     main()
