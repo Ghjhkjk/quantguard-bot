@@ -14,10 +14,10 @@ except ImportError:
     GENAI_AVAILABLE = False
 
 # ==========================================================
-# 👇 1. 金鑰設定 (自動從 GitHub Secrets 讀取，切勿在此直接填入金鑰以免被攔截)
+# 👇 1. 金鑰設定 (自動從 GitHub Secrets 讀取)
 # ==========================================================
 OKX_API_KEY    = os.environ.get("OKX_API_KEY", "請填入你的_OKX_API_Key")
-OKX_SECRET_KEY = os.environ.get("OKX_SECRET_KEY", "請填入你的_OKX_Secret_Key")
+OKX_SECRET_KEY = os.environ.get("OKX_SECRET_KEY", "請填入你的_OKX_SECRET_KEY")
 OKX_PASSPHRASE = os.environ.get("OKX_PASSPHRASE", "請填入你的_OKX_Passphrase")
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "請填入你的_Gemini_API_Key")
 
@@ -102,10 +102,6 @@ def fetch_whitelist_market_data(exchange):
     return market_summary
 
 def ask_gemini_two_halves_brain(market_data, news_headlines, current_held_symbols):
-    """
-    🌟 AI 雙資金池決策核心：
-    根據當前已持有倉位與市場行情，針對尚未滿載的資金池給出不同原因的進場指令。
-    """
     gemini_key = clean_credential(GEMINI_API_KEY, "GEMINI_API_KEY")
     client = genai.Client(api_key=gemini_key)
     prompt = f"""
@@ -181,11 +177,6 @@ def calculate_contracts(exchange, symbol, margin_usdt, leverage, price):
     return max(1, min(int((margin_usdt * leverage) // notional), MAX_CONTRACTS_PER_ORDER))
 
 def execute_half_pool_orders(exchange, pool_name, orders_list, pool_budget_usdt, market_data, reason_lookup, existing_positions_map):
-    """
-    🌟 依照當前倉位與資產去跑：
-    如果某幣種已經在當前倉位中且方向相反，先平倉釋放資金；
-    如果尚無倉位或仍有充足可用預算，才依兩半資金池分配下單。
-    """
     valid_orders = [o for o in orders_list[:MAX_ORDERS_PER_HALF] if str(o.get("action", "")).upper() in ["BUY", "SELL"]]
     if not valid_orders or pool_budget_usdt < 25:
         print(f"ℹ️ [{pool_name}] 可用預算 (${pool_budget_usdt:,.2f}) 已全數在當前倉位中運作，不重複下單。")
@@ -259,14 +250,9 @@ def execute_half_pool_orders(exchange, pool_name, orders_list, pool_budget_usdt,
                 print(f"      ⚠️ 下單異常: {first_err}")
 
 def fetch_okx_positions_history(exchange, market_data, reason_lookup, ai_summary):
-    """
-    🌟 從 OKX 『歷史倉位區 (Positions History)』抓取真實結算數據！
-    包含：開倉均價、平倉均價、已實現損益 (Realized PnL)、結算收益率 (PnL Ratio) 與平倉張數。
-    """
     history_records = []
     seen_pos_ids = set()
 
-    # 1. 優先呼叫 OKX V5 歷史倉位 API (account/positions-history)
     raw_pos_history = []
     try:
         if hasattr(exchange, 'fetch_positions_history'):
@@ -302,10 +288,8 @@ def fetch_okx_positions_history(exchange, market_data, reason_lookup, ai_summary
         close_qty = float(info.get('closeTotalPos') or item.get('contracts') or 1.0)
         lev = info.get('lever') or item.get('leverage') or 5
 
-        # 已實現損益 (Realized PnL) 與 歷史倉位收益率 (pnlRatio)
         realized_pnl = float(info.get('realizedPnl') or info.get('pnl') or item.get('realizedPnl') or 0.0)
         pnl_ratio_raw = float(info.get('pnlRatio') or item.get('percentage') or 0.0)
-        # OKX V5 的 pnlRatio 為小數 (例如 0.085 代表 +8.5%)
         pnl_pct = round(pnl_ratio_raw * 100, 2) if abs(pnl_ratio_raw) < 5 else round(pnl_ratio_raw, 2)
         fee_val = abs(float(info.get('fee') or 0.0))
 
@@ -313,7 +297,6 @@ def fetch_okx_positions_history(exchange, market_data, reason_lookup, ai_summary
         dt_clean = datetime.fromtimestamp(ts_ms / 1000.0, tz=timezone.utc).strftime("%Y-%m-%d %H:%M:%S")
 
         r_info = reason_lookup.get(sym, {})
-        pool_label = r_info.get('pool', '歷史已平倉位')
         pnl_sign = "+" if realized_pnl >= 0 else ""
 
         raw_audit = f"{pos_id}_{sym}_{open_avg_px}_{close_avg_px}_{realized_pnl}_{dt_clean}"
@@ -339,7 +322,6 @@ def fetch_okx_positions_history(exchange, market_data, reason_lookup, ai_summary
             "hash": sha_hash
         })
 
-    # 2. 若帳戶剛開倉、尚無已平倉的歷史倉位，則一併附上目前已建倉的成交紀錄供核對
     if len(history_records) == 0:
         for sym in WHITELIST_SYMBOLS:
             r_info = reason_lookup.get(sym, {})
@@ -388,7 +370,6 @@ def run_single_cycle(exchange, cycle_num=1):
     now_str = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     print(f"\n==================== [第 {cycle_num} 次自動巡檢 | {now_str}] ====================")
 
-    # 步驟 1：先讀取 OKX 實時總資產與「當前倉位 (Current Positions)」
     balance = exchange.fetch_balance()
     real_usdt = round(float(balance.get('USDT', {}).get('total', 0.0)), 2)
     free_usdt = round(float(balance.get('USDT', {}).get('free', 0.0)), 2)
@@ -415,7 +396,6 @@ def run_single_cycle(exchange, cycle_num=1):
     ai_plan = ask_gemini_two_halves_brain(market_data, news_list, list(initial_positions_map.keys()))
     print(f"🧠 Gemini 決策總結: {ai_plan.get('overall_summary')}")
 
-    # 步驟 2：照當前倉位與剩餘可用資產去跑兩半資金池
     deployable_cash = free_usdt * MAX_CAPITAL_UTILIZATION
     half_a_budget = round(deployable_cash / 2.0, 2)
     half_b_budget = round(deployable_cash / 2.0, 2)
@@ -434,4 +414,133 @@ def run_single_cycle(exchange, cycle_num=1):
 
     if deployable_cash >= 60:
         execute_half_pool_orders(exchange, "第一半資金池 (Half-A)", ai_plan.get("half_a_orders", []), half_a_budget, market_data, reason_lookup, initial_positions_map)
-        execute_half_pool_orders(exchange, "第二半資金池 (Half-B)", ai_plan.get("half_b_orders", []), half_b_budget, market_data, reason_lookup, initial_posi
+        execute_half_pool_orders(exchange, "第二半資金池 (Half-B)", ai_plan.get("half_b_orders", []), half_b_budget, market_data, reason_lookup, initial_positions_map)
+    else:
+        print("🛡️ 當前倉位已充分運用兩半資金池，持續依當前倉位追蹤實時損益！")
+
+    balance = exchange.fetch_balance()
+    real_usdt = round(float(balance.get('USDT', {}).get('total', 0.0)), 2)
+    free_usdt = round(float(balance.get('USDT', {}).get('free', 0.0)), 2)
+    used_usdt = round(real_usdt - free_usdt, 2)
+
+    active_positions = []
+    positions_map = {}
+    total_upl = 0.0
+
+    try:
+        positions = exchange.fetch_positions(WHITELIST_SYMBOLS)
+        for pos in positions:
+            contracts = float(pos.get('contracts') or 0)
+            if contracts > 0:
+                sym = pos.get('symbol')
+                upl = round(float(pos.get('unrealizedPnl') or 0.0), 2)
+                roi_pct = round(float(pos.get('percentage') or 0.0), 2)
+                margin_used = round(float(pos.get('initialMargin') or pos.get('collateral') or 0.0), 2)
+                notional_val = round(float(pos.get('notional') or 0.0), 2)
+                total_upl += upl
+                r_info = reason_lookup.get(sym, {})
+
+                pos_obj = {
+                    "symbol": sym,
+                    "side": pos.get('side', 'long').upper(),
+                    "contracts": contracts,
+                    "leverage": f"{pos.get('leverage', 5)}x",
+                    "entry_price": round(float(pos.get('entryPrice') or 0.0), 2),
+                    "mark_price": round(float(pos.get('markPrice') or market_data.get(sym, {}).get('last_price', 0)), 2),
+                    "margin_usdt": margin_used,
+                    "notional_usdt": notional_val,
+                    "unrealized_pnl": upl,
+                    "roi_pct": roi_pct,
+                    "tp_pct": r_info.get("tp_pct", 12.0),
+                    "sl_pct": r_info.get("sl_pct", 3.8),
+                    "reason": r_info.get("reason", "OKX 當前持有倉位實時追蹤中")
+                }
+                active_positions.append(pos_obj)
+                positions_map[sym] = pos_obj
+    except Exception as e:
+        print(f"⚠️ 讀取當前倉位提示: {e}")
+
+    positions_history_formatted = fetch_okx_positions_history(
+        exchange, market_data, reason_lookup, ai_plan.get('overall_summary', '')
+    )
+
+    tranches_payload = []
+    slot_configs = [
+        (1, 'BTC/USDT:USDT', 'crypto_high', 'Half-A 倉位 #1'),
+        (2, 'ETH/USDT:USDT', 'crypto_high', 'Half-A 倉位 #2'),
+        (3, 'SOL/USDT:USDT', 'crypto_high', 'Half-A 倉位 #3'),
+        (4, 'BTC/USDT:USDT', 'crypto_high', 'Half-B 倉位 #4'),
+        (5, 'ETH/USDT:USDT', 'crypto_high', 'Half-B 倉位 #5'),
+        (6, 'SOL/USDT:USDT', 'crypto_low',  'Half-B 倉位 #6'),
+        (7, 'ETH/USDT:USDT', 'crypto_low',  '動態備用倉 #7'),
+    ]
+    for idx, sym, t_type, title in slot_configs:
+        pos_data = positions_map.get(sym)
+        if pos_data:
+            tranches_payload.append({
+                "id": idx, "type": t_type, "title": title,
+                "sub": f"{sym.split('/')[0]} {pos_data['side']} ({pos_data['contracts']}張)",
+                "lev": pos_data['leverage'],
+                "roi": pos_data['roi_pct'],
+                "real_pnl_usd": round(pos_data['unrealized_pnl'] / 2.0, 2)
+            })
+        else:
+            tranches_payload.append({
+                "id": idx, "type": t_type, "title": title,
+                "sub": f"{sym.split('/')[0]} 目前無倉位", "lev": "0x", "roi": 0.0, "real_pnl_usd": 0.0
+            })
+
+    for idx in [8, 9, 10]:
+        tranches_payload.append({
+            "id": idx, "type": "twse_safe", "title": f"台股倉位 #{idx}",
+            "sub": "未建倉 (0%)", "lev": "0x", "roi": 0.0, "real_pnl_usd": 0.0
+        })
+
+    live_payload = {
+        "updated_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        "real_usdt": real_usdt,
+        "free_usdt": free_usdt,
+        "used_usdt": used_usdt,
+        "tranche_unit": round(real_usdt / 10.0, 2),
+        "total_unrealized_pnl": round(total_upl, 2),
+        "total_crypto_roi_pct": round((total_upl / real_usdt) * 100, 2) if real_usdt > 0 else 0.0,
+        "twse_real_roi_pct": 0.0,
+        "active_positions": active_positions,
+        "market_prices": market_data,
+        "latest_news": news_list,
+        "ai_last_decision": {
+            "action": f"當前持有 {len(active_positions)} 筆倉位 | 歷史已結算 {len(positions_history_formatted)} 筆",
+            "confidence": ai_plan.get("overall_confidence", 88),
+            "reason": ai_plan.get("overall_summary", "")
+        },
+        "tranches": tranches_payload,
+        "orders": positions_history_formatted
+    }
+
+    with open("live_data.json", "w", encoding="utf-8") as f:
+        json.dump(live_payload, f, ensure_ascii=False, indent=2)
+
+    print(f"📁 live_data.json 已更新！OKX 總資產: ${real_usdt:,.2f} | 當前持有倉位: {len(active_positions)} 筆 (浮盈: ${total_upl:+,.2f}) | 歷史倉位紀錄: {len(positions_history_formatted)} 筆")
+
+def main():
+    print("=========================================================================")
+    print("🚀 QuantGuard AI v7.9 - 當前倉位實時綁定 × 歷史倉位 (Positions History) 追蹤引擎")
+    print("=========================================================================")
+    exchange = init_okx_exchange()
+    cycle = 0
+    while True:
+        cycle += 1
+        try:
+            run_single_cycle(exchange, cycle)
+        except Exception as e:
+            print(f"❌ 巡檢發生異常: {e}")
+
+        if not RUN_CONTINUOUS_LOOP:
+            print("✅ GitHub Actions 巡檢完成，已將最新『當前倉位』與『歷史倉位』寫入 live_data.json！")
+            break
+
+        print(f"⏳ 將於 {LOOP_INTERVAL_SECONDS} 秒後進行下一輪自動巡檢...")
+        time.sleep(LOOP_INTERVAL_SECONDS)
+
+if __name__ == "__main__":
+    main()
