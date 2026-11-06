@@ -1,161 +1,206 @@
 {
-  "updated_at": "2026-11-06 07:54:00",
-  "real_usdt": 119003.58,
-  "free_usdt": 21620.3,
-  "used_usdt": 97383.28,
-  "tranche_unit": 11900.36,
-  "total_unrealized_pnl": 245.62,
-  "total_crypto_roi_pct": 0.21,
+  "updated_at": "2026-11-06 11:27:27",
+  "real_usdt": 115374.61,
+  "free_usdt": 26200.71,
+  "used_usdt": 89173.9,
+  "tranche_unit": 11537.46,
+  "total_unrealized_pnl": -3386.67,
+  "total_crypto_roi_pct": -2.94,
   "twse_real_roi_pct": 0.0,
   "active_positions": [
     {
       "symbol": "SOL/USDT:USDT",
-      "side": "SHORT",
-      "contracts": 2505.0,
-      "leverage": "7.0x",
-      "entry_price": 89.16,
-      "mark_price": 89.6,
-      "margin_usdt": 32064.0,
-      "notional_usdt": 224127.04,
-      "unrealized_pnl": -1106.37,
-      "roi_pct": -3.47,
+      "side": "LONG",
+      "contracts": 159.0,
+      "leverage": "8.0x",
+      "entry_price": 90.28,
+      "mark_price": 90.21,
+      "margin_usdt": 1792.92,
+      "notional_usdt": 14323.17,
+      "unrealized_pnl": -10.93,
+      "roi_pct": -0.61,
+      "tp_pct": 14.0,
+      "sl_pct": 4.2,
+      "reason": "【Half-B 新聞催化】SOL受Binance駭客事件與市場悲觀情緒影響，24h跌幅顯著，判斷短期將持續下行，故開空，止盈止損依市場恐慌與波動。"
+    },
+    {
+      "symbol": "ETH/USDT:USDT",
+      "side": "LONG",
+      "contracts": 85.0,
+      "leverage": "9.0x",
+      "entry_price": 2239.22,
+      "mark_price": 2239.18,
+      "margin_usdt": 2114.78,
+      "notional_usdt": 19006.19,
+      "unrealized_pnl": -0.3,
+      "roi_pct": -0.01,
+      "tp_pct": 18.0,
+      "sl_pct": 5.0,
+      "reason": "【Half-B 新聞催化】ETH 24h跌幅最大，受Binance駭客事件影響，拋售壓力巨大，預計加速下跌，故開空，止盈止損考量高波動與恐慌。"
+    },
+    {
+      "symbol": "BTC/USDT:USDT",
+      "side": "LONG",
+      "contracts": 20.0,
+      "leverage": "8.0x",
+      "entry_price": 76077.5,
+      "mark_price": 76074.03,
+      "margin_usdt": 1901.85,
+      "notional_usdt": 15193.35,
+      "unrealized_pnl": -0.69,
+      "roi_pct": -0.04,
       "tp_pct": 15.0,
-      "sl_pct": 4.0,
-      "reason": "【Half-B 新聞催化】SOL表現疲軟，安全事件擔憂恐致拋售，順勢做空。止盈中高波動空間，止損參考擺幅。"
+      "sl_pct": 4.5,
+      "reason": "【Half-B 新聞催化】Binance駭客事件引發恐慌，BTC 24h跌幅顯著，預期進一步下跌，故開空，止盈止損依市場恐慌與波動設定。"
+    },
+    {
+      "symbol": "SOL/USDT:USDT",
+      "side": "SHORT",
+      "contracts": 2718.0,
+      "leverage": "8.0x",
+      "entry_price": 89.24,
+      "mark_price": 90.21,
+      "margin_usdt": 30648.85,
+      "notional_usdt": 244845.06,
+      "unrealized_pnl": -2633.81,
+      "roi_pct": -8.69,
+      "tp_pct": 14.0,
+      "sl_pct": 4.2,
+      "reason": "【Half-B 新聞催化】SOL受Binance駭客事件與市場悲觀情緒影響，24h跌幅顯著，判斷短期將持續下行，故開空，止盈止損依市場恐慌與波動。"
     },
     {
       "symbol": "ETH/USDT:USDT",
       "side": "SHORT",
-      "contracts": 1045.0,
-      "leverage": "8.0x",
-      "entry_price": 2238.05,
-      "mark_price": 2232.05,
-      "margin_usdt": 29156.15,
-      "notional_usdt": 232915.68,
-      "unrealized_pnl": 626.82,
-      "roi_pct": 2.14,
+      "contracts": 1156.0,
+      "leverage": "9.0x",
+      "entry_price": 2238.15,
+      "mark_price": 2239.18,
+      "margin_usdt": 28761.02,
+      "notional_usdt": 258484.23,
+      "unrealized_pnl": -119.13,
+      "roi_pct": -0.41,
       "tp_pct": 18.0,
-      "sl_pct": 4.5,
-      "reason": "【Half-B 新聞催化】ETH跌幅最大，安全漏洞新聞加劇恐慌，順勢做空。止盈設定較大波動空間，止損依擺幅放寬。"
+      "sl_pct": 5.0,
+      "reason": "【Half-B 新聞催化】ETH 24h跌幅最大，受Binance駭客事件影響，拋售壓力巨大，預計加速下跌，故開空，止盈止損考量高波動與恐慌。"
     },
     {
       "symbol": "BTC/USDT:USDT",
       "side": "SHORT",
-      "contracts": 287.0,
-      "leverage": "6.0x",
-      "entry_price": 75857.48,
-      "mark_price": 75604.81,
-      "margin_usdt": 36164.3,
-      "notional_usdt": 216675.51,
-      "unrealized_pnl": 725.17,
-      "roi_pct": 2.0,
-      "tp_pct": 13.0,
-      "sl_pct": 3.8,
-      "reason": "【Half-B 新聞催化】BTC受負面新聞影響，24小時跌幅大，預期續下行。止盈合理波動範圍，止損依擺幅放寬。"
+      "contracts": 313.0,
+      "leverage": "8.0x",
+      "entry_price": 75875.37,
+      "mark_price": 76074.03,
+      "margin_usdt": 29763.96,
+      "notional_usdt": 237775.98,
+      "unrealized_pnl": -621.81,
+      "roi_pct": -2.09,
+      "tp_pct": 15.0,
+      "sl_pct": 4.5,
+      "reason": "【Half-B 新聞催化】Binance駭客事件引發恐慌，BTC 24h跌幅顯著，預期進一步下跌，故開空，止盈止損依市場恐慌與波動設定。"
     }
   ],
   "market_prices": {
     "BTC/USDT:USDT": {
-      "last_price": 75658.82,
-      "change_24h_pct": -5.91,
-      "ma5": 75552.55,
-      "ma20": 75745.96,
-      "atr_15m_pct": 0.42,
-      "recent_swing_pct": 1.75,
-      "trend": "BEARISH"
+      "last_price": 76064.35,
+      "change_24h_pct": -5.25,
+      "ma5": 76083.28,
+      "ma20": 75807.54,
+      "atr_15m_pct": 0.39,
+      "recent_swing_pct": 1.84,
+      "trend": "BULLISH"
     },
     "ETH/USDT:USDT": {
-      "last_price": 2230.76,
-      "change_24h_pct": -7.67,
-      "ma5": 2224.97,
-      "ma20": 2231.51,
-      "atr_15m_pct": 0.68,
-      "recent_swing_pct": 3.43,
-      "trend": "BEARISH"
+      "last_price": 2239.47,
+      "change_24h_pct": -7.42,
+      "ma5": 2238.42,
+      "ma20": 2231.07,
+      "atr_15m_pct": 0.7,
+      "recent_swing_pct": 2.56,
+      "trend": "BULLISH"
     },
     "SOL/USDT:USDT": {
-      "last_price": 89.61,
-      "change_24h_pct": -6.56,
-      "ma5": 89.5,
-      "ma20": 89.67,
-      "atr_15m_pct": 0.56,
-      "recent_swing_pct": 2.56,
-      "trend": "BEARISH"
+      "last_price": 90.19,
+      "change_24h_pct": -6.68,
+      "ma5": 90.07,
+      "ma20": 89.78,
+      "atr_15m_pct": 0.41,
+      "recent_swing_pct": 1.63,
+      "trend": "BULLISH"
     }
   },
   "latest_news": [
-    "Chainalysis says breach exposed password hashes and live tokens",
-    "Here’s what happened in crypto today",
-    "Crypto exchanges tout cold storage ratios after Binance attack"
+    "Greece approves 10% tax on crypto gains starting in 2027",
+    "GOPAX halts crypto trading, withdrawals to move all assets to cold storage",
+    "Binance’s $6.3B hack leaves questions over hot wallet safeguards"
   ],
   "ai_last_decision": {
-    "action": "當前持有 3 筆倉位 | 歷史已結算 30 筆",
-    "confidence": 85,
-    "reason": "當前市場全面看跌，所有持倉幣種均呈現顯著跌幅。基於技術面均線空頭排列與國際負面新聞催化，雙資金池皆規劃建立空頭部位，以順應趨勢並對沖現有持倉風險。"
+    "action": "當前持有 6 筆倉位 | 歷史已結算 30 筆",
+    "confidence": 60,
+    "reason": "持倉監控中。Half-A順勢逢低買入，Half-B因Binance駭客事件與24h跌幅顯著而開空，形成對沖策略。"
   },
   "tranches": [
     {
       "id": 1,
       "type": "crypto_high",
       "title": "Half-A 倉位 #1",
-      "sub": "BTC SHORT (287.0張)",
-      "lev": "6.0x",
-      "roi": 2.0,
-      "real_pnl_usd": 362.58
+      "sub": "BTC SHORT (313.0張)",
+      "lev": "8.0x",
+      "roi": -2.09,
+      "real_pnl_usd": -310.9
     },
     {
       "id": 2,
       "type": "crypto_high",
       "title": "Half-A 倉位 #2",
-      "sub": "ETH SHORT (1045.0張)",
-      "lev": "8.0x",
-      "roi": 2.14,
-      "real_pnl_usd": 313.41
+      "sub": "ETH SHORT (1156.0張)",
+      "lev": "9.0x",
+      "roi": -0.41,
+      "real_pnl_usd": -59.56
     },
     {
       "id": 3,
       "type": "crypto_high",
       "title": "Half-A 倉位 #3",
-      "sub": "SOL SHORT (2505.0張)",
-      "lev": "7.0x",
-      "roi": -3.47,
-      "real_pnl_usd": -553.18
+      "sub": "SOL SHORT (2718.0張)",
+      "lev": "8.0x",
+      "roi": -8.69,
+      "real_pnl_usd": -1316.9
     },
     {
       "id": 4,
       "type": "crypto_high",
       "title": "Half-B 倉位 #4",
-      "sub": "BTC SHORT (287.0張)",
-      "lev": "6.0x",
-      "roi": 2.0,
-      "real_pnl_usd": 362.58
+      "sub": "BTC SHORT (313.0張)",
+      "lev": "8.0x",
+      "roi": -2.09,
+      "real_pnl_usd": -310.9
     },
     {
       "id": 5,
       "type": "crypto_high",
       "title": "Half-B 倉位 #5",
-      "sub": "ETH SHORT (1045.0張)",
-      "lev": "8.0x",
-      "roi": 2.14,
-      "real_pnl_usd": 313.41
+      "sub": "ETH SHORT (1156.0張)",
+      "lev": "9.0x",
+      "roi": -0.41,
+      "real_pnl_usd": -59.56
     },
     {
       "id": 6,
       "type": "crypto_low",
       "title": "Half-B 倉位 #6",
-      "sub": "SOL SHORT (2505.0張)",
-      "lev": "7.0x",
-      "roi": -3.47,
-      "real_pnl_usd": -553.18
+      "sub": "SOL SHORT (2718.0張)",
+      "lev": "8.0x",
+      "roi": -8.69,
+      "real_pnl_usd": -1316.9
     },
     {
       "id": 7,
       "type": "crypto_low",
       "title": "動態備用倉 #7",
-      "sub": "ETH SHORT (1045.0張)",
-      "lev": "8.0x",
-      "roi": 2.14,
-      "real_pnl_usd": 313.41
+      "sub": "ETH SHORT (1156.0張)",
+      "lev": "9.0x",
+      "roi": -0.41,
+      "real_pnl_usd": -59.56
     },
     {
       "id": 8,
@@ -202,7 +247,7 @@
       "pnl": "倉位結算收益: +$7,756.78 USDT",
       "fee": "倉位累計手續費 140.2233 USDT",
       "rr": "開倉 $96.11 / 平倉 $90.85",
-      "reason": "【Half-B 新聞催化】SOL表現疲軟，安全事件擔憂恐致拋售，順勢做空。止盈中高波動空間，止損參考擺幅。",
+      "reason": "【Half-B 新聞催化】SOL受Binance駭客事件與市場悲觀情緒影響，24h跌幅顯著，判斷短期將持續下行，故開空，止盈止損依市場恐慌與波動。",
       "hash": "0x068ad3a2507ab615"
     },
     {
@@ -221,7 +266,7 @@
       "pnl": "倉位結算收益: +$5,893.29 USDT",
       "fee": "倉位累計手續費 139.5713 USDT",
       "rr": "開倉 $80,101.64 / 平倉 $76,720.00",
-      "reason": "【Half-B 新聞催化】BTC受負面新聞影響，24小時跌幅大，預期續下行。止盈合理波動範圍，止損依擺幅放寬。",
+      "reason": "【Half-B 新聞催化】Binance駭客事件引發恐慌，BTC 24h跌幅顯著，預期進一步下跌，故開空，止盈止損依市場恐慌與波動設定。",
       "hash": "0x6b7e45aa34aeddc7"
     },
     {
@@ -240,7 +285,7 @@
       "pnl": "倉位結算收益: +$11,653.40 USDT",
       "fee": "倉位累計手續費 189.8662 USDT",
       "rr": "開倉 $2,414.77 / 平倉 $2,267.50",
-      "reason": "【Half-B 新聞催化】ETH跌幅最大，安全漏洞新聞加劇恐慌，順勢做空。止盈設定較大波動空間，止損依擺幅放寬。",
+      "reason": "【Half-B 新聞催化】ETH 24h跌幅最大，受Binance駭客事件影響，拋售壓力巨大，預計加速下跌，故開空，止盈止損考量高波動與恐慌。",
       "hash": "0xc42abf7e05139c30"
     },
     {
@@ -259,7 +304,7 @@
       "pnl": "倉位結算收益: $-412.56 USDT",
       "fee": "倉位累計手續費 168.3077 USDT",
       "rr": "開倉 $80,204.66 / 平倉 $80,088.35",
-      "reason": "【Half-B 新聞催化】BTC受負面新聞影響，24小時跌幅大，預期續下行。止盈合理波動範圍，止損依擺幅放寬。",
+      "reason": "【Half-B 新聞催化】Binance駭客事件引發恐慌，BTC 24h跌幅顯著，預期進一步下跌，故開空，止盈止損依市場恐慌與波動設定。",
       "hash": "0x6349d10d9db14f12"
     },
     {
@@ -278,7 +323,7 @@
       "pnl": "倉位結算收益: $-870.38 USDT",
       "fee": "倉位累計手續費 144.5279 USDT",
       "rr": "開倉 $96.59 / 平倉 $96.11",
-      "reason": "【Half-B 新聞催化】SOL表現疲軟，安全事件擔憂恐致拋售，順勢做空。止盈中高波動空間，止損參考擺幅。",
+      "reason": "【Half-B 新聞催化】SOL受Binance駭客事件與市場悲觀情緒影響，24h跌幅顯著，判斷短期將持續下行，故開空，止盈止損依市場恐慌與波動。",
       "hash": "0x842833a36002e53f"
     },
     {
@@ -297,7 +342,7 @@
       "pnl": "倉位結算收益: +$102.62 USDT",
       "fee": "倉位累計手續費 195.0288 USDT",
       "rr": "開倉 $80,320.00 / 平倉 $80,197.51",
-      "reason": "【Half-B 新聞催化】BTC受負面新聞影響，24小時跌幅大，預期續下行。止盈合理波動範圍，止損依擺幅放寬。",
+      "reason": "【Half-B 新聞催化】Binance駭客事件引發恐慌，BTC 24h跌幅顯著，預期進一步下跌，故開空，止盈止損依市場恐慌與波動設定。",
       "hash": "0xc0116b6f6ea5fd95"
     },
     {
@@ -316,7 +361,7 @@
       "pnl": "倉位結算收益: $-309.52 USDT",
       "fee": "倉位累計手續費 197.8130 USDT",
       "rr": "開倉 $2,415.98 / 平倉 $2,414.62",
-      "reason": "【Half-B 新聞催化】ETH跌幅最大，安全漏洞新聞加劇恐慌，順勢做空。止盈設定較大波動空間，止損依擺幅放寬。",
+      "reason": "【Half-B 新聞催化】ETH 24h跌幅最大，受Binance駭客事件影響，拋售壓力巨大，預計加速下跌，故開空，止盈止損考量高波動與恐慌。",
       "hash": "0x50921dfbe1956b9a"
     },
     {
@@ -335,7 +380,7 @@
       "pnl": "倉位結算收益: $-371.12 USDT",
       "fee": "倉位累計手續費 197.6739 USDT",
       "rr": "開倉 $80,390.51 / 平倉 $80,320.00",
-      "reason": "【Half-B 新聞催化】BTC受負面新聞影響，24小時跌幅大，預期續下行。止盈合理波動範圍，止損依擺幅放寬。",
+      "reason": "【Half-B 新聞催化】Binance駭客事件引發恐慌，BTC 24h跌幅顯著，預期進一步下跌，故開空，止盈止損依市場恐慌與波動設定。",
       "hash": "0x4730898fb7d6e079"
     },
     {
@@ -354,7 +399,7 @@
       "pnl": "倉位結算收益: $-503.80 USDT",
       "fee": "倉位累計手續費 199.1517 USDT",
       "rr": "開倉 $2,412.11 / 平倉 $2,415.81",
-      "reason": "【Half-B 新聞催化】ETH跌幅最大，安全漏洞新聞加劇恐慌，順勢做空。止盈設定較大波動空間，止損依擺幅放寬。",
+      "reason": "【Half-B 新聞催化】ETH 24h跌幅最大，受Binance駭客事件影響，拋售壓力巨大，預計加速下跌，故開空，止盈止損考量高波動與恐慌。",
       "hash": "0x995dd02e6bf527a8"
     },
     {
@@ -373,7 +418,7 @@
       "pnl": "倉位結算收益: $-317.19 USDT",
       "fee": "倉位累計手續費 198.4498 USDT",
       "rr": "開倉 $80,320.00 / 平倉 $80,368.07",
-      "reason": "【Half-B 新聞催化】BTC受負面新聞影響，24小時跌幅大，預期續下行。止盈合理波動範圍，止損依擺幅放寬。",
+      "reason": "【Half-B 新聞催化】Binance駭客事件引發恐慌，BTC 24h跌幅顯著，預期進一步下跌，故開空，止盈止損依市場恐慌與波動設定。",
       "hash": "0xa4b91dfdd073e189"
     },
     {
@@ -392,7 +437,7 @@
       "pnl": "倉位結算收益: $-843.80 USDT",
       "fee": "倉位累計手續費 265.4173 USDT",
       "rr": "開倉 $2,417.71 / 平倉 $2,412.45",
-      "reason": "【Half-B 新聞催化】ETH跌幅最大，安全漏洞新聞加劇恐慌，順勢做空。止盈設定較大波動空間，止損依擺幅放寬。",
+      "reason": "【Half-B 新聞催化】ETH 24h跌幅最大，受Binance駭客事件影響，拋售壓力巨大，預計加速下跌，故開空，止盈止損考量高波動與恐慌。",
       "hash": "0x11676f6c97434d59"
     },
     {
@@ -411,7 +456,7 @@
       "pnl": "倉位結算收益: $-1,424.73 USDT",
       "fee": "倉位累計手續費 391.6807 USDT",
       "rr": "開倉 $80,533.30 / 平倉 $80,321.18",
-      "reason": "【Half-B 新聞催化】BTC受負面新聞影響，24小時跌幅大，預期續下行。止盈合理波動範圍，止損依擺幅放寬。",
+      "reason": "【Half-B 新聞催化】Binance駭客事件引發恐慌，BTC 24h跌幅顯著，預期進一步下跌，故開空，止盈止損依市場恐慌與波動設定。",
       "hash": "0x9e5bee8ae1a9e55f"
     },
     {
@@ -430,7 +475,7 @@
       "pnl": "倉位結算收益: $-57.35 USDT",
       "fee": "倉位累計手續費 108.5541 USDT",
       "rr": "開倉 $2,418.26 / 平倉 $2,417.12",
-      "reason": "【Half-B 新聞催化】ETH跌幅最大，安全漏洞新聞加劇恐慌，順勢做空。止盈設定較大波動空間，止損依擺幅放寬。",
+      "reason": "【Half-B 新聞催化】ETH 24h跌幅最大，受Binance駭客事件影響，拋售壓力巨大，預計加速下跌，故開空，止盈止損考量高波動與恐慌。",
       "hash": "0x16e5de558a84d580"
     },
     {
@@ -449,7 +494,7 @@
       "pnl": "倉位結算收益: $-222.77 USDT",
       "fee": "倉位累計手續費 167.4752 USDT",
       "rr": "開倉 $80,503.61 / 平倉 $80,530.20",
-      "reason": "【Half-B 新聞催化】BTC受負面新聞影響，24小時跌幅大，預期續下行。止盈合理波動範圍，止損依擺幅放寬。",
+      "reason": "【Half-B 新聞催化】Binance駭客事件引發恐慌，BTC 24h跌幅顯著，預期進一步下跌，故開空，止盈止損依市場恐慌與波動設定。",
       "hash": "0x67c00a160b926c09"
     },
     {
@@ -468,7 +513,7 @@
       "pnl": "倉位結算收益: $-395.12 USDT",
       "fee": "倉位累計手續費 144.9099 USDT",
       "rr": "開倉 $96.69 / 平倉 $96.52",
-      "reason": "【Half-B 新聞催化】SOL表現疲軟，安全事件擔憂恐致拋售，順勢做空。止盈中高波動空間，止損參考擺幅。",
+      "reason": "【Half-B 新聞催化】SOL受Binance駭客事件與市場悲觀情緒影響，24h跌幅顯著，判斷短期將持續下行，故開空，止盈止損依市場恐慌與波動。",
       "hash": "0xef2522fbc7205ddd"
     },
     {
@@ -487,7 +532,7 @@
       "pnl": "倉位結算收益: $-78.71 USDT",
       "fee": "倉位累計手續費 62.6560 USDT",
       "rr": "開倉 $2,418.84 / 平倉 $2,419.46",
-      "reason": "【Half-B 新聞催化】ETH跌幅最大，安全漏洞新聞加劇恐慌，順勢做空。止盈設定較大波動空間，止損依擺幅放寬。",
+      "reason": "【Half-B 新聞催化】ETH 24h跌幅最大，受Binance駭客事件影響，拋售壓力巨大，預計加速下跌，故開空，止盈止損考量高波動與恐慌。",
       "hash": "0x091a24fb4782f86f"
     },
     {
@@ -506,7 +551,7 @@
       "pnl": "倉位結算收益: $-149.28 USDT",
       "fee": "倉位累計手續費 144.0991 USDT",
       "rr": "開倉 $80,500.85 / 平倉 $80,503.74",
-      "reason": "【Half-B 新聞催化】BTC受負面新聞影響，24小時跌幅大，預期續下行。止盈合理波動範圍，止損依擺幅放寬。",
+      "reason": "【Half-B 新聞催化】Binance駭客事件引發恐慌，BTC 24h跌幅顯著，預期進一步下跌，故開空，止盈止損依市場恐慌與波動設定。",
       "hash": "0x5df8e5815ba10dbe"
     },
     {
@@ -525,7 +570,7 @@
       "pnl": "倉位結算收益: $-0.90 USDT",
       "fee": "倉位累計手續費 0.2422 USDT",
       "rr": "開倉 $2,425.62 / 平倉 $2,419.00",
-      "reason": "【Half-B 新聞催化】ETH跌幅最大，安全漏洞新聞加劇恐慌，順勢做空。止盈設定較大波動空間，止損依擺幅放寬。",
+      "reason": "【Half-B 新聞催化】ETH 24h跌幅最大，受Binance駭客事件影響，拋售壓力巨大，預計加速下跌，故開空，止盈止損考量高波動與恐慌。",
       "hash": "0x252ce73a06cb916a"
     },
     {
@@ -544,7 +589,7 @@
       "pnl": "倉位結算收益: $-1.04 USDT",
       "fee": "倉位累計手續費 0.2422 USDT",
       "rr": "開倉 $2,417.60 / 平倉 $2,425.62",
-      "reason": "【Half-B 新聞催化】ETH跌幅最大，安全漏洞新聞加劇恐慌，順勢做空。止盈設定較大波動空間，止損依擺幅放寬。",
+      "reason": "【Half-B 新聞催化】ETH 24h跌幅最大，受Binance駭客事件影響，拋售壓力巨大，預計加速下跌，故開空，止盈止損考量高波動與恐慌。",
       "hash": "0xdc8b3f78d563346a"
     },
     {
@@ -563,7 +608,7 @@
       "pnl": "倉位結算收益: $-0.65 USDT",
       "fee": "倉位累計手續費 0.2419 USDT",
       "rr": "開倉 $2,421.49 / 平倉 $2,417.37",
-      "reason": "【Half-B 新聞催化】ETH跌幅最大，安全漏洞新聞加劇恐慌，順勢做空。止盈設定較大波動空間，止損依擺幅放寬。",
+      "reason": "【Half-B 新聞催化】ETH 24h跌幅最大，受Binance駭客事件影響，拋售壓力巨大，預計加速下跌，故開空，止盈止損考量高波動與恐慌。",
       "hash": "0x616e66f62bf2dded"
     },
     {
@@ -582,7 +627,7 @@
       "pnl": "倉位結算收益: $-0.15 USDT",
       "fee": "倉位累計手續費 0.2422 USDT",
       "rr": "開倉 $2,422.82 / 平倉 $2,422.18",
-      "reason": "【Half-B 新聞催化】ETH跌幅最大，安全漏洞新聞加劇恐慌，順勢做空。止盈設定較大波動空間，止損依擺幅放寬。",
+      "reason": "【Half-B 新聞催化】ETH 24h跌幅最大，受Binance駭客事件影響，拋售壓力巨大，預計加速下跌，故開空，止盈止損考量高波動與恐慌。",
       "hash": "0x2db5cc62d9c446f5"
     },
     {
@@ -601,7 +646,7 @@
       "pnl": "倉位結算收益: $-0.89 USDT",
       "fee": "倉位累計手續費 0.2426 USDT",
       "rr": "開倉 $2,429.47 / 平倉 $2,423.03",
-      "reason": "【Half-B 新聞催化】ETH跌幅最大，安全漏洞新聞加劇恐慌，順勢做空。止盈設定較大波動空間，止損依擺幅放寬。",
+      "reason": "【Half-B 新聞催化】ETH 24h跌幅最大，受Binance駭客事件影響，拋售壓力巨大，預計加速下跌，故開空，止盈止損考量高波動與恐慌。",
       "hash": "0xce1969d8466f4180"
     },
     {
@@ -620,7 +665,7 @@
       "pnl": "倉位結算收益: +$0.19 USDT",
       "fee": "倉位累計手續費 0.2432 USDT",
       "rr": "開倉 $2,433.84 / 平倉 $2,429.47",
-      "reason": "【Half-B 新聞催化】ETH跌幅最大，安全漏洞新聞加劇恐慌，順勢做空。止盈設定較大波動空間，止損依擺幅放寬。",
+      "reason": "【Half-B 新聞催化】ETH 24h跌幅最大，受Binance駭客事件影響，拋售壓力巨大，預計加速下跌，故開空，止盈止損考量高波動與恐慌。",
       "hash": "0x5213e05d07879ebf"
     },
     {
@@ -639,7 +684,7 @@
       "pnl": "倉位結算收益: +$0.67 USDT",
       "fee": "倉位累計手續費 0.2429 USDT",
       "rr": "開倉 $2,424.75 / 平倉 $2,433.84",
-      "reason": "【Half-B 新聞催化】ETH跌幅最大，安全漏洞新聞加劇恐慌，順勢做空。止盈設定較大波動空間，止損依擺幅放寬。",
+      "reason": "【Half-B 新聞催化】ETH 24h跌幅最大，受Binance駭客事件影響，拋售壓力巨大，預計加速下跌，故開空，止盈止損考量高波動與恐慌。",
       "hash": "0x9e2ab35aa1d3d139"
     },
     {
@@ -658,7 +703,7 @@
       "pnl": "倉位結算收益: $-0.16 USDT",
       "fee": "倉位累計手續費 0.2425 USDT",
       "rr": "開倉 $2,425.58 / 平倉 $2,424.75",
-      "reason": "【Half-B 新聞催化】ETH跌幅最大，安全漏洞新聞加劇恐慌，順勢做空。止盈設定較大波動空間，止損依擺幅放寬。",
+      "reason": "【Half-B 新聞催化】ETH 24h跌幅最大，受Binance駭客事件影響，拋售壓力巨大，預計加速下跌，故開空，止盈止損考量高波動與恐慌。",
       "hash": "0x24438d544006aab4"
     },
     {
@@ -677,7 +722,7 @@
       "pnl": "倉位結算收益: $-0.13 USDT",
       "fee": "倉位累計手續費 0.2424 USDT",
       "rr": "開倉 $2,423.87 / 平倉 $2,425.00",
-      "reason": "【Half-B 新聞催化】ETH跌幅最大，安全漏洞新聞加劇恐慌，順勢做空。止盈設定較大波動空間，止損依擺幅放寬。",
+      "reason": "【Half-B 新聞催化】ETH 24h跌幅最大，受Binance駭客事件影響，拋售壓力巨大，預計加速下跌，故開空，止盈止損考量高波動與恐慌。",
       "hash": "0x4cb26732bded8bb8"
     },
     {
@@ -696,7 +741,7 @@
       "pnl": "倉位結算收益: $-9,900.14 USDT",
       "fee": "倉位累計手續費 470.0787 USDT",
       "rr": "開倉 $77,527.03 / 平倉 $76,297.06",
-      "reason": "【Half-B 新聞催化】BTC受負面新聞影響，24小時跌幅大，預期續下行。止盈合理波動範圍，止損依擺幅放寬。",
+      "reason": "【Half-B 新聞催化】Binance駭客事件引發恐慌，BTC 24h跌幅顯著，預期進一步下跌，故開空，止盈止損依市場恐慌與波動設定。",
       "hash": "0x1a18e69c8e27b36b"
     },
     {
@@ -715,7 +760,7 @@
       "pnl": "倉位結算收益: $-4,981.71 USDT",
       "fee": "倉位累計手續費 472.6177 USDT",
       "rr": "開倉 $81,633.19 / 平倉 $81,181.24",
-      "reason": "【Half-B 新聞催化】BTC受負面新聞影響，24小時跌幅大，預期續下行。止盈合理波動範圍，止損依擺幅放寬。",
+      "reason": "【Half-B 新聞催化】Binance駭客事件引發恐慌，BTC 24h跌幅顯著，預期進一步下跌，故開空，止盈止損依市場恐慌與波動設定。",
       "hash": "0x03b263d99c922b04"
     },
     {
@@ -734,7 +779,7 @@
       "pnl": "倉位結算收益: $-32,608.35 USDT",
       "fee": "倉位累計手續費 3107.1760 USDT",
       "rr": "開倉 $85,966.10 / 平倉 $86,438.80",
-      "reason": "【Half-B 新聞催化】BTC受負面新聞影響，24小時跌幅大，預期續下行。止盈合理波動範圍，止損依擺幅放寬。",
+      "reason": "【Half-B 新聞催化】Binance駭客事件引發恐慌，BTC 24h跌幅顯著，預期進一步下跌，故開空，止盈止損依市場恐慌與波動設定。",
       "hash": "0xee175bb06893543e"
     },
     {
@@ -753,7 +798,7 @@
       "pnl": "倉位結算收益: +$3,628.08 USDT",
       "fee": "倉位累計手續費 1926.1445 USDT",
       "rr": "開倉 $85,562.51 / 平倉 $85,389.90",
-      "reason": "【Half-B 新聞催化】BTC受負面新聞影響，24小時跌幅大，預期續下行。止盈合理波動範圍，止損依擺幅放寬。",
+      "reason": "【Half-B 新聞催化】Binance駭客事件引發恐慌，BTC 24h跌幅顯著，預期進一步下跌，故開空，止盈止損依市場恐慌與波動設定。",
       "hash": "0x8f38a336913ff317"
     }
   ]
