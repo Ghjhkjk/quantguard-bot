@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QuantGuard AI v8.0 | OKX 實時總資產與持倉監控終端</title>
+    <title>QuantGuard AI v8.1 | OKX 實時總資產與持倉監控終端</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script>
@@ -46,7 +46,6 @@
     <!-- 頂部極簡實戰導覽列 -->
     <header class="sticky top-0 z-40 glass-card border-b border-slate-800 px-4 lg:px-8 py-3">
         <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
-            <!-- 左側品牌與狀態 -->
             <div class="flex items-center space-x-3">
                 <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-indigo-500 via-sky-500 to-emerald-500 flex items-center justify-center shadow-lg shadow-indigo-500/20">
                     <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -55,7 +54,7 @@
                 </div>
                 <div>
                     <div class="flex items-center space-x-2">
-                        <span class="text-base font-bold tracking-tight text-white">QuantGuard <span class="text-indigo-400">LIVE</span></span>
+                        <span class="text-base font-bold tracking-tight text-white">QuantGuard <span class="text-indigo-400">LIVE v8.1</span></span>
                         <span id="apiSyncBadge" class="text-[11px] font-mono px-2 py-0.5 rounded bg-amber-500/15 text-amber-300 border border-amber-500/30">⏳ 正在連線實盤資料...</span>
                     </div>
                     <p id="liveTickerBar" class="text-[11px] font-mono text-emerald-400 mt-0.5">
@@ -97,10 +96,10 @@
         </div>
     </div>
 
-    <!-- 主內容區 (移除所有空殼側邊欄，100% 聚焦實盤數據) -->
+    <!-- 主內容區 -->
     <main class="flex-1 max-w-7xl w-full mx-auto p-4 lg:p-8 space-y-6">
 
-        <!-- 🌟 區塊 1：OKX 顯示的資產總額 (結合實時浮動損益每秒跳動) -->
+        <!-- 🌟 區塊 1：OKX 顯示的資產總額 -->
         <div class="glass-card rounded-2xl p-5 lg:p-6 border-2 border-indigo-500/50 bg-gradient-to-r from-slate-900 via-indigo-950/40 to-slate-900 shadow-xl">
             <div class="flex flex-wrap items-center justify-between gap-4">
                 <div>
@@ -135,7 +134,7 @@
             </div>
         </div>
 
-        <!-- 🌟 區塊 2：🔥 目前持有訂單 (當前倉位、訂單金額、實時跳動收益率) -->
+        <!-- 🌟 區塊 2：🔥 目前持有訂單 (清楚對齊「幣價止損價」與「含槓桿 ROI 止損幅度」) -->
         <div class="glass-card rounded-2xl p-5 border border-amber-500/50 shadow-lg">
             <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
                 <div class="flex items-center space-x-2">
@@ -143,7 +142,7 @@
                     <h2 class="text-base lg:text-lg font-bold text-white">🔥 目前持有訂單 (當前倉位金額 & 實時收益率)</h2>
                     <span id="kpiActivePosCountBadge" class="text-xs font-mono px-2.5 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30">0 筆持倉中</span>
                 </div>
-                <span class="text-xs font-mono text-emerald-400">⚡ 已連線 OKX 實時報價：現價與收益率每 3 秒自動跳動更新</span>
+                <span class="text-xs font-mono text-emerald-400">⚡ 已連線 OKX 實時報價：同時顯示觸發價格與含槓桿 ROI 止盈止損線</span>
             </div>
 
             <div class="overflow-x-auto">
@@ -153,9 +152,9 @@
                             <th class="py-3 px-3">持有合約標的</th>
                             <th class="py-3 px-3">方向 / 槓桿 / 張數</th>
                             <th class="py-3 px-3">💰 訂單金額 (保證金 / 總名目價值)</th>
-                            <th class="py-3 px-3">開倉均價 ➔ OKX 實時現價</th>
-                            <th class="py-3 px-3">止盈 / 止損 / 下單原因</th>
-                            <th class="py-3 px-3 text-right">📈 實時收益率 (ROI) & 損益金額</th>
+                            <th class="py-3 px-3">開倉均價 ➔ OKX 實時現價 (幣價波動)</th>
+                            <th class="py-3 px-3">🎯 觸發止盈 / 🛑 止損價 (含槓桿 ROI 標準)</th>
+                            <th class="py-3 px-3 text-right">📈 實時收益率 (含槓桿 ROI) & 損益</th>
                         </tr>
                     </thead>
                     <tbody id="activePositionsTableBody" class="divide-y divide-slate-800/70 text-xs font-mono">
@@ -169,7 +168,7 @@
             </div>
         </div>
 
-        <!-- 🌟 區塊 3：📦 歷史交易紀錄 (直接從 OKX 歷史倉位區抓取結算損益) -->
+        <!-- 🌟 區塊 3：📦 歷史交易紀錄 (賺錢綠色、虧錢紅色自動分色) -->
         <div class="glass-card rounded-2xl p-5 border border-sky-500/40 shadow-lg">
             <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
                 <div>
@@ -177,7 +176,7 @@
                         <h2 class="text-base lg:text-lg font-bold text-white">📦 歷史倉位結算與交易紀錄 (OKX Positions History)</h2>
                         <span id="kpiOrderTotalCount" class="text-xs font-mono px-2.5 py-0.5 rounded bg-sky-500/20 text-sky-300 border border-sky-500/30">0 筆紀錄</span>
                     </div>
-                    <p class="text-xs text-slate-400 mt-0.5">點擊任一筆訂單可查看完整開平倉均價、手續費與 AI 下單原因</p>
+                    <p class="text-xs text-slate-400 mt-0.5">賺錢自動標示為翠綠色，虧損自動標示為鮮紅色；點擊任一筆可查看完整細項</p>
                 </div>
             </div>
 
@@ -190,7 +189,7 @@
                             <th class="py-3 px-4">標的與方向</th>
                             <th class="py-3 px-4">槓桿 / 規模</th>
                             <th class="py-3 px-4">開倉均價 ➔ 平倉/現價</th>
-                            <th class="py-3 px-4">結算損益 / 收益率</th>
+                            <th class="py-3 px-4">結算損益 / 收益率 (紅虧綠賺)</th>
                             <th class="py-3 px-4 text-right">詳情</th>
                         </tr>
                     </thead>
@@ -233,7 +232,7 @@
                 </div>
                 <div>
                     <span class="text-slate-400 block text-[10px]">損益與收益率</span>
-                    <span id="modalRoiPnl" class="text-emerald-400 font-bold">--</span>
+                    <span id="modalRoiPnl" class="font-bold">--</span>
                 </div>
                 <div>
                     <span class="text-slate-400 block text-[10px]">手續費明細</span>
@@ -257,7 +256,6 @@
     </div>
 
     <script>
-        // 全局狀態
         let baseTotalEquity = 0.0;
         let freeUsdtBalance = 0.0;
         let usedUsdtMargin = 0.0;
@@ -265,14 +263,39 @@
         let activePositionsList = [];
         let orderDatabase = [];
 
-        // 即時 OKX 公開報價快取 (每秒直連 OKX 更新)
         let liveOkxPrices = {
             'BTC/USDT:USDT': 0,
             'ETH/USDT:USDT': 0,
             'SOL/USDT:USDT': 0
         };
 
-        // 1. 直接從 OKX 官方公開 API 抓取當下最新毫秒級價格，並即時重算持倉收益率！
+        // 判斷歷史倉位字串是賺錢、虧錢還是持倉中，回傳對應顏色 Class
+        function getPnlColorClasses(roiText, pnlText) {
+            const combined = String(roiText || '') + ' ' + String(pnlText || '');
+            // 檢查是否含有負號 (如 -$12.34, $-12.34, -5.20%)
+            if (combined.includes('-$') || combined.includes('$-') || /\(-\d/.test(combined) || /-\d+\.\d+%/.test(combined)) {
+                return {
+                    text: 'text-rose-400',
+                    badge: 'bg-rose-500/15 text-rose-300 border-rose-500/30',
+                    dirText: 'text-rose-300'
+                };
+            }
+            // 檢查是否含有正號且非 0.00
+            if ((combined.includes('+$') || combined.includes('$+') || /\(\+\d/.test(combined) || /\+\d+\.\d+%/.test(combined)) && !combined.includes('+$0.00 ')) {
+                return {
+                    text: 'text-emerald-400',
+                    badge: 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30',
+                    dirText: 'text-emerald-300'
+                };
+            }
+            // 持倉運行中或 0 損益
+            return {
+                text: 'text-sky-300',
+                badge: 'bg-sky-500/15 text-sky-300 border-sky-500/30',
+                dirText: 'text-amber-300'
+            };
+        }
+
         async function fetchRealTimeOkxTickers() {
             const instMap = {
                 'BTC-USDT-SWAP': 'BTC/USDT:USDT',
@@ -292,7 +315,6 @@
                     });
                 }
 
-                // 更新頂部即時報價列
                 const btc = liveOkxPrices['BTC/USDT:USDT'];
                 const eth = liveOkxPrices['ETH/USDT:USDT'];
                 const sol = liveOkxPrices['SOL/USDT:USDT'];
@@ -301,14 +323,10 @@
                         `🟢 OKX 實時連線報價 | BTC: $${btc.toLocaleString()} | ETH: $${eth.toLocaleString()} | SOL: $${sol.toLocaleString()}`;
                 }
 
-                // 用最新價格即時重算目前持有倉位的現價、損益與收益率
                 recalculateLivePositionsPnl();
-            } catch (e) {
-                // 忽略網路瞬斷
-            }
+            } catch (e) {}
         }
 
-        // 2. 根據 OKX 最新價格，動態重算每一筆持倉的實時損益與總資產
         function recalculateLivePositionsPnl() {
             if (!activePositionsList || activePositionsList.length === 0) {
                 updateHeroBanner(baseTotalEquity, 0);
@@ -325,7 +343,8 @@
                         ? ((latestPrice - pos.entry_price) / pos.entry_price)
                         : ((pos.entry_price - latestPrice) / pos.entry_price);
 
-                    // 依名目價值或保證金×槓桿計算即時損益
+                    pos.raw_price_Move_pct = parseFloat((priceDiffPct * 100).toFixed(2));
+
                     const levNum = parseFloat(String(pos.leverage).replace('x', '')) || 5;
                     const effectiveNotional = pos.notional_usdt > 0 ? pos.notional_usdt : (pos.margin_usdt * levNum);
                     pos.unrealized_pnl = parseFloat((effectiveNotional * priceDiffPct).toFixed(2));
@@ -336,7 +355,6 @@
                 dynamicTotalUpl += (parseFloat(pos.unrealized_pnl) || 0);
             });
 
-            // 動態實時總資產 = 快照基準淨值 + (當前即時浮盈 - 快照當時浮盈)
             const liveTotalEquity = baseTotalEquity + (dynamicTotalUpl - snapshotUnrealizedPnl);
             updateHeroBanner(liveTotalEquity, dynamicTotalUpl);
             renderActivePositionsTable();
@@ -364,7 +382,6 @@
             document.getElementById('heroActiveCountSub').innerText = `目前持有 ${activePositionsList.length} 筆倉位`;
         }
 
-        // 3. 套用從 GitHub 抓回來的最新 live_data.json
         function applyLiveJsonData(data) {
             if (!data) return;
 
@@ -404,7 +421,7 @@
             renderOrderHistoryTable();
         }
 
-        // 4. 渲染「目前持有訂單」表格
+        // 渲染「目前持有訂單」表格 (清楚區分幣價止損 vs 含槓桿 ROI 止損)
         function renderActivePositionsTable() {
             const tbody = document.getElementById('activePositionsTableBody');
             document.getElementById('kpiActivePosCountBadge').innerText = `${activePositionsList.length} 筆持倉中`;
@@ -427,6 +444,30 @@
                     ? '<span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">做多 LONG</span>'
                     : '<span class="px-2 py-0.5 rounded bg-rose-500/20 text-rose-300 border border-rose-500/30">做空 SHORT</span>';
 
+                // 計算實際觸發止盈價、觸發止損價，以及對應的「含槓桿 ROI %」
+                const entryPx = parseFloat(pos.entry_price || 0);
+                const markPx = parseFloat(pos.mark_price || 0);
+                const tpPricePct = parseFloat(pos.tp_pct || 12.0);
+                const slPricePct = parseFloat(pos.sl_pct || 3.8);
+                const levNum = parseFloat(String(pos.leverage).replace('x', '')) || 5;
+
+                const tpTriggerPx = pos.side === 'LONG'
+                    ? entryPx * (1 + tpPricePct / 100)
+                    : entryPx * (1 - tpPricePct / 100);
+                const slTriggerPx = pos.side === 'LONG'
+                    ? entryPx * (1 - slPricePct / 100)
+                    : entryPx * (1 + slPricePct / 100);
+
+                // 換算成跟右欄同單位的「含槓桿保證金 ROI %」
+                const tpLeveragedRoi = (tpPricePct * levNum).toFixed(1);
+                const slLeveragedRoi = (slPricePct * levNum).toFixed(1);
+
+                // 計算目前幣價本身距離開倉價的波動 %
+                const rawMovePct = entryPx > 0
+                    ? (((pos.side === 'LONG' ? (markPx - entryPx) : (entryPx - markPx)) / entryPx) * 100).toFixed(2)
+                    : '0.00';
+                const rawMoveSign = parseFloat(rawMovePct) >= 0 ? '+' : '';
+
                 return `
                 <tr class="hover:bg-slate-800/50 transition">
                     <td class="py-3.5 px-3 font-bold text-white text-sm">${pos.symbol}</td>
@@ -440,23 +481,32 @@
                         <div class="text-slate-300 text-[11px]">合約總名目金額: $${(pos.notional_usdt || 0).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})} USDT</div>
                     </td>
                     <td class="py-3.5 px-3">
-                        <div class="text-slate-300">開倉均價: $${(pos.entry_price || 0).toLocaleString()}</div>
-                        <div class="text-sky-300 font-bold text-xs mt-0.5">⚡ 實時現價: $${(pos.mark_price || 0).toLocaleString()}</div>
+                        <div class="text-slate-300">開倉均價: $${entryPx.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</div>
+                        <div class="text-sky-300 font-bold text-xs mt-0.5">⚡ 實時現價: $${markPx.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</div>
+                        <div class="text-[10px] ${pnlColor} mt-0.5">幣價順逆波動: ${rawMoveSign}${rawMovePct}%</div>
                     </td>
                     <td class="py-3.5 px-3">
-                        <div class="text-emerald-300 text-[11px]">止盈 +${pos.tp_pct || 12}% / 止損 -${pos.sl_pct || 3.8}%</div>
-                        <div class="text-slate-400 font-sans text-[11px] max-w-xs truncate mt-0.5" title="${pos.reason || ''}">${pos.reason || '兩半資金池持倉中'}</div>
+                        <div class="text-[11px]">
+                            <span class="text-emerald-400 font-bold">🎯 止盈價 $${tpTriggerPx.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span>
+                            <span class="text-slate-400 text-[10px]">(幣價+${tpPricePct}% / ROI +${tpLeveragedRoi}%)</span>
+                        </div>
+                        <div class="text-[11px] mt-0.5">
+                            <span class="text-rose-400 font-bold">🛑 止損價 $${slTriggerPx.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span>
+                            <span class="text-slate-400 text-[10px]">(幣價-${slPricePct}% / ROI -${slLeveragedRoi}%)</span>
+                        </div>
+                        <div class="text-slate-400 font-sans text-[11px] max-w-xs truncate mt-1" title="${pos.reason || ''}">${pos.reason || '兩半資金池持倉中'}</div>
                     </td>
                     <td class="py-3.5 px-3 text-right">
                         <div class="text-base font-extrabold ${pnlColor}">${sign}${(pos.roi_pct || 0).toFixed(2)}%</div>
                         <div class="text-xs font-bold ${pnlColor}">${sign}$${(pos.unrealized_pnl || 0).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})} USDT</div>
+                        <div class="text-[10px] text-slate-400 mt-0.5">達 -${slLeveragedRoi}% ($${slTriggerPx.toFixed(2)}) 觸發止損</div>
                     </td>
                 </tr>
                 `;
             }).join('');
         }
 
-        // 5. 渲染「歷史倉位結算」表格
+        // 渲染「歷史倉位結算」表格 (賺錢翠綠色、虧損鮮紅色)
         function renderOrderHistoryTable() {
             const tbody = document.getElementById('orderHistoryTableBody');
             if (!orderDatabase || orderDatabase.length === 0) {
@@ -469,18 +519,25 @@
                 return;
             }
 
-            tbody.innerHTML = orderDatabase.map(o => `
+            tbody.innerHTML = orderDatabase.map(o => {
+                const colors = getPnlColorClasses(o.roi, o.pnl);
+                const isShort = String(o.direction || '').includes('SHORT') || String(o.direction || '').includes('SELL');
+                const dirBadge = isShort
+                    ? '<span class="text-[11px] text-rose-300 font-bold">' + o.direction + '</span>'
+                    : '<span class="text-[11px] text-emerald-300 font-bold">' + o.direction + '</span>';
+
+                return `
                 <tr class="hover:bg-slate-800/40 transition cursor-pointer" onclick="openOrderModal('${o.id}')">
                     <td class="py-3 px-4">
                         <div class="font-bold text-white">${o.id}</div>
                         <div class="text-[10px] text-slate-400">${o.time}</div>
                     </td>
                     <td class="py-3 px-4">
-                        <span class="px-2 py-0.5 rounded border text-[10px] bg-sky-500/15 text-sky-300 border-sky-500/30">${o.marketBadge}</span>
+                        <span class="px-2 py-0.5 rounded border text-[10px] ${colors.badge}">${o.marketBadge}</span>
                     </td>
                     <td class="py-3 px-4 font-sans">
                         <div class="font-bold text-white">${o.asset}</div>
-                        <div class="text-[11px] text-amber-300">${o.direction}</div>
+                        ${dirBadge}
                     </td>
                     <td class="py-3 px-4">
                         <div class="text-indigo-300 font-semibold">${o.leverage}</div>
@@ -488,8 +545,8 @@
                     </td>
                     <td class="py-3 px-4 text-slate-200">${o.entryExit}</td>
                     <td class="py-3 px-4">
-                        <span class="font-bold text-xs text-emerald-400">${o.roi}</span>
-                        <div class="text-[10px] text-slate-400 font-sans truncate max-w-xs">${o.reason}</div>
+                        <span class="font-extrabold text-xs ${colors.text}">${o.roi}</span>
+                        <div class="text-[10px] text-slate-400 font-sans truncate max-w-xs mt-0.5">${o.reason}</div>
                     </td>
                     <td class="py-3 px-4 text-right">
                         <button class="px-2.5 py-1 rounded-lg bg-indigo-500/20 hover:bg-indigo-500/40 text-indigo-300 border border-indigo-500/30 text-xs font-sans">
@@ -497,10 +554,10 @@
                         </button>
                     </td>
                 </tr>
-            `).join('');
+                `;
+            }).join('');
         }
 
-        // 6. 核心功能：穿透快取讀取最新 live_data.json + 立即更新 OKX 實時報價
         async function fetchLatestLiveJson() {
             const urlsToTry = [
                 'https://raw.githubusercontent.com/Ghjhkjk/quantguard-bot/main/live_data.json?t=' + Date.now(),
@@ -519,7 +576,6 @@
             return false;
         }
 
-        // 點擊「🔄 立即更新目前資料」按鈕
         async function forceRefreshNow() {
             const icon = document.getElementById('refreshIcon');
             const btnText = document.getElementById('refreshBtnText');
@@ -558,12 +614,15 @@
         function openOrderModal(orderId) {
             const ord = orderDatabase.find(o => o.id === orderId);
             if (!ord) return;
+            const colors = getPnlColorClasses(ord.roi, ord.pnl);
             document.getElementById('modalOrderMarketBadge').innerText = ord.marketBadge;
             document.getElementById('modalOrderTitle').innerText = `倉位紀錄 #${ord.full_id || ord.id} (${ord.time})`;
             document.getElementById('modalAssetDir').innerText = `${ord.asset} (${ord.direction})`;
             document.getElementById('modalLeveragePool').innerText = `${ord.leverage} | ${ord.pool}`;
             document.getElementById('modalEntryExit').innerText = ord.entryExit;
-            document.getElementById('modalRoiPnl').innerText = `${ord.roi}`;
+            const roiEl = document.getElementById('modalRoiPnl');
+            roiEl.className = `font-bold ${colors.text}`;
+            roiEl.innerText = `${ord.roi}`;
             document.getElementById('modalFeeTax').innerText = ord.fee;
             document.getElementById('modalRiskReward').innerText = ord.rr;
             document.getElementById('modalAiReason').innerText = ord.reason;
@@ -574,7 +633,6 @@
             document.getElementById('orderDetailModal').classList.add('hidden');
         }
 
-        // 啟動時立即執行，並設定每 3 秒自動拉取 OKX 實時價格跳動損益、每 10 秒拉取最新倉位快照
         window.addEventListener('DOMContentLoaded', () => {
             forceRefreshNow();
             setInterval(fetchRealTimeOkxTickers, 3000);
