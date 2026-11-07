@@ -2,12 +2,15 @@ name: QuantGuard AI 24/7 Autonomous Bot
 
 on:
   schedule:
-    # 每 5 分鐘自動喚醒執行一次，24 小時永不停止
     - cron: '*/5 * * * *'
-  workflow_dispatch: # 支援在 GitHub Actions 頁面手動點按鈕立即執行
+  workflow_dispatch:
+
+concurrency:
+  group: quantguard-live-bot
+  cancel-in-progress: false
 
 permissions:
-  contents: write    # 允許機器人將最新的 live_data.json 寫回倉庫
+  contents: write
 
 jobs:
   run-bot:
@@ -25,12 +28,14 @@ jobs:
         run: |
           pip install ccxt google-genai feedparser
 
-      - name: 🚀 執行兩半資金池多訂單交易引擎
+      - name: 🚀 執行 80/10/10 快慢雙軌量化引擎 (每 20 秒高速巡檢)
         env:
           OKX_API_KEY: ${{ secrets.OKX_API_KEY }}
           OKX_SECRET_KEY: ${{ secrets.OKX_SECRET_KEY }}
           OKX_PASSPHRASE: ${{ secrets.OKX_PASSPHRASE }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          MAX_JOB_RUNTIME_SEC: "240"
         run: |
           python auto_bot.py
 
@@ -39,5 +44,4 @@ jobs:
           git config --local user.email "bot@quantguard.ai"
           git config --local user.name "QuantGuard AutoBot"
           git add live_data.json
-          git diff --staged --quiet || git commit -m "Auto-sync OKX live_data.json"
-          git push
+          git diff --staged --quiet || (git commit -m "Auto-sync OKX live_data.json v9.0" && git pull --rebase origin main && git push origin main)
