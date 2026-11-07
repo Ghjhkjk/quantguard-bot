@@ -1,15 +1,15 @@
 {
-  "updated_at": "2026-11-07 09:19:09",
-  "real_usdt": 113514.33,
-  "free_usdt": 0.0,
-  "used_usdt": 113514.33,
+  "updated_at": "2026-11-07 15:44:05",
+  "real_usdt": 109734.96,
+  "free_usdt": 15509.34,
+  "used_usdt": 94225.62,
   "allocations": {
-    "normal_80_usdt": 90811.46,
-    "hedge_10_usdt": 11351.43,
-    "sniper_10_usdt": 11351.43
+    "normal_80_usdt": 87787.97,
+    "hedge_10_usdt": 10973.5,
+    "sniper_10_usdt": 10973.5
   },
-  "total_unrealized_pnl": -5401.58,
-  "total_crypto_roi_pct": -4.76,
+  "total_unrealized_pnl": -3691.25,
+  "total_crypto_roi_pct": -3.36,
   "active_positions": [
     {
       "symbol": "SOL/USDT:USDT",
@@ -17,14 +17,14 @@
       "contracts": 401.0,
       "leverage": "8.0x",
       "entry_price": 90.64,
-      "mark_price": 90.16,
-      "margin_usdt": 4519.27,
-      "notional_usdt": 36108.61,
-      "unrealized_pnl": -192.66,
-      "roi_pct": -4.24,
+      "mark_price": 91.56,
+      "margin_usdt": 4589.44,
+      "notional_usdt": 36670.03,
+      "unrealized_pnl": 368.74,
+      "roi_pct": 8.12,
       "tp_pct": 12.0,
       "sl_pct": 3.5,
-      "reason": "【Half-B 強弱對沖】SOL短期動能轉弱，且歷史錯題本顯示追高虧損，進行弱勢對沖。"
+      "reason": "【Half-A 技術籌碼】SOL趨勢看漲，資金費率正常，15分鐘小幅回調提供入場機會。"
     },
     {
       "symbol": "ETH/USDT:USDT",
@@ -32,14 +32,14 @@
       "contracts": 87.0,
       "leverage": "6.0x",
       "entry_price": 2238.89,
-      "mark_price": 2253.12,
-      "margin_usdt": 3267.02,
-      "notional_usdt": 19577.45,
-      "unrealized_pnl": 123.77,
-      "roi_pct": 3.81,
+      "mark_price": 2244.26,
+      "margin_usdt": 3254.18,
+      "notional_usdt": 19500.85,
+      "unrealized_pnl": 46.69,
+      "roi_pct": 1.44,
       "tp_pct": 12.0,
       "sl_pct": 3.5,
-      "reason": "【Half-B 強弱動能】ETH展現相對強勢，持續看好其上漲動能。"
+      "reason": "【Half-B 強弱對沖】ETH資金費率極端偏負，提防空頭軋空反彈。"
     },
     {
       "symbol": "BTC/USDT:USDT",
@@ -47,29 +47,29 @@
       "contracts": 21.0,
       "leverage": "6.0x",
       "entry_price": 76060.92,
-      "mark_price": 76174.31,
-      "margin_usdt": 2666.1,
-      "notional_usdt": 15976.45,
-      "unrealized_pnl": 23.81,
-      "roi_pct": 0.89,
+      "mark_price": 76471.27,
+      "margin_usdt": 2676.49,
+      "notional_usdt": 16039.05,
+      "unrealized_pnl": 86.17,
+      "roi_pct": 3.24,
       "tp_pct": 12.0,
       "sl_pct": 3.5,
-      "reason": "80/10/10 資金池實時監控中 (達+2.2%自動移止損至+1%)"
+      "reason": "【Half-B 強弱對沖】BTC資金費率極端偏高，提防多頭過度追高回調。"
     },
     {
       "symbol": "SOL/USDT:USDT",
       "side": "SHORT",
-      "contracts": 2724.0,
+      "contracts": 573.0,
       "leverage": "8.0x",
       "entry_price": 89.24,
-      "mark_price": 90.16,
-      "margin_usdt": 30699.48,
-      "notional_usdt": 245286.39,
-      "unrealized_pnl": -2498.94,
-      "roi_pct": -8.22,
+      "mark_price": 91.56,
+      "margin_usdt": 6557.99,
+      "notional_usdt": 52398.82,
+      "unrealized_pnl": -1327.86,
+      "roi_pct": -20.77,
       "tp_pct": 12.0,
       "sl_pct": 3.5,
-      "reason": "【Half-B 強弱對沖】SOL短期動能轉弱，且歷史錯題本顯示追高虧損，進行弱勢對沖。"
+      "reason": "【Half-A 技術籌碼】SOL趨勢看漲，資金費率正常，15分鐘小幅回調提供入場機會。"
     },
     {
       "symbol": "ETH/USDT:USDT",
@@ -77,14 +77,14 @@
       "contracts": 1158.0,
       "leverage": "6.0x",
       "entry_price": 2238.13,
-      "mark_price": 2253.12,
-      "margin_usdt": 43485.22,
-      "notional_usdt": 260582.55,
-      "unrealized_pnl": -1736.18,
-      "roi_pct": -4.02,
+      "mark_price": 2244.26,
+      "margin_usdt": 43314.22,
+      "notional_usdt": 259563.05,
+      "unrealized_pnl": -710.19,
+      "roi_pct": -1.64,
       "tp_pct": 12.0,
       "sl_pct": 3.5,
-      "reason": "【Half-B 強弱動能】ETH展現相對強勢，持續看好其上漲動能。"
+      "reason": "【Half-B 強弱對沖】ETH資金費率極端偏負，提防空頭軋空反彈。"
     },
     {
       "symbol": "BTC/USDT:USDT",
@@ -92,54 +92,54 @@
       "contracts": 348.0,
       "leverage": "6.0x",
       "entry_price": 75852.07,
-      "mark_price": 76174.31,
-      "margin_usdt": 44181.1,
-      "notional_usdt": 264752.59,
-      "unrealized_pnl": -1121.38,
-      "roi_pct": -2.55,
+      "mark_price": 76471.27,
+      "margin_usdt": 44353.34,
+      "notional_usdt": 265790.03,
+      "unrealized_pnl": -2154.8,
+      "roi_pct": -4.9,
       "tp_pct": 12.0,
       "sl_pct": 3.5,
-      "reason": "80/10/10 資金池實時監控中 (達+2.2%自動移止損至+1%)"
+      "reason": "【Half-B 強弱對沖】BTC資金費率極端偏高，提防多頭過度追高回調。"
     }
   ],
   "market_prices": {
     "BTC/USDT:USDT": {
-      "last_price": 76185.06,
-      "change_24h_pct": 0.02,
-      "bar_15m_change_pct": 0.05,
-      "vol_spike_ratio": 0.16,
-      "funding_rate_pct": 0.0037,
-      "open_interest": 2151233923.48,
-      "ma5": 76134.73,
-      "ma20": 75988.65,
-      "atr_15m_pct": 0.21,
-      "recent_swing_pct": 0.62,
+      "last_price": 76501.2,
+      "change_24h_pct": 1.07,
+      "bar_15m_change_pct": 0.18,
+      "vol_spike_ratio": 0.37,
+      "funding_rate_pct": 0.375,
+      "open_interest": 2150792963.44,
+      "ma5": 76503.86,
+      "ma20": 76498.31,
+      "atr_15m_pct": 0.28,
+      "recent_swing_pct": 1.31,
       "trend": "BULLISH"
     },
     "ETH/USDT:USDT": {
-      "last_price": 2252.4,
-      "change_24h_pct": 0.19,
-      "bar_15m_change_pct": 0.04,
-      "vol_spike_ratio": 0.11,
-      "funding_rate_pct": 0.01,
-      "open_interest": 3142570006.7,
-      "ma5": 2249.44,
-      "ma20": 2245.87,
+      "last_price": 2244.33,
+      "change_24h_pct": 0.46,
+      "bar_15m_change_pct": 0.2,
+      "vol_spike_ratio": 0.48,
+      "funding_rate_pct": -0.125,
+      "open_interest": 3142675714.49,
+      "ma5": 2240.31,
+      "ma20": 2240.22,
       "atr_15m_pct": 0.39,
-      "recent_swing_pct": 2.02,
+      "recent_swing_pct": 2.32,
       "trend": "BULLISH"
     },
     "SOL/USDT:USDT": {
-      "last_price": 90.17,
-      "change_24h_pct": -0.17,
-      "bar_15m_change_pct": 0.0,
-      "vol_spike_ratio": 0.01,
+      "last_price": 91.65,
+      "change_24h_pct": 1.41,
+      "bar_15m_change_pct": -0.22,
+      "vol_spike_ratio": 0.23,
       "funding_rate_pct": 0.01,
-      "open_interest": 15867535.04,
-      "ma5": 90.21,
-      "ma20": 90.12,
-      "atr_15m_pct": 0.19,
-      "recent_swing_pct": 0.8,
+      "open_interest": 15882457.13,
+      "ma5": 91.85,
+      "ma20": 91.05,
+      "atr_15m_pct": 0.41,
+      "recent_swing_pct": 2.12,
       "trend": "BULLISH"
     }
   },
@@ -149,9 +149,29 @@
   "ai_last_decision": {
     "action": "80/10/10 架構 | 當前持倉 6 筆 | 歷史結算 30 筆",
     "confidence": 85,
-    "reason": "BTC/ETH趨勢看漲，但SOL短期承壓。考量歷史錯題與市場動能，將以ETH多頭為主，並對SOL進行弱勢對沖。"
+    "reason": "SOL順勢做多。BTC與ETH因極端資金費率，採反向對沖策略。"
   },
   "orders": [
+    {
+      "id": "POS-380803",
+      "full_id": "4072789256178380803_1794044771382",
+      "timestamp_ms": 1794044771382,
+      "time": "2026-11-07 09:46:11",
+      "market": "crypto",
+      "marketBadge": "📦 歷史倉位 (2151.0張)",
+      "asset": "SOL/USDT:USDT",
+      "direction": "做空倉位結算 (SHORT)",
+      "leverage": "8.0x 倉位槓桿",
+      "pool": "平倉張數: 2151.0 張合約",
+      "entryExit": "開倉均價 $89.24 ➔ 平倉均價 $91.75",
+      "roi": "已實現損益 $-5,505.49 USDT (-22.94%)",
+      "pnl": "倉位結算收益: $-5,505.49 USDT",
+      "realized_pnl_num": -5505.492799021766,
+      "fee": "倉位累計手續費 220.2238 USDT",
+      "rr": "開倉 $89.24 / 平倉 $91.75",
+      "reason": "【Half-A 技術籌碼】SOL趨勢看漲，資金費率正常，15分鐘小幅回調提供入場機會。",
+      "hash": "0x3f6b74ac3aa49848"
+    },
     {
       "id": "POS-380803",
       "full_id": "4072789256178380803_1793896365898",
@@ -169,7 +189,7 @@
       "realized_pnl_num": 7756.7816457,
       "fee": "倉位累計手續費 140.2233 USDT",
       "rr": "開倉 $96.11 / 平倉 $90.85",
-      "reason": "【Half-B 強弱對沖】SOL短期動能轉弱，且歷史錯題本顯示追高虧損，進行弱勢對沖。",
+      "reason": "【Half-A 技術籌碼】SOL趨勢看漲，資金費率正常，15分鐘小幅回調提供入場機會。",
       "hash": "0x068ad3a2507ab615"
     },
     {
@@ -189,7 +209,7 @@
       "realized_pnl_num": 5893.2879215665,
       "fee": "倉位累計手續費 139.5713 USDT",
       "rr": "開倉 $80,101.64 / 平倉 $76,720.00",
-      "reason": "BTC/ETH趨勢看漲，但SOL短期承壓。考量歷史錯題與市場動能，將以ETH多頭為主，並對SOL進行弱勢對沖。",
+      "reason": "【Half-B 強弱對沖】BTC資金費率極端偏高，提防多頭過度追高回調。",
       "hash": "0x6b7e45aa34aeddc7"
     },
     {
@@ -209,7 +229,7 @@
       "realized_pnl_num": 11653.39759549533,
       "fee": "倉位累計手續費 189.8662 USDT",
       "rr": "開倉 $2,414.77 / 平倉 $2,267.50",
-      "reason": "【Half-B 強弱動能】ETH展現相對強勢，持續看好其上漲動能。",
+      "reason": "【Half-B 強弱對沖】ETH資金費率極端偏負，提防空頭軋空反彈。",
       "hash": "0xc42abf7e05139c30"
     },
     {
@@ -229,7 +249,7 @@
       "realized_pnl_num": -412.5562985935,
       "fee": "倉位累計手續費 168.3077 USDT",
       "rr": "開倉 $80,204.66 / 平倉 $80,088.35",
-      "reason": "BTC/ETH趨勢看漲，但SOL短期承壓。考量歷史錯題與市場動能，將以ETH多頭為主，並對SOL進行弱勢對沖。",
+      "reason": "【Half-B 強弱對沖】BTC資金費率極端偏高，提防多頭過度追高回調。",
       "hash": "0x6349d10d9db14f12"
     },
     {
@@ -249,7 +269,7 @@
       "realized_pnl_num": -870.3787254000085,
       "fee": "倉位累計手續費 144.5279 USDT",
       "rr": "開倉 $96.59 / 平倉 $96.11",
-      "reason": "【Half-B 強弱對沖】SOL短期動能轉弱，且歷史錯題本顯示追高虧損，進行弱勢對沖。",
+      "reason": "【Half-A 技術籌碼】SOL趨勢看漲，資金費率正常，15分鐘小幅回調提供入場機會。",
       "hash": "0x842833a36002e53f"
     },
     {
@@ -269,7 +289,7 @@
       "realized_pnl_num": 102.624742758,
       "fee": "倉位累計手續費 195.0288 USDT",
       "rr": "開倉 $80,320.00 / 平倉 $80,197.51",
-      "reason": "BTC/ETH趨勢看漲，但SOL短期承壓。考量歷史錯題與市場動能，將以ETH多頭為主，並對SOL進行弱勢對沖。",
+      "reason": "【Half-B 強弱對沖】BTC資金費率極端偏高，提防多頭過度追高回調。",
       "hash": "0xc0116b6f6ea5fd95"
     },
     {
@@ -289,7 +309,7 @@
       "realized_pnl_num": -309.5230400450005,
       "fee": "倉位累計手續費 197.8130 USDT",
       "rr": "開倉 $2,415.98 / 平倉 $2,414.62",
-      "reason": "【Half-B 強弱動能】ETH展現相對強勢，持續看好其上漲動能。",
+      "reason": "【Half-B 強弱對沖】ETH資金費率極端偏負，提防空頭軋空反彈。",
       "hash": "0x50921dfbe1956b9a"
     },
     {
@@ -309,7 +329,7 @@
       "realized_pnl_num": -371.119368723,
       "fee": "倉位累計手續費 197.6739 USDT",
       "rr": "開倉 $80,390.51 / 平倉 $80,320.00",
-      "reason": "BTC/ETH趨勢看漲，但SOL短期承壓。考量歷史錯題與市場動能，將以ETH多頭為主，並對SOL進行弱勢對沖。",
+      "reason": "【Half-B 強弱對沖】BTC資金費率極端偏高，提防多頭過度追高回調。",
       "hash": "0x4730898fb7d6e079"
     },
     {
@@ -329,7 +349,7 @@
       "realized_pnl_num": -503.7970313,
       "fee": "倉位累計手續費 199.1517 USDT",
       "rr": "開倉 $2,412.11 / 平倉 $2,415.81",
-      "reason": "【Half-B 強弱動能】ETH展現相對強勢，持續看好其上漲動能。",
+      "reason": "【Half-B 強弱對沖】ETH資金費率極端偏負，提防空頭軋空反彈。",
       "hash": "0x995dd02e6bf527a8"
     },
     {
@@ -349,7 +369,7 @@
       "realized_pnl_num": -317.1903973965,
       "fee": "倉位累計手續費 198.4498 USDT",
       "rr": "開倉 $80,320.00 / 平倉 $80,368.07",
-      "reason": "BTC/ETH趨勢看漲，但SOL短期承壓。考量歷史錯題與市場動能，將以ETH多頭為主，並對SOL進行弱勢對沖。",
+      "reason": "【Half-B 強弱對沖】BTC資金費率極端偏高，提防多頭過度追高回調。",
       "hash": "0xa4b91dfdd073e189"
     },
     {
@@ -369,7 +389,7 @@
       "realized_pnl_num": -843.7985548350006,
       "fee": "倉位累計手續費 265.4173 USDT",
       "rr": "開倉 $2,417.71 / 平倉 $2,412.45",
-      "reason": "【Half-B 強弱動能】ETH展現相對強勢，持續看好其上漲動能。",
+      "reason": "【Half-B 強弱對沖】ETH資金費率極端偏負，提防空頭軋空反彈。",
       "hash": "0x11676f6c97434d59"
     },
     {
@@ -389,7 +409,7 @@
       "realized_pnl_num": -1424.727197927,
       "fee": "倉位累計手續費 391.6807 USDT",
       "rr": "開倉 $80,533.30 / 平倉 $80,321.18",
-      "reason": "BTC/ETH趨勢看漲，但SOL短期承壓。考量歷史錯題與市場動能，將以ETH多頭為主，並對SOL進行弱勢對沖。",
+      "reason": "【Half-B 強弱對沖】BTC資金費率極端偏高，提防多頭過度追高回調。",
       "hash": "0x9e5bee8ae1a9e55f"
     },
     {
@@ -409,7 +429,7 @@
       "realized_pnl_num": -57.351005079999965,
       "fee": "倉位累計手續費 108.5541 USDT",
       "rr": "開倉 $2,418.26 / 平倉 $2,417.12",
-      "reason": "【Half-B 強弱動能】ETH展現相對強勢，持續看好其上漲動能。",
+      "reason": "【Half-B 強弱對沖】ETH資金費率極端偏負，提防空頭軋空反彈。",
       "hash": "0x16e5de558a84d580"
     },
     {
@@ -429,7 +449,7 @@
       "realized_pnl_num": -222.77176442549998,
       "fee": "倉位累計手續費 167.4752 USDT",
       "rr": "開倉 $80,503.61 / 平倉 $80,530.20",
-      "reason": "BTC/ETH趨勢看漲，但SOL短期承壓。考量歷史錯題與市場動能，將以ETH多頭為主，並對SOL進行弱勢對沖。",
+      "reason": "【Half-B 強弱對沖】BTC資金費率極端偏高，提防多頭過度追高回調。",
       "hash": "0x67c00a160b926c09"
     },
     {
@@ -449,7 +469,7 @@
       "realized_pnl_num": -395.11819584999995,
       "fee": "倉位累計手續費 144.9099 USDT",
       "rr": "開倉 $96.69 / 平倉 $96.52",
-      "reason": "【Half-B 強弱對沖】SOL短期動能轉弱，且歷史錯題本顯示追高虧損，進行弱勢對沖。",
+      "reason": "【Half-A 技術籌碼】SOL趨勢看漲，資金費率正常，15分鐘小幅回調提供入場機會。",
       "hash": "0xef2522fbc7205ddd"
     },
     {
@@ -469,7 +489,7 @@
       "realized_pnl_num": -78.71498744999994,
       "fee": "倉位累計手續費 62.6560 USDT",
       "rr": "開倉 $2,418.84 / 平倉 $2,419.46",
-      "reason": "【Half-B 強弱動能】ETH展現相對強勢，持續看好其上漲動能。",
+      "reason": "【Half-B 強弱對沖】ETH資金費率極端偏負，提防空頭軋空反彈。",
       "hash": "0x091a24fb4782f86f"
     },
     {
@@ -489,7 +509,7 @@
       "realized_pnl_num": -149.2824364905,
       "fee": "倉位累計手續費 144.0991 USDT",
       "rr": "開倉 $80,500.85 / 平倉 $80,503.74",
-      "reason": "BTC/ETH趨勢看漲，但SOL短期承壓。考量歷史錯題與市場動能，將以ETH多頭為主，並對SOL進行弱勢對沖。",
+      "reason": "【Half-B 強弱對沖】BTC資金費率極端偏高，提防多頭過度追高回調。",
       "hash": "0x5df8e5815ba10dbe"
     },
     {
@@ -509,7 +529,7 @@
       "realized_pnl_num": -0.904231,
       "fee": "倉位累計手續費 0.2422 USDT",
       "rr": "開倉 $2,425.62 / 平倉 $2,419.00",
-      "reason": "【Half-B 強弱動能】ETH展現相對強勢，持續看好其上漲動能。",
+      "reason": "【Half-B 強弱對沖】ETH資金費率極端偏負，提防空頭軋空反彈。",
       "hash": "0x252ce73a06cb916a"
     },
     {
@@ -529,7 +549,7 @@
       "realized_pnl_num": -1.044161,
       "fee": "倉位累計手續費 0.2422 USDT",
       "rr": "開倉 $2,417.60 / 平倉 $2,425.62",
-      "reason": "【Half-B 強弱動能】ETH展現相對強勢，持續看好其上漲動能。",
+      "reason": "【Half-B 強弱對沖】ETH資金費率極端偏負，提防空頭軋空反彈。",
       "hash": "0xdc8b3f78d563346a"
     },
     {
@@ -549,7 +569,7 @@
       "realized_pnl_num": -0.65390302,
       "fee": "倉位累計手續費 0.2419 USDT",
       "rr": "開倉 $2,421.49 / 平倉 $2,417.37",
-      "reason": "【Half-B 強弱動能】ETH展現相對強勢，持續看好其上漲動能。",
+      "reason": "【Half-B 強弱對沖】ETH資金費率極端偏負，提防空頭軋空反彈。",
       "hash": "0x616e66f62bf2dded"
     },
     {
@@ -569,7 +589,7 @@
       "realized_pnl_num": -0.15365968,
       "fee": "倉位累計手續費 0.2422 USDT",
       "rr": "開倉 $2,422.82 / 平倉 $2,422.18",
-      "reason": "【Half-B 強弱動能】ETH展現相對強勢，持續看好其上漲動能。",
+      "reason": "【Half-B 強弱對沖】ETH資金費率極端偏負，提防空頭軋空反彈。",
       "hash": "0x2db5cc62d9c446f5"
     },
     {
@@ -589,7 +609,7 @@
       "realized_pnl_num": -0.88650506,
       "fee": "倉位累計手續費 0.2426 USDT",
       "rr": "開倉 $2,429.47 / 平倉 $2,423.03",
-      "reason": "【Half-B 強弱動能】ETH展現相對強勢，持續看好其上漲動能。",
+      "reason": "【Half-B 強弱對沖】ETH資金費率極端偏負，提防空頭軋空反彈。",
       "hash": "0xce1969d8466f4180"
     },
     {
@@ -609,7 +629,7 @@
       "realized_pnl_num": 0.193844505,
       "fee": "倉位累計手續費 0.2432 USDT",
       "rr": "開倉 $2,433.84 / 平倉 $2,429.47",
-      "reason": "【Half-B 強弱動能】ETH展現相對強勢，持續看好其上漲動能。",
+      "reason": "【Half-B 強弱對沖】ETH資金費率極端偏負，提防空頭軋空反彈。",
       "hash": "0x5213e05d07879ebf"
     },
     {
@@ -629,7 +649,7 @@
       "realized_pnl_num": 0.6660705,
       "fee": "倉位累計手續費 0.2429 USDT",
       "rr": "開倉 $2,424.75 / 平倉 $2,433.84",
-      "reason": "【Half-B 強弱動能】ETH展現相對強勢，持續看好其上漲動能。",
+      "reason": "【Half-B 強弱對沖】ETH資金費率極端偏負，提防空頭軋空反彈。",
       "hash": "0x9e2ab35aa1d3d139"
     },
     {
@@ -649,7 +669,7 @@
       "realized_pnl_num": -0.1595165,
       "fee": "倉位累計手續費 0.2425 USDT",
       "rr": "開倉 $2,425.58 / 平倉 $2,424.75",
-      "reason": "【Half-B 強弱動能】ETH展現相對強勢，持續看好其上漲動能。",
+      "reason": "【Half-B 強弱對沖】ETH資金費率極端偏負，提防空頭軋空反彈。",
       "hash": "0x24438d544006aab4"
     },
     {
@@ -669,7 +689,7 @@
       "realized_pnl_num": -0.12914335,
       "fee": "倉位累計手續費 0.2424 USDT",
       "rr": "開倉 $2,423.87 / 平倉 $2,425.00",
-      "reason": "【Half-B 強弱動能】ETH展現相對強勢，持續看好其上漲動能。",
+      "reason": "【Half-B 強弱對沖】ETH資金費率極端偏負，提防空頭軋空反彈。",
       "hash": "0x4cb26732bded8bb8"
     },
     {
@@ -689,7 +709,7 @@
       "realized_pnl_num": -9900.1409514765,
       "fee": "倉位累計手續費 470.0787 USDT",
       "rr": "開倉 $77,527.03 / 平倉 $76,297.06",
-      "reason": "BTC/ETH趨勢看漲，但SOL短期承壓。考量歷史錯題與市場動能，將以ETH多頭為主，並對SOL進行弱勢對沖。",
+      "reason": "【Half-B 強弱對沖】BTC資金費率極端偏高，提防多頭過度追高回調。",
       "hash": "0x1a18e69c8e27b36b"
     },
     {
@@ -709,7 +729,7 @@
       "realized_pnl_num": -4981.7098281495,
       "fee": "倉位累計手續費 472.6177 USDT",
       "rr": "開倉 $81,633.19 / 平倉 $81,181.24",
-      "reason": "BTC/ETH趨勢看漲，但SOL短期承壓。考量歷史錯題與市場動能，將以ETH多頭為主，並對SOL進行弱勢對沖。",
+      "reason": "【Half-B 強弱對沖】BTC資金費率極端偏高，提防多頭過度追高回調。",
       "hash": "0x03b263d99c922b04"
     },
     {
@@ -729,28 +749,8 @@
       "realized_pnl_num": -32608.352325613,
       "fee": "倉位累計手續費 3107.1760 USDT",
       "rr": "開倉 $85,966.10 / 平倉 $86,438.80",
-      "reason": "BTC/ETH趨勢看漲，但SOL短期承壓。考量歷史錯題與市場動能，將以ETH多頭為主，並對SOL進行弱勢對沖。",
+      "reason": "【Half-B 強弱對沖】BTC資金費率極端偏高，提防多頭過度追高回調。",
       "hash": "0xee175bb06893543e"
-    },
-    {
-      "id": "POS-341952",
-      "full_id": "3984581706585341952_1791266608197",
-      "timestamp_ms": 1791266608197,
-      "time": "2026-10-06 06:03:28",
-      "market": "crypto",
-      "marketBadge": "📦 歷史倉位 (3217.79張)",
-      "asset": "BTC/USDT:USDT",
-      "direction": "做空倉位結算 (SHORT)",
-      "leverage": "100.0x 倉位槓桿",
-      "pool": "平倉張數: 3217.79 張合約",
-      "entryExit": "開倉均價 $85,562.51 ➔ 平倉均價 $85,389.90",
-      "roi": "已實現損益 +$3,628.08 USDT (+13.18%)",
-      "pnl": "倉位結算收益: +$3,628.08 USDT",
-      "realized_pnl_num": 3628.0828410935,
-      "fee": "倉位累計手續費 1926.1445 USDT",
-      "rr": "開倉 $85,562.51 / 平倉 $85,389.90",
-      "reason": "BTC/ETH趨勢看漲，但SOL短期承壓。考量歷史錯題與市場動能，將以ETH多頭為主，並對SOL進行弱勢對沖。",
-      "hash": "0x8f38a336913ff317"
     }
   ]
 }
