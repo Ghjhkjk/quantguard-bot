@@ -1,15 +1,15 @@
 {
-  "updated_at": "2026-11-08 02:02:19",
-  "real_usdt": 112635.63,
-  "free_usdt": 18776.14,
-  "used_usdt": 93859.49,
+  "updated_at": "2026-11-08 08:32:36",
+  "real_usdt": 116568.29,
+  "free_usdt": 23140.41,
+  "used_usdt": 93427.88,
   "allocations": {
-    "normal_80_usdt": 90108.5,
-    "hedge_10_usdt": 11263.56,
-    "sniper_10_usdt": 11263.56
+    "normal_80_usdt": 93254.63,
+    "hedge_10_usdt": 11656.83,
+    "sniper_10_usdt": 11656.83
   },
-  "total_unrealized_pnl": -3325.53,
-  "total_crypto_roi_pct": -2.95,
+  "total_unrealized_pnl": -528.87,
+  "total_crypto_roi_pct": -0.45,
   "active_positions": [
     {
       "symbol": "SOL/USDT:USDT",
@@ -17,11 +17,11 @@
       "contracts": 401.0,
       "leverage": "8.0x",
       "entry_price": 90.64,
-      "mark_price": 90.62,
-      "margin_usdt": 4542.33,
-      "notional_usdt": 36287.02,
-      "unrealized_pnl": -8.2,
-      "roi_pct": -0.18,
+      "mark_price": 90.95,
+      "margin_usdt": 4558.87,
+      "notional_usdt": 36418.8,
+      "unrealized_pnl": 124.13,
+      "roi_pct": 2.73,
       "tp_pct": 12.0,
       "sl_pct": 3.5,
       "reason": "80/10/10 資金池實時監控中 (達+2.2%自動移止損至+1%)"
@@ -32,14 +32,14 @@
       "contracts": 87.0,
       "leverage": "6.0x",
       "entry_price": 2238.89,
-      "mark_price": 2249.41,
-      "margin_usdt": 3261.64,
-      "notional_usdt": 19542.08,
-      "unrealized_pnl": 91.49,
-      "roi_pct": 2.82,
+      "mark_price": 2221.43,
+      "margin_usdt": 3221.07,
+      "notional_usdt": 19298.8,
+      "unrealized_pnl": -151.93,
+      "roi_pct": -4.68,
       "tp_pct": 12.0,
       "sl_pct": 3.5,
-      "reason": "【Half-B 強弱對沖】ETH趨勢看跌，資金費率極高，短期反彈後做空，與BTC形成雙核心做空策略。"
+      "reason": "【Half-A 技術籌碼】ETH趨勢看跌，MA空頭排列，且資金費率極端偏高(0.3022%)，有利做空。"
     },
     {
       "symbol": "BTC/USDT:USDT",
@@ -47,14 +47,14 @@
       "contracts": 250.0,
       "leverage": "6.0x",
       "entry_price": 76403.63,
-      "mark_price": 75784.85,
-      "margin_usdt": 31577.02,
-      "notional_usdt": 189193.09,
-      "unrealized_pnl": -1546.96,
-      "roi_pct": -4.86,
-      "tp_pct": 12.0,
-      "sl_pct": 3.5,
-      "reason": "【Half-A 技術籌碼】BTC趨勢看跌，MA空頭排列，資金費率極高有利做空，規避近期做多虧損。"
+      "mark_price": 75931.01,
+      "margin_usdt": 31637.92,
+      "notional_usdt": 189556.07,
+      "unrealized_pnl": -1181.56,
+      "roi_pct": -3.71,
+      "tp_pct": 10.0,
+      "sl_pct": 3.0,
+      "reason": "【Half-B 強弱對沖】BTC趨勢看漲，資金費率正常，與ETH空頭對沖，但因歷史錯題本(LONG虧損)降低槓桿。"
     },
     {
       "symbol": "SOL/USDT:USDT",
@@ -62,11 +62,11 @@
       "contracts": 573.0,
       "leverage": "8.0x",
       "entry_price": 89.24,
-      "mark_price": 90.62,
-      "margin_usdt": 6490.66,
-      "notional_usdt": 51851.53,
-      "unrealized_pnl": -789.24,
-      "roi_pct": -12.35,
+      "mark_price": 90.95,
+      "margin_usdt": 6514.29,
+      "notional_usdt": 52039.83,
+      "unrealized_pnl": -978.33,
+      "roi_pct": -15.31,
       "tp_pct": 12.0,
       "sl_pct": 3.5,
       "reason": "80/10/10 資金池實時監控中 (達+2.2%自動移止損至+1%)"
@@ -77,14 +77,14 @@
       "contracts": 1158.0,
       "leverage": "6.0x",
       "entry_price": 2238.13,
-      "mark_price": 2249.41,
-      "margin_usdt": 43413.61,
-      "notional_usdt": 260111.79,
-      "unrealized_pnl": -1306.56,
-      "roi_pct": -3.02,
+      "mark_price": 2221.43,
+      "margin_usdt": 42873.6,
+      "notional_usdt": 256873.74,
+      "unrealized_pnl": 1933.52,
+      "roi_pct": 4.48,
       "tp_pct": 12.0,
       "sl_pct": 3.5,
-      "reason": "【Half-B 強弱對沖】ETH趨勢看跌，資金費率極高，短期反彈後做空，與BTC形成雙核心做空策略。"
+      "reason": "【Half-A 技術籌碼】ETH趨勢看跌，MA空頭排列，且資金費率極端偏高(0.3022%)，有利做空。"
     },
     {
       "symbol": "BTC/USDT:USDT",
@@ -92,54 +92,54 @@
       "contracts": 348.0,
       "leverage": "6.0x",
       "entry_price": 75852.07,
-      "mark_price": 75784.85,
-      "margin_usdt": 43955.21,
-      "notional_usdt": 263356.78,
-      "unrealized_pnl": 233.94,
-      "roi_pct": 0.53,
-      "tp_pct": 12.0,
-      "sl_pct": 3.5,
-      "reason": "【Half-A 技術籌碼】BTC趨勢看跌，MA空頭排列，資金費率極高有利做空，規避近期做多虧損。"
+      "mark_price": 75931.01,
+      "margin_usdt": 44039.99,
+      "notional_usdt": 263862.05,
+      "unrealized_pnl": -274.7,
+      "roi_pct": -0.62,
+      "tp_pct": 10.0,
+      "sl_pct": 3.0,
+      "reason": "【Half-B 強弱對沖】BTC趨勢看漲，資金費率正常，與ETH空頭對沖，但因歷史錯題本(LONG虧損)降低槓桿。"
     }
   ],
   "market_prices": {
     "BTC/USDT:USDT": {
-      "last_price": 75792.1,
-      "change_24h_pct": -0.32,
-      "bar_15m_change_pct": -0.01,
-      "vol_spike_ratio": 0.01,
-      "funding_rate_pct": 0.3538,
-      "open_interest": 2150766620.65,
-      "ma5": 75793.01,
-      "ma20": 76140.4,
-      "atr_15m_pct": 0.21,
-      "recent_swing_pct": 1.77,
-      "trend": "BEARISH"
+      "last_price": 75931.03,
+      "change_24h_pct": -0.2,
+      "bar_15m_change_pct": 0.0,
+      "vol_spike_ratio": 0.05,
+      "funding_rate_pct": 0.0036,
+      "open_interest": 2150883783.93,
+      "ma5": 75895.93,
+      "ma20": 75834.92,
+      "atr_15m_pct": 0.18,
+      "recent_swing_pct": 0.65,
+      "trend": "BULLISH"
     },
     "ETH/USDT:USDT": {
-      "last_price": 2249.37,
-      "change_24h_pct": 0.07,
-      "bar_15m_change_pct": 0.05,
-      "vol_spike_ratio": 0.06,
-      "funding_rate_pct": 0.5842,
-      "open_interest": 3142183871.98,
-      "ma5": 2243.83,
-      "ma20": 2247.22,
-      "atr_15m_pct": 0.35,
-      "recent_swing_pct": 2.22,
+      "last_price": 2221.29,
+      "change_24h_pct": -1.14,
+      "bar_15m_change_pct": -0.07,
+      "vol_spike_ratio": 0.14,
+      "funding_rate_pct": 0.2855,
+      "open_interest": 3142157756.59,
+      "ma5": 2230.54,
+      "ma20": 2242.01,
+      "atr_15m_pct": 0.33,
+      "recent_swing_pct": 2.3,
       "trend": "BEARISH"
     },
     "SOL/USDT:USDT": {
-      "last_price": 90.6,
-      "change_24h_pct": 0.02,
-      "bar_15m_change_pct": -0.21,
-      "vol_spike_ratio": 0.13,
-      "funding_rate_pct": 0.01,
-      "open_interest": 15897465.75,
-      "ma5": 90.77,
-      "ma20": 90.93,
-      "atr_15m_pct": 0.23,
-      "recent_swing_pct": 0.93,
+      "last_price": 90.99,
+      "change_24h_pct": 0.91,
+      "bar_15m_change_pct": 0.0,
+      "vol_spike_ratio": 0.0,
+      "funding_rate_pct": 0.1422,
+      "open_interest": 15921965.71,
+      "ma5": 91.01,
+      "ma20": 91.04,
+      "atr_15m_pct": 0.1,
+      "recent_swing_pct": 0.68,
       "trend": "BEARISH"
     }
   },
@@ -148,8 +148,8 @@
   ],
   "ai_last_decision": {
     "action": "80/10/10 架構 | 當前持倉 6 筆 | 歷史結算 30 筆",
-    "confidence": 85,
-    "reason": "市場整體趨勢看跌，BTC與ETH資金費率極高，有利於做空。SOL近期做空虧損，需謹慎操作。無黑天鵝事件。"
+    "confidence": 80,
+    "reason": "ETH因極端資金費率與空頭趨勢做空，BTC趨勢看漲但需謹慎操作，避免共伴風險。"
   },
   "orders": [
     {
@@ -169,7 +169,7 @@
       "realized_pnl_num": -5505.492799021766,
       "fee": "倉位累計手續費 220.2238 USDT",
       "rr": "開倉 $89.24 / 平倉 $91.75",
-      "reason": "市場整體趨勢看跌，BTC與ETH資金費率極高，有利於做空。SOL近期做空虧損，需謹慎操作。無黑天鵝事件。",
+      "reason": "ETH因極端資金費率與空頭趨勢做空，BTC趨勢看漲但需謹慎操作，避免共伴風險。",
       "hash": "0x3f6b74ac3aa49848"
     },
     {
@@ -189,7 +189,7 @@
       "realized_pnl_num": 7756.7816457,
       "fee": "倉位累計手續費 140.2233 USDT",
       "rr": "開倉 $96.11 / 平倉 $90.85",
-      "reason": "市場整體趨勢看跌，BTC與ETH資金費率極高，有利於做空。SOL近期做空虧損，需謹慎操作。無黑天鵝事件。",
+      "reason": "ETH因極端資金費率與空頭趨勢做空，BTC趨勢看漲但需謹慎操作，避免共伴風險。",
       "hash": "0x068ad3a2507ab615"
     },
     {
@@ -209,7 +209,7 @@
       "realized_pnl_num": 5893.2879215665,
       "fee": "倉位累計手續費 139.5713 USDT",
       "rr": "開倉 $80,101.64 / 平倉 $76,720.00",
-      "reason": "【Half-A 技術籌碼】BTC趨勢看跌，MA空頭排列，資金費率極高有利做空，規避近期做多虧損。",
+      "reason": "【Half-B 強弱對沖】BTC趨勢看漲，資金費率正常，與ETH空頭對沖，但因歷史錯題本(LONG虧損)降低槓桿。",
       "hash": "0x6b7e45aa34aeddc7"
     },
     {
@@ -229,7 +229,7 @@
       "realized_pnl_num": 11653.39759549533,
       "fee": "倉位累計手續費 189.8662 USDT",
       "rr": "開倉 $2,414.77 / 平倉 $2,267.50",
-      "reason": "【Half-B 強弱對沖】ETH趨勢看跌，資金費率極高，短期反彈後做空，與BTC形成雙核心做空策略。",
+      "reason": "【Half-A 技術籌碼】ETH趨勢看跌，MA空頭排列，且資金費率極端偏高(0.3022%)，有利做空。",
       "hash": "0xc42abf7e05139c30"
     },
     {
@@ -249,7 +249,7 @@
       "realized_pnl_num": -412.5562985935,
       "fee": "倉位累計手續費 168.3077 USDT",
       "rr": "開倉 $80,204.66 / 平倉 $80,088.35",
-      "reason": "【Half-A 技術籌碼】BTC趨勢看跌，MA空頭排列，資金費率極高有利做空，規避近期做多虧損。",
+      "reason": "【Half-B 強弱對沖】BTC趨勢看漲，資金費率正常，與ETH空頭對沖，但因歷史錯題本(LONG虧損)降低槓桿。",
       "hash": "0x6349d10d9db14f12"
     },
     {
@@ -269,7 +269,7 @@
       "realized_pnl_num": -870.3787254000085,
       "fee": "倉位累計手續費 144.5279 USDT",
       "rr": "開倉 $96.59 / 平倉 $96.11",
-      "reason": "市場整體趨勢看跌，BTC與ETH資金費率極高，有利於做空。SOL近期做空虧損，需謹慎操作。無黑天鵝事件。",
+      "reason": "ETH因極端資金費率與空頭趨勢做空，BTC趨勢看漲但需謹慎操作，避免共伴風險。",
       "hash": "0x842833a36002e53f"
     },
     {
@@ -289,7 +289,7 @@
       "realized_pnl_num": 102.624742758,
       "fee": "倉位累計手續費 195.0288 USDT",
       "rr": "開倉 $80,320.00 / 平倉 $80,197.51",
-      "reason": "【Half-A 技術籌碼】BTC趨勢看跌，MA空頭排列，資金費率極高有利做空，規避近期做多虧損。",
+      "reason": "【Half-B 強弱對沖】BTC趨勢看漲，資金費率正常，與ETH空頭對沖，但因歷史錯題本(LONG虧損)降低槓桿。",
       "hash": "0xc0116b6f6ea5fd95"
     },
     {
@@ -309,7 +309,7 @@
       "realized_pnl_num": -309.5230400450005,
       "fee": "倉位累計手續費 197.8130 USDT",
       "rr": "開倉 $2,415.98 / 平倉 $2,414.62",
-      "reason": "【Half-B 強弱對沖】ETH趨勢看跌，資金費率極高，短期反彈後做空，與BTC形成雙核心做空策略。",
+      "reason": "【Half-A 技術籌碼】ETH趨勢看跌，MA空頭排列，且資金費率極端偏高(0.3022%)，有利做空。",
       "hash": "0x50921dfbe1956b9a"
     },
     {
@@ -329,7 +329,7 @@
       "realized_pnl_num": -371.119368723,
       "fee": "倉位累計手續費 197.6739 USDT",
       "rr": "開倉 $80,390.51 / 平倉 $80,320.00",
-      "reason": "【Half-A 技術籌碼】BTC趨勢看跌，MA空頭排列，資金費率極高有利做空，規避近期做多虧損。",
+      "reason": "【Half-B 強弱對沖】BTC趨勢看漲，資金費率正常，與ETH空頭對沖，但因歷史錯題本(LONG虧損)降低槓桿。",
       "hash": "0x4730898fb7d6e079"
     },
     {
@@ -349,7 +349,7 @@
       "realized_pnl_num": -503.7970313,
       "fee": "倉位累計手續費 199.1517 USDT",
       "rr": "開倉 $2,412.11 / 平倉 $2,415.81",
-      "reason": "【Half-B 強弱對沖】ETH趨勢看跌，資金費率極高，短期反彈後做空，與BTC形成雙核心做空策略。",
+      "reason": "【Half-A 技術籌碼】ETH趨勢看跌，MA空頭排列，且資金費率極端偏高(0.3022%)，有利做空。",
       "hash": "0x995dd02e6bf527a8"
     },
     {
@@ -369,7 +369,7 @@
       "realized_pnl_num": -317.1903973965,
       "fee": "倉位累計手續費 198.4498 USDT",
       "rr": "開倉 $80,320.00 / 平倉 $80,368.07",
-      "reason": "【Half-A 技術籌碼】BTC趨勢看跌，MA空頭排列，資金費率極高有利做空，規避近期做多虧損。",
+      "reason": "【Half-B 強弱對沖】BTC趨勢看漲，資金費率正常，與ETH空頭對沖，但因歷史錯題本(LONG虧損)降低槓桿。",
       "hash": "0xa4b91dfdd073e189"
     },
     {
@@ -389,7 +389,7 @@
       "realized_pnl_num": -843.7985548350006,
       "fee": "倉位累計手續費 265.4173 USDT",
       "rr": "開倉 $2,417.71 / 平倉 $2,412.45",
-      "reason": "【Half-B 強弱對沖】ETH趨勢看跌，資金費率極高，短期反彈後做空，與BTC形成雙核心做空策略。",
+      "reason": "【Half-A 技術籌碼】ETH趨勢看跌，MA空頭排列，且資金費率極端偏高(0.3022%)，有利做空。",
       "hash": "0x11676f6c97434d59"
     },
     {
@@ -409,7 +409,7 @@
       "realized_pnl_num": -1424.727197927,
       "fee": "倉位累計手續費 391.6807 USDT",
       "rr": "開倉 $80,533.30 / 平倉 $80,321.18",
-      "reason": "【Half-A 技術籌碼】BTC趨勢看跌，MA空頭排列，資金費率極高有利做空，規避近期做多虧損。",
+      "reason": "【Half-B 強弱對沖】BTC趨勢看漲，資金費率正常，與ETH空頭對沖，但因歷史錯題本(LONG虧損)降低槓桿。",
       "hash": "0x9e5bee8ae1a9e55f"
     },
     {
@@ -429,7 +429,7 @@
       "realized_pnl_num": -57.351005079999965,
       "fee": "倉位累計手續費 108.5541 USDT",
       "rr": "開倉 $2,418.26 / 平倉 $2,417.12",
-      "reason": "【Half-B 強弱對沖】ETH趨勢看跌，資金費率極高，短期反彈後做空，與BTC形成雙核心做空策略。",
+      "reason": "【Half-A 技術籌碼】ETH趨勢看跌，MA空頭排列，且資金費率極端偏高(0.3022%)，有利做空。",
       "hash": "0x16e5de558a84d580"
     },
     {
@@ -449,7 +449,7 @@
       "realized_pnl_num": -222.77176442549998,
       "fee": "倉位累計手續費 167.4752 USDT",
       "rr": "開倉 $80,503.61 / 平倉 $80,530.20",
-      "reason": "【Half-A 技術籌碼】BTC趨勢看跌，MA空頭排列，資金費率極高有利做空，規避近期做多虧損。",
+      "reason": "【Half-B 強弱對沖】BTC趨勢看漲，資金費率正常，與ETH空頭對沖，但因歷史錯題本(LONG虧損)降低槓桿。",
       "hash": "0x67c00a160b926c09"
     },
     {
@@ -469,7 +469,7 @@
       "realized_pnl_num": -395.11819584999995,
       "fee": "倉位累計手續費 144.9099 USDT",
       "rr": "開倉 $96.69 / 平倉 $96.52",
-      "reason": "市場整體趨勢看跌，BTC與ETH資金費率極高，有利於做空。SOL近期做空虧損，需謹慎操作。無黑天鵝事件。",
+      "reason": "ETH因極端資金費率與空頭趨勢做空，BTC趨勢看漲但需謹慎操作，避免共伴風險。",
       "hash": "0xef2522fbc7205ddd"
     },
     {
@@ -489,7 +489,7 @@
       "realized_pnl_num": -78.71498744999994,
       "fee": "倉位累計手續費 62.6560 USDT",
       "rr": "開倉 $2,418.84 / 平倉 $2,419.46",
-      "reason": "【Half-B 強弱對沖】ETH趨勢看跌，資金費率極高，短期反彈後做空，與BTC形成雙核心做空策略。",
+      "reason": "【Half-A 技術籌碼】ETH趨勢看跌，MA空頭排列，且資金費率極端偏高(0.3022%)，有利做空。",
       "hash": "0x091a24fb4782f86f"
     },
     {
@@ -509,7 +509,7 @@
       "realized_pnl_num": -149.2824364905,
       "fee": "倉位累計手續費 144.0991 USDT",
       "rr": "開倉 $80,500.85 / 平倉 $80,503.74",
-      "reason": "【Half-A 技術籌碼】BTC趨勢看跌，MA空頭排列，資金費率極高有利做空，規避近期做多虧損。",
+      "reason": "【Half-B 強弱對沖】BTC趨勢看漲，資金費率正常，與ETH空頭對沖，但因歷史錯題本(LONG虧損)降低槓桿。",
       "hash": "0x5df8e5815ba10dbe"
     },
     {
@@ -529,7 +529,7 @@
       "realized_pnl_num": -0.904231,
       "fee": "倉位累計手續費 0.2422 USDT",
       "rr": "開倉 $2,425.62 / 平倉 $2,419.00",
-      "reason": "【Half-B 強弱對沖】ETH趨勢看跌，資金費率極高，短期反彈後做空，與BTC形成雙核心做空策略。",
+      "reason": "【Half-A 技術籌碼】ETH趨勢看跌，MA空頭排列，且資金費率極端偏高(0.3022%)，有利做空。",
       "hash": "0x252ce73a06cb916a"
     },
     {
@@ -549,7 +549,7 @@
       "realized_pnl_num": -1.044161,
       "fee": "倉位累計手續費 0.2422 USDT",
       "rr": "開倉 $2,417.60 / 平倉 $2,425.62",
-      "reason": "【Half-B 強弱對沖】ETH趨勢看跌，資金費率極高，短期反彈後做空，與BTC形成雙核心做空策略。",
+      "reason": "【Half-A 技術籌碼】ETH趨勢看跌，MA空頭排列，且資金費率極端偏高(0.3022%)，有利做空。",
       "hash": "0xdc8b3f78d563346a"
     },
     {
@@ -569,7 +569,7 @@
       "realized_pnl_num": -0.65390302,
       "fee": "倉位累計手續費 0.2419 USDT",
       "rr": "開倉 $2,421.49 / 平倉 $2,417.37",
-      "reason": "【Half-B 強弱對沖】ETH趨勢看跌，資金費率極高，短期反彈後做空，與BTC形成雙核心做空策略。",
+      "reason": "【Half-A 技術籌碼】ETH趨勢看跌，MA空頭排列，且資金費率極端偏高(0.3022%)，有利做空。",
       "hash": "0x616e66f62bf2dded"
     },
     {
@@ -589,7 +589,7 @@
       "realized_pnl_num": -0.15365968,
       "fee": "倉位累計手續費 0.2422 USDT",
       "rr": "開倉 $2,422.82 / 平倉 $2,422.18",
-      "reason": "【Half-B 強弱對沖】ETH趨勢看跌，資金費率極高，短期反彈後做空，與BTC形成雙核心做空策略。",
+      "reason": "【Half-A 技術籌碼】ETH趨勢看跌，MA空頭排列，且資金費率極端偏高(0.3022%)，有利做空。",
       "hash": "0x2db5cc62d9c446f5"
     },
     {
@@ -609,7 +609,7 @@
       "realized_pnl_num": -0.88650506,
       "fee": "倉位累計手續費 0.2426 USDT",
       "rr": "開倉 $2,429.47 / 平倉 $2,423.03",
-      "reason": "【Half-B 強弱對沖】ETH趨勢看跌，資金費率極高，短期反彈後做空，與BTC形成雙核心做空策略。",
+      "reason": "【Half-A 技術籌碼】ETH趨勢看跌，MA空頭排列，且資金費率極端偏高(0.3022%)，有利做空。",
       "hash": "0xce1969d8466f4180"
     },
     {
@@ -629,7 +629,7 @@
       "realized_pnl_num": 0.193844505,
       "fee": "倉位累計手續費 0.2432 USDT",
       "rr": "開倉 $2,433.84 / 平倉 $2,429.47",
-      "reason": "【Half-B 強弱對沖】ETH趨勢看跌，資金費率極高，短期反彈後做空，與BTC形成雙核心做空策略。",
+      "reason": "【Half-A 技術籌碼】ETH趨勢看跌，MA空頭排列，且資金費率極端偏高(0.3022%)，有利做空。",
       "hash": "0x5213e05d07879ebf"
     },
     {
@@ -649,7 +649,7 @@
       "realized_pnl_num": 0.6660705,
       "fee": "倉位累計手續費 0.2429 USDT",
       "rr": "開倉 $2,424.75 / 平倉 $2,433.84",
-      "reason": "【Half-B 強弱對沖】ETH趨勢看跌，資金費率極高，短期反彈後做空，與BTC形成雙核心做空策略。",
+      "reason": "【Half-A 技術籌碼】ETH趨勢看跌，MA空頭排列，且資金費率極端偏高(0.3022%)，有利做空。",
       "hash": "0x9e2ab35aa1d3d139"
     },
     {
@@ -669,7 +669,7 @@
       "realized_pnl_num": -0.1595165,
       "fee": "倉位累計手續費 0.2425 USDT",
       "rr": "開倉 $2,425.58 / 平倉 $2,424.75",
-      "reason": "【Half-B 強弱對沖】ETH趨勢看跌，資金費率極高，短期反彈後做空，與BTC形成雙核心做空策略。",
+      "reason": "【Half-A 技術籌碼】ETH趨勢看跌，MA空頭排列，且資金費率極端偏高(0.3022%)，有利做空。",
       "hash": "0x24438d544006aab4"
     },
     {
@@ -689,7 +689,7 @@
       "realized_pnl_num": -0.12914335,
       "fee": "倉位累計手續費 0.2424 USDT",
       "rr": "開倉 $2,423.87 / 平倉 $2,425.00",
-      "reason": "【Half-B 強弱對沖】ETH趨勢看跌，資金費率極高，短期反彈後做空，與BTC形成雙核心做空策略。",
+      "reason": "【Half-A 技術籌碼】ETH趨勢看跌，MA空頭排列，且資金費率極端偏高(0.3022%)，有利做空。",
       "hash": "0x4cb26732bded8bb8"
     },
     {
@@ -709,7 +709,7 @@
       "realized_pnl_num": -9900.1409514765,
       "fee": "倉位累計手續費 470.0787 USDT",
       "rr": "開倉 $77,527.03 / 平倉 $76,297.06",
-      "reason": "【Half-A 技術籌碼】BTC趨勢看跌，MA空頭排列，資金費率極高有利做空，規避近期做多虧損。",
+      "reason": "【Half-B 強弱對沖】BTC趨勢看漲，資金費率正常，與ETH空頭對沖，但因歷史錯題本(LONG虧損)降低槓桿。",
       "hash": "0x1a18e69c8e27b36b"
     },
     {
@@ -729,7 +729,7 @@
       "realized_pnl_num": -4981.7098281495,
       "fee": "倉位累計手續費 472.6177 USDT",
       "rr": "開倉 $81,633.19 / 平倉 $81,181.24",
-      "reason": "【Half-A 技術籌碼】BTC趨勢看跌，MA空頭排列，資金費率極高有利做空，規避近期做多虧損。",
+      "reason": "【Half-B 強弱對沖】BTC趨勢看漲，資金費率正常，與ETH空頭對沖，但因歷史錯題本(LONG虧損)降低槓桿。",
       "hash": "0x03b263d99c922b04"
     },
     {
@@ -749,7 +749,7 @@
       "realized_pnl_num": -32608.352325613,
       "fee": "倉位累計手續費 3107.1760 USDT",
       "rr": "開倉 $85,966.10 / 平倉 $86,438.80",
-      "reason": "【Half-A 技術籌碼】BTC趨勢看跌，MA空頭排列，資金費率極高有利做空，規避近期做多虧損。",
+      "reason": "【Half-B 強弱對沖】BTC趨勢看漲，資金費率正常，與ETH空頭對沖，但因歷史錯題本(LONG虧損)降低槓桿。",
       "hash": "0xee175bb06893543e"
     }
   ]
