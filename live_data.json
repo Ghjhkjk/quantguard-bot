@@ -1,15 +1,69 @@
 {
-  "updated_at": "2026-11-08 15:32:39",
-  "real_usdt": 114621.14,
-  "free_usdt": 20846.38,
-  "used_usdt": 93774.76,
+  "updated_at": "2026-11-08 16:35:25",
+  "real_usdt": 115130.55,
+  "free_usdt": 21450.42,
+  "used_usdt": 93680.13,
   "allocations": {
-    "normal_80_usdt": 91696.91,
-    "hedge_10_usdt": 11462.11,
-    "sniper_10_usdt": 11462.11
+    "normal_80_usdt": 92104.44,
+    "hedge_10_usdt": 11513.06,
+    "sniper_10_usdt": 11513.06
   },
-  "total_unrealized_pnl": -2475.97,
-  "total_crypto_roi_pct": -2.16,
+  "performance_stats": {
+    "today_date": "2026-11-08",
+    "today_realized_pnl": 0.0,
+    "today_trades_count": 0,
+    "all_time_realized_pnl": -18250.29,
+    "total_settled_count": 35,
+    "win_count": 9,
+    "loss_count": 26,
+    "win_rate_pct": 25.7,
+    "daily_pnl_history": [
+      {
+        "date": "2026-11-07",
+        "pnl": -5505.49
+      },
+      {
+        "date": "2026-11-05",
+        "pnl": 19446.7
+      },
+      {
+        "date": "2026-11-04",
+        "pnl": -9900.14
+      },
+      {
+        "date": "2026-10-29",
+        "pnl": -4981.71
+      },
+      {
+        "date": "2026-10-06",
+        "pnl": -28980.27
+      },
+      {
+        "date": "2026-10-05",
+        "pnl": 11670.64
+      }
+    ],
+    "asset_performance": {
+      "BTC/USDT:USDT": {
+        "wins": 5,
+        "total": 16,
+        "pnl": -29093.22
+      },
+      "ETH/USDT:USDT": {
+        "wins": 3,
+        "total": 15,
+        "pnl": 9857.16
+      },
+      "SOL/USDT:USDT": {
+        "wins": 1,
+        "total": 4,
+        "pnl": 985.79
+      }
+    }
+  },
+  "position_stage_map": {},
+  "total_unrealized_pnl": -2120.4,
+  "total_crypto_roi_pct": -1.84,
   "active_positions": [
     {
       "symbol": "SOL/USDT:USDT",
@@ -17,14 +71,18 @@
       "contracts": 401.0,
       "leverage": "8.0x",
       "entry_price": 90.64,
-      "mark_price": 89.71,
-      "margin_usdt": 4496.71,
-      "notional_usdt": 35925.51,
-      "unrealized_pnl": -373.11,
-      "roi_pct": -8.21,
-      "tp_pct": 12.0,
-      "sl_pct": 3.5,
-      "reason": "80/10/10 資金池實時監控中 (達+2.2%自動移止損至+1%)"
+      "mark_price": 89.48,
+      "margin_usdt": 4485.19,
+      "notional_usdt": 35833.04,
+      "unrealized_pnl": -465.34,
+      "roi_pct": -10.24,
+      "tp_pct": 2.5,
+      "sl_pct": 1.8,
+      "tp_trigger_px": 92.91,
+      "sl_trigger_px": 89.01,
+      "stage": 0,
+      "stage_badge": "⚡ 監控中 (滿5%保本/滿9%平半倉)",
+      "reason": "【Half-B 強弱配對】SOL跌幅顯著，趨勢強烈看跌，波動率較高，適合追蹤趨勢做空，並錨定波動率設定止盈止損。避免與現有持倉反向。"
     },
     {
       "symbol": "ETH/USDT:USDT",
@@ -32,14 +90,18 @@
       "contracts": 87.0,
       "leverage": "6.0x",
       "entry_price": 2238.89,
-      "mark_price": 2240.55,
-      "margin_usdt": 3248.8,
-      "notional_usdt": 19466.66,
-      "unrealized_pnl": 14.41,
-      "roi_pct": 0.44,
-      "tp_pct": 12.0,
-      "sl_pct": 3.5,
-      "reason": "【Half-B 強弱動能】ETH趨勢強勁，MA5高於MA20，表現優於其他主流幣，資金費率正常。"
+      "mark_price": 2238.08,
+      "margin_usdt": 3245.22,
+      "notional_usdt": 19445.01,
+      "unrealized_pnl": -7.08,
+      "roi_pct": -0.22,
+      "tp_pct": 1.5,
+      "sl_pct": 1.2,
+      "tp_trigger_px": 2272.47,
+      "sl_trigger_px": 2212.02,
+      "stage": 0,
+      "stage_badge": "⚡ 監控中 (滿5%保本/滿9%平半倉)",
+      "reason": "波動率定錨止盈 +1.5% | ROI滿5%自動移止損保本、滿9%平半倉鎖+1%"
     },
     {
       "symbol": "BTC/USDT:USDT",
@@ -47,14 +109,18 @@
       "contracts": 250.0,
       "leverage": "6.0x",
       "entry_price": 76403.63,
-      "mark_price": 76045.93,
-      "margin_usdt": 31685.8,
-      "notional_usdt": 189860.07,
-      "unrealized_pnl": -894.26,
-      "roi_pct": -2.81,
-      "tp_pct": 12.0,
-      "sl_pct": 3.5,
-      "reason": "【Half-A 技術籌碼】BTC技術面偏空，MA5低於MA20，且資金費率極高，多頭承壓。符合錯題本修正，避免追高。"
+      "mark_price": 75993.42,
+      "margin_usdt": 31663.92,
+      "notional_usdt": 189727.07,
+      "unrealized_pnl": -1025.53,
+      "roi_pct": -3.22,
+      "tp_pct": 2.2,
+      "sl_pct": 1.6,
+      "tp_trigger_px": 78084.51,
+      "sl_trigger_px": 75181.17,
+      "stage": 0,
+      "stage_badge": "⚡ 監控中 (滿5%保本/滿9%平半倉)",
+      "reason": "【Half-A 波動定錨】BTC趨勢看跌，24小時與15分鐘均為負，符合做空條件，並錨定波動率設定止盈止損。避免與現有持倉反向。"
     },
     {
       "symbol": "SOL/USDT:USDT",
@@ -62,14 +128,18 @@
       "contracts": 573.0,
       "leverage": "8.0x",
       "entry_price": 89.24,
-      "mark_price": 89.71,
-      "margin_usdt": 6425.48,
-      "notional_usdt": 51334.95,
-      "unrealized_pnl": -267.81,
-      "roi_pct": -4.19,
-      "tp_pct": 12.0,
-      "sl_pct": 3.5,
-      "reason": "80/10/10 資金池實時監控中 (達+2.2%自動移止損至+1%)"
+      "mark_price": 89.48,
+      "margin_usdt": 6409.01,
+      "notional_usdt": 51202.82,
+      "unrealized_pnl": -136.02,
+      "roi_pct": -2.13,
+      "tp_pct": 2.5,
+      "sl_pct": 1.8,
+      "tp_trigger_px": 87.01,
+      "sl_trigger_px": 90.85,
+      "stage": 0,
+      "stage_badge": "⚡ 監控中 (滿5%保本/滿9%平半倉)",
+      "reason": "【Half-B 強弱配對】SOL跌幅顯著，趨勢強烈看跌，波動率較高，適合追蹤趨勢做空，並錨定波動率設定止盈止損。避免與現有持倉反向。"
     },
     {
       "symbol": "ETH/USDT:USDT",
@@ -77,14 +147,18 @@
       "contracts": 1158.0,
       "leverage": "6.0x",
       "entry_price": 2238.13,
-      "mark_price": 2240.55,
-      "margin_usdt": 43242.62,
-      "notional_usdt": 259108.02,
-      "unrealized_pnl": -280.58,
-      "roi_pct": -0.65,
-      "tp_pct": 12.0,
-      "sl_pct": 3.5,
-      "reason": "【Half-B 強弱動能】ETH趨勢強勁，MA5高於MA20，表現優於其他主流幣，資金費率正常。"
+      "mark_price": 2238.08,
+      "margin_usdt": 43194.94,
+      "notional_usdt": 258819.78,
+      "unrealized_pnl": 5.45,
+      "roi_pct": 0.01,
+      "tp_pct": 1.5,
+      "sl_pct": 1.2,
+      "tp_trigger_px": 2204.56,
+      "sl_trigger_px": 2264.99,
+      "stage": 0,
+      "stage_badge": "⚡ 監控中 (滿5%保本/滿9%平半倉)",
+      "reason": "波動率定錨止盈 +1.5% | ROI滿5%自動移止損保本、滿9%平半倉鎖+1%"
     },
     {
       "symbol": "BTC/USDT:USDT",
@@ -92,64 +166,112 @@
       "contracts": 348.0,
       "leverage": "6.0x",
       "entry_price": 75852.07,
-      "mark_price": 76045.93,
-      "margin_usdt": 44106.64,
-      "notional_usdt": 264285.22,
-      "unrealized_pnl": -674.62,
-      "roi_pct": -1.53,
-      "tp_pct": 12.0,
-      "sl_pct": 3.5,
-      "reason": "【Half-A 技術籌碼】BTC技術面偏空，MA5低於MA20，且資金費率極高，多頭承壓。符合錯題本修正，避免追高。"
+      "mark_price": 75993.42,
+      "margin_usdt": 44076.18,
+      "notional_usdt": 264100.08,
+      "unrealized_pnl": -491.88,
+      "roi_pct": -1.12,
+      "tp_pct": 2.2,
+      "sl_pct": 1.6,
+      "tp_trigger_px": 74183.32,
+      "sl_trigger_px": 77065.7,
+      "stage": 0,
+      "stage_badge": "⚡ 監控中 (滿5%保本/滿9%平半倉)",
+      "reason": "【Half-A 波動定錨】BTC趨勢看跌，24小時與15分鐘均為負，符合做空條件，並錨定波動率設定止盈止損。避免與現有持倉反向。"
     }
   ],
   "market_prices": {
     "BTC/USDT:USDT": {
-      "last_price": 76050.15,
-      "change_24h_pct": -0.44,
-      "bar_15m_change_pct": 0.03,
-      "vol_spike_ratio": 0.23,
-      "funding_rate_pct": 0.203,
-      "open_interest": 2151196980.52,
-      "ma5": 76010.39,
-      "ma20": 76226.86,
-      "atr_15m_pct": 0.29,
-      "recent_swing_pct": 1.26,
-      "trend": "BEARISH"
+      "last_price": 75994.0,
+      "change_24h_pct": -0.5,
+      "bar_15m_change_pct": -0.03,
+      "vol_spike_ratio": 0.22,
+      "funding_rate_pct": 0.1327,
+      "open_interest": 2151406363.1,
+      "ma5": 76018.26,
+      "ma10": 75999.8,
+      "ma20": 76179.12,
+      "atr_15m_pct": 0.26,
+      "recent_swing_pct": 0.84,
+      "anchored_tp_pct": 1.5,
+      "anchored_sl_pct": 1.2,
+      "trend": "BEARISH",
+      "momentum_weakening_long": false,
+      "momentum_weakening_short": false
     },
     "ETH/USDT:USDT": {
-      "last_price": 2240.52,
-      "change_24h_pct": -0.04,
-      "bar_15m_change_pct": 0.02,
-      "vol_spike_ratio": 0.06,
+      "last_price": 2238.15,
+      "change_24h_pct": -0.37,
+      "bar_15m_change_pct": -0.33,
+      "vol_spike_ratio": 0.83,
       "funding_rate_pct": 0.01,
-      "open_interest": 3142159814.56,
-      "ma5": 2239.65,
-      "ma20": 2238.27,
-      "atr_15m_pct": 0.3,
-      "recent_swing_pct": 0.98,
-      "trend": "BULLISH"
+      "open_interest": 3142631211.53,
+      "ma5": 2240.89,
+      "ma10": 2239.9,
+      "ma20": 2239.73,
+      "atr_15m_pct": 0.31,
+      "recent_swing_pct": 0.48,
+      "anchored_tp_pct": 1.5,
+      "anchored_sl_pct": 1.2,
+      "trend": "BULLISH",
+      "momentum_weakening_long": false,
+      "momentum_weakening_short": false
     },
     "SOL/USDT:USDT": {
-      "last_price": 89.71,
-      "change_24h_pct": -2.3,
-      "bar_15m_change_pct": 0.04,
-      "vol_spike_ratio": 0.02,
-      "funding_rate_pct": 0.0165,
-      "open_interest": 16097468.45,
-      "ma5": 89.58,
-      "ma20": 90.6,
-      "atr_15m_pct": 0.31,
-      "recent_swing_pct": 2.75,
-      "trend": "BEARISH"
+      "last_price": 89.48,
+      "change_24h_pct": -2.03,
+      "bar_15m_change_pct": -0.1,
+      "vol_spike_ratio": 0.53,
+      "funding_rate_pct": 0.01,
+      "open_interest": 16112624.58,
+      "ma5": 89.62,
+      "ma10": 89.54,
+      "ma20": 90.4,
+      "atr_15m_pct": 0.32,
+      "recent_swing_pct": 2.43,
+      "anchored_tp_pct": 1.82,
+      "anchored_sl_pct": 1.33,
+      "trend": "BEARISH",
+      "momentum_weakening_long": false,
+      "momentum_weakening_short": false
     }
   },
   "latest_news": [
-    "快軌 20 秒級別高速盯盤中 (節省 Gemini API 額度)"
+    "Here’s what happened in crypto today",
+    "Binance France emails announce closure of its users’ accounts on Dec. 31",
+    "Amsterdam protesters break into Microsoft data center construction site: Report"
   ],
+  "ai_broadcast_signals": {
+    "updated_at": "16:35:25",
+    "confidence": 88,
+    "summary": "市場整體偏空，BTC與SOL趨勢明確，依波動率定錨止盈止損，槓桿適中，規避已持倉反向開單風險。",
+    "half_a_orders": [
+      {
+        "symbol": "BTC/USDT:USDT",
+        "action": "SELL",
+        "weight": 1.5,
+        "leverage": 6,
+        "tp_pct": 2.2,
+        "sl_pct": 1.6,
+        "reason": "【Half-A 波動定錨】BTC趨勢看跌，24小時與15分鐘均為負，符合做空條件，並錨定波動率設定止盈止損。避免與現有持倉反向。"
+      }
+    ],
+    "half_b_orders": [
+      {
+        "symbol": "SOL/USDT:USDT",
+        "action": "SELL",
+        "weight": 1.2,
+        "leverage": 7,
+        "tp_pct": 2.5,
+        "sl_pct": 1.8,
+        "reason": "【Half-B 強弱配對】SOL跌幅顯著，趨勢強烈看跌，波動率較高，適合追蹤趨勢做空，並錨定波動率設定止盈止損。避免與現有持倉反向。"
+      }
+    ]
+  },
   "ai_last_decision": {
-    "action": "80/10/10 架構 | 當前持倉 6 筆 | 歷史結算 30 筆",
-    "confidence": 80,
-    "reason": "BTC技術面偏空且資金費率極高，考慮做空。ETH技術面偏多，動能強勁，考慮做多。市場無黑天鵝事件。"
+    "action": "今日已實現 $+0.00 | 歷史累計 $-18,250.29 (勝率 25.7%)",
+    "confidence": 88,
+    "reason": "市場整體偏空，BTC與SOL趨勢明確，依波動率定錨止盈止損，槓桿適中，規避已持倉反向開單風險。"
   },
   "orders": [
     {
@@ -166,10 +288,10 @@
       "entryExit": "開倉均價 $89.24 ➔ 平倉均價 $91.75",
       "roi": "已實現損益 $-5,505.49 USDT (-22.94%)",
       "pnl": "倉位結算收益: $-5,505.49 USDT",
-      "realized_pnl_num": -5505.492799021766,
+      "realized_pnl_num": -5505.49,
       "fee": "倉位累計手續費 220.2238 USDT",
       "rr": "開倉 $89.24 / 平倉 $91.75",
-      "reason": "BTC技術面偏空且資金費率極高，考慮做空。ETH技術面偏多，動能強勁，考慮做多。市場無黑天鵝事件。",
+      "reason": "【Half-B 強弱配對】SOL跌幅顯著，趨勢強烈看跌，波動率較高，適合追蹤趨勢做空，並錨定波動率設定止盈止損。避免與現有持倉反向。",
       "hash": "0x3f6b74ac3aa49848"
     },
     {
@@ -186,10 +308,10 @@
       "entryExit": "開倉均價 $96.11 ➔ 平倉均價 $90.85",
       "roi": "已實現損益 +$7,756.78 USDT (+48.42%)",
       "pnl": "倉位結算收益: +$7,756.78 USDT",
-      "realized_pnl_num": 7756.7816457,
+      "realized_pnl_num": 7756.78,
       "fee": "倉位累計手續費 140.2233 USDT",
       "rr": "開倉 $96.11 / 平倉 $90.85",
-      "reason": "BTC技術面偏空且資金費率極高，考慮做空。ETH技術面偏多，動能強勁，考慮做多。市場無黑天鵝事件。",
+      "reason": "【Half-B 強弱配對】SOL跌幅顯著，趨勢強烈看跌，波動率較高，適合追蹤趨勢做空，並錨定波動率設定止盈止損。避免與現有持倉反向。",
       "hash": "0x068ad3a2507ab615"
     },
     {
@@ -206,10 +328,10 @@
       "entryExit": "開倉均價 $80,101.64 ➔ 平倉均價 $76,720.00",
       "roi": "已實現損益 +$5,893.29 USDT (+24.80%)",
       "pnl": "倉位結算收益: +$5,893.29 USDT",
-      "realized_pnl_num": 5893.2879215665,
+      "realized_pnl_num": 5893.29,
       "fee": "倉位累計手續費 139.5713 USDT",
       "rr": "開倉 $80,101.64 / 平倉 $76,720.00",
-      "reason": "【Half-A 技術籌碼】BTC技術面偏空，MA5低於MA20，且資金費率極高，多頭承壓。符合錯題本修正，避免追高。",
+      "reason": "【Half-A 波動定錨】BTC趨勢看跌，24小時與15分鐘均為負，符合做空條件，並錨定波動率設定止盈止損。避免與現有持倉反向。",
       "hash": "0x6b7e45aa34aeddc7"
     },
     {
@@ -226,10 +348,10 @@
       "entryExit": "開倉均價 $2,414.77 ➔ 平倉均價 $2,267.50",
       "roi": "已實現損益 +$11,653.40 USDT (+35.70%)",
       "pnl": "倉位結算收益: +$11,653.40 USDT",
-      "realized_pnl_num": 11653.39759549533,
+      "realized_pnl_num": 11653.4,
       "fee": "倉位累計手續費 189.8662 USDT",
       "rr": "開倉 $2,414.77 / 平倉 $2,267.50",
-      "reason": "【Half-B 強弱動能】ETH趨勢強勁，MA5高於MA20，表現優於其他主流幣，資金費率正常。",
+      "reason": "市場整體偏空，BTC與SOL趨勢明確，依波動率定錨止盈止損，槓桿適中，規避已持倉反向開單風險。",
       "hash": "0xc42abf7e05139c30"
     },
     {
@@ -246,10 +368,10 @@
       "entryExit": "開倉均價 $80,204.66 ➔ 平倉均價 $80,088.35",
       "roi": "已實現損益 $-412.56 USDT (-1.71%)",
       "pnl": "倉位結算收益: $-412.56 USDT",
-      "realized_pnl_num": -412.5562985935,
+      "realized_pnl_num": -412.56,
       "fee": "倉位累計手續費 168.3077 USDT",
       "rr": "開倉 $80,204.66 / 平倉 $80,088.35",
-      "reason": "【Half-A 技術籌碼】BTC技術面偏空，MA5低於MA20，且資金費率極高，多頭承壓。符合錯題本修正，避免追高。",
+      "reason": "【Half-A 波動定錨】BTC趨勢看跌，24小時與15分鐘均為負，符合做空條件，並錨定波動率設定止盈止損。避免與現有持倉反向。",
       "hash": "0x6349d10d9db14f12"
     },
     {
@@ -266,10 +388,10 @@
       "entryExit": "開倉均價 $96.59 ➔ 平倉均價 $96.11",
       "roi": "已實現損益 $-870.38 USDT (-4.20%)",
       "pnl": "倉位結算收益: $-870.38 USDT",
-      "realized_pnl_num": -870.3787254000085,
+      "realized_pnl_num": -870.38,
       "fee": "倉位累計手續費 144.5279 USDT",
       "rr": "開倉 $96.59 / 平倉 $96.11",
-      "reason": "BTC技術面偏空且資金費率極高，考慮做空。ETH技術面偏多，動能強勁，考慮做多。市場無黑天鵝事件。",
+      "reason": "【Half-B 強弱配對】SOL跌幅顯著，趨勢強烈看跌，波動率較高，適合追蹤趨勢做空，並錨定波動率設定止盈止損。避免與現有持倉反向。",
       "hash": "0x842833a36002e53f"
     },
     {
@@ -286,10 +408,10 @@
       "entryExit": "開倉均價 $80,320.00 ➔ 平倉均價 $80,197.51",
       "roi": "已實現損益 +$102.62 USDT (+0.32%)",
       "pnl": "倉位結算收益: +$102.62 USDT",
-      "realized_pnl_num": 102.624742758,
+      "realized_pnl_num": 102.62,
       "fee": "倉位累計手續費 195.0288 USDT",
       "rr": "開倉 $80,320.00 / 平倉 $80,197.51",
-      "reason": "【Half-A 技術籌碼】BTC技術面偏空，MA5低於MA20，且資金費率極高，多頭承壓。符合錯題本修正，避免追高。",
+      "reason": "【Half-A 波動定錨】BTC趨勢看跌，24小時與15分鐘均為負，符合做空條件，並錨定波動率設定止盈止損。避免與現有持倉反向。",
       "hash": "0xc0116b6f6ea5fd95"
     },
     {
@@ -306,10 +428,10 @@
       "entryExit": "開倉均價 $2,415.98 ➔ 平倉均價 $2,414.62",
       "roi": "已實現損益 $-309.52 USDT (-0.94%)",
       "pnl": "倉位結算收益: $-309.52 USDT",
-      "realized_pnl_num": -309.5230400450005,
+      "realized_pnl_num": -309.52,
       "fee": "倉位累計手續費 197.8130 USDT",
       "rr": "開倉 $2,415.98 / 平倉 $2,414.62",
-      "reason": "【Half-B 強弱動能】ETH趨勢強勁，MA5高於MA20，表現優於其他主流幣，資金費率正常。",
+      "reason": "市場整體偏空，BTC與SOL趨勢明確，依波動率定錨止盈止損，槓桿適中，規避已持倉反向開單風險。",
       "hash": "0x50921dfbe1956b9a"
     },
     {
@@ -326,10 +448,10 @@
       "entryExit": "開倉均價 $80,390.51 ➔ 平倉均價 $80,320.00",
       "roi": "已實現損益 $-371.12 USDT (-1.13%)",
       "pnl": "倉位結算收益: $-371.12 USDT",
-      "realized_pnl_num": -371.119368723,
+      "realized_pnl_num": -371.12,
       "fee": "倉位累計手續費 197.6739 USDT",
       "rr": "開倉 $80,390.51 / 平倉 $80,320.00",
-      "reason": "【Half-A 技術籌碼】BTC技術面偏空，MA5低於MA20，且資金費率極高，多頭承壓。符合錯題本修正，避免追高。",
+      "reason": "【Half-A 波動定錨】BTC趨勢看跌，24小時與15分鐘均為負，符合做空條件，並錨定波動率設定止盈止損。避免與現有持倉反向。",
       "hash": "0x4730898fb7d6e079"
     },
     {
@@ -346,10 +468,10 @@
       "entryExit": "開倉均價 $2,412.11 ➔ 平倉均價 $2,415.81",
       "roi": "已實現損益 $-503.80 USDT (-1.52%)",
       "pnl": "倉位結算收益: $-503.80 USDT",
-      "realized_pnl_num": -503.7970313,
+      "realized_pnl_num": -503.8,
       "fee": "倉位累計手續費 199.1517 USDT",
       "rr": "開倉 $2,412.11 / 平倉 $2,415.81",
-      "reason": "【Half-B 強弱動能】ETH趨勢強勁，MA5高於MA20，表現優於其他主流幣，資金費率正常。",
+      "reason": "市場整體偏空，BTC與SOL趨勢明確，依波動率定錨止盈止損，槓桿適中，規避已持倉反向開單風險。",
       "hash": "0x995dd02e6bf527a8"
     },
     {
@@ -366,10 +488,10 @@
       "entryExit": "開倉均價 $80,320.00 ➔ 平倉均價 $80,368.07",
       "roi": "已實現損益 $-317.19 USDT (-0.96%)",
       "pnl": "倉位結算收益: $-317.19 USDT",
-      "realized_pnl_num": -317.1903973965,
+      "realized_pnl_num": -317.19,
       "fee": "倉位累計手續費 198.4498 USDT",
       "rr": "開倉 $80,320.00 / 平倉 $80,368.07",
-      "reason": "【Half-A 技術籌碼】BTC技術面偏空，MA5低於MA20，且資金費率極高，多頭承壓。符合錯題本修正，避免追高。",
+      "reason": "【Half-A 波動定錨】BTC趨勢看跌，24小時與15分鐘均為負，符合做空條件，並錨定波動率設定止盈止損。避免與現有持倉反向。",
       "hash": "0xa4b91dfdd073e189"
     },
     {
@@ -386,10 +508,10 @@
       "entryExit": "開倉均價 $2,417.71 ➔ 平倉均價 $2,412.45",
       "roi": "已實現損益 $-843.80 USDT (-3.18%)",
       "pnl": "倉位結算收益: $-843.80 USDT",
-      "realized_pnl_num": -843.7985548350006,
+      "realized_pnl_num": -843.8,
       "fee": "倉位累計手續費 265.4173 USDT",
       "rr": "開倉 $2,417.71 / 平倉 $2,412.45",
-      "reason": "【Half-B 強弱動能】ETH趨勢強勁，MA5高於MA20，表現優於其他主流幣，資金費率正常。",
+      "reason": "市場整體偏空，BTC與SOL趨勢明確，依波動率定錨止盈止損，槓桿適中，規避已持倉反向開單風險。",
       "hash": "0x11676f6c97434d59"
     },
     {
@@ -406,10 +528,10 @@
       "entryExit": "開倉均價 $80,533.30 ➔ 平倉均價 $80,321.18",
       "roi": "已實現損益 $-1,424.73 USDT (-3.27%)",
       "pnl": "倉位結算收益: $-1,424.73 USDT",
-      "realized_pnl_num": -1424.727197927,
+      "realized_pnl_num": -1424.73,
       "fee": "倉位累計手續費 391.6807 USDT",
       "rr": "開倉 $80,533.30 / 平倉 $80,321.18",
-      "reason": "【Half-A 技術籌碼】BTC技術面偏空，MA5低於MA20，且資金費率極高，多頭承壓。符合錯題本修正，避免追高。",
+      "reason": "【Half-A 波動定錨】BTC趨勢看跌，24小時與15分鐘均為負，符合做空條件，並錨定波動率設定止盈止損。避免與現有持倉反向。",
       "hash": "0x9e5bee8ae1a9e55f"
     },
     {
@@ -426,10 +548,10 @@
       "entryExit": "開倉均價 $2,418.26 ➔ 平倉均價 $2,417.12",
       "roi": "已實現損益 $-57.35 USDT (-0.26%)",
       "pnl": "倉位結算收益: $-57.35 USDT",
-      "realized_pnl_num": -57.351005079999965,
+      "realized_pnl_num": -57.35,
       "fee": "倉位累計手續費 108.5541 USDT",
       "rr": "開倉 $2,418.26 / 平倉 $2,417.12",
-      "reason": "【Half-B 強弱動能】ETH趨勢強勁，MA5高於MA20，表現優於其他主流幣，資金費率正常。",
+      "reason": "市場整體偏空，BTC與SOL趨勢明確，依波動率定錨止盈止損，槓桿適中，規避已持倉反向開單風險。",
       "hash": "0x16e5de558a84d580"
     },
     {
@@ -446,10 +568,10 @@
       "entryExit": "開倉均價 $80,503.61 ➔ 平倉均價 $80,530.20",
       "roi": "已實現損益 $-222.77 USDT (-0.80%)",
       "pnl": "倉位結算收益: $-222.77 USDT",
-      "realized_pnl_num": -222.77176442549998,
+      "realized_pnl_num": -222.77,
       "fee": "倉位累計手續費 167.4752 USDT",
       "rr": "開倉 $80,503.61 / 平倉 $80,530.20",
-      "reason": "【Half-A 技術籌碼】BTC技術面偏空，MA5低於MA20，且資金費率極高，多頭承壓。符合錯題本修正，避免追高。",
+      "reason": "【Half-A 波動定錨】BTC趨勢看跌，24小時與15分鐘均為負，符合做空條件，並錨定波動率設定止盈止損。避免與現有持倉反向。",
       "hash": "0x67c00a160b926c09"
     },
     {
@@ -466,10 +588,10 @@
       "entryExit": "開倉均價 $96.69 ➔ 平倉均價 $96.52",
       "roi": "已實現損益 $-395.12 USDT (-2.45%)",
       "pnl": "倉位結算收益: $-395.12 USDT",
-      "realized_pnl_num": -395.11819584999995,
+      "realized_pnl_num": -395.12,
       "fee": "倉位累計手續費 144.9099 USDT",
       "rr": "開倉 $96.69 / 平倉 $96.52",
-      "reason": "BTC技術面偏空且資金費率極高，考慮做空。ETH技術面偏多，動能強勁，考慮做多。市場無黑天鵝事件。",
+      "reason": "【Half-B 強弱配對】SOL跌幅顯著，趨勢強烈看跌，波動率較高，適合追蹤趨勢做空，並錨定波動率設定止盈止損。避免與現有持倉反向。",
       "hash": "0xef2522fbc7205ddd"
     },
     {
@@ -486,10 +608,10 @@
       "entryExit": "開倉均價 $2,418.84 ➔ 平倉均價 $2,419.46",
       "roi": "已實現損益 $-78.71 USDT (-0.50%)",
       "pnl": "倉位結算收益: $-78.71 USDT",
-      "realized_pnl_num": -78.71498744999994,
+      "realized_pnl_num": -78.71,
       "fee": "倉位累計手續費 62.6560 USDT",
       "rr": "開倉 $2,418.84 / 平倉 $2,419.46",
-      "reason": "【Half-B 強弱動能】ETH趨勢強勁，MA5高於MA20，表現優於其他主流幣，資金費率正常。",
+      "reason": "市場整體偏空，BTC與SOL趨勢明確，依波動率定錨止盈止損，槓桿適中，規避已持倉反向開單風險。",
       "hash": "0x091a24fb4782f86f"
     },
     {
@@ -506,10 +628,10 @@
       "entryExit": "開倉均價 $80,500.85 ➔ 平倉均價 $80,503.74",
       "roi": "已實現損益 $-149.28 USDT (-0.62%)",
       "pnl": "倉位結算收益: $-149.28 USDT",
-      "realized_pnl_num": -149.2824364905,
+      "realized_pnl_num": -149.28,
       "fee": "倉位累計手續費 144.0991 USDT",
       "rr": "開倉 $80,500.85 / 平倉 $80,503.74",
-      "reason": "【Half-A 技術籌碼】BTC技術面偏空，MA5低於MA20，且資金費率極高，多頭承壓。符合錯題本修正，避免追高。",
+      "reason": "【Half-A 波動定錨】BTC趨勢看跌，24小時與15分鐘均為負，符合做空條件，並錨定波動率設定止盈止損。避免與現有持倉反向。",
       "hash": "0x5df8e5815ba10dbe"
     },
     {
@@ -526,10 +648,10 @@
       "entryExit": "開倉均價 $2,425.62 ➔ 平倉均價 $2,419.00",
       "roi": "已實現損益 $-0.90 USDT (-1.86%)",
       "pnl": "倉位結算收益: $-0.90 USDT",
-      "realized_pnl_num": -0.904231,
+      "realized_pnl_num": -0.9,
       "fee": "倉位累計手續費 0.2422 USDT",
       "rr": "開倉 $2,425.62 / 平倉 $2,419.00",
-      "reason": "【Half-B 強弱動能】ETH趨勢強勁，MA5高於MA20，表現優於其他主流幣，資金費率正常。",
+      "reason": "市場整體偏空，BTC與SOL趨勢明確，依波動率定錨止盈止損，槓桿適中，規避已持倉反向開單風險。",
       "hash": "0x252ce73a06cb916a"
     },
     {
@@ -546,10 +668,10 @@
       "entryExit": "開倉均價 $2,417.60 ➔ 平倉均價 $2,425.62",
       "roi": "已實現損益 $-1.04 USDT (-2.16%)",
       "pnl": "倉位結算收益: $-1.04 USDT",
-      "realized_pnl_num": -1.044161,
+      "realized_pnl_num": -1.04,
       "fee": "倉位累計手續費 0.2422 USDT",
       "rr": "開倉 $2,417.60 / 平倉 $2,425.62",
-      "reason": "【Half-B 強弱動能】ETH趨勢強勁，MA5高於MA20，表現優於其他主流幣，資金費率正常。",
+      "reason": "市場整體偏空，BTC與SOL趨勢明確，依波動率定錨止盈止損，槓桿適中，規避已持倉反向開單風險。",
       "hash": "0xdc8b3f78d563346a"
     },
     {
@@ -566,10 +688,10 @@
       "entryExit": "開倉均價 $2,421.49 ➔ 平倉均價 $2,417.37",
       "roi": "已實現損益 $-0.65 USDT (-1.35%)",
       "pnl": "倉位結算收益: $-0.65 USDT",
-      "realized_pnl_num": -0.65390302,
+      "realized_pnl_num": -0.65,
       "fee": "倉位累計手續費 0.2419 USDT",
       "rr": "開倉 $2,421.49 / 平倉 $2,417.37",
-      "reason": "【Half-B 強弱動能】ETH趨勢強勁，MA5高於MA20，表現優於其他主流幣，資金費率正常。",
+      "reason": "市場整體偏空，BTC與SOL趨勢明確，依波動率定錨止盈止損，槓桿適中，規避已持倉反向開單風險。",
       "hash": "0x616e66f62bf2dded"
     },
     {
@@ -586,10 +708,10 @@
       "entryExit": "開倉均價 $2,422.82 ➔ 平倉均價 $2,422.18",
       "roi": "已實現損益 $-0.15 USDT (-0.32%)",
       "pnl": "倉位結算收益: $-0.15 USDT",
-      "realized_pnl_num": -0.15365968,
+      "realized_pnl_num": -0.15,
       "fee": "倉位累計手續費 0.2422 USDT",
       "rr": "開倉 $2,422.82 / 平倉 $2,422.18",
-      "reason": "【Half-B 強弱動能】ETH趨勢強勁，MA5高於MA20，表現優於其他主流幣，資金費率正常。",
+      "reason": "市場整體偏空，BTC與SOL趨勢明確，依波動率定錨止盈止損，槓桿適中，規避已持倉反向開單風險。",
       "hash": "0x2db5cc62d9c446f5"
     },
     {
@@ -606,10 +728,10 @@
       "entryExit": "開倉均價 $2,429.47 ➔ 平倉均價 $2,423.03",
       "roi": "已實現損益 $-0.89 USDT (-1.46%)",
       "pnl": "倉位結算收益: $-0.89 USDT",
-      "realized_pnl_num": -0.88650506,
+      "realized_pnl_num": -0.89,
       "fee": "倉位累計手續費 0.2426 USDT",
       "rr": "開倉 $2,429.47 / 平倉 $2,423.03",
-      "reason": "【Half-B 強弱動能】ETH趨勢強勁，MA5高於MA20，表現優於其他主流幣，資金費率正常。",
+      "reason": "市場整體偏空，BTC與SOL趨勢明確，依波動率定錨止盈止損，槓桿適中，規避已持倉反向開單風險。",
       "hash": "0xce1969d8466f4180"
     },
     {
@@ -626,10 +748,10 @@
       "entryExit": "開倉均價 $2,433.84 ➔ 平倉均價 $2,429.47",
       "roi": "已實現損益 +$0.19 USDT (+0.32%)",
       "pnl": "倉位結算收益: +$0.19 USDT",
-      "realized_pnl_num": 0.193844505,
+      "realized_pnl_num": 0.19,
       "fee": "倉位累計手續費 0.2432 USDT",
       "rr": "開倉 $2,433.84 / 平倉 $2,429.47",
-      "reason": "【Half-B 強弱動能】ETH趨勢強勁，MA5高於MA20，表現優於其他主流幣，資金費率正常。",
+      "reason": "市場整體偏空，BTC與SOL趨勢明確，依波動率定錨止盈止損，槓桿適中，規避已持倉反向開單風險。",
       "hash": "0x5213e05d07879ebf"
     },
     {
@@ -646,10 +768,10 @@
       "entryExit": "開倉均價 $2,424.75 ➔ 平倉均價 $2,433.84",
       "roi": "已實現損益 +$0.67 USDT (+1.10%)",
       "pnl": "倉位結算收益: +$0.67 USDT",
-      "realized_pnl_num": 0.6660705,
+      "realized_pnl_num": 0.67,
       "fee": "倉位累計手續費 0.2429 USDT",
       "rr": "開倉 $2,424.75 / 平倉 $2,433.84",
-      "reason": "【Half-B 強弱動能】ETH趨勢強勁，MA5高於MA20，表現優於其他主流幣，資金費率正常。",
+      "reason": "市場整體偏空，BTC與SOL趨勢明確，依波動率定錨止盈止損，槓桿適中，規避已持倉反向開單風險。",
       "hash": "0x9e2ab35aa1d3d139"
     },
     {
@@ -666,10 +788,10 @@
       "entryExit": "開倉均價 $2,425.58 ➔ 平倉均價 $2,424.75",
       "roi": "已實現損益 $-0.16 USDT (-0.26%)",
       "pnl": "倉位結算收益: $-0.16 USDT",
-      "realized_pnl_num": -0.1595165,
+      "realized_pnl_num": -0.16,
       "fee": "倉位累計手續費 0.2425 USDT",
       "rr": "開倉 $2,425.58 / 平倉 $2,424.75",
-      "reason": "【Half-B 強弱動能】ETH趨勢強勁，MA5高於MA20，表現優於其他主流幣，資金費率正常。",
+      "reason": "市場整體偏空，BTC與SOL趨勢明確，依波動率定錨止盈止損，槓桿適中，規避已持倉反向開單風險。",
       "hash": "0x24438d544006aab4"
     },
     {
@@ -686,10 +808,10 @@
       "entryExit": "開倉均價 $2,423.87 ➔ 平倉均價 $2,425.00",
       "roi": "已實現損益 $-0.13 USDT (-0.27%)",
       "pnl": "倉位結算收益: $-0.13 USDT",
-      "realized_pnl_num": -0.12914335,
+      "realized_pnl_num": -0.13,
       "fee": "倉位累計手續費 0.2424 USDT",
       "rr": "開倉 $2,423.87 / 平倉 $2,425.00",
-      "reason": "【Half-B 強弱動能】ETH趨勢強勁，MA5高於MA20，表現優於其他主流幣，資金費率正常。",
+      "reason": "市場整體偏空，BTC與SOL趨勢明確，依波動率定錨止盈止損，槓桿適中，規避已持倉反向開單風險。",
       "hash": "0x4cb26732bded8bb8"
     },
     {
@@ -706,10 +828,10 @@
       "entryExit": "開倉均價 $77,527.03 ➔ 平倉均價 $76,297.06",
       "roi": "已實現損益 $-9,900.14 USDT (-208.94%)",
       "pnl": "倉位結算收益: $-9,900.14 USDT",
-      "realized_pnl_num": -9900.1409514765,
+      "realized_pnl_num": -9900.14,
       "fee": "倉位累計手續費 470.0787 USDT",
       "rr": "開倉 $77,527.03 / 平倉 $76,297.06",
-      "reason": "【Half-A 技術籌碼】BTC技術面偏空，MA5低於MA20，且資金費率極高，多頭承壓。符合錯題本修正，避免追高。",
+      "reason": "【Half-A 波動定錨】BTC趨勢看跌，24小時與15分鐘均為負，符合做空條件，並錨定波動率設定止盈止損。避免與現有持倉反向。",
       "hash": "0x1a18e69c8e27b36b"
     },
     {
@@ -726,10 +848,10 @@
       "entryExit": "開倉均價 $81,633.19 ➔ 平倉均價 $81,181.24",
       "roi": "已實現損益 $-4,981.71 USDT (-105.11%)",
       "pnl": "倉位結算收益: $-4,981.71 USDT",
-      "realized_pnl_num": -4981.7098281495,
+      "realized_pnl_num": -4981.71,
       "fee": "倉位累計手續費 472.6177 USDT",
       "rr": "開倉 $81,633.19 / 平倉 $81,181.24",
-      "reason": "【Half-A 技術籌碼】BTC技術面偏空，MA5低於MA20，且資金費率極高，多頭承壓。符合錯題本修正，避免追高。",
+      "reason": "【Half-A 波動定錨】BTC趨勢看跌，24小時與15分鐘均為負，符合做空條件，並錨定波動率設定止盈止損。避免與現有持倉反向。",
       "hash": "0x03b263d99c922b04"
     },
     {
@@ -746,11 +868,111 @@
       "entryExit": "開倉均價 $85,966.10 ➔ 平倉均價 $86,438.80",
       "roi": "已實現損益 $-32,608.35 USDT (-105.23%)",
       "pnl": "倉位結算收益: $-32,608.35 USDT",
-      "realized_pnl_num": -32608.352325613,
+      "realized_pnl_num": -32608.35,
       "fee": "倉位累計手續費 3107.1760 USDT",
       "rr": "開倉 $85,966.10 / 平倉 $86,438.80",
-      "reason": "【Half-A 技術籌碼】BTC技術面偏空，MA5低於MA20，且資金費率極高，多頭承壓。符合錯題本修正，避免追高。",
+      "reason": "【Half-A 波動定錨】BTC趨勢看跌，24小時與15分鐘均為負，符合做空條件，並錨定波動率設定止盈止損。避免與現有持倉反向。",
       "hash": "0xee175bb06893543e"
+    },
+    {
+      "id": "POS-341952",
+      "full_id": "3984581706585341952_1791266608197",
+      "timestamp_ms": 1791266608197,
+      "time": "2026-10-06 06:03:28",
+      "market": "crypto",
+      "marketBadge": "📦 歷史倉位 (3217.79張)",
+      "asset": "BTC/USDT:USDT",
+      "direction": "做空倉位結算 (SHORT)",
+      "leverage": "100.0x 倉位槓桿",
+      "pool": "平倉張數: 3217.79 張合約",
+      "entryExit": "開倉均價 $85,562.51 ➔ 平倉均價 $85,389.90",
+      "roi": "已實現損益 +$3,628.08 USDT (+13.18%)",
+      "pnl": "倉位結算收益: +$3,628.08 USDT",
+      "realized_pnl_num": 3628.08,
+      "fee": "倉位累計手續費 1926.1445 USDT",
+      "rr": "開倉 $85,562.51 / 平倉 $85,389.90",
+      "reason": "【Half-A 波動定錨】BTC趨勢看跌，24小時與15分鐘均為負，符合做空條件，並錨定波動率設定止盈止損。避免與現有持倉反向。",
+      "hash": "0x8f38a336913ff317"
+    },
+    {
+      "id": "POS-822016",
+      "full_id": "3983634665524822016_1791243320629",
+      "timestamp_ms": 1791243320629,
+      "time": "2026-10-05 23:35:20",
+      "market": "crypto",
+      "marketBadge": "📦 歷史倉位 (2280.02張)",
+      "asset": "BTC/USDT:USDT",
+      "direction": "做多倉位結算 (LONG)",
+      "leverage": "100.0x 倉位槓桿",
+      "pool": "平倉張數: 2280.02 張合約",
+      "entryExit": "開倉均價 $85,406.82 ➔ 平倉均價 $85,833.84",
+      "roi": "已實現損益 +$8,370.46 USDT (+42.99%)",
+      "pnl": "倉位結算收益: +$8,370.46 USDT",
+      "realized_pnl_num": 8370.46,
+      "fee": "倉位累計手續費 1365.8348 USDT",
+      "rr": "開倉 $85,406.82 / 平倉 $85,833.84",
+      "reason": "【Half-A 波動定錨】BTC趨勢看跌，24小時與15分鐘均為負，符合做空條件，並錨定波動率設定止盈止損。避免與現有持倉反向。",
+      "hash": "0xb91feaf167b6288f"
+    },
+    {
+      "id": "POS-356417",
+      "full_id": "3981858434823356417_1791182434060",
+      "timestamp_ms": 1791182434060,
+      "time": "2026-10-05 06:40:34",
+      "market": "crypto",
+      "marketBadge": "📦 歷史倉位 (1877.15張)",
+      "asset": "BTC/USDT:USDT",
+      "direction": "做空倉位結算 (SHORT)",
+      "leverage": "100.0x 倉位槓桿",
+      "pool": "平倉張數: 1877.15 張合約",
+      "entryExit": "開倉均價 $86,057.70 ➔ 平倉均價 $85,781.27",
+      "roi": "已實現損益 +$3,576.17 USDT (+22.14%)",
+      "pnl": "倉位結算收益: +$3,576.17 USDT",
+      "realized_pnl_num": 3576.17,
+      "fee": "倉位累計手續費 1612.8376 USDT",
+      "rr": "開倉 $86,057.70 / 平倉 $85,781.27",
+      "reason": "【Half-A 波動定錨】BTC趨勢看跌，24小時與15分鐘均為負，符合做空條件，並錨定波動率設定止盈止損。避免與現有持倉反向。",
+      "hash": "0x1b1792330351c83b"
+    },
+    {
+      "id": "POS-356417",
+      "full_id": "3981858434823356417_1791172634298",
+      "timestamp_ms": 1791172634298,
+      "time": "2026-10-05 03:57:14",
+      "market": "crypto",
+      "marketBadge": "📦 歷史倉位 (1885.8張)",
+      "asset": "BTC/USDT:USDT",
+      "direction": "做空倉位結算 (SHORT)",
+      "leverage": "100.0x 倉位槓桿",
+      "pool": "平倉張數: 1885.8 張合約",
+      "entryExit": "開倉均價 $86,260.00 ➔ 平倉均價 $86,180.05",
+      "roi": "已實現損益 $-118.24 USDT (-0.73%)",
+      "pnl": "倉位結算收益: $-118.24 USDT",
+      "realized_pnl_num": -118.24,
+      "fee": "倉位累計手續費 1625.9372 USDT",
+      "rr": "開倉 $86,260.00 / 平倉 $86,180.05",
+      "reason": "【Half-A 波動定錨】BTC趨勢看跌，24小時與15分鐘均為負，符合做空條件，並錨定波動率設定止盈止損。避免與現有持倉反向。",
+      "hash": "0x1b46657599bebcf7"
+    },
+    {
+      "id": "POS-356417",
+      "full_id": "3981858434823356417_1791171241115",
+      "timestamp_ms": 1791171241115,
+      "time": "2026-10-05 03:34:01",
+      "market": "crypto",
+      "marketBadge": "📦 歷史倉位 (551.21張)",
+      "asset": "BTC/USDT:USDT",
+      "direction": "做空倉位結算 (SHORT)",
+      "leverage": "100.0x 倉位槓桿",
+      "pool": "平倉張數: 551.21 張合約",
+      "entryExit": "開倉均價 $86,387.72 ➔ 平倉均價 $86,329.98",
+      "roi": "已實現損益 $-157.75 USDT (-3.31%)",
+      "pnl": "倉位結算收益: $-157.75 USDT",
+      "realized_pnl_num": -157.75,
+      "fee": "倉位累計手續費 476.0186 USDT",
+      "rr": "開倉 $86,387.72 / 平倉 $86,329.98",
+      "reason": "【Half-A 波動定錨】BTC趨勢看跌，24小時與15分鐘均為負，符合做空條件，並錨定波動率設定止盈止損。避免與現有持倉反向。",
+      "hash": "0x0abf7bcae78fc867"
     }
   ]
 }
