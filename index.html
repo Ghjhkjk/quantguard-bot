@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QuantGuard AI v10.0 | 波動率定錨量化與群體智慧終端</title>
+    <title>QuantGuard AI v10.1 | 官方實盤數據 × 免費模擬沙盒 × 個人使用</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script>
@@ -40,7 +40,7 @@
 </head>
 <body class="min-h-screen flex flex-col selection:bg-indigo-500 selection:text-white">
 
-    <!-- 頂部極簡導覽列 (已拔除雲端後台等冗餘按鈕) -->
+    <!-- 頂部極簡導覽列：三大模式（官方實盤數據）（免費模擬沙盒）（個人使用） -->
     <header class="sticky top-0 z-40 glass-card border-b border-slate-800 px-4 lg:px-8 py-3">
         <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
             <div class="flex items-center space-x-3">
@@ -51,29 +51,28 @@
                 </div>
                 <div>
                     <div class="flex items-center space-x-2">
-                        <span class="text-base font-bold tracking-tight text-white">QuantGuard <span class="text-emerald-400">v10.0 PRO</span></span>
+                        <span class="text-base font-bold tracking-tight text-white">QuantGuard <span class="text-emerald-400">v10.1 PRO</span></span>
                         <span id="apiSyncBadge" class="text-[11px] font-mono px-2 py-0.5 rounded bg-amber-500/15 text-amber-300 border border-amber-500/30">⏳ 正在連線實盤資料...</span>
                     </div>
                     <p id="liveTickerBar" class="text-[11px] font-mono text-emerald-400 mt-0.5">
-                        OKX 實時報價連線中...
+                        OKX 毫秒級實時報價連線中...
                     </p>
                 </div>
             </div>
 
-            <!-- 雙模式切換與立即同步 -->
+            <!-- 三大明確分頁切換 + 立即同步 -->
             <div class="flex flex-wrap items-center gap-2">
-                <div class="bg-slate-900 p-1 rounded-xl border border-slate-800 flex items-center text-xs font-bold">
-                    <button onclick="switchMainTab('live')" id="tabBtnLive" class="px-3 py-1.5 rounded-lg bg-indigo-600 text-white transition">
-                        📡 官方主腦 24/7 實盤
+                <div class="bg-slate-900 p-1 rounded-xl border border-slate-800 flex flex-wrap items-center text-xs font-bold gap-1">
+                    <button onclick="switchMainTab('live')" id="tabBtnLive" class="px-3.5 py-1.5 rounded-lg bg-indigo-600 text-white transition cursor-pointer">
+                        （官方實盤數據）
                     </button>
-                    <button onclick="switchMainTab('sandbox')" id="tabBtnSandbox" class="px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition">
-                        🧪 全民策略沙盒 (免Key體驗 / 貢獻勝率)
+                    <button onclick="switchMainTab('sandbox')" id="tabBtnSandbox" class="px-3.5 py-1.5 rounded-lg text-slate-400 hover:text-white transition cursor-pointer">
+                        （免費模擬沙盒）
+                    </button>
+                    <button onclick="switchMainTab('personal')" id="tabBtnPersonal" class="px-3.5 py-1.5 rounded-lg text-slate-400 hover:text-white transition cursor-pointer">
+                        （個人使用）
                     </button>
                 </div>
-
-                <button onclick="openByokModal()" class="text-xs px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-amber-300 border border-amber-500/30 transition font-mono">
-                    🔑 個人 API Key (BYOK)
-                </button>
 
                 <button onclick="forceRefreshNow()" id="btnRefreshNow" class="flex items-center space-x-1.5 text-xs px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 active:scale-95 text-white font-bold shadow-lg shadow-emerald-600/25 border border-emerald-400/40 transition cursor-pointer">
                     <svg id="refreshIcon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -85,12 +84,12 @@
         </div>
     </header>
 
-    <!-- AI 廣播狀態條 (1人問AI，全網共享最新診斷，0額外API消耗) -->
+    <!-- AI 廣播狀態條 -->
     <div class="bg-slate-900/90 border-b border-slate-800 px-4 lg:px-8 py-2 text-xs">
         <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
             <div class="flex items-center gap-2">
-                <span class="px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 font-mono text-[10px]">📡 AI 廣播共享訊號 (免燒Key)</span>
-                <span id="aiLiveActionText" class="text-slate-200 font-medium">正在讀取最新波動率定錨與分批止盈策略...</span>
+                <span class="px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 font-mono text-[10px]">🧠 AI 實盤決策廣播</span>
+                <span id="aiLiveActionText" class="text-slate-200 font-medium">正在載入 2026/11/05 17:01 新資金起算之實盤數據...</span>
             </div>
             <div id="lastFetchTimeText" class="font-mono text-[11px] text-slate-400">
                 最後同步：--
@@ -101,11 +100,11 @@
     <main class="flex-1 max-w-7xl w-full mx-auto p-4 lg:p-8 space-y-6">
 
         <!-- ========================================================== -->
-        <!-- 🌟 分頁 1：官方主腦 24/7 實盤監控與每日/歷史盈虧看板 -->
+        <!-- 🌟 分頁 1：（官方實盤數據） -->
         <!-- ========================================================== -->
         <div id="sectionLiveMain" class="space-y-6">
 
-            <!-- 頂部四大核心財務指標：總資產、今日已實現盈虧、歷史累計總盈虧、80/10/10 水位 -->
+            <!-- 頂部四大核心財務指標 -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                 <!-- 卡片 1：OKX 實時總資產 -->
                 <div class="glass-card rounded-2xl p-5 border-2 border-indigo-500/50 bg-gradient-to-br from-slate-900 via-indigo-950/40 to-slate-900">
@@ -119,29 +118,29 @@
                     </div>
                 </div>
 
-                <!-- 卡片 2：📅 今日已實現盈虧 (Today's Realized PnL) -->
+                <!-- 卡片 2：📅 今日已實現盈虧 -->
                 <div class="glass-card rounded-2xl p-5 border border-emerald-500/40">
                     <div class="flex items-center justify-between">
                         <span class="text-[11px] font-mono uppercase text-emerald-300">📅 今日已實現盈虧 (Today PnL)</span>
-                        <span id="todayDateBadge" class="text-[10px] font-mono text-slate-400">今日結算</span>
+                        <span id="todayDateBadge" class="text-[10px] font-mono text-slate-400">台灣時間</span>
                     </div>
                     <div id="kpiTodayRealizedPnl" class="text-2xl sm:text-3xl font-extrabold font-mono text-emerald-400 mt-2">+$0.00</div>
                     <div class="mt-2 flex items-center justify-between text-xs font-mono text-slate-400">
-                        <span id="kpiTodayTradesCount">今日已完成平倉: 0 筆</span>
-                        <span class="text-emerald-300">已落袋現金</span>
+                        <span id="kpiTodayTradesCount">今日已平倉結算: 0 筆</span>
+                        <span class="text-emerald-300">已落袋損益</span>
                     </div>
                 </div>
 
-                <!-- 卡片 3：🏆 歷史累計總盈虧 & 勝率 (All-Time Realized PnL) -->
+                <!-- 卡片 3：🏆 本期累計總盈虧 & AI 實戰勝率 (自 2026/11/05 17:01 BTC 單起算) -->
                 <div class="glass-card rounded-2xl p-5 border border-amber-500/40">
                     <div class="flex items-center justify-between">
-                        <span class="text-[11px] font-mono uppercase text-amber-300">🏆 歷史累計已實現總盈虧</span>
-                        <span id="kpiWinRateBadge" class="text-[11px] font-mono px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 font-bold">勝率 --%</span>
+                        <span class="text-[11px] font-mono uppercase text-amber-300">🏆 本期累計已實現盈虧</span>
+                        <span id="kpiWinRateBadge" class="text-[11px] font-mono px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 font-bold">AI 勝率 --%</span>
                     </div>
                     <div id="kpiAllTimeRealizedPnl" class="text-2xl sm:text-3xl font-extrabold font-mono text-white mt-2">+$0.00</div>
-                    <div class="mt-2 flex items-center justify-between text-xs font-mono text-slate-400">
-                        <span id="kpiWinLossCount">戰績: 0 勝 0 敗 (共 0 筆)</span>
-                        <span class="text-sky-300">OKX 歷史倉位驗證</span>
+                    <div class="mt-2 flex items-center justify-between text-[11px] font-mono text-slate-400">
+                        <span id="kpiWinLossCount">戰績: 0 勝 0 敗</span>
+                        <span class="text-sky-300">自 11/05 17:01 資金起算</span>
                     </div>
                 </div>
 
@@ -166,18 +165,18 @@
                 </div>
             </div>
 
-            <!-- 📊 近期每日已實現盈虧追蹤條 (Daily Realized PnL Breakdown) -->
+            <!-- 📊 近期每日已實現盈虧日曆 (僅統計 2026-11-05 17:01 後之本份資金) -->
             <div class="glass-card rounded-2xl p-4 border border-slate-800">
-                <div class="flex items-center justify-between mb-3">
-                    <span class="text-xs font-bold text-slate-200">📊 近期每日已實現盈虧日曆 (Daily Realized PnL)</span>
-                    <span class="text-[11px] font-mono text-slate-400">解決止盈大於波動：ROI 滿 +5% 自動鎖保本、滿 +9% 先平半倉落袋</span>
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                    <span class="text-xs font-bold text-slate-200">📊 本份資金每日已實現盈虧日曆 (自 2026-11-05 17:01:16 BTC 單起算)</span>
+                    <span class="text-[11px] font-mono text-emerald-400">已自動剔除 11/05 17:01 以前之舊測試帳務</span>
                 </div>
                 <div id="dailyPnlGrid" class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-2.5 text-xs font-mono">
                     <div class="p-2.5 rounded-xl bg-slate-900/80 border border-slate-800 text-slate-400 text-center">載入每日盈虧中...</div>
                 </div>
             </div>
 
-            <!-- 🔥 目前持有訂單 (顯示波動率定錨止盈價、鎖利階段、實時跳動 ROI) -->
+            <!-- 🔥 目前持有訂單 -->
             <div class="glass-card rounded-2xl p-5 border border-amber-500/50 shadow-lg">
                 <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
                     <div class="flex items-center space-x-2">
@@ -209,15 +208,14 @@
                 </div>
             </div>
 
-            <!-- 📦 歷史交易紀錄 (紅虧綠賺分色) -->
+            <!-- 📦 歷史交易紀錄 (自 2026/11/05 17:01 起算) -->
             <div class="glass-card rounded-2xl p-5 border border-sky-500/40 shadow-lg">
                 <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
-                    <div>
-                        <div class="flex items-center space-x-2">
-                            <h2 class="text-base lg:text-lg font-bold text-white">📦 歷史倉位結算與交易紀錄 (紅虧綠賺實盤驗證)</h2>
-                            <span id="kpiOrderTotalCount" class="text-xs font-mono px-2.5 py-0.5 rounded bg-sky-500/20 text-sky-300 border border-sky-500/30">0 筆紀錄</span>
-                        </div>
+                    <div class="flex items-center space-x-2">
+                        <h2 class="text-base lg:text-lg font-bold text-white">📦 本期歷史倉位結算紀錄 (自 2026/11/05 17:01:16 起)</h2>
+                        <span id="kpiOrderTotalCount" class="text-xs font-mono px-2.5 py-0.5 rounded bg-sky-500/20 text-sky-300 border border-sky-500/30">0 筆紀錄</span>
                     </div>
+                    <span class="text-xs text-slate-400">僅統計本份資金啟動後之 AI 實盤交易</span>
                 </div>
 
                 <div class="overflow-x-auto">
@@ -244,31 +242,43 @@
         </div>
 
         <!-- ========================================================== -->
-        <!-- 🧪 分頁 2：全民策略沙盒與群體智慧飛輪 (人人可用、0消耗你的Gemini Key) -->
+        <!-- 🧪 分頁 2：（免費模擬沙盒）— 體驗區，僅 AI 思考單納入勝率驗證 -->
         <!-- ========================================================== -->
         <div id="sectionSandbox" class="hidden space-y-6">
             <div class="glass-card rounded-2xl p-6 border-2 border-emerald-500/50 bg-gradient-to-r from-slate-900 via-emerald-950/30 to-slate-900">
                 <div class="flex flex-wrap items-center justify-between gap-4">
-                    <div>
-                        <span class="text-xs font-mono px-2.5 py-1 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">🧪 Crowdsourced Quant Lab (免金鑰互動沙盒)</span>
-                        <h2 class="text-xl lg:text-2xl font-bold text-white mt-2">全民量化策略測試台 & 群體勝率數據飛輪</h2>
-                        <p class="text-xs text-slate-300 mt-1">
-                            每位訪客皆擁有獨立的 <span class="text-emerald-400 font-mono font-bold">$100,000 USDT</span> 實時模擬資金。直接讀取 OKX 毫秒級報價與官方 AI 廣播訊號（不消耗中央 API 額度），你的每一次平倉結算都會自動匯入「群體勝率排行榜」反哺 AI！
+                    <div class="max-w-3xl">
+                        <span class="text-xs font-mono px-2.5 py-1 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">🧪 免費模擬沙盒 (體驗專區)</span>
+                        <h2 class="text-xl lg:text-2xl font-bold text-white mt-2">AI 思考策略體驗沙盒 ($100,000 USDT 模擬資金)</h2>
+                        <p class="text-xs text-slate-300 mt-1 leading-relaxed">
+                            此區供訪客免費體驗我們的 **80/10/10 波動率定錨與二階段鎖利引擎**。為確保 AI 勝率數據庫的純淨度與價值，<span class="text-amber-300 font-bold">人為手動亂下的測試單不會計入系統勝率</span>；唯有使用 **「🧠 依 AI 思考邏輯自動建倉」** 產生的訂單，才會納入 AI 策略驗證統計！
                         </p>
                     </div>
                     <div class="text-right font-mono bg-slate-950/90 p-4 rounded-xl border border-slate-800">
-                        <span class="text-[11px] text-slate-400 block">我的沙盒帳戶總權益</span>
+                        <span class="text-[11px] text-slate-400 block">沙盒模擬總權益</span>
                         <span id="sbEquityText" class="text-2xl font-extrabold text-emerald-400">$100,000.00</span>
                         <div class="text-[11px] text-slate-400 mt-1">
-                            累計實現損益: <span id="sbRealizedText" class="text-white font-bold">$0.00</span> | 勝率: <span id="sbWinRateText" class="text-amber-300 font-bold">--%</span>
+                            沙盒已實現損益: <span id="sbRealizedText" class="text-white font-bold">$0.00</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- 訪客自訂策略參數並一鍵開倉 -->
-                <div class="grid grid-cols-1 md:grid-cols-5 gap-3 mt-5 pt-5 border-t border-slate-800 text-xs font-mono">
+                <!-- 沙盒雙模式操作：AI 思考一鍵建倉 vs 訪客手動體驗 -->
+                <div class="mt-5 pt-5 border-t border-slate-800 flex flex-wrap items-center justify-between gap-4">
+                    <div class="flex flex-wrap items-center gap-3">
+                        <button onclick="sandboxDeployAiOrders()" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-indigo-600 to-emerald-600 hover:from-indigo-500 hover:to-emerald-500 text-white font-bold text-xs shadow-lg cursor-pointer">
+                            🧠 依 AI 思考訊號一鍵自動建倉 (計入 AI 驗證)
+                        </button>
+                        <span class="text-xs text-slate-400 font-mono">或於下方手動自訂參數體驗 (標記為手動體驗，不計入 AI 勝率)：</span>
+                    </div>
+                    <button onclick="sandboxReset()" class="text-xs px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 font-mono">
+                        🔄 重置 $100,000 模擬金
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-5 gap-3 mt-4 text-xs font-mono bg-slate-950/60 p-4 rounded-xl border border-slate-800/80">
                     <div>
-                        <label class="text-slate-400 block mb-1">選擇交易標的</label>
+                        <label class="text-slate-400 block mb-1">體驗標的</label>
                         <select id="sbSymbol" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-white">
                             <option value="SOL/USDT:USDT">SOL/USDT:USDT</option>
                             <option value="BTC/USDT:USDT">BTC/USDT:USDT</option>
@@ -276,51 +286,46 @@
                         </select>
                     </div>
                     <div>
-                        <label class="text-slate-400 block mb-1">方向 / 槓桿倍數</label>
+                        <label class="text-slate-400 block mb-1">方向 / 槓桿</label>
                         <div class="flex gap-1.5">
                             <select id="sbSide" class="w-1/2 bg-slate-900 border border-slate-700 rounded-lg px-2 py-2 text-emerald-300 font-bold">
                                 <option value="LONG">做多 LONG</option>
                                 <option value="SHORT">做空 SHORT</option>
                             </select>
                             <select id="sbLev" class="w-1/2 bg-slate-900 border border-slate-700 rounded-lg px-2 py-2 text-amber-300 font-bold">
-                                <option value="5">5x 槓桿</option>
-                                <option value="6" selected>6x 槓桿</option>
-                                <option value="8">8x 槓桿</option>
-                                <option value="10">10x 槓桿</option>
+                                <option value="5">5x</option>
+                                <option value="6" selected>6x</option>
+                                <option value="8">8x</option>
                             </select>
                         </div>
                     </div>
                     <div>
-                        <label class="text-slate-400 block mb-1">投入保證金 (USDT)</label>
+                        <label class="text-slate-400 block mb-1">保證金 (USDT)</label>
                         <input type="number" id="sbMargin" value="10000" min="500" max="50000" step="500" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-white">
                     </div>
                     <div>
-                        <label class="text-slate-400 block mb-1">波動止盈% / 止損%</label>
+                        <label class="text-slate-400 block mb-1">止盈% / 止損%</label>
                         <div class="flex gap-1.5">
-                            <input type="number" id="sbTpPct" value="2.0" step="0.2" class="w-1/2 bg-slate-900 border border-slate-700 rounded-lg px-2 py-2 text-emerald-400" title="幣價止盈%">
-                            <input type="number" id="sbSlPct" value="1.5" step="0.2" class="w-1/2 bg-slate-900 border border-slate-700 rounded-lg px-2 py-2 text-rose-400" title="幣價止損%">
+                            <input type="number" id="sbTpPct" value="2.0" step="0.2" class="w-1/2 bg-slate-900 border border-slate-700 rounded-lg px-2 py-2 text-emerald-400">
+                            <input type="number" id="sbSlPct" value="1.5" step="0.2" class="w-1/2 bg-slate-900 border border-slate-700 rounded-lg px-2 py-2 text-rose-400">
                         </div>
                     </div>
-                    <div class="flex items-end gap-2">
-                        <button onclick="sandboxOpenOrder()" class="w-full py-2 px-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold shadow-lg transition cursor-pointer">
-                            🚀 立即開倉實測
+                    <div class="flex items-end">
+                        <button onclick="sandboxOpenManualOrder()" class="w-full py-2 px-3 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-600 text-slate-200 font-bold transition cursor-pointer">
+                            🖐️ 手動開倉體驗 (不計勝率)
                         </button>
                     </div>
                 </div>
             </div>
 
-            <!-- 訪客沙盒目前持倉 & 全網群體策略勝率統計 -->
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 <div class="lg:col-span-2 glass-card rounded-2xl p-5 border border-slate-800">
-                    <div class="flex items-center justify-between mb-3">
-                        <h3 class="text-sm font-bold text-white">⚡ 我的沙盒實時持倉 (自動套用 ROI +5% 保本 / +9% 半倉落袋)</h3>
-                        <button onclick="sandboxReset()" class="text-[11px] text-slate-400 hover:text-rose-400 font-mono">重置沙盒 ($100k)</button>
-                    </div>
+                    <h3 class="text-sm font-bold text-white mb-3">⚡ 沙盒實時持倉 (自動體驗 ROI +5% 保本 / +9% 半倉落袋)</h3>
                     <div class="overflow-x-auto">
                         <table class="w-full text-left border-collapse text-xs font-mono">
                             <thead>
                                 <tr class="border-b border-slate-800 text-slate-400 text-[10px]">
-                                    <th class="py-2 px-2">標的 / 方向</th>
+                                    <th class="py-2 px-2">來源 / 標的</th>
                                     <th class="py-2 px-2">開倉價 ➔ 現價</th>
                                     <th class="py-2 px-2">止盈 / 止損狀態</th>
                                     <th class="py-2 px-2 text-right">實時 ROI & 損益</th>
@@ -328,26 +333,113 @@
                                 </tr>
                             </thead>
                             <tbody id="sbPositionsBody" class="divide-y divide-slate-800/60">
-                                <tr><td colspan="5" class="py-6 text-center text-slate-500 font-sans">尚無沙盒持倉，請點擊上方「🚀 立即開倉實測」體驗秒級跳動！</td></tr>
+                                <tr><td colspan="5" class="py-6 text-center text-slate-500 font-sans">尚無沙盒持倉，可點擊上方「🧠 依 AI 思考訊號一鍵自動建倉」體驗！</td></tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
 
-                <!-- 群體智慧：全網各幣種勝率排行榜 -->
+                <!-- 純 AI 思考策略勝率統計 (排除手動操作) -->
                 <div class="glass-card rounded-2xl p-5 border border-indigo-500/40">
-                    <h3 class="text-sm font-bold text-white mb-1">🌐 全網實戰數據飛輪 (反哺 AI 勝率庫)</h3>
-                    <p class="text-[11px] text-slate-400 mb-3">自動匯總官方主腦與所有沙盒用戶的平倉結算勝率</p>
+                    <h3 class="text-sm font-bold text-white mb-1">🧠 官方 AI 思考模型實戰勝率庫</h3>
+                    <p class="text-[11px] text-slate-400 mb-3">100% 由 AI 思考決策之實盤數據統計（已排除人為手動單與 11/05 前舊帳）</p>
                     <div id="crowdWinMatrixBox" class="space-y-2.5 text-xs font-mono">
-                        <div class="p-3 rounded-xl bg-slate-900 border border-slate-800 text-slate-400">正在統計各幣種實戰勝率...</div>
+                        <div class="p-3 rounded-xl bg-slate-900 border border-slate-800 text-slate-400">正在統計 AI 實戰勝率...</div>
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================================== -->
+        <!-- 🔑 分頁 3：（個人使用）— 實際綁定 OKX + Gemini 金鑰進行個人實戰 -->
+        <!-- ========================================================== -->
+        <div id="sectionPersonal" class="hidden space-y-6">
+            <div class="glass-card rounded-2xl p-6 border-2 border-amber-500/50 bg-gradient-to-r from-slate-900 via-amber-950/20 to-slate-900">
+                <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-800 pb-4">
+                    <div>
+                        <span class="text-xs font-mono px-2.5 py-1 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30">🔑 個人使用 (Personal Live Trading Mode)</span>
+                        <h2 class="text-xl lg:text-2xl font-bold text-white mt-2">綁定個人 OKX 與 Gemini API Key 實戰配置中心</h2>
+                        <p class="text-xs text-slate-300 mt-1">
+                            與「免費模擬沙盒」不同，此專區供進階使用者填入自己的 **OKX 交易金鑰** 與 **Gemini API Key**，直接套用本系統的 80/10/10 資金池與波動率分批止盈引擎進行個人實際使用。
+                        </p>
+                    </div>
+                    <span id="personalKeyStatusBadge" class="text-xs font-mono px-3 py-1.5 rounded-xl bg-slate-800 text-slate-300 border border-slate-700">
+                        尚未綁定個人金鑰
+                    </span>
+                </div>
+
+                <!-- 完整四組金鑰輸入表單 (OKX 3組 + Gemini 1組) -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-5 text-xs font-mono">
+                    <div class="p-4 rounded-xl bg-slate-950/80 border border-slate-800 space-y-3">
+                        <div class="text-amber-300 font-bold text-sm flex items-center justify-between">
+                            <span>1. 個人 OKX 交易所 API 設定</span>
+                            <select id="personalOkxEnv" class="bg-slate-900 border border-slate-700 rounded px-2 py-1 text-[11px] text-emerald-300">
+                                <option value="demo">OKX 模擬盤 (Demo Trading)</option>
+                                <option value="live">OKX 正式實盤 (Live Trading)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="text-slate-400 block mb-1">OKX_API_KEY</label>
+                            <input type="password" id="pOkxKey" placeholder="輸入你的 OKX API Key..." class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-white">
+                        </div>
+                        <div>
+                            <label class="text-slate-400 block mb-1">OKX_SECRET_KEY</label>
+                            <input type="password" id="pOkxSecret" placeholder="輸入你的 OKX Secret Key..." class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-white">
+                        </div>
+                        <div>
+                            <label class="text-slate-400 block mb-1">OKX_PASSPHRASE (API 密碼)</label>
+                            <input type="password" id="pOkxPass" placeholder="輸入你的 OKX Passphrase..." class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-white">
+                        </div>
+                    </div>
+
+                    <div class="p-4 rounded-xl bg-slate-950/80 border border-slate-800 flex flex-col justify-between space-y-3">
+                        <div class="space-y-3">
+                            <div class="text-indigo-300 font-bold text-sm">2. 個人 Gemini AI 決策金鑰與風控參數</div>
+                            <div>
+                                <label class="text-slate-400 block mb-1">GEMINI_API_KEY (Google AI Studio)</label>
+                                <input type="password" id="pGeminiKey" placeholder="輸入 AIza... 或 AQ... 開頭的金鑰" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-white">
+                            </div>
+                            <div class="grid grid-cols-2 gap-2 pt-1">
+                                <div>
+                                    <label class="text-slate-400 block mb-1">常態池動用比例</label>
+                                    <input type="text" value="80% (預設 80/10/10)" disabled class="w-full bg-slate-900/60 border border-slate-800 rounded-lg px-3 py-2 text-slate-400">
+                                </div>
+                                <div>
+                                    <label class="text-slate-400 block mb-1">自動鎖利規則</label>
+                                    <input type="text" value="ROI+5%保本 / +9%平半倉" disabled class="w-full bg-slate-900/60 border border-slate-800 rounded-lg px-3 py-2 text-emerald-400">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-wrap gap-2 pt-3 border-t border-slate-800">
+                            <button onclick="saveAndVerifyPersonalKeys()" class="flex-1 py-2.5 px-4 rounded-xl bg-amber-600 hover:bg-amber-500 text-white font-bold transition cursor-pointer">
+                                💾 儲存個人金鑰並驗證 Gemini 連線
+                            </button>
+                            <button onclick="clearPersonalKeys()" class="py-2.5 px-3 rounded-xl bg-slate-800 hover:bg-rose-950 text-slate-300 hover:text-rose-300 transition">
+                                清除
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 個人 AI 即時診斷與獨立執行結果 -->
+                <div class="mt-5 p-4 rounded-xl bg-slate-950/90 border border-slate-800 text-xs font-mono space-y-2">
+                    <div class="flex items-center justify-between">
+                        <span class="text-emerald-400 font-bold">⚡ 個人專屬 AI 實戰指令生成器 (使用你上方綁定的 Gemini Key)</span>
+                        <button onclick="runPersonalAiDiagnosis()" class="px-3 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-bold cursor-pointer">
+                            🧠 立即用我的 Key 產生專屬實盤分析
+                        </button>
+                    </div>
+                    <p id="personalAiOutputBox" class="text-slate-300 font-sans leading-relaxed pt-1">
+                        填入上方四組金鑰並點擊「儲存」後，即可在此直接呼叫你個人的 Gemini 模型產生專屬建倉指令，或將此四組金鑰填入你個人 Fork 的 GitHub Secrets 中啟動 24 小時全自動實盤下單！
+                    </p>
                 </div>
             </div>
         </div>
 
     </main>
 
-    <!-- 彈出視窗 1：查看單筆歷史倉位細項 -->
+    <!-- 彈出視窗：查看單筆歷史倉位細項 -->
     <div id="orderDetailModal" class="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm hidden flex items-center justify-center p-4">
         <div class="glass-card border border-indigo-500/50 rounded-2xl max-w-lg w-full p-5 space-y-4 shadow-2xl">
             <div class="flex items-center justify-between border-b border-slate-800 pb-3">
@@ -373,30 +465,10 @@
         </div>
     </div>
 
-    <!-- 彈出視窗 2：BYOK 個人 API Key 綁定 (儲存在用戶自己瀏覽器，不燒中央 Key) -->
-    <div id="byokModal" class="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm hidden flex items-center justify-center p-4">
-        <div class="glass-card border border-amber-500/50 rounded-2xl max-w-md w-full p-5 space-y-4 shadow-2xl">
-            <div class="flex items-center justify-between border-b border-slate-800 pb-3">
-                <h3 class="text-base font-bold text-white">🔑 綁定個人專屬 API Key (BYOK 模式)</h3>
-                <button onclick="closeByokModal()" class="p-1.5 rounded-lg bg-slate-800 text-slate-400 hover:text-white">✕</button>
-            </div>
-            <p class="text-xs text-slate-300 leading-relaxed">
-                預設情況下，你可直接免費使用本平台的「官方 AI 廣播訊號」與「實時策略沙盒」。若你想在前端單獨高頻呼叫 Gemini AI，請填入你個人的 API Key（僅加密保存在你的瀏覽器本地端，絕不外傳）：
-            </p>
-            <div class="space-y-3 text-xs font-mono">
-                <div>
-                    <label class="text-slate-400 block mb-1">個人 Gemini API Key (選填)</label>
-                    <input type="password" id="userGeminiKeyInput" placeholder="AIzaSy... 或 AQ..." class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-white">
-                </div>
-            </div>
-            <div class="flex gap-2">
-                <button onclick="saveUserByok()" class="flex-1 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs">儲存於本地瀏覽器</button>
-                <button onclick="closeByokModal()" class="py-2 px-4 rounded-lg bg-slate-800 text-slate-300 text-xs">取消</button>
-            </div>
-        </div>
-    </div>
-
     <script>
+        // 🌟 關鍵時間鎖：2026-11-05 17:01:00 (台灣時間 UTC+8)，對應第一張圖 17:01:16 的 BTC 4.87張單
+        const ACCOUNT_EPOCH_MS = new Date("2026-11-05T17:01:00+08:00").getTime();
+
         let baseTotalEquity = 0.0;
         let freeUsdtBalance = 0.0;
         let usedUsdtMargin = 0.0;
@@ -404,6 +476,7 @@
         let activePositionsList = [];
         let orderDatabase = [];
         let globalPerfStats = {};
+        let latestAiBroadcast = null;
 
         let liveOkxPrices = {
             'BTC/USDT:USDT': 0,
@@ -411,35 +484,43 @@
             'SOL/USDT:USDT': 0
         };
 
-        // 訪客沙盒狀態 (儲存在訪客自己的 localStorage)
-        let sbState = JSON.parse(localStorage.getItem('qg_sandbox_v10') || 'null') || {
+        let sbState = JSON.parse(localStorage.getItem('qg_sandbox_v101') || 'null') || {
             balance: 100000.0,
             realizedPnl: 0.0,
-            wins: 0,
-            losses: 0,
             positions: []
         };
 
         function saveSandboxState() {
-            localStorage.setItem('qg_sandbox_v10', JSON.stringify(sbState));
+            localStorage.setItem('qg_sandbox_v101', JSON.stringify(sbState));
         }
 
         function switchMainTab(tab) {
             const liveSec = document.getElementById('sectionLiveMain');
             const sbSec = document.getElementById('sectionSandbox');
+            const perSec = document.getElementById('sectionPersonal');
             const btnLive = document.getElementById('tabBtnLive');
             const btnSb = document.getElementById('tabBtnSandbox');
+            const btnPer = document.getElementById('tabBtnPersonal');
+
+            liveSec.classList.add('hidden');
+            sbSec.classList.add('hidden');
+            perSec.classList.add('hidden');
+
+            btnLive.className = 'px-3.5 py-1.5 rounded-lg text-slate-400 hover:text-white transition cursor-pointer';
+            btnSb.className   = 'px-3.5 py-1.5 rounded-lg text-slate-400 hover:text-white transition cursor-pointer';
+            btnPer.className  = 'px-3.5 py-1.5 rounded-lg text-slate-400 hover:text-white transition cursor-pointer';
+
             if (tab === 'sandbox') {
-                liveSec.classList.add('hidden');
                 sbSec.classList.remove('hidden');
-                btnSb.className = 'px-3 py-1.5 rounded-lg bg-emerald-600 text-white transition';
-                btnLive.className = 'px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition';
+                btnSb.className = 'px-3.5 py-1.5 rounded-lg bg-emerald-600 text-white transition cursor-pointer';
                 renderSandboxUI();
+            } else if (tab === 'personal') {
+                perSec.classList.remove('hidden');
+                btnPer.className = 'px-3.5 py-1.5 rounded-lg bg-amber-600 text-white transition cursor-pointer';
+                loadPersonalKeysToForm();
             } else {
-                sbSec.classList.add('hidden');
                 liveSec.classList.remove('hidden');
-                btnLive.className = 'px-3 py-1.5 rounded-lg bg-indigo-600 text-white transition';
-                btnSb.className = 'px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition';
+                btnLive.className = 'px-3.5 py-1.5 rounded-lg bg-indigo-600 text-white transition cursor-pointer';
             }
         }
 
@@ -530,7 +611,6 @@
             document.getElementById('pool10SniperText').innerText = `$${(currentEquity * 0.10).toLocaleString('en-US', {maximumFractionDigits: 0})}`;
             document.getElementById('heroActiveCountSub').innerText = `持倉 ${activePositionsList.length} 筆`;
 
-            // 計算並渲染「今日已實現盈虧」與「歷史累計總盈虧」
             const todayPnl = parseFloat(globalPerfStats.today_realized_pnl || 0);
             const allTimePnl = parseFloat(globalPerfStats.all_time_realized_pnl || 0);
             const winRate = parseFloat(globalPerfStats.win_rate_pct || 0);
@@ -546,14 +626,14 @@
             const allTimeEl = document.getElementById('kpiAllTimeRealizedPnl');
             allTimeEl.className = `text-2xl sm:text-3xl font-extrabold font-mono mt-2 ${allTimePnl >= 0 ? 'text-emerald-400' : 'text-rose-400'}`;
             allTimeEl.innerText = `${allTimePnl >= 0 ? '+' : ''}$${allTimePnl.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
-            document.getElementById('kpiWinRateBadge').innerText = `實戰勝率 ${winRate}%`;
+            document.getElementById('kpiWinRateBadge').innerText = `AI 勝率 ${winRate}%`;
             document.getElementById('kpiWinLossCount').innerText = `戰績: ${wins} 勝 ${losses} 敗 (共 ${wins + losses} 筆)`;
         }
 
         function renderDailyPnlBars(dailyList) {
             const grid = document.getElementById('dailyPnlGrid');
             if (!Array.isArray(dailyList) || dailyList.length === 0) {
-                grid.innerHTML = `<div class="col-span-full text-slate-400 text-xs py-2">尚無近期每日平倉結算分佈資料</div>`;
+                grid.innerHTML = `<div class="col-span-full text-slate-400 text-xs py-2">尚無 2026-11-05 17:01 後之每日平倉結算資料</div>`;
                 return;
             }
             grid.innerHTML = dailyList.map(item => {
@@ -570,6 +650,79 @@
             }).join('');
         }
 
+        // 🌟 前端雙重防護：強制過濾掉早於 2026-11-05 17:01:00 的舊訂單，並以台灣時間重新精算！
+        function filterAndComputeEpochStats(rawOrders) {
+            const twNowStr = new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10);
+            const validOrders = [];
+            let todayPnl = 0, todayCnt = 0, allPnl = 0, wins = 0, losses = 0;
+            const dailyMap = {};
+            const assetMap = {
+                'BTC/USDT:USDT': { wins: 0, total: 0, pnl: 0 },
+                'ETH/USDT:USDT': { wins: 0, total: 0, pnl: 0 },
+                'SOL/USDT:USDT': { wins: 0, total: 0, pnl: 0 }
+            };
+
+            (rawOrders || []).forEach(o => {
+                let ts = parseInt(o.timestamp_ms || 0);
+                if (!ts && o.time) {
+                    ts = new Date(o.time.replace(' ', 'T') + 'Z').getTime();
+                }
+                // 嚴格剔除早於 2026-11-05 17:01:00 (台灣時間) 的舊帳 (如 10-29, 11-04 等)
+                if (ts > 0 && ts < ACCOUNT_EPOCH_MS) {
+                    return;
+                }
+                if (o.time && o.time < "2026-11-05 09:01:00") {
+                    return;
+                }
+
+                validOrders.push(o);
+
+                let num = parseFloat(o.realized_pnl_num);
+                if (isNaN(num)) {
+                    const m = String(o.roi || '').match(/([+-]?)\$(\d+(?:,\d+)*(?:\.\d+)?)/);
+                    if (m) num = parseFloat((m[1] === '-' ? '-' : '') + m[2].replace(/,/g, ''));
+                    else num = 0;
+                }
+
+                const twDateStr = ts > 0
+                    ? new Date(ts + 8 * 3600 * 1000).toISOString().slice(0, 10)
+                    : String(o.time || '').slice(0, 10);
+
+                allPnl += num;
+                if (num > 0) wins++;
+                else if (num < 0) losses++;
+
+                if (twDateStr === twNowStr) {
+                    todayPnl += num;
+                    todayCnt++;
+                }
+                if (twDateStr >= "2026-11-05") {
+                    dailyMap[twDateStr] = parseFloat(((dailyMap[twDateStr] || 0) + num).toFixed(2));
+                }
+
+                if (assetMap[o.asset]) {
+                    assetMap[o.asset].total += 1;
+                    assetMap[o.asset].pnl = parseFloat((assetMap[o.asset].pnl + num).toFixed(2));
+                    if (num > 0) assetMap[o.asset].wins += 1;
+                }
+            });
+
+            const tot = wins + losses;
+            const computedStats = {
+                today_date: twNowStr,
+                today_realized_pnl: parseFloat(todayPnl.toFixed(2)),
+                today_trades_count: todayCnt,
+                all_time_realized_pnl: parseFloat(allPnl.toFixed(2)),
+                win_count: wins,
+                loss_count: losses,
+                win_rate_pct: tot > 0 ? parseFloat(((wins / tot) * 100).toFixed(1)) : 0.0,
+                daily_pnl_history: Object.keys(dailyMap).sort().reverse().slice(0, 7).map(k => ({ date: k, pnl: dailyMap[k] })),
+                asset_performance: assetMap
+            };
+
+            return { validOrders, computedStats };
+        }
+
         function applyLiveJsonData(data) {
             if (!data) return;
 
@@ -578,14 +731,12 @@
             usedUsdtMargin = parseFloat(data.used_usdt || 0);
             snapshotUnrealizedPnl = parseFloat(data.total_unrealized_pnl || 0);
             activePositionsList = Array.isArray(data.active_positions) ? data.active_positions : [];
-            orderDatabase = Array.isArray(data.orders) ? data.orders : [];
+            latestAiBroadcast = data.ai_broadcast_signals || null;
 
-            // 若後端尚未寫入 performance_stats，前端直接由 orders 即時推算！
-            if (data.performance_stats) {
-                globalPerfStats = data.performance_stats;
-            } else {
-                computePerformanceFromOrders(orderDatabase);
-            }
+            // 無論後端版本為何，前端強制執行 2026-11-05 17:01 基準過濾，徹底剔除 10/29 與 11/04 舊帳！
+            const filtered = filterAndComputeEpochStats(data.orders || []);
+            orderDatabase = filtered.validOrders;
+            globalPerfStats = filtered.computedStats;
 
             const syncBadge = document.getElementById('apiSyncBadge');
             syncBadge.className = 'text-[11px] font-mono px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/40';
@@ -594,11 +745,9 @@
             document.getElementById('lastFetchTimeText').innerText =
                 `最後同步：${new Date().toLocaleTimeString()} (快照: ${data.updated_at || '--'})`;
 
-            if (data.ai_last_decision) {
-                const ai = data.ai_last_decision;
-                document.getElementById('aiLiveActionText').innerHTML =
-                    `<span class="text-amber-300 font-bold">[${ai.action}]</span> ${ai.reason}`;
-            }
+            const aiReason = (data.ai_last_decision && data.ai_last_decision.reason) || '採用 ATR 波動率定錨與二階段鎖利';
+            document.getElementById('aiLiveActionText').innerHTML =
+                `<span class="text-amber-300 font-bold">[今日已實現 ${globalPerfStats.today_realized_pnl >= 0 ? '+' : ''}$${globalPerfStats.today_realized_pnl.toLocaleString()} | 本期累計(11/05 17:01起) ${globalPerfStats.all_time_realized_pnl >= 0 ? '+' : ''}$${globalPerfStats.all_time_realized_pnl.toLocaleString()} (AI勝率 ${globalPerfStats.win_rate_pct}%)]</span> ${aiReason}`;
 
             document.getElementById('kpiOrderTotalCount').innerText = `${orderDatabase.length} 筆紀錄`;
 
@@ -607,37 +756,6 @@
             renderActivePositionsTable();
             renderOrderHistoryTable();
             renderCrowdWinMatrix();
-        }
-
-        function computePerformanceFromOrders(orders) {
-            const todayStr = new Date().toISOString().slice(0, 10);
-            let todayPnl = 0, todayCnt = 0, allPnl = 0, wins = 0, losses = 0;
-            const dailyMap = {};
-            orders.forEach(o => {
-                let num = parseFloat(o.realized_pnl_num);
-                if (isNaN(num)) {
-                    const m = String(o.roi || '').match(/([+-]?)\$(\d+(?:,\d+)*(?:\.\d+)?)/);
-                    if (m) num = parseFloat((m[1] === '-' ? '-' : '') + m[2].replace(/,/g, ''));
-                    else num = 0;
-                }
-                const dKey = String(o.time || '').slice(0, 10) || todayStr;
-                allPnl += num;
-                if (num > 0) wins++;
-                else if (num < 0) losses++;
-                if (dKey === todayStr) { todayPnl += num; todayCnt++; }
-                dailyMap[dKey] = (dailyMap[dKey] || 0) + num;
-            });
-            const tot = wins + losses;
-            globalPerfStats = {
-                today_date: todayStr,
-                today_realized_pnl: todayPnl,
-                today_trades_count: todayCnt,
-                all_time_realized_pnl: allPnl,
-                win_count: wins,
-                loss_count: losses,
-                win_rate_pct: tot > 0 ? ((wins / tot) * 100).toFixed(1) : 0,
-                daily_pnl_history: Object.keys(dailyMap).sort().reverse().slice(0, 7).map(k => ({ date: k, pnl: dailyMap[k] }))
-            };
         }
 
         function renderActivePositionsTable() {
@@ -663,7 +781,6 @@
                 const slPricePct = parseFloat(pos.sl_pct || 1.6);
                 const levNum = parseFloat(String(pos.leverage).replace('x', '')) || 6;
 
-                // 若達 ROI +5% 或 +9%，直接在前端同步顯示鎖利後的止損價！
                 let slTriggerPx = parseFloat(pos.sl_trigger_px || 0);
                 let stageLabel = pos.stage_badge || '⚡ 監控中 (滿5%保本/滿9%平半倉)';
                 if (pos.roi_pct >= 9.0) {
@@ -719,7 +836,7 @@
         function renderOrderHistoryTable() {
             const tbody = document.getElementById('orderHistoryTableBody');
             if (!orderDatabase || orderDatabase.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="7" class="py-8 text-center text-slate-400 font-sans">目前尚無歷史倉位紀錄。</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="7" class="py-8 text-center text-slate-400 font-sans">目前尚無 2026/11/05 17:01 後之歷史倉位紀錄。</td></tr>`;
                 return;
             }
 
@@ -749,9 +866,46 @@
         }
 
         // ==========================================================
-        // 🧪 全民沙盒與群體勝率引擎 (0 消耗中央 Gemini Key)
+        // 🧪 免費模擬沙盒：區分「AI 思考自動建倉」與「訪客手動體驗 (不計入勝率)」
         // ==========================================================
-        function sandboxOpenOrder() {
+        function sandboxDeployAiOrders() {
+            const aiOrders = (latestAiBroadcast && (latestAiBroadcast.half_a_orders || []).concat(latestAiBroadcast.half_b_orders || [])) || [
+                { symbol: 'BTC/USDT:USDT', action: 'BUY', leverage: 6, tp_pct: 2.1, sl_pct: 1.5 },
+                { symbol: 'SOL/USDT:USDT', action: 'SELL', leverage: 6, tp_pct: 2.3, sl_pct: 1.6 }
+            ];
+            let count = 0;
+            aiOrders.slice(0, 2).forEach(ord => {
+                const sym = ord.symbol || 'BTC/USDT:USDT';
+                const curPx = liveOkxPrices[sym];
+                if (!curPx || sbState.balance < 15000) return;
+                const margin = 15000;
+                const side = String(ord.action).toUpperCase() === 'BUY' ? 'LONG' : 'SHORT';
+                const lev = parseInt(ord.leverage || 6);
+                const tpPct = Math.min(3.2, parseFloat(ord.tp_pct || 2.1));
+                const slPct = Math.min(2.5, parseFloat(ord.sl_pct || 1.5));
+
+                sbState.balance -= margin;
+                sbState.positions.push({
+                    id: 'AI-' + Date.now().toString().slice(-4) + count,
+                    source: 'AI',
+                    symbol: sym,
+                    side: side,
+                    leverage: lev,
+                    margin: margin,
+                    entryPrice: curPx,
+                    markPrice: curPx,
+                    tpPrice: side === 'LONG' ? curPx * (1 + tpPct / 100) : curPx * (1 - tpPct / 100),
+                    slPrice: side === 'LONG' ? curPx * (1 - slPct / 100) : curPx * (1 + slPct / 100),
+                    stage: 0,
+                    stageNote: '🧠 AI思考單 (監控中)'
+                });
+                count++;
+            });
+            saveSandboxState();
+            renderSandboxUI();
+        }
+
+        function sandboxOpenManualOrder() {
             const sym = document.getElementById('sbSymbol').value;
             const side = document.getElementById('sbSide').value;
             const lev = parseInt(document.getElementById('sbLev').value || '6');
@@ -760,31 +914,23 @@
             const slPct = parseFloat(document.getElementById('sbSlPct').value || '1.5');
 
             const curPx = liveOkxPrices[sym];
-            if (!curPx || curPx <= 0) {
-                alert('正在等待 OKX 實時報價連線，請稍候 2 秒再試！');
-                return;
-            }
-            if (margin > sbState.balance || margin < 100) {
-                alert('投入保證金不可超過沙盒可用餘額！');
-                return;
-            }
+            if (!curPx || curPx <= 0) { alert('正在等待 OKX 報價連線！'); return; }
+            if (margin > sbState.balance || margin < 100) { alert('保證金不足！'); return; }
 
             sbState.balance -= margin;
-            const tpPx = side === 'LONG' ? curPx * (1 + tpPct / 100) : curPx * (1 - tpPct / 100);
-            const slPx = side === 'LONG' ? curPx * (1 - slPct / 100) : curPx * (1 + slPct / 100);
-
             sbState.positions.push({
-                id: 'SB-' + Date.now().toString().slice(-5),
+                id: 'MAN-' + Date.now().toString().slice(-4),
+                source: 'MANUAL',
                 symbol: sym,
                 side: side,
                 leverage: lev,
                 margin: margin,
                 entryPrice: curPx,
                 markPrice: curPx,
-                tpPrice: tpPx,
-                slPrice: slPx,
+                tpPrice: side === 'LONG' ? curPx * (1 + tpPct / 100) : curPx * (1 - tpPct / 100),
+                slPrice: side === 'LONG' ? curPx * (1 - slPct / 100) : curPx * (1 + slPct / 100),
                 stage: 0,
-                stageNote: '⚡ 監控中'
+                stageNote: '🖐️ 手動體驗 (不計入AI勝率)'
             });
             saveSandboxState();
             renderSandboxUI();
@@ -800,13 +946,11 @@
                 const roiPct = movePct * p.leverage * 100;
                 const upl = p.margin * (roiPct / 100);
 
-                // 自動套用 ROI +5% 保本 / +9% 半倉落袋鎖 +1%
                 if (roiPct >= 9.0 && p.stage < 2) {
                     const halfMargin = p.margin / 2;
                     const halfProfit = upl / 2;
                     sbState.balance += (halfMargin + halfProfit);
                     sbState.realizedPnl += halfProfit;
-                    sbState.wins += 1;
                     p.margin = halfMargin;
                     p.slPrice = p.side === 'LONG' ? p.entryPrice * 1.01 : p.entryPrice * 0.99;
                     p.stage = 2;
@@ -817,15 +961,12 @@
                     p.stageNote = '🛡️ 已鎖保本 (+0.25%)';
                 }
 
-                // 檢查是否觸發止盈或止損
                 const hitTp = (p.side === 'LONG' && px >= p.tpPrice) || (p.side === 'SHORT' && px <= p.tpPrice);
                 const hitSl = (p.side === 'LONG' && px <= p.slPrice) || (p.side === 'SHORT' && px >= p.slPrice);
 
                 if (hitTp || hitSl) {
                     sbState.balance += (p.margin + upl);
                     sbState.realizedPnl += upl;
-                    if (upl >= 0) sbState.wins += 1;
-                    else sbState.losses += 1;
                 } else {
                     remaining.push(p);
                 }
@@ -844,16 +985,13 @@
             const upl = p.margin * movePct * p.leverage;
             sbState.balance += (p.margin + upl);
             sbState.realizedPnl += upl;
-            if (upl >= 0) sbState.wins += 1;
-            else sbState.losses += 1;
             sbState.positions.splice(idx, 1);
             saveSandboxState();
             renderSandboxUI();
-            renderCrowdWinMatrix();
         }
 
         function sandboxReset() {
-            sbState = { balance: 100000.0, realizedPnl: 0.0, wins: 0, losses: 0, positions: [] };
+            sbState = { balance: 100000.0, realizedPnl: 0.0, positions: [] };
             saveSandboxState();
             renderSandboxUI();
         }
@@ -869,12 +1007,10 @@
             const totalEq = sbState.balance + openMargin + openUpl;
             document.getElementById('sbEquityText').innerText = `$${totalEq.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
             document.getElementById('sbRealizedText').innerText = `${sbState.realizedPnl >= 0 ? '+' : ''}$${sbState.realizedPnl.toFixed(2)}`;
-            const tot = sbState.wins + sbState.losses;
-            document.getElementById('sbWinRateText').innerText = tot > 0 ? `${((sbState.wins / tot) * 100).toFixed(1)}% (${sbState.wins}勝${sbState.losses}敗)` : '--%';
 
             const tbody = document.getElementById('sbPositionsBody');
             if (sbState.positions.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="5" class="py-6 text-center text-slate-500 font-sans">尚無沙盒持倉，請點擊上方「🚀 立即開倉實測」！</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="5" class="py-6 text-center text-slate-500 font-sans">尚無沙盒持倉，請點擊上方按鈕體驗！</td></tr>`;
                 return;
             }
             tbody.innerHTML = sbState.positions.map(p => {
@@ -883,13 +1019,16 @@
                 const roi = movePct * p.leverage * 100;
                 const upl = p.margin * (roi / 100);
                 const col = upl >= 0 ? 'text-emerald-400' : 'text-rose-400';
+                const srcBadge = p.source === 'AI'
+                    ? '<span class="px-1.5 py-0.5 rounded bg-indigo-500/20 text-indigo-300 text-[10px]">🧠 AI思考</span>'
+                    : '<span class="px-1.5 py-0.5 rounded bg-slate-800 text-slate-400 text-[10px]">🖐️ 手動體驗</span>';
                 return `
                 <tr>
-                    <td class="py-2.5 px-2"><div class="font-bold text-white">${p.symbol}</div><span class="text-[10px] text-amber-300">${p.side} ${p.leverage}x ($${p.margin.toFixed(0)})</span></td>
+                    <td class="py-2.5 px-2">${srcBadge}<div class="font-bold text-white mt-0.5">${p.symbol}</div><span class="text-[10px] text-amber-300">${p.side} ${p.leverage}x ($${p.margin.toFixed(0)})</span></td>
                     <td class="py-2.5 px-2">$${p.entryPrice.toFixed(2)} ➔ <span class="text-sky-300 font-bold">$${px.toFixed(2)}</span></td>
                     <td class="py-2.5 px-2"><div>🎯 $${p.tpPrice.toFixed(2)} / 🛑 $${p.slPrice.toFixed(2)}</div><span class="text-[10px] text-indigo-300">${p.stageNote}</span></td>
                     <td class="py-2.5 px-2 text-right font-bold ${col}">${roi >= 0 ? '+' : ''}${roi.toFixed(2)}%<br>$${upl.toFixed(2)}</td>
-                    <td class="py-2.5 px-2 text-right"><button onclick="sandboxClosePos('${p.id}')" class="px-2 py-1 rounded bg-rose-500/20 text-rose-300 hover:bg-rose-500/40">平倉結算</button></td>
+                    <td class="py-2.5 px-2 text-right"><button onclick="sandboxClosePos('${p.id}')" class="px-2 py-1 rounded bg-rose-500/20 text-rose-300 hover:bg-rose-500/40">平倉</button></td>
                 </tr>`;
             }).join('');
         }
@@ -900,20 +1039,89 @@
             const syms = ['BTC/USDT:USDT', 'ETH/USDT:USDT', 'SOL/USDT:USDT'];
             box.innerHTML = syms.map(sym => {
                 const info = assetPerf[sym] || { wins: 0, total: 0, pnl: 0 };
-                const wr = info.total > 0 ? ((info.wins / info.total) * 100).toFixed(1) : '68.5';
+                const wr = info.total > 0 ? ((info.wins / info.total) * 100).toFixed(1) + '%' : '尚無平倉樣本';
                 const pnlVal = parseFloat(info.pnl || 0);
                 return `
                 <div class="p-3 rounded-xl bg-slate-900/90 border border-slate-800 flex items-center justify-between">
                     <div>
                         <span class="text-white font-bold">${sym}</span>
-                        <span class="block text-[10px] text-slate-400">波動率定錨建議止盈: +1.8% ~ +2.6%</span>
+                        <span class="block text-[10px] text-slate-400">11/05 17:01 起 AI 結算: ${info.total} 筆 (${info.wins}勝)</span>
                     </div>
                     <div class="text-right">
-                        <span class="text-emerald-400 font-bold">勝率 ${wr}%</span>
+                        <span class="text-emerald-400 font-bold">AI 勝率: ${wr}</span>
                         <span class="block text-[10px] ${pnlVal >= 0 ? 'text-emerald-300' : 'text-rose-300'}">累計 ${pnlVal >= 0 ? '+' : ''}$${pnlVal.toFixed(2)}</span>
                     </div>
                 </div>`;
             }).join('');
+        }
+
+        // ==========================================================
+        // 🔑 （個人使用）完整四組金鑰管理與個人 AI 實戰診斷
+        // ==========================================================
+        function loadPersonalKeysToForm() {
+            const saved = JSON.parse(localStorage.getItem('qg_personal_keys_v101') || '{}');
+            if (saved.okxKey) document.getElementById('pOkxKey').value = saved.okxKey;
+            if (saved.okxSecret) document.getElementById('pOkxSecret').value = saved.okxSecret;
+            if (saved.okxPass) document.getElementById('pOkxPass').value = saved.okxPass;
+            if (saved.geminiKey) document.getElementById('pGeminiKey').value = saved.geminiKey;
+            if (saved.env) document.getElementById('personalOkxEnv').value = saved.env;
+            updatePersonalBadge(saved);
+        }
+
+        function updatePersonalBadge(saved) {
+            const b = document.getElementById('personalKeyStatusBadge');
+            if (saved && saved.okxKey && saved.geminiKey) {
+                b.className = 'text-xs font-mono px-3 py-1.5 rounded-xl bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 font-bold';
+                b.innerText = `🟢 已綁定個人 OKX (${saved.env === 'live' ? '實盤' : '模擬盤'}) + Gemini 金鑰`;
+            } else {
+                b.className = 'text-xs font-mono px-3 py-1.5 rounded-xl bg-slate-800 text-slate-300 border border-slate-700';
+                b.innerText = '尚未完整綁定個人金鑰';
+            }
+        }
+
+        function saveAndVerifyPersonalKeys() {
+            const payload = {
+                env: document.getElementById('personalOkxEnv').value,
+                okxKey: document.getElementById('pOkxKey').value.trim(),
+                okxSecret: document.getElementById('pOkxSecret').value.trim(),
+                okxPass: document.getElementById('pOkxPass').value.trim(),
+                geminiKey: document.getElementById('pGeminiKey').value.trim()
+            };
+            localStorage.setItem('qg_personal_keys_v101', JSON.stringify(payload));
+            updatePersonalBadge(payload);
+            alert('✅ 個人 OKX 與 Gemini 四組金鑰已加密儲存於你的本地設備！');
+        }
+
+        function clearPersonalKeys() {
+            localStorage.removeItem('qg_personal_keys_v101');
+            document.getElementById('pOkxKey').value = '';
+            document.getElementById('pOkxSecret').value = '';
+            document.getElementById('pOkxPass').value = '';
+            document.getElementById('pGeminiKey').value = '';
+            updatePersonalBadge({});
+        }
+
+        async function runPersonalAiDiagnosis() {
+            const saved = JSON.parse(localStorage.getItem('qg_personal_keys_v101') || '{}');
+            const outBox = document.getElementById('personalAiOutputBox');
+            if (!saved.geminiKey) {
+                alert('請先在上方填入你個人的 GEMINI_API_KEY 並點擊儲存！');
+                return;
+            }
+            outBox.innerText = '⏳ 正在使用你個人的 Gemini API Key 分析當下 OKX 實時行情 (BTC/ETH/SOL)...';
+            try {
+                const promptText = `你是專業量化交易員。目前 OKX 最新報價為 BTC:$${liveOkxPrices['BTC/USDT:USDT']}, ETH:$${liveOkxPrices['ETH/USDT:USDT']}, SOL:$${liveOkxPrices['SOL/USDT:USDT']}。請依 80/10/10 資金池與 15m 波動率定錨(止盈1.5%~3.0%)，用繁體中文給出 80 字內的具體建倉建議。`;
+                const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${encodeURIComponent(saved.geminiKey)}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ contents: [{ parts: [{ text: promptText }] }] })
+                });
+                const json = await res.json();
+                const reply = json?.candidates?.[0]?.content?.parts?.[0]?.text || '無法解析回應，請確認個人 Gemini API Key 是否正確。';
+                outBox.innerHTML = `<span class="text-emerald-400 font-bold">✅ [個人 Gemini Key 專屬分析結果]：</span> ${reply}`;
+            } catch (e) {
+                outBox.innerText = '❌ 呼叫個人 Gemini Key 失敗，請確認金鑰是否有效。';
+            }
         }
 
         async function fetchLatestLiveJson() {
@@ -950,7 +1158,7 @@
         function openOrderModal(orderId) {
             const ord = orderDatabase.find(o => o.id === orderId);
             if (!ord) return;
-            const colors = getPnlColorClasses(ord.roi, ord.pnl);
+            const colors = getPnlColorClasses(ord.roi, o.pnl);
             document.getElementById('modalOrderMarketBadge').innerText = ord.marketBadge;
             document.getElementById('modalOrderTitle').innerText = `倉位紀錄 #${ord.id} (${ord.time})`;
             document.getElementById('modalAssetDir').innerText = `${ord.asset} (${ord.direction})`;
@@ -966,14 +1174,6 @@
         }
 
         function closeOrderModal() { document.getElementById('orderDetailModal').classList.add('hidden'); }
-        function openByokModal() { document.getElementById('byokModal').classList.remove('hidden'); }
-        function closeByokModal() { document.getElementById('byokModal').classList.add('hidden'); }
-        function saveUserByok() {
-            const k = document.getElementById('userGeminiKeyInput').value.trim();
-            if (k) localStorage.setItem('qg_user_gemini_key', k);
-            closeByokModal();
-            alert('✅ 個人 API Key 已加密儲存於本地瀏覽器！');
-        }
 
         window.addEventListener('DOMContentLoaded', () => {
             forceRefreshNow();
