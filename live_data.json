@@ -1,13 +1,13 @@
 {
-  "updated_at": "2026-11-10 00:08:28",
+  "updated_at": "2026-11-10 00:09:43",
   "epoch_cutoff": "2026-11-05 17:01:00",
-  "real_usdt": 125252.37,
-  "free_usdt": 92636.81,
-  "used_usdt": 32615.56,
+  "real_usdt": 125343.86,
+  "free_usdt": 92746.56,
+  "used_usdt": 32597.3,
   "allocations": {
-    "normal_80_usdt": 100201.9,
-    "hedge_10_usdt": 12525.24,
-    "sniper_10_usdt": 12525.24
+    "normal_80_usdt": 100275.09,
+    "hedge_10_usdt": 12534.39,
+    "sniper_10_usdt": 12534.39
   },
   "performance_stats": {
     "epoch_start": "2026-11-05 17:01:16",
@@ -18,7 +18,7 @@
     "gross_profit_usdt": 50617.06,
     "gross_loss_usdt": 24212.45,
     "total_fees_usdt": 4487.86,
-    "implied_initial_capital": 98859.64,
+    "implied_initial_capital": 98886.18,
     "profit_factor": 2.09,
     "total_settled_count": 25,
     "win_count": 8,
@@ -192,8 +192,8 @@
     "ETH/USDT:USDT_SHORT": 2,
     "BTC/USDT:USDT_SHORT": 1
   },
-  "total_unrealized_pnl": -11.88,
-  "total_crypto_roi_pct": -0.01,
+  "total_unrealized_pnl": 53.07,
+  "total_crypto_roi_pct": 0.04,
   "active_positions": [
     {
       "symbol": "SOL/USDT:USDT",
@@ -201,18 +201,18 @@
       "contracts": 931.0,
       "leverage": "5x",
       "entry_price": 87.36,
-      "mark_price": 87.36,
-      "margin_usdt": 16266.43,
-      "notional_usdt": 81245.13,
-      "unrealized_pnl": -3.91,
-      "roi_pct": -0.02,
-      "tp_pct": 1.2,
-      "sl_pct": 1.0,
-      "tp_trigger_px": 86.31,
+      "mark_price": 87.33,
+      "margin_usdt": 16260.85,
+      "notional_usdt": 81216.42,
+      "unrealized_pnl": 24.02,
+      "roi_pct": 0.15,
+      "tp_pct": 1.5,
+      "sl_pct": 1.2,
+      "tp_trigger_px": 86.05,
       "sl_trigger_px": 86.66,
       "stage": 2,
       "stage_badge": "💰 已平半倉 & 止損鎖 +0.8%",
-      "reason": "[⚡逆勢快進快出] 【Half-B 逆勢搶反彈】SOL 1H趨勢雖為BULLISH，但BB位置偏高(77.3%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。"
+      "reason": "【Half-B 逆勢搶反彈】SOL 1H趨勢雖為BULLISH，但BB位置偏高(77.3%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。"
     },
     {
       "symbol": "ETH/USDT:USDT",
@@ -220,18 +220,18 @@
       "contracts": 380.0,
       "leverage": "5x",
       "entry_price": 2136.78,
-      "mark_price": 2136.64,
-      "margin_usdt": 16238.46,
-      "notional_usdt": 81105.44,
-      "unrealized_pnl": 5.16,
-      "roi_pct": 0.03,
-      "tp_pct": 1.2,
-      "sl_pct": 1.0,
-      "tp_trigger_px": 2111.14,
+      "mark_price": 2135.67,
+      "margin_usdt": 16231.09,
+      "notional_usdt": 81067.81,
+      "unrealized_pnl": 42.02,
+      "roi_pct": 0.26,
+      "tp_pct": 1.5,
+      "sl_pct": 1.2,
+      "tp_trigger_px": 2104.73,
       "sl_trigger_px": 2119.69,
       "stage": 2,
       "stage_badge": "💰 已平半倉 & 止損鎖 +0.8%",
-      "reason": "[⚡逆勢快進快出] 【Half-B 逆勢搶反彈】ETH 1H趨勢雖為BULLISH，但BB位置極高(89.7%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。"
+      "reason": "【Half-B 逆勢搶反彈】ETH 1H趨勢雖為BULLISH，但BB位置極高(89.7%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。"
     },
     {
       "symbol": "BTC/USDT:USDT",
@@ -239,36 +239,36 @@
       "contracts": 1.0,
       "leverage": "7x",
       "entry_price": 76403.63,
-      "mark_price": 75091.11,
-      "margin_usdt": 107.27,
-      "notional_usdt": 750.11,
-      "unrealized_pnl": -13.13,
-      "roi_pct": -12.24,
-      "tp_pct": 1.2,
-      "sl_pct": 1.0,
-      "tp_trigger_px": 77320.47,
-      "sl_trigger_px": 75639.59,
+      "mark_price": 75106.55,
+      "margin_usdt": 107.3,
+      "notional_usdt": 750.25,
+      "unrealized_pnl": -12.97,
+      "roi_pct": -12.09,
+      "tp_pct": 1.5,
+      "sl_pct": 1.2,
+      "tp_trigger_px": 77549.68,
+      "sl_trigger_px": 75486.79,
       "stage": 0,
       "stage_badge": "🚀 順勢波段 (+5%保本/+9%平半)",
-      "reason": "[⚡逆勢快進快出] 【Half-B 逆勢搶反彈】BTC 1H趨勢雖為BULLISH，但BB位置偏高(80.5%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。"
+      "reason": "【Half-B 逆勢搶反彈】BTC 1H趨勢雖為BULLISH，但BB位置偏高(80.5%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。"
     }
   ],
   "market_prices": {
     "BTC/USDT:USDT": {
-      "last_price": 75129.05,
-      "change_24h_pct": -1.19,
-      "bar_15m_change_pct": -0.48,
-      "vol_spike_ratio": 0.82,
+      "last_price": 75104.5,
+      "change_24h_pct": -1.18,
+      "bar_15m_change_pct": -0.52,
+      "vol_spike_ratio": 0.91,
       "funding_rate_pct": 0.01,
-      "open_interest": 2150604107.74,
-      "ma5": 75180.48,
-      "ma10": 74927.0,
-      "ma20": 74774.64,
-      "rsi_14": 59.6,
+      "open_interest": 2150587473.08,
+      "ma5": 75175.08,
+      "ma10": 74924.3,
+      "ma20": 74773.29,
+      "rsi_14": 58.8,
       "rsi_zone": "NEUTRAL_HEALTHY_TREND",
-      "bb_upper": 75356.37,
-      "bb_lower": 74192.92,
-      "bb_pos_pct": 80.5,
+      "bb_upper": 75351.82,
+      "bb_lower": 74194.77,
+      "bb_pos_pct": 78.6,
       "trend_1h": "BULLISH",
       "trend": "BULLISH",
       "multi_tf_regime": "RESONANCE_BULL",
@@ -280,20 +280,20 @@
       "momentum_weakening_short": false
     },
     "ETH/USDT:USDT": {
-      "last_price": 2138.07,
-      "change_24h_pct": -4.52,
-      "bar_15m_change_pct": -0.39,
-      "vol_spike_ratio": 0.74,
-      "funding_rate_pct": 0.0049,
-      "open_interest": 3139518274.34,
-      "ma5": 2136.28,
-      "ma10": 2130.22,
-      "ma20": 2124.62,
-      "rsi_14": 62.7,
+      "last_price": 2135.55,
+      "change_24h_pct": -4.62,
+      "bar_15m_change_pct": -0.51,
+      "vol_spike_ratio": 0.79,
+      "funding_rate_pct": 0.0048,
+      "open_interest": 3139557798.45,
+      "ma5": 2135.77,
+      "ma10": 2129.97,
+      "ma20": 2124.49,
+      "rsi_14": 60.2,
       "rsi_zone": "NEUTRAL_HEALTHY_TREND",
-      "bb_upper": 2141.55,
-      "bb_lower": 2107.69,
-      "bb_pos_pct": 89.7,
+      "bb_upper": 2141.06,
+      "bb_lower": 2107.93,
+      "bb_pos_pct": 83.4,
       "trend_1h": "BULLISH",
       "trend": "BULLISH",
       "multi_tf_regime": "RESONANCE_BULL",
@@ -302,23 +302,23 @@
       "anchored_tp_pct": 1.5,
       "anchored_sl_pct": 1.2,
       "momentum_weakening_long": false,
-      "momentum_weakening_short": true
+      "momentum_weakening_short": false
     },
     "SOL/USDT:USDT": {
-      "last_price": 87.41,
-      "change_24h_pct": -2.54,
-      "bar_15m_change_pct": -0.52,
-      "vol_spike_ratio": 0.66,
+      "last_price": 87.34,
+      "change_24h_pct": -2.59,
+      "bar_15m_change_pct": -0.6,
+      "vol_spike_ratio": 0.69,
       "funding_rate_pct": 0.01,
-      "open_interest": 15020857.78,
-      "ma5": 87.52,
+      "open_interest": 15021221.48,
+      "ma5": 87.51,
       "ma10": 87.27,
       "ma20": 86.85,
-      "rsi_14": 64.8,
+      "rsi_14": 63.2,
       "rsi_zone": "NEUTRAL_HEALTHY_TREND",
-      "bb_upper": 87.87,
+      "bb_upper": 87.86,
       "bb_lower": 85.84,
-      "bb_pos_pct": 77.3,
+      "bb_pos_pct": 74.3,
       "trend_1h": "BULLISH",
       "trend": "BULLISH",
       "multi_tf_regime": "RESONANCE_BULL",
@@ -331,12 +331,10 @@
     }
   },
   "latest_news": [
-    "Analysts see no broader ‘contagion’ from $6.3B Binance hack",
-    "Here’s what happened in crypto today",
-    "The $2.85B Binance hackers lost shows why the UK needs stablecoin freeze rules"
+    "快軌 20 秒級別高速監控中 (順勢單 +5%/+9% 鎖利；逆勢單 +4%/+7.5% 快進快出)"
   ],
   "ai_broadcast_signals": {
-    "updated_at": "00:08:28",
+    "updated_at": "00:09:43",
     "confidence": 90,
     "summary": "本輪決策依據順逆勢智能分流，優先考量具正期望值記憶的逆勢搶反彈機會。針對高敗率警告的順勢多單則暫緩，以提高整體勝率。",
     "half_a_orders": [],
@@ -395,7 +393,7 @@
       "fee_num": 89.782,
       "fee": "倉位累計手續費 89.7820 USDT",
       "rr": "開倉 $74,398.70 / 平倉 $75,237.98",
-      "reason": "[⚡逆勢快進快出] 【Half-B 逆勢搶反彈】BTC 1H趨勢雖為BULLISH，但BB位置偏高(80.5%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。",
+      "reason": "【Half-B 逆勢搶反彈】BTC 1H趨勢雖為BULLISH，但BB位置偏高(80.5%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。",
       "hash": "0xc891cda8a21a8ee5"
     },
     {
@@ -417,7 +415,7 @@
       "fee_num": 254.3024,
       "fee": "倉位累計手續費 254.3024 USDT",
       "rr": "開倉 $2,100.87 / 平倉 $2,137.50",
-      "reason": "[⚡逆勢快進快出] 【Half-B 逆勢搶反彈】ETH 1H趨勢雖為BULLISH，但BB位置極高(89.7%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。",
+      "reason": "【Half-B 逆勢搶反彈】ETH 1H趨勢雖為BULLISH，但BB位置極高(89.7%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。",
       "hash": "0xf79f16a82336820f"
     },
     {
@@ -439,7 +437,7 @@
       "fee_num": 104.0508,
       "fee": "倉位累計手續費 104.0508 USDT",
       "rr": "開倉 $86.08 / 平倉 $87.34",
-      "reason": "[⚡逆勢快進快出] 【Half-B 逆勢搶反彈】SOL 1H趨勢雖為BULLISH，但BB位置偏高(77.3%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。",
+      "reason": "【Half-B 逆勢搶反彈】SOL 1H趨勢雖為BULLISH，但BB位置偏高(77.3%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。",
       "hash": "0x4b0d3a155637d5a6"
     },
     {
@@ -461,7 +459,7 @@
       "fee_num": 254.2708,
       "fee": "倉位累計手續費 254.2708 USDT",
       "rr": "開倉 $2,140.99 / 平倉 $2,096.85",
-      "reason": "[⚡逆勢快進快出] 【Half-B 逆勢搶反彈】ETH 1H趨勢雖為BULLISH，但BB位置極高(89.7%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。",
+      "reason": "【Half-B 逆勢搶反彈】ETH 1H趨勢雖為BULLISH，但BB位置極高(89.7%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。",
       "hash": "0x4d92851aa2a219a2"
     },
     {
@@ -483,7 +481,7 @@
       "fee_num": 104.056,
       "fee": "倉位累計手續費 104.0560 USDT",
       "rr": "開倉 $87.66 / 平倉 $85.77",
-      "reason": "[⚡逆勢快進快出] 【Half-B 逆勢搶反彈】SOL 1H趨勢雖為BULLISH，但BB位置偏高(77.3%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。",
+      "reason": "【Half-B 逆勢搶反彈】SOL 1H趨勢雖為BULLISH，但BB位置偏高(77.3%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。",
       "hash": "0xb8efd8b66988c1f5"
     },
     {
@@ -505,7 +503,7 @@
       "fee_num": 161.9734,
       "fee": "倉位累計手續費 161.9734 USDT",
       "rr": "開倉 $76,403.63 / 平倉 $74,414.55",
-      "reason": "[⚡逆勢快進快出] 【Half-B 逆勢搶反彈】BTC 1H趨勢雖為BULLISH，但BB位置偏高(80.5%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。",
+      "reason": "【Half-B 逆勢搶反彈】BTC 1H趨勢雖為BULLISH，但BB位置偏高(80.5%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。",
       "hash": "0x7882921ceb1e780a"
     },
     {
@@ -527,7 +525,7 @@
       "fee_num": 262.2334,
       "fee": "倉位累計手續費 262.2334 USDT",
       "rr": "開倉 $75,852.07 / 平倉 $74,856.78",
-      "reason": "[⚡逆勢快進快出] 【Half-B 逆勢搶反彈】BTC 1H趨勢雖為BULLISH，但BB位置偏高(80.5%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。",
+      "reason": "【Half-B 逆勢搶反彈】BTC 1H趨勢雖為BULLISH，但BB位置偏高(80.5%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。",
       "hash": "0x9f526418c268ab65"
     },
     {
@@ -549,7 +547,7 @@
       "fee_num": 253.6776,
       "fee": "倉位累計手續費 253.6776 USDT",
       "rr": "開倉 $2,238.13 / 平倉 $2,143.18",
-      "reason": "[⚡逆勢快進快出] 【Half-B 逆勢搶反彈】ETH 1H趨勢雖為BULLISH，但BB位置極高(89.7%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。",
+      "reason": "【Half-B 逆勢搶反彈】ETH 1H趨勢雖為BULLISH，但BB位置極高(89.7%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。",
       "hash": "0x434fc212ae602cb5"
     },
     {
@@ -571,7 +569,7 @@
       "fee_num": 245.1619,
       "fee": "倉位累計手續費 245.1619 USDT",
       "rr": "開倉 $89.24 / 平倉 $90.76",
-      "reason": "[⚡逆勢快進快出] 【Half-B 逆勢搶反彈】SOL 1H趨勢雖為BULLISH，但BB位置偏高(77.3%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。",
+      "reason": "【Half-B 逆勢搶反彈】SOL 1H趨勢雖為BULLISH，但BB位置偏高(77.3%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。",
       "hash": "0xfe688010661c2d80"
     },
     {
@@ -593,7 +591,7 @@
       "fee_num": 19.0871,
       "fee": "倉位累計手續費 19.0871 USDT",
       "rr": "開倉 $2,238.89 / 平倉 $2,148.95",
-      "reason": "[⚡逆勢快進快出] 【Half-B 逆勢搶反彈】ETH 1H趨勢雖為BULLISH，但BB位置極高(89.7%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。",
+      "reason": "【Half-B 逆勢搶反彈】ETH 1H趨勢雖為BULLISH，但BB位置極高(89.7%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。",
       "hash": "0xe0eebbd2597ad06f"
     },
     {
@@ -615,7 +613,7 @@
       "fee_num": 35.5248,
       "fee": "倉位累計手續費 35.5248 USDT",
       "rr": "開倉 $90.64 / 平倉 $87.32",
-      "reason": "[⚡逆勢快進快出] 【Half-B 逆勢搶反彈】SOL 1H趨勢雖為BULLISH，但BB位置偏高(77.3%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。",
+      "reason": "【Half-B 逆勢搶反彈】SOL 1H趨勢雖為BULLISH，但BB位置偏高(77.3%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。",
       "hash": "0xefee4df8d802ead2"
     },
     {
@@ -637,7 +635,7 @@
       "fee_num": 140.2233,
       "fee": "倉位累計手續費 140.2233 USDT",
       "rr": "開倉 $96.11 / 平倉 $90.85",
-      "reason": "[⚡逆勢快進快出] 【Half-B 逆勢搶反彈】SOL 1H趨勢雖為BULLISH，但BB位置偏高(77.3%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。",
+      "reason": "【Half-B 逆勢搶反彈】SOL 1H趨勢雖為BULLISH，但BB位置偏高(77.3%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。",
       "hash": "0xd01315afd67aa4ff"
     },
     {
@@ -659,7 +657,7 @@
       "fee_num": 139.5713,
       "fee": "倉位累計手續費 139.5713 USDT",
       "rr": "開倉 $80,101.64 / 平倉 $76,720.00",
-      "reason": "[⚡逆勢快進快出] 【Half-B 逆勢搶反彈】BTC 1H趨勢雖為BULLISH，但BB位置偏高(80.5%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。",
+      "reason": "【Half-B 逆勢搶反彈】BTC 1H趨勢雖為BULLISH，但BB位置偏高(80.5%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。",
       "hash": "0x0464b9e8172f544f"
     },
     {
@@ -681,7 +679,7 @@
       "fee_num": 189.8662,
       "fee": "倉位累計手續費 189.8662 USDT",
       "rr": "開倉 $2,414.77 / 平倉 $2,267.50",
-      "reason": "[⚡逆勢快進快出] 【Half-B 逆勢搶反彈】ETH 1H趨勢雖為BULLISH，但BB位置極高(89.7%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。",
+      "reason": "【Half-B 逆勢搶反彈】ETH 1H趨勢雖為BULLISH，但BB位置極高(89.7%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。",
       "hash": "0x5dc027defd835cf7"
     },
     {
@@ -703,7 +701,7 @@
       "fee_num": 168.3077,
       "fee": "倉位累計手續費 168.3077 USDT",
       "rr": "開倉 $80,204.66 / 平倉 $80,088.35",
-      "reason": "[⚡逆勢快進快出] 【Half-B 逆勢搶反彈】BTC 1H趨勢雖為BULLISH，但BB位置偏高(80.5%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。",
+      "reason": "【Half-B 逆勢搶反彈】BTC 1H趨勢雖為BULLISH，但BB位置偏高(80.5%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。",
       "hash": "0x5c8b7e5ecba865d2"
     },
     {
@@ -725,7 +723,7 @@
       "fee_num": 144.5279,
       "fee": "倉位累計手續費 144.5279 USDT",
       "rr": "開倉 $96.59 / 平倉 $96.11",
-      "reason": "[⚡逆勢快進快出] 【Half-B 逆勢搶反彈】SOL 1H趨勢雖為BULLISH，但BB位置偏高(77.3%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。",
+      "reason": "【Half-B 逆勢搶反彈】SOL 1H趨勢雖為BULLISH，但BB位置偏高(77.3%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。",
       "hash": "0x4cfa6679379294cc"
     },
     {
@@ -747,7 +745,7 @@
       "fee_num": 195.0288,
       "fee": "倉位累計手續費 195.0288 USDT",
       "rr": "開倉 $80,320.00 / 平倉 $80,197.51",
-      "reason": "[⚡逆勢快進快出] 【Half-B 逆勢搶反彈】BTC 1H趨勢雖為BULLISH，但BB位置偏高(80.5%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。",
+      "reason": "【Half-B 逆勢搶反彈】BTC 1H趨勢雖為BULLISH，但BB位置偏高(80.5%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。",
       "hash": "0x2bd922fffcb02427"
     },
     {
@@ -769,7 +767,7 @@
       "fee_num": 197.813,
       "fee": "倉位累計手續費 197.8130 USDT",
       "rr": "開倉 $2,415.98 / 平倉 $2,414.62",
-      "reason": "[⚡逆勢快進快出] 【Half-B 逆勢搶反彈】ETH 1H趨勢雖為BULLISH，但BB位置極高(89.7%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。",
+      "reason": "【Half-B 逆勢搶反彈】ETH 1H趨勢雖為BULLISH，但BB位置極高(89.7%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。",
       "hash": "0x3c3791546427b620"
     },
     {
@@ -791,7 +789,7 @@
       "fee_num": 197.6739,
       "fee": "倉位累計手續費 197.6739 USDT",
       "rr": "開倉 $80,390.51 / 平倉 $80,320.00",
-      "reason": "[⚡逆勢快進快出] 【Half-B 逆勢搶反彈】BTC 1H趨勢雖為BULLISH，但BB位置偏高(80.5%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。",
+      "reason": "【Half-B 逆勢搶反彈】BTC 1H趨勢雖為BULLISH，但BB位置偏高(80.5%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。",
       "hash": "0x0c7289bd40b8bad2"
     },
     {
@@ -813,7 +811,7 @@
       "fee_num": 199.1517,
       "fee": "倉位累計手續費 199.1517 USDT",
       "rr": "開倉 $2,412.11 / 平倉 $2,415.81",
-      "reason": "[⚡逆勢快進快出] 【Half-B 逆勢搶反彈】ETH 1H趨勢雖為BULLISH，但BB位置極高(89.7%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。",
+      "reason": "【Half-B 逆勢搶反彈】ETH 1H趨勢雖為BULLISH，但BB位置極高(89.7%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。",
       "hash": "0xe15dfd2946881c0c"
     },
     {
@@ -835,7 +833,7 @@
       "fee_num": 198.4498,
       "fee": "倉位累計手續費 198.4498 USDT",
       "rr": "開倉 $80,320.00 / 平倉 $80,368.07",
-      "reason": "[⚡逆勢快進快出] 【Half-B 逆勢搶反彈】BTC 1H趨勢雖為BULLISH，但BB位置偏高(80.5%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。",
+      "reason": "【Half-B 逆勢搶反彈】BTC 1H趨勢雖為BULLISH，但BB位置偏高(80.5%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。",
       "hash": "0xe94a27227314eee2"
     },
     {
@@ -857,7 +855,7 @@
       "fee_num": 265.4173,
       "fee": "倉位累計手續費 265.4173 USDT",
       "rr": "開倉 $2,417.71 / 平倉 $2,412.45",
-      "reason": "[⚡逆勢快進快出] 【Half-B 逆勢搶反彈】ETH 1H趨勢雖為BULLISH，但BB位置極高(89.7%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。",
+      "reason": "【Half-B 逆勢搶反彈】ETH 1H趨勢雖為BULLISH，但BB位置極高(89.7%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。",
       "hash": "0x68ed928b8969fe78"
     },
     {
@@ -879,7 +877,7 @@
       "fee_num": 391.6807,
       "fee": "倉位累計手續費 391.6807 USDT",
       "rr": "開倉 $80,533.30 / 平倉 $80,321.18",
-      "reason": "[⚡逆勢快進快出] 【Half-B 逆勢搶反彈】BTC 1H趨勢雖為BULLISH，但BB位置偏高(80.5%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。",
+      "reason": "【Half-B 逆勢搶反彈】BTC 1H趨勢雖為BULLISH，但BB位置偏高(80.5%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。",
       "hash": "0xc665bf2f64319dfe"
     },
     {
@@ -901,7 +899,7 @@
       "fee_num": 108.5541,
       "fee": "倉位累計手續費 108.5541 USDT",
       "rr": "開倉 $2,418.26 / 平倉 $2,417.12",
-      "reason": "[⚡逆勢快進快出] 【Half-B 逆勢搶反彈】ETH 1H趨勢雖為BULLISH，但BB位置極高(89.7%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。",
+      "reason": "【Half-B 逆勢搶反彈】ETH 1H趨勢雖為BULLISH，但BB位置極高(89.7%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。",
       "hash": "0xe00b99fbcb49f402"
     },
     {
@@ -923,7 +921,7 @@
       "fee_num": 167.4752,
       "fee": "倉位累計手續費 167.4752 USDT",
       "rr": "開倉 $80,503.61 / 平倉 $80,530.20",
-      "reason": "[⚡逆勢快進快出] 【Half-B 逆勢搶反彈】BTC 1H趨勢雖為BULLISH，但BB位置偏高(80.5%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。",
+      "reason": "【Half-B 逆勢搶反彈】BTC 1H趨勢雖為BULLISH，但BB位置偏高(80.5%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。",
       "hash": "0xe1ebd159b085345d"
     }
   ]
