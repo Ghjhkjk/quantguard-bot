@@ -1,13 +1,13 @@
 {
-  "updated_at": "2026-11-10 00:12:12",
+  "updated_at": "2026-11-10 00:57:34",
   "epoch_cutoff": "2026-11-05 17:01:00",
-  "real_usdt": 125266.97,
-  "free_usdt": 92654.14,
-  "used_usdt": 32612.83,
+  "real_usdt": 125797.65,
+  "free_usdt": 93291.42,
+  "used_usdt": 32506.23,
   "allocations": {
-    "normal_80_usdt": 100213.58,
-    "hedge_10_usdt": 12526.7,
-    "sniper_10_usdt": 12526.7
+    "normal_80_usdt": 100638.12,
+    "hedge_10_usdt": 12579.76,
+    "sniper_10_usdt": 12579.76
   },
   "performance_stats": {
     "epoch_start": "2026-11-05 17:01:16",
@@ -18,7 +18,7 @@
     "gross_profit_usdt": 50617.06,
     "gross_loss_usdt": 24212.45,
     "total_fees_usdt": 4487.86,
-    "implied_initial_capital": 98875.73,
+    "implied_initial_capital": 98875.35,
     "profit_factor": 2.09,
     "total_settled_count": 25,
     "win_count": 8,
@@ -77,33 +77,60 @@
         "entry_time": "2026-11-10 00:08:28"
       }
     },
+    "historical_reasons": {
+      "4072363062748393475_1794237588483": "【Half-B 逆勢搶反彈】BTC 1H趨勢雖為BULLISH，但BB位置偏高(80.5%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。",
+      "4072090672499929091_1794235694007": "【Half-B 逆勢搶反彈】ETH 1H趨勢雖為BULLISH，但BB位置極高(89.7%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。",
+      "4072789256178380803_1794234871279": "【Half-B 逆勢搶反彈】SOL 1H趨勢雖為BULLISH，但BB位置偏高(77.3%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。",
+      "4072090672499929091_1794208340252": "【Half-B 逆勢搶反彈】ETH 1H趨勢雖為BULLISH，但BB位置極高(89.7%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。",
+      "4072789256178380803_1794206770256": "【Half-B 逆勢搶反彈】SOL 1H趨勢雖為BULLISH，但BB位置偏高(77.3%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。",
+      "4075589924224106496_1794203156086": "【Half-B 逆勢搶反彈】BTC 1H趨勢雖為BULLISH，但BB位置偏高(80.5%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。",
+      "4072363062748393475_1794188315887": "【Half-B 逆勢搶反彈】BTC 1H趨勢雖為BULLISH，但BB位置偏高(80.5%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。",
+      "4072090672499929091_1794188311844": "【Half-B 逆勢搶反彈】ETH 1H趨勢雖為BULLISH，但BB位置極高(89.7%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。",
+      "4072789256178380803_1794181938114": "【Half-B 逆勢搶反彈】SOL 1H趨勢雖為BULLISH，但BB位置偏高(77.3%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。",
+      "4075589937645879296_1794174918412": "【Half-B 逆勢搶反彈】ETH 1H趨勢雖為BULLISH，但BB位置極高(89.7%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。",
+      "4075589951403196416_1794174780015": "【Half-B 逆勢搶反彈】SOL 1H趨勢雖為BULLISH，但BB位置偏高(77.3%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。",
+      "4072789256178380803_1793896365898": "【Half-B 逆勢搶反彈】SOL 1H趨勢雖為BULLISH，但BB位置偏高(77.3%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。",
+      "4072363062748393475_1793896364736": "【Half-B 逆勢搶反彈】BTC 1H趨勢雖為BULLISH，但BB位置偏高(80.5%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。",
+      "4072090672499929091_1793896363262": "【Half-B 逆勢搶反彈】ETH 1H趨勢雖為BULLISH，但BB位置極高(89.7%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。",
+      "4072396604698144771_1793881162226": "【Half-B 逆勢搶反彈】BTC 1H趨勢雖為BULLISH，但BB位置偏高(80.5%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。",
+      "4072363087947771907_1793880977435": "【Half-B 逆勢搶反彈】SOL 1H趨勢雖為BULLISH，但BB位置偏高(77.3%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。",
+      "4072363062748393475_1793880977244": "【Half-B 逆勢搶反彈】BTC 1H趨勢雖為BULLISH，但BB位置偏高(80.5%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。",
+      "4071987727334780929_1793871593264": "【Half-B 逆勢搶反彈】ETH 1H趨勢雖為BULLISH，但BB位置極高(89.7%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。",
+      "4072396604698144771_1793871593046": "【Half-B 逆勢搶反彈】BTC 1H趨勢雖為BULLISH，但BB位置偏高(80.5%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。",
+      "4072090672499929091_1793871408535": "【Half-B 逆勢搶反彈】ETH 1H趨勢雖為BULLISH，但BB位置極高(89.7%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。",
+      "4072363062748393475_1793871408297": "【Half-B 逆勢搶反彈】BTC 1H趨勢雖為BULLISH，但BB位置偏高(80.5%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。",
+      "4071987727334780929_1793870655178": "【Half-B 逆勢搶反彈】ETH 1H趨勢雖為BULLISH，但BB位置極高(89.7%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。",
+      "4072396604698144771_1793870655001": "【Half-B 逆勢搶反彈】BTC 1H趨勢雖為BULLISH，但BB位置偏高(80.5%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。",
+      "4072090672499929091_1793869473873": "【Half-B 逆勢搶反彈】ETH 1H趨勢雖為BULLISH，但BB位置極高(89.7%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。",
+      "4072363062748393475_1793869275921": "【Half-B 逆勢搶反彈】BTC 1H趨勢雖為BULLISH，但BB位置偏高(80.5%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。"
+    },
     "processed_pos_keys": [
-      "4072789256178380803_1794234871279",
-      "4072363087947771907_1793880977435",
-      "4072789256178380803_1793896365898",
-      "4072090672499929091_1793871408535",
-      "4071987727334780929_1793870655178",
-      "4075589924224106496_1794174940906",
-      "4072090672499929091_1794235694007",
-      "4072396604698144771_1793871593046",
-      "4072090672499929091_1794188311844",
-      "4072396604698144771_1793881162226",
-      "4071987727334780929_1793871593264",
-      "4072090672499929091_1793896363262",
-      "4072363062748393475_1794188315887",
-      "4072363062748393475_1793871408297",
       "4072363062748393475_1793880977244",
+      "4072363062748393475_1793896364736",
+      "4072090672499929091_1793869473873",
+      "4072396604698144771_1793871593046",
+      "4072363087947771907_1793880977435",
+      "4072090672499929091_1793896363262",
+      "4075589924224106496_1794174940906",
+      "4072396604698144771_1793881162226",
+      "4075589924224106496_1794203156086",
+      "4072363062748393475_1793869275921",
+      "4072363062748393475_1793871408297",
+      "4072789256178380803_1794234871279",
       "4072090672499929091_1794208340252",
       "4075589937645879296_1794174918412",
-      "4075589924224106496_1794203156086",
+      "4072090672499929091_1793871408535",
       "4075589951403196416_1794174780015",
-      "4072090672499929091_1793869473873",
-      "4072363062748393475_1793869275921",
       "4072363062748393475_1794237588483",
-      "4072789256178380803_1794181938114",
+      "4072090672499929091_1794235694007",
+      "4072363062748393475_1794188315887",
+      "4071987727334780929_1793870655178",
+      "4072789256178380803_1793896365898",
+      "4072789256178380803_1794206770256",
       "4072396604698144771_1793870655001",
-      "4072363062748393475_1793896364736",
-      "4072789256178380803_1794206770256"
+      "4072789256178380803_1794181938114",
+      "4071987727334780929_1793871593264",
+      "4072090672499929091_1794188311844"
     ],
     "pattern_stats": {
       "SHORT_under_GENERAL_TREND_NEUTRAL": {
@@ -177,14 +204,14 @@
       "SOL/USDT:USDT": 1
     },
     "lessons_learned": [
+      "🛑【止損鐵律】全倉位強制執行『含槓桿最大止損 -8.8% 觸發 (死守 -10% 上限)』，徹底終結超額虧損互抵！",
+      "🚫【防摸頂軋空】當 1H 與 15m 呈雙周期多頭共振時，嚴禁因布林上軌偏高而摸頂做空！",
       "✅【正期望值主力】BTC/USDT:USDT_SHORT 累計 3勝3敗 (勝率50.0%，淨賺+$9051.3)，具顯著獲利優勢！",
       "✅【正期望值主力】ETH/USDT:USDT_SHORT 累計 3勝3敗 (勝率50.0%，淨賺+$24801.15)，具顯著獲利優勢！",
-      "⚠️【高敗率警告】BTC/USDT:USDT_LONG 累計 0勝5敗 (勝率0.0%，淨虧$-12437.97)，若非雙周期共振請改做反向或快進快出！",
-      "⚠️【高敗率警告】ETH/USDT:USDT_LONG 累計 0勝3敗 (勝率0.0%，淨虧$-1954.95)，若非雙周期共振請改做反向或快進快出！",
-      "⚠️【高敗率警告】SOL/USDT:USDT_LONG 累計 0勝2敗 (勝率0.0%，淨虧$-2238.67)，若非雙周期共振請改做反向或快進快出！",
-      "✅【正期望值主力】SOL/USDT:USDT_SHORT 累計 2勝2敗 (勝率50.0%，淨賺+$4068.97)，具顯著獲利優勢！",
-      "📊【情境記憶】當執行『SHORT_under_GENERAL_TREND_NEUTRAL』時：歷史 8勝6敗 (勝率 57.1%，累計 $+44184.52)",
-      "📊【情境記憶】當執行『LONG_under_GENERAL_TREND_NEUTRAL』時：歷史 0勝10敗 (勝率 0.0%，累計 $-16631.59)"
+      "⚠️【高敗率警告】BTC/USDT:USDT_LONG 累計 0勝5敗 (勝率0.0%，淨虧$-12437.97)，請順應 1H 大趨勢方向！",
+      "⚠️【高敗率警告】ETH/USDT:USDT_LONG 累計 0勝3敗 (勝率0.0%，淨虧$-1954.95)，請順應 1H 大趨勢方向！",
+      "⚠️【高敗率警告】SOL/USDT:USDT_LONG 累計 0勝2敗 (勝率0.0%，淨虧$-2238.67)，請順應 1H 大趨勢方向！",
+      "✅【正期望值主力】SOL/USDT:USDT_SHORT 累計 2勝2敗 (勝率50.0%，淨賺+$4068.97)，具顯著獲利優勢！"
     ]
   },
   "position_stage_map": {
@@ -192,8 +219,8 @@
     "ETH/USDT:USDT_SHORT": 2,
     "BTC/USDT:USDT_SHORT": 1
   },
-  "total_unrealized_pnl": -13.37,
-  "total_crypto_roi_pct": -0.01,
+  "total_unrealized_pnl": 517.69,
+  "total_crypto_roi_pct": 0.41,
   "active_positions": [
     {
       "symbol": "SOL/USDT:USDT",
@@ -201,18 +228,18 @@
       "contracts": 931.0,
       "leverage": "5x",
       "entry_price": 87.36,
-      "mark_price": 87.33,
-      "margin_usdt": 16260.85,
-      "notional_usdt": 81218.05,
-      "unrealized_pnl": 24.02,
-      "roi_pct": 0.15,
-      "tp_pct": 1.5,
+      "mark_price": 86.95,
+      "margin_usdt": 16190.09,
+      "notional_usdt": 80860.6,
+      "unrealized_pnl": 377.8,
+      "roi_pct": 2.33,
+      "tp_pct": 1.6,
       "sl_pct": 1.2,
-      "tp_trigger_px": 86.05,
+      "tp_trigger_px": 85.96,
       "sl_trigger_px": 86.66,
       "stage": 2,
       "stage_badge": "💰 已平半倉 & 止損鎖 +0.8%",
-      "reason": "【Half-B 逆勢搶反彈】SOL 1H趨勢雖為BULLISH，但BB位置偏高(77.3%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。"
+      "reason": "1H:BULLISH | 含槓桿最大止損鎖定 -6.0% (死守-10%鐵律)"
     },
     {
       "symbol": "ETH/USDT:USDT",
@@ -220,18 +247,18 @@
       "contracts": 380.0,
       "leverage": "5x",
       "entry_price": 2136.78,
-      "mark_price": 2137.43,
-      "margin_usdt": 16244.47,
-      "notional_usdt": 81136.24,
-      "unrealized_pnl": -24.86,
-      "roi_pct": -0.15,
-      "tp_pct": 1.5,
+      "mark_price": 2132.73,
+      "margin_usdt": 16208.75,
+      "notional_usdt": 80953.78,
+      "unrealized_pnl": 153.74,
+      "roi_pct": 0.95,
+      "tp_pct": 1.6,
       "sl_pct": 1.2,
-      "tp_trigger_px": 2104.73,
+      "tp_trigger_px": 2102.59,
       "sl_trigger_px": 2119.69,
       "stage": 2,
       "stage_badge": "💰 已平半倉 & 止損鎖 +0.8%",
-      "reason": "【Half-B 逆勢搶反彈】ETH 1H趨勢雖為BULLISH，但BB位置極高(89.7%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。"
+      "reason": "1H:BULLISH | 含槓桿最大止損鎖定 -6.0% (死守-10%鐵律)"
     },
     {
       "symbol": "BTC/USDT:USDT",
@@ -239,143 +266,140 @@
       "contracts": 1.0,
       "leverage": "7x",
       "entry_price": 76403.63,
-      "mark_price": 75150.78,
-      "margin_usdt": 107.36,
-      "notional_usdt": 750.71,
-      "unrealized_pnl": -12.53,
-      "roi_pct": -11.67,
-      "tp_pct": 1.5,
+      "mark_price": 75018.89,
+      "margin_usdt": 107.17,
+      "notional_usdt": 749.36,
+      "unrealized_pnl": -13.85,
+      "roi_pct": -12.92,
+      "tp_pct": 1.6,
       "sl_pct": 1.2,
-      "tp_trigger_px": 77549.68,
+      "tp_trigger_px": 77626.09,
       "sl_trigger_px": 75486.79,
       "stage": 0,
-      "stage_badge": "🚀 順勢波段 (+5%保本/+9%平半)",
-      "reason": "【Half-B 逆勢搶反彈】BTC 1H趨勢雖為BULLISH，但BB位置偏高(80.5%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。"
+      "stage_badge": "🛑 止損死守-8.4% (滿5%保本/滿9%平半)",
+      "reason": "1H:BULLISH | 含槓桿最大止損鎖定 -8.4% (死守-10%鐵律)"
     }
   ],
   "market_prices": {
     "BTC/USDT:USDT": {
-      "last_price": 75146.7,
-      "change_24h_pct": -1.16,
-      "bar_15m_change_pct": -0.46,
-      "vol_spike_ratio": 1.02,
+      "last_price": 75050.7,
+      "change_24h_pct": -0.92,
+      "bar_15m_change_pct": 0.21,
+      "vol_spike_ratio": 0.41,
       "funding_rate_pct": 0.01,
-      "open_interest": 2150578069.57,
-      "ma5": 75183.52,
-      "ma10": 74928.52,
-      "ma20": 74775.4,
-      "rsi_14": 60.0,
-      "rsi_zone": "NEUTRAL_HEALTHY_TREND",
-      "bb_upper": 75359.03,
-      "bb_lower": 74191.78,
-      "bb_pos_pct": 81.8,
+      "open_interest": 2150563155.57,
+      "ma5": 75063.48,
+      "ma10": 75013.06,
+      "ma20": 74843.59,
+      "rsi_14": 56.8,
+      "rsi_zone": "HEALTHY_TREND_ZONE",
+      "bb_upper": 75352.08,
+      "bb_lower": 74335.11,
+      "bb_pos_pct": 70.4,
       "trend_1h": "BULLISH",
       "trend": "BULLISH",
       "multi_tf_regime": "RESONANCE_BULL",
       "atr_15m_pct": 0.49,
       "recent_swing_pct": 1.81,
-      "anchored_tp_pct": 1.5,
+      "anchored_tp_pct": 1.6,
       "anchored_sl_pct": 1.2,
+      "max_safe_leverage": 7,
       "momentum_weakening_long": false,
       "momentum_weakening_short": false
     },
     "ETH/USDT:USDT": {
-      "last_price": 2137.29,
-      "change_24h_pct": -4.58,
-      "bar_15m_change_pct": -0.43,
-      "vol_spike_ratio": 0.88,
-      "funding_rate_pct": 0.0048,
-      "open_interest": 3139555462.39,
-      "ma5": 2136.12,
-      "ma10": 2130.14,
-      "ma20": 2124.58,
-      "rsi_14": 61.9,
-      "rsi_zone": "NEUTRAL_HEALTHY_TREND",
-      "bb_upper": 2141.39,
-      "bb_lower": 2107.77,
-      "bb_pos_pct": 87.8,
+      "last_price": 2133.92,
+      "change_24h_pct": -4.24,
+      "bar_15m_change_pct": 0.19,
+      "vol_spike_ratio": 0.21,
+      "funding_rate_pct": 0.004,
+      "open_interest": 3139971606.19,
+      "ma5": 2134.02,
+      "ma10": 2132.11,
+      "ma20": 2126.4,
+      "rsi_14": 58.6,
+      "rsi_zone": "HEALTHY_TREND_ZONE",
+      "bb_upper": 2141.72,
+      "bb_lower": 2111.09,
+      "bb_pos_pct": 74.5,
       "trend_1h": "BULLISH",
       "trend": "BULLISH",
       "multi_tf_regime": "RESONANCE_BULL",
       "atr_15m_pct": 0.6,
       "recent_swing_pct": 1.99,
-      "anchored_tp_pct": 1.5,
+      "anchored_tp_pct": 1.6,
       "anchored_sl_pct": 1.2,
+      "max_safe_leverage": 7,
       "momentum_weakening_long": false,
-      "momentum_weakening_short": true
+      "momentum_weakening_short": false
     },
     "SOL/USDT:USDT": {
-      "last_price": 87.3,
-      "change_24h_pct": -2.63,
-      "bar_15m_change_pct": -0.65,
-      "vol_spike_ratio": 0.71,
+      "last_price": 87.02,
+      "change_24h_pct": -2.13,
+      "bar_15m_change_pct": 0.18,
+      "vol_spike_ratio": 0.22,
       "funding_rate_pct": 0.01,
-      "open_interest": 15021209.09,
-      "ma5": 87.5,
-      "ma10": 87.26,
-      "ma20": 86.85,
-      "rsi_14": 62.3,
-      "rsi_zone": "NEUTRAL_HEALTHY_TREND",
-      "bb_upper": 87.85,
-      "bb_lower": 85.84,
-      "bb_pos_pct": 72.6,
+      "open_interest": 15125936.12,
+      "ma5": 87.11,
+      "ma10": 87.25,
+      "ma20": 86.93,
+      "rsi_14": 55.2,
+      "rsi_zone": "HEALTHY_TREND_ZONE",
+      "bb_upper": 87.8,
+      "bb_lower": 86.06,
+      "bb_pos_pct": 55.2,
       "trend_1h": "BULLISH",
       "trend": "BULLISH",
       "multi_tf_regime": "RESONANCE_BULL",
-      "atr_15m_pct": 0.53,
-      "recent_swing_pct": 2.04,
-      "anchored_tp_pct": 1.53,
+      "atr_15m_pct": 0.55,
+      "recent_swing_pct": 1.78,
+      "anchored_tp_pct": 1.6,
       "anchored_sl_pct": 1.2,
-      "momentum_weakening_long": false,
+      "max_safe_leverage": 7,
+      "momentum_weakening_long": true,
       "momentum_weakening_short": false
     }
   },
   "latest_news": [
-    "快軌 20 秒級別高速監控中 (順勢單 +5%/+9% 鎖利；逆勢單 +4%/+7.5% 快進快出)"
+    "Analysts see no broader ‘contagion’ from $6.3B Binance hack",
+    "Here’s what happened in crypto today",
+    "The $2.85B Binance hackers lost shows why the UK needs stablecoin freeze rules"
   ],
   "ai_broadcast_signals": {
-    "updated_at": "00:12:12",
+    "updated_at": "00:57:34",
     "confidence": 90,
-    "summary": "本輪決策依據順逆勢智能分流，優先考量具正期望值記憶的逆勢搶反彈機會。針對高敗率警告的順勢多單則暫緩，以提高整體勝率。",
-    "half_a_orders": [],
-    "half_b_orders": [
+    "summary": "本輪嚴格順應1H大趨勢，優先做多BTC與ETH，並將每筆訂單含槓桿止損鎖定在-8.8%上限，避免摸頂軋空。",
+    "half_a_orders": [
       {
         "symbol": "BTC/USDT:USDT",
-        "action": "SELL",
-        "weight": 1.6,
-        "leverage": 5,
-        "tp_pct": 1.5,
+        "action": "BUY",
+        "weight": 1.5,
+        "leverage": 6,
+        "tp_pct": 2.2,
         "sl_pct": 1.2,
-        "reason": "【Half-B 逆勢搶反彈】BTC 1H趨勢雖為BULLISH，但BB位置偏高(80.5%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。"
-      },
+        "reason": "【Half-A 順應1H大勢】BTC處於1H與多週期共振牛市，動能未減弱，布林通道位置適中(70.4%)，嚴格遵循止損鐵律(1.2%*6=7.2% <= 8.8%)，避免摸頂做空。"
+      }
+    ],
+    "half_b_orders": [
       {
         "symbol": "ETH/USDT:USDT",
-        "action": "SELL",
-        "weight": 1.6,
-        "leverage": 5,
-        "tp_pct": 1.5,
+        "action": "BUY",
+        "weight": 1.3,
+        "leverage": 6,
+        "tp_pct": 2.4,
         "sl_pct": 1.2,
-        "reason": "【Half-B 逆勢搶反彈】ETH 1H趨勢雖為BULLISH，但BB位置極高(89.7%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。"
-      },
-      {
-        "symbol": "SOL/USDT:USDT",
-        "action": "SELL",
-        "weight": 1.6,
-        "leverage": 5,
-        "tp_pct": 1.5,
-        "sl_pct": 1.2,
-        "reason": "【Half-B 逆勢搶反彈】SOL 1H趨勢雖為BULLISH，但BB位置偏高(77.3%)，且SHORT方向具正期望值記憶優勢，採快進快出策略。"
+        "reason": "【Half-B 順應1H大勢】ETH同樣處於1H與多週期共振牛市，動能良好，布林通道位置適中(74.5%)，嚴格遵循止損鐵律(1.2%*6=7.2% <= 8.8%)，避免摸頂做空。"
       }
     ]
   },
   "ai_last_decision": {
     "action": "今日已實現 $+0.00 | 本期累計 $+26,404.61 (盈虧比 2.09x)",
     "confidence": 90,
-    "reason": "本輪決策依據順逆勢智能分流，優先考量具正期望值記憶的逆勢搶反彈機會。針對高敗率警告的順勢多單則暫緩，以提高整體勝率。"
+    "reason": "本輪嚴格順應1H大趨勢，優先做多BTC與ETH，並將每筆訂單含槓桿止損鎖定在-8.8%上限，避免摸頂軋空。"
   },
   "orders": [
     {
-      "id": "POS-393475",
+      "id": "POS-347548",
       "full_id": "4072363062748393475_1794237588483",
       "timestamp_ms": 1794237588483,
       "open_timestamp_ms": 1794203156260,
@@ -397,7 +421,7 @@
       "hash": "0xc891cda8a21a8ee5"
     },
     {
-      "id": "POS-929091",
+      "id": "POS-909100",
       "full_id": "4072090672499929091_1794235694007",
       "timestamp_ms": 1794235694007,
       "open_timestamp_ms": 1794219527504,
@@ -419,7 +443,7 @@
       "hash": "0xf79f16a82336820f"
     },
     {
-      "id": "POS-380803",
+      "id": "POS-080327",
       "full_id": "4072789256178380803_1794234871279",
       "timestamp_ms": 1794234871279,
       "open_timestamp_ms": 1794219527992,
@@ -441,7 +465,7 @@
       "hash": "0x4b0d3a155637d5a6"
     },
     {
-      "id": "POS-929091",
+      "id": "POS-909125",
       "full_id": "4072090672499929091_1794208340252",
       "timestamp_ms": 1794208340252,
       "open_timestamp_ms": 1794188922091,
@@ -463,7 +487,7 @@
       "hash": "0x4d92851aa2a219a2"
     },
     {
-      "id": "POS-380803",
+      "id": "POS-080325",
       "full_id": "4072789256178380803_1794206770256",
       "timestamp_ms": 1794206770256,
       "open_timestamp_ms": 1794188922652,
@@ -485,7 +509,7 @@
       "hash": "0xb8efd8b66988c1f5"
     },
     {
-      "id": "POS-106496",
+      "id": "POS-649608",
       "full_id": "4075589924224106496_1794203156086",
       "timestamp_ms": 1794203156086,
       "open_timestamp_ms": 1793964444841,
@@ -507,7 +531,7 @@
       "hash": "0x7882921ceb1e780a"
     },
     {
-      "id": "POS-393475",
+      "id": "POS-347588",
       "full_id": "4072363062748393475_1794188315887",
       "timestamp_ms": 1794188315887,
       "open_timestamp_ms": 1793921914870,
@@ -529,7 +553,7 @@
       "hash": "0x9f526418c268ab65"
     },
     {
-      "id": "POS-929091",
+      "id": "POS-909184",
       "full_id": "4072090672499929091_1794188311844",
       "timestamp_ms": 1794188311844,
       "open_timestamp_ms": 1793921915221,
@@ -551,7 +575,7 @@
       "hash": "0x434fc212ae602cb5"
     },
     {
-      "id": "POS-380803",
+      "id": "POS-080311",
       "full_id": "4072789256178380803_1794181938114",
       "timestamp_ms": 1794181938114,
       "open_timestamp_ms": 1793921915582,
@@ -573,7 +597,7 @@
       "hash": "0xfe688010661c2d80"
     },
     {
-      "id": "POS-879296",
+      "id": "POS-929641",
       "full_id": "4075589937645879296_1794174918412",
       "timestamp_ms": 1794174918412,
       "open_timestamp_ms": 1793964445241,
@@ -595,7 +619,7 @@
       "hash": "0xe0eebbd2597ad06f"
     },
     {
-      "id": "POS-196416",
+      "id": "POS-641601",
       "full_id": "4075589951403196416_1794174780015",
       "timestamp_ms": 1794174780015,
       "open_timestamp_ms": 1793964445651,
@@ -617,7 +641,7 @@
       "hash": "0xefee4df8d802ead2"
     },
     {
-      "id": "POS-380803",
+      "id": "POS-080389",
       "full_id": "4072789256178380803_1793896365898",
       "timestamp_ms": 1793896365898,
       "open_timestamp_ms": 1793880978429,
@@ -639,7 +663,7 @@
       "hash": "0xd01315afd67aa4ff"
     },
     {
-      "id": "POS-393475",
+      "id": "POS-347573",
       "full_id": "4072363062748393475_1793896364736",
       "timestamp_ms": 1793896364736,
       "open_timestamp_ms": 1793881162813,
@@ -661,7 +685,7 @@
       "hash": "0x0464b9e8172f544f"
     },
     {
-      "id": "POS-929091",
+      "id": "POS-909126",
       "full_id": "4072090672499929091_1793896363262",
       "timestamp_ms": 1793896363262,
       "open_timestamp_ms": 1793871594342,
@@ -683,7 +707,7 @@
       "hash": "0x5dc027defd835cf7"
     },
     {
-      "id": "POS-144771",
+      "id": "POS-477122",
       "full_id": "4072396604698144771_1793881162226",
       "timestamp_ms": 1793881162226,
       "open_timestamp_ms": 1793880978044,
@@ -705,7 +729,7 @@
       "hash": "0x5c8b7e5ecba865d2"
     },
     {
-      "id": "POS-771907",
+      "id": "POS-190743",
       "full_id": "4072363087947771907_1793880977435",
       "timestamp_ms": 1793880977435,
       "open_timestamp_ms": 1793868686500,
@@ -727,7 +751,7 @@
       "hash": "0x4cfa6679379294cc"
     },
     {
-      "id": "POS-393475",
+      "id": "POS-347524",
       "full_id": "4072363062748393475_1793880977244",
       "timestamp_ms": 1793880977244,
       "open_timestamp_ms": 1793871593893,
@@ -749,7 +773,7 @@
       "hash": "0x2bd922fffcb02427"
     },
     {
-      "id": "POS-780929",
+      "id": "POS-092926",
       "full_id": "4071987727334780929_1793871593264",
       "timestamp_ms": 1793871593264,
       "open_timestamp_ms": 1793871409446,
@@ -771,7 +795,7 @@
       "hash": "0x3c3791546427b620"
     },
     {
-      "id": "POS-144771",
+      "id": "POS-477104",
       "full_id": "4072396604698144771_1793871593046",
       "timestamp_ms": 1793871593046,
       "open_timestamp_ms": 1793871409073,
@@ -793,7 +817,7 @@
       "hash": "0x0c7289bd40b8bad2"
     },
     {
-      "id": "POS-929091",
+      "id": "POS-909153",
       "full_id": "4072090672499929091_1793871408535",
       "timestamp_ms": 1793871408535,
       "open_timestamp_ms": 1793870656187,
@@ -815,7 +839,7 @@
       "hash": "0xe15dfd2946881c0c"
     },
     {
-      "id": "POS-393475",
+      "id": "POS-347529",
       "full_id": "4072363062748393475_1793871408297",
       "timestamp_ms": 1793871408297,
       "open_timestamp_ms": 1793870655750,
@@ -837,7 +861,7 @@
       "hash": "0xe94a27227314eee2"
     },
     {
-      "id": "POS-780929",
+      "id": "POS-092917",
       "full_id": "4071987727334780929_1793870655178",
       "timestamp_ms": 1793870655178,
       "open_timestamp_ms": 1793869474515,
@@ -859,7 +883,7 @@
       "hash": "0x68ed928b8969fe78"
     },
     {
-      "id": "POS-144771",
+      "id": "POS-477100",
       "full_id": "4072396604698144771_1793870655001",
       "timestamp_ms": 1793870655001,
       "open_timestamp_ms": 1793869276503,
@@ -881,7 +905,7 @@
       "hash": "0xc665bf2f64319dfe"
     },
     {
-      "id": "POS-929091",
+      "id": "POS-909187",
       "full_id": "4072090672499929091_1793869473873",
       "timestamp_ms": 1793869473873,
       "open_timestamp_ms": 1793868686127,
@@ -903,7 +927,7 @@
       "hash": "0xe00b99fbcb49f402"
     },
     {
-      "id": "POS-393475",
+      "id": "POS-347592",
       "full_id": "4072363062748393475_1793869275921",
       "timestamp_ms": 1793869275921,
       "open_timestamp_ms": 1793868685745,
