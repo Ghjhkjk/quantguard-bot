@@ -1,13 +1,13 @@
 {
-  "updated_at": "2026-11-09 09:52:42",
+  "updated_at": "2026-11-09 10:39:23",
   "epoch_cutoff": "2026-11-05 17:01:00",
-  "real_usdt": 124262.8,
-  "free_usdt": 63610.95,
-  "used_usdt": 60651.85,
+  "real_usdt": 122841.27,
+  "free_usdt": 61951.94,
+  "used_usdt": 60889.33,
   "allocations": {
-    "normal_80_usdt": 99410.24,
-    "hedge_10_usdt": 12426.28,
-    "sniper_10_usdt": 12426.28
+    "normal_80_usdt": 98273.02,
+    "hedge_10_usdt": 12284.13,
+    "sniper_10_usdt": 12284.13
   },
   "performance_stats": {
     "epoch_start": "2026-11-05 17:01:16",
@@ -56,8 +56,8 @@
     "ETH/USDT:USDT_SHORT": 2,
     "BTC/USDT:USDT_SHORT": 1
   },
-  "total_unrealized_pnl": -1050.6,
-  "total_crypto_roi_pct": -0.85,
+  "total_unrealized_pnl": -2480.53,
+  "total_crypto_roi_pct": -2.02,
   "active_positions": [
     {
       "symbol": "SOL/USDT:USDT",
@@ -65,18 +65,18 @@
       "contracts": 1200.0,
       "leverage": "6.0x",
       "entry_price": 87.66,
-      "mark_price": 88.04,
-      "margin_usdt": 17608.0,
-      "notional_usdt": 105519.11,
-      "unrealized_pnl": -455.45,
-      "roi_pct": -2.6,
-      "tp_pct": 2.3,
-      "sl_pct": 1.7,
-      "tp_trigger_px": 85.64,
+      "mark_price": 88.24,
+      "margin_usdt": 17648.0,
+      "notional_usdt": 105749.29,
+      "unrealized_pnl": -695.45,
+      "roi_pct": -3.97,
+      "tp_pct": 2.4,
+      "sl_pct": 1.76,
+      "tp_trigger_px": 85.56,
       "sl_trigger_px": 86.78,
       "stage": 2,
       "stage_badge": "💰 已平半倉 & 止損鎖 +1%",
-      "reason": "【Half-B 強弱配對】SOL同樣處於熊市趨勢，與ETH做空策略保持一致。儘管近期做空有虧損，但整體市場情緒偏空，止盈止損參考錨定值。"
+      "reason": "波動率定錨止盈 +2.4% | ROI滿5%自動移止損保本、滿9%平半倉鎖+1%"
     },
     {
       "symbol": "ETH/USDT:USDT",
@@ -84,18 +84,18 @@
       "contracts": 1200.0,
       "leverage": "6.0x",
       "entry_price": 2140.99,
-      "mark_price": 2145.86,
-      "margin_usdt": 42917.2,
-      "notional_usdt": 257189.05,
-      "unrealized_pnl": -583.81,
-      "roi_pct": -1.36,
-      "tp_pct": 2.2,
-      "sl_pct": 1.6,
-      "tp_trigger_px": 2093.89,
+      "mark_price": 2155.79,
+      "margin_usdt": 43115.8,
+      "notional_usdt": 258355.91,
+      "unrealized_pnl": -1775.41,
+      "roi_pct": -4.15,
+      "tp_pct": 2.3,
+      "sl_pct": 1.7,
+      "tp_trigger_px": 2091.75,
       "sl_trigger_px": 2119.58,
       "stage": 2,
       "stage_badge": "💰 已平半倉 & 止損鎖 +1%",
-      "reason": "【Half-A 波動定錨】ETH處於熊市趨勢，儘管空頭動能減弱，但歷史做空表現優異且資金費率為負，符合做空條件。止盈止損參考錨定值。"
+      "reason": "【Half-B 強弱配對】ETH維持空頭趨勢，儘管動能略弱，但歷史空單表現優異，配合BTC多單進行強弱配對。"
     },
     {
       "symbol": "BTC/USDT:USDT",
@@ -103,110 +103,112 @@
       "contracts": 1.0,
       "leverage": "6.0x",
       "entry_price": 76403.63,
-      "mark_price": 75269.23,
-      "margin_usdt": 125.45,
-      "notional_usdt": 751.77,
-      "unrealized_pnl": -11.34,
-      "roi_pct": -8.91,
-      "tp_pct": 1.5,
-      "sl_pct": 1.2,
-      "tp_trigger_px": 77549.68,
-      "sl_trigger_px": 75486.79,
+      "mark_price": 75436.82,
+      "margin_usdt": 125.73,
+      "notional_usdt": 753.38,
+      "unrealized_pnl": -9.67,
+      "roi_pct": -7.59,
+      "tp_pct": 1.8,
+      "sl_pct": 1.3,
+      "tp_trigger_px": 77778.9,
+      "sl_trigger_px": 75410.38,
       "stage": 0,
       "stage_badge": "⚡ 監控中 (滿5%保本/滿9%平半倉)",
-      "reason": "波動率定錨止盈 +1.5% | ROI滿5%自動移止損保本、滿9%平半倉鎖+1%"
+      "reason": "【Half-A 波動定錨】BTC趨勢強勁，動能未減，依波動率定錨追蹤多頭。"
     }
   ],
   "market_prices": {
     "BTC/USDT:USDT": {
-      "last_price": 75288.0,
-      "change_24h_pct": -0.68,
-      "bar_15m_change_pct": 0.22,
-      "vol_spike_ratio": 0.16,
+      "last_price": 75402.1,
+      "change_24h_pct": -0.32,
+      "bar_15m_change_pct": -0.1,
+      "vol_spike_ratio": 0.21,
       "funding_rate_pct": 0.01,
-      "open_interest": 2147718565.58,
-      "ma5": 75103.74,
-      "ma10": 75005.98,
-      "ma20": 75108.62,
-      "atr_15m_pct": 0.61,
-      "recent_swing_pct": 1.66,
+      "open_interest": 2147855692.27,
+      "ma5": 75269.24,
+      "ma10": 75137.13,
+      "ma20": 75042.97,
+      "atr_15m_pct": 0.64,
+      "recent_swing_pct": 1.54,
       "anchored_tp_pct": 1.5,
       "anchored_sl_pct": 1.2,
-      "trend": "BEARISH",
+      "trend": "BULLISH",
       "momentum_weakening_long": false,
       "momentum_weakening_short": true
     },
     "ETH/USDT:USDT": {
-      "last_price": 2146.14,
-      "change_24h_pct": -4.5,
-      "bar_15m_change_pct": 0.19,
-      "vol_spike_ratio": 0.49,
-      "funding_rate_pct": -0.0025,
-      "open_interest": 3135956204.01,
-      "ma5": 2137.68,
-      "ma10": 2136.36,
-      "ma20": 2161.3,
-      "atr_15m_pct": 1.14,
-      "recent_swing_pct": 2.9,
-      "anchored_tp_pct": 2.18,
-      "anchored_sl_pct": 1.6,
+      "last_price": 2154.08,
+      "change_24h_pct": -4.18,
+      "bar_15m_change_pct": -0.03,
+      "vol_spike_ratio": 0.17,
+      "funding_rate_pct": 0.0005,
+      "open_interest": 3136348354.53,
+      "ma5": 2148.16,
+      "ma10": 2141.57,
+      "ma20": 2151.58,
+      "atr_15m_pct": 1.21,
+      "recent_swing_pct": 2.85,
+      "anchored_tp_pct": 2.14,
+      "anchored_sl_pct": 1.57,
       "trend": "BEARISH",
       "momentum_weakening_long": false,
       "momentum_weakening_short": true
     },
     "SOL/USDT:USDT": {
-      "last_price": 88.09,
-      "change_24h_pct": -2.81,
-      "bar_15m_change_pct": 0.22,
-      "vol_spike_ratio": 0.14,
+      "last_price": 88.24,
+      "change_24h_pct": -2.92,
+      "bar_15m_change_pct": 0.01,
+      "vol_spike_ratio": 0.09,
       "funding_rate_pct": 0.01,
-      "open_interest": 14856683.38,
-      "ma5": 87.54,
-      "ma10": 87.19,
-      "ma20": 87.58,
-      "atr_15m_pct": 0.95,
-      "recent_swing_pct": 2.99,
-      "anchored_tp_pct": 2.24,
-      "anchored_sl_pct": 1.64,
-      "trend": "BEARISH",
+      "open_interest": 14862382.33,
+      "ma5": 88.01,
+      "ma10": 87.57,
+      "ma20": 87.41,
+      "atr_15m_pct": 0.97,
+      "recent_swing_pct": 3.2,
+      "anchored_tp_pct": 2.4,
+      "anchored_sl_pct": 1.76,
+      "trend": "BULLISH",
       "momentum_weakening_long": false,
       "momentum_weakening_short": true
     }
   },
   "latest_news": [
-    "快軌 20 秒級別高速監控中 (自動執行 ROI +5% 保本 / +9% 半倉落袋與 +1% 鎖利)"
+    "Vitalik ‘pivots’ ETH to store of value, crypto suffers after US midterms: Hodler’s Digest",
+    "Here’s what happened in crypto today",
+    "Binance France emails announce closure of its users’ accounts on Dec. 31"
   ],
   "ai_broadcast_signals": {
-    "updated_at": "09:52:42",
+    "updated_at": "10:39:23",
     "confidence": 88,
-    "summary": "市場整體趨勢偏空，但空頭動能減弱。策略聚焦於ETH與SOL的做空機會，參考波動率定錨止盈止損，並避免對現有BTC多倉開立反向單。",
+    "summary": "市場波動定錨，BTC多頭趨勢強勁，ETH空頭歷史表現佳，進行強弱配對。",
     "half_a_orders": [
       {
-        "symbol": "ETH/USDT:USDT",
-        "action": "SELL",
+        "symbol": "BTC/USDT:USDT",
+        "action": "BUY",
         "weight": 1.5,
         "leverage": 6,
-        "tp_pct": 2.2,
-        "sl_pct": 1.6,
-        "reason": "【Half-A 波動定錨】ETH處於熊市趨勢，儘管空頭動能減弱，但歷史做空表現優異且資金費率為負，符合做空條件。止盈止損參考錨定值。"
+        "tp_pct": 1.8,
+        "sl_pct": 1.3,
+        "reason": "【Half-A 波動定錨】BTC趨勢強勁，動能未減，依波動率定錨追蹤多頭。"
       }
     ],
     "half_b_orders": [
       {
-        "symbol": "SOL/USDT:USDT",
+        "symbol": "ETH/USDT:USDT",
         "action": "SELL",
         "weight": 1.2,
         "leverage": 6,
         "tp_pct": 2.3,
         "sl_pct": 1.7,
-        "reason": "【Half-B 強弱配對】SOL同樣處於熊市趨勢，與ETH做空策略保持一致。儘管近期做空有虧損，但整體市場情緒偏空，止盈止損參考錨定值。"
+        "reason": "【Half-B 強弱配對】ETH維持空頭趨勢，儘管動能略弱，但歷史空單表現優異，配合BTC多單進行強弱配對。"
       }
     ]
   },
   "ai_last_decision": {
     "action": "今日已實現 $+6,470.96 | 本期累計(11/05 17:01起) $+26,543.84 (勝率 30.0%)",
     "confidence": 88,
-    "reason": "市場整體趨勢偏空，但空頭動能減弱。策略聚焦於ETH與SOL的做空機會，參考波動率定錨止盈止損，並避免對現有BTC多倉開立反向單。"
+    "reason": "市場波動定錨，BTC多頭趨勢強勁，ETH空頭歷史表現佳，進行強弱配對。"
   },
   "orders": [
     {
@@ -227,7 +229,7 @@
       "realized_pnl_num": 4683.48,
       "fee": "倉位累計手續費 262.2334 USDT",
       "rr": "開倉 $75,852.07 / 平倉 $74,856.78",
-      "reason": "市場整體趨勢偏空，但空頭動能減弱。策略聚焦於ETH與SOL的做空機會，參考波動率定錨止盈止損，並避免對現有BTC多倉開立反向單。",
+      "reason": "【Half-A 波動定錨】BTC趨勢強勁，動能未減，依波動率定錨追蹤多頭。",
       "hash": "0x9f526418c268ab65"
     },
     {
@@ -248,7 +250,7 @@
       "realized_pnl_num": 13315.49,
       "fee": "倉位累計手續費 253.6776 USDT",
       "rr": "開倉 $2,238.13 / 平倉 $2,143.18",
-      "reason": "【Half-A 波動定錨】ETH處於熊市趨勢，儘管空頭動能減弱，但歷史做空表現優異且資金費率為負，符合做空條件。止盈止損參考錨定值。",
+      "reason": "【Half-B 強弱配對】ETH維持空頭趨勢，儘管動能略弱，但歷史空單表現優異，配合BTC多單進行強弱配對。",
       "hash": "0x434fc212ae602cb5"
     },
     {
@@ -269,7 +271,7 @@
       "realized_pnl_num": -4243.31,
       "fee": "倉位累計手續費 245.1619 USDT",
       "rr": "開倉 $89.24 / 平倉 $90.76",
-      "reason": "【Half-B 強弱配對】SOL同樣處於熊市趨勢，與ETH做空策略保持一致。儘管近期做空有虧損，但整體市場情緒偏空，止盈止損參考錨定值。",
+      "reason": "市場波動定錨，BTC多頭趨勢強勁，ETH空頭歷史表現佳，進行強弱配對。",
       "hash": "0xfe688010661c2d80"
     },
     {
@@ -290,7 +292,7 @@
       "realized_pnl_num": -5114.78,
       "fee": "倉位累計手續費 161.9734 USDT",
       "rr": "開倉 $76,403.63 / 平倉 $74,414.55",
-      "reason": "市場整體趨勢偏空，但空頭動能減弱。策略聚焦於ETH與SOL的做空機會，參考波動率定錨止盈止損，並避免對現有BTC多倉開立反向單。",
+      "reason": "【Half-A 波動定錨】BTC趨勢強勁，動能未減，依波動率定錨追蹤多頭。",
       "hash": "0xdc9003ca23f8c6b2"
     },
     {
@@ -311,7 +313,7 @@
       "realized_pnl_num": -801.63,
       "fee": "倉位累計手續費 19.0871 USDT",
       "rr": "開倉 $2,238.89 / 平倉 $2,148.95",
-      "reason": "【Half-A 波動定錨】ETH處於熊市趨勢，儘管空頭動能減弱，但歷史做空表現優異且資金費率為負，符合做空條件。止盈止損參考錨定值。",
+      "reason": "【Half-B 強弱配對】ETH維持空頭趨勢，儘管動能略弱，但歷史空單表現優異，配合BTC多單進行強弱配對。",
       "hash": "0xe0eebbd2597ad06f"
     },
     {
@@ -332,7 +334,7 @@
       "realized_pnl_num": -1368.29,
       "fee": "倉位累計手續費 35.5248 USDT",
       "rr": "開倉 $90.64 / 平倉 $87.32",
-      "reason": "【Half-B 強弱配對】SOL同樣處於熊市趨勢，與ETH做空策略保持一致。儘管近期做空有虧損，但整體市場情緒偏空，止盈止損參考錨定值。",
+      "reason": "市場波動定錨，BTC多頭趨勢強勁，ETH空頭歷史表現佳，進行強弱配對。",
       "hash": "0xefee4df8d802ead2"
     },
     {
@@ -353,7 +355,7 @@
       "realized_pnl_num": 7756.78,
       "fee": "倉位累計手續費 140.2233 USDT",
       "rr": "開倉 $96.11 / 平倉 $90.85",
-      "reason": "【Half-B 強弱配對】SOL同樣處於熊市趨勢，與ETH做空策略保持一致。儘管近期做空有虧損，但整體市場情緒偏空，止盈止損參考錨定值。",
+      "reason": "市場波動定錨，BTC多頭趨勢強勁，ETH空頭歷史表現佳，進行強弱配對。",
       "hash": "0xd01315afd67aa4ff"
     },
     {
@@ -374,7 +376,7 @@
       "realized_pnl_num": 5893.29,
       "fee": "倉位累計手續費 139.5713 USDT",
       "rr": "開倉 $80,101.64 / 平倉 $76,720.00",
-      "reason": "市場整體趨勢偏空，但空頭動能減弱。策略聚焦於ETH與SOL的做空機會，參考波動率定錨止盈止損，並避免對現有BTC多倉開立反向單。",
+      "reason": "【Half-A 波動定錨】BTC趨勢強勁，動能未減，依波動率定錨追蹤多頭。",
       "hash": "0x0464b9e8172f544f"
     },
     {
@@ -395,7 +397,7 @@
       "realized_pnl_num": 11653.4,
       "fee": "倉位累計手續費 189.8662 USDT",
       "rr": "開倉 $2,414.77 / 平倉 $2,267.50",
-      "reason": "【Half-A 波動定錨】ETH處於熊市趨勢，儘管空頭動能減弱，但歷史做空表現優異且資金費率為負，符合做空條件。止盈止損參考錨定值。",
+      "reason": "【Half-B 強弱配對】ETH維持空頭趨勢，儘管動能略弱，但歷史空單表現優異，配合BTC多單進行強弱配對。",
       "hash": "0x5dc027defd835cf7"
     },
     {
@@ -416,7 +418,7 @@
       "realized_pnl_num": -412.56,
       "fee": "倉位累計手續費 168.3077 USDT",
       "rr": "開倉 $80,204.66 / 平倉 $80,088.35",
-      "reason": "市場整體趨勢偏空，但空頭動能減弱。策略聚焦於ETH與SOL的做空機會，參考波動率定錨止盈止損，並避免對現有BTC多倉開立反向單。",
+      "reason": "【Half-A 波動定錨】BTC趨勢強勁，動能未減，依波動率定錨追蹤多頭。",
       "hash": "0x5c8b7e5ecba865d2"
     },
     {
@@ -437,7 +439,7 @@
       "realized_pnl_num": -870.38,
       "fee": "倉位累計手續費 144.5279 USDT",
       "rr": "開倉 $96.59 / 平倉 $96.11",
-      "reason": "【Half-B 強弱配對】SOL同樣處於熊市趨勢，與ETH做空策略保持一致。儘管近期做空有虧損，但整體市場情緒偏空，止盈止損參考錨定值。",
+      "reason": "市場波動定錨，BTC多頭趨勢強勁，ETH空頭歷史表現佳，進行強弱配對。",
       "hash": "0x4cfa6679379294cc"
     },
     {
@@ -458,7 +460,7 @@
       "realized_pnl_num": 102.62,
       "fee": "倉位累計手續費 195.0288 USDT",
       "rr": "開倉 $80,320.00 / 平倉 $80,197.51",
-      "reason": "市場整體趨勢偏空，但空頭動能減弱。策略聚焦於ETH與SOL的做空機會，參考波動率定錨止盈止損，並避免對現有BTC多倉開立反向單。",
+      "reason": "【Half-A 波動定錨】BTC趨勢強勁，動能未減，依波動率定錨追蹤多頭。",
       "hash": "0x2bd922fffcb02427"
     },
     {
@@ -479,7 +481,7 @@
       "realized_pnl_num": -309.52,
       "fee": "倉位累計手續費 197.8130 USDT",
       "rr": "開倉 $2,415.98 / 平倉 $2,414.62",
-      "reason": "【Half-A 波動定錨】ETH處於熊市趨勢，儘管空頭動能減弱，但歷史做空表現優異且資金費率為負，符合做空條件。止盈止損參考錨定值。",
+      "reason": "【Half-B 強弱配對】ETH維持空頭趨勢，儘管動能略弱，但歷史空單表現優異，配合BTC多單進行強弱配對。",
       "hash": "0x3c3791546427b620"
     },
     {
@@ -500,7 +502,7 @@
       "realized_pnl_num": -371.12,
       "fee": "倉位累計手續費 197.6739 USDT",
       "rr": "開倉 $80,390.51 / 平倉 $80,320.00",
-      "reason": "市場整體趨勢偏空，但空頭動能減弱。策略聚焦於ETH與SOL的做空機會，參考波動率定錨止盈止損，並避免對現有BTC多倉開立反向單。",
+      "reason": "【Half-A 波動定錨】BTC趨勢強勁，動能未減，依波動率定錨追蹤多頭。",
       "hash": "0x0c7289bd40b8bad2"
     },
     {
@@ -521,7 +523,7 @@
       "realized_pnl_num": -503.8,
       "fee": "倉位累計手續費 199.1517 USDT",
       "rr": "開倉 $2,412.11 / 平倉 $2,415.81",
-      "reason": "【Half-A 波動定錨】ETH處於熊市趨勢，儘管空頭動能減弱，但歷史做空表現優異且資金費率為負，符合做空條件。止盈止損參考錨定值。",
+      "reason": "【Half-B 強弱配對】ETH維持空頭趨勢，儘管動能略弱，但歷史空單表現優異，配合BTC多單進行強弱配對。",
       "hash": "0xe15dfd2946881c0c"
     },
     {
@@ -542,7 +544,7 @@
       "realized_pnl_num": -317.19,
       "fee": "倉位累計手續費 198.4498 USDT",
       "rr": "開倉 $80,320.00 / 平倉 $80,368.07",
-      "reason": "市場整體趨勢偏空，但空頭動能減弱。策略聚焦於ETH與SOL的做空機會，參考波動率定錨止盈止損，並避免對現有BTC多倉開立反向單。",
+      "reason": "【Half-A 波動定錨】BTC趨勢強勁，動能未減，依波動率定錨追蹤多頭。",
       "hash": "0xe94a27227314eee2"
     },
     {
@@ -563,7 +565,7 @@
       "realized_pnl_num": -843.8,
       "fee": "倉位累計手續費 265.4173 USDT",
       "rr": "開倉 $2,417.71 / 平倉 $2,412.45",
-      "reason": "【Half-A 波動定錨】ETH處於熊市趨勢，儘管空頭動能減弱，但歷史做空表現優異且資金費率為負，符合做空條件。止盈止損參考錨定值。",
+      "reason": "【Half-B 強弱配對】ETH維持空頭趨勢，儘管動能略弱，但歷史空單表現優異，配合BTC多單進行強弱配對。",
       "hash": "0x68ed928b8969fe78"
     },
     {
@@ -584,7 +586,7 @@
       "realized_pnl_num": -1424.73,
       "fee": "倉位累計手續費 391.6807 USDT",
       "rr": "開倉 $80,533.30 / 平倉 $80,321.18",
-      "reason": "市場整體趨勢偏空，但空頭動能減弱。策略聚焦於ETH與SOL的做空機會，參考波動率定錨止盈止損，並避免對現有BTC多倉開立反向單。",
+      "reason": "【Half-A 波動定錨】BTC趨勢強勁，動能未減，依波動率定錨追蹤多頭。",
       "hash": "0xc665bf2f64319dfe"
     },
     {
@@ -605,7 +607,7 @@
       "realized_pnl_num": -57.35,
       "fee": "倉位累計手續費 108.5541 USDT",
       "rr": "開倉 $2,418.26 / 平倉 $2,417.12",
-      "reason": "【Half-A 波動定錨】ETH處於熊市趨勢，儘管空頭動能減弱，但歷史做空表現優異且資金費率為負，符合做空條件。止盈止損參考錨定值。",
+      "reason": "【Half-B 強弱配對】ETH維持空頭趨勢，儘管動能略弱，但歷史空單表現優異，配合BTC多單進行強弱配對。",
       "hash": "0xe00b99fbcb49f402"
     },
     {
@@ -626,7 +628,7 @@
       "realized_pnl_num": -222.77,
       "fee": "倉位累計手續費 167.4752 USDT",
       "rr": "開倉 $80,503.61 / 平倉 $80,530.20",
-      "reason": "市場整體趨勢偏空，但空頭動能減弱。策略聚焦於ETH與SOL的做空機會，參考波動率定錨止盈止損，並避免對現有BTC多倉開立反向單。",
+      "reason": "【Half-A 波動定錨】BTC趨勢強勁，動能未減，依波動率定錨追蹤多頭。",
       "hash": "0xe1ebd159b085345d"
     }
   ]
