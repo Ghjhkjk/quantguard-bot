@@ -1,13 +1,13 @@
 {
-  "updated_at": "2026-11-09 10:43:19",
+  "updated_at": "2026-11-09 13:45:56",
   "epoch_cutoff": "2026-11-05 17:01:00",
-  "real_usdt": 122877.77,
-  "free_usdt": 61994.76,
-  "used_usdt": 60883.01,
+  "real_usdt": 127831.29,
+  "free_usdt": 67777.09,
+  "used_usdt": 60054.2,
   "allocations": {
-    "normal_80_usdt": 98302.22,
-    "hedge_10_usdt": 12287.78,
-    "sniper_10_usdt": 12287.78
+    "normal_80_usdt": 102265.03,
+    "hedge_10_usdt": 12783.13,
+    "sniper_10_usdt": 12783.13
   },
   "performance_stats": {
     "epoch_start": "2026-11-05 17:01:16",
@@ -51,164 +51,300 @@
       }
     }
   },
+  "ai_memory_bank": {
+    "entry_snapshots": {},
+    "processed_pos_keys": [
+      "4075589937645879296_1794174918412",
+      "4072396604698144771_1793870655001",
+      "4071987727334780929_1793870655178",
+      "4071987727334780929_1793871593264",
+      "4072789256178380803_1793896365898",
+      "4072363062748393475_1793869275921",
+      "4072396604698144771_1793881162226",
+      "4072363062748393475_1794188315887",
+      "4072090672499929091_1793869473873",
+      "4072363062748393475_1793880977244",
+      "4072363062748393475_1793871408297",
+      "4075589924224106496_1794174940906",
+      "4072363087947771907_1793880977435",
+      "4072090672499929091_1793896363262",
+      "4075589951403196416_1794174780015",
+      "4072396604698144771_1793871593046",
+      "4072090672499929091_1794188311844",
+      "4072789256178380803_1794181938114",
+      "4072090672499929091_1793871408535",
+      "4072363062748393475_1793896364736",
+      "4075589924224106496_1794203156086"
+    ],
+    "pattern_stats": {
+      "SHORT_under_GENERAL_TREND_NEUTRAL": {
+        "wins": 6,
+        "losses": 5,
+        "net_pnl": 38060.64
+      },
+      "LONG_under_GENERAL_TREND_NEUTRAL": {
+        "wins": 0,
+        "losses": 10,
+        "net_pnl": -16631.59
+      }
+    },
+    "symbol_direction_stats": {
+      "BTC/USDT:USDT_SHORT": {
+        "wins": 3,
+        "losses": 2,
+        "net_pnl": 10139.43,
+        "avg_win": 0.0,
+        "avg_loss": 0.0
+      },
+      "ETH/USDT:USDT_SHORT": {
+        "wins": 2,
+        "losses": 2,
+        "net_pnl": 24407.74,
+        "avg_win": 0.0,
+        "avg_loss": 0.0
+      },
+      "BTC/USDT:USDT_LONG": {
+        "wins": 0,
+        "losses": 5,
+        "net_pnl": -12437.97,
+        "avg_win": 0.0,
+        "avg_loss": 0.0
+      },
+      "ETH/USDT:USDT_LONG": {
+        "wins": 0,
+        "losses": 3,
+        "net_pnl": -1954.95,
+        "avg_win": 0.0,
+        "avg_loss": 0.0
+      },
+      "SOL/USDT:USDT_LONG": {
+        "wins": 0,
+        "losses": 2,
+        "net_pnl": -2238.67,
+        "avg_win": 0.0,
+        "avg_loss": 0.0
+      },
+      "SOL/USDT:USDT_SHORT": {
+        "wins": 1,
+        "losses": 1,
+        "net_pnl": 3513.47,
+        "avg_win": 0.0,
+        "avg_loss": 0.0
+      }
+    },
+    "lessons_learned": [
+      "✅【高期望值優勢】BTC/USDT:USDT_SHORT 累計 3勝2敗 (勝率60.0%，淨賺+$10139.43)，具備正期望值優勢！",
+      "✅【高期望值優勢】ETH/USDT:USDT_SHORT 累計 2勝2敗 (勝率50.0%，淨賺+$24407.74)，具備正期望值優勢！",
+      "⚠️【高敗率警告】BTC/USDT:USDT_LONG 累計 0勝5敗 (勝率僅0.0%，淨虧$-12437.97)，若無 1H+15m 強烈共振與健康 RSI，請優先改做反向或換標的！",
+      "⚠️【高敗率警告】ETH/USDT:USDT_LONG 累計 0勝3敗 (勝率僅0.0%，淨虧$-1954.95)，若無 1H+15m 強烈共振與健康 RSI，請優先改做反向或換標的！",
+      "⚠️【高敗率警告】SOL/USDT:USDT_LONG 累計 0勝2敗 (勝率僅0.0%，淨虧$-2238.67)，若無 1H+15m 強烈共振與健康 RSI，請優先改做反向或換標的！",
+      "✅【高期望值優勢】SOL/USDT:USDT_SHORT 累計 1勝1敗 (勝率50.0%，淨賺+$3513.47)，具備正期望值優勢！",
+      "📊【情境記憶】當執行『SHORT_under_GENERAL_TREND_NEUTRAL』時：歷史 6勝5敗 (勝率 54.5%，累計損益 $+38060.64)",
+      "📊【情境記憶】當執行『LONG_under_GENERAL_TREND_NEUTRAL』時：歷史 0勝10敗 (勝率 0.0%，累計損益 $-16631.59)"
+    ]
+  },
   "position_stage_map": {
     "SOL/USDT:USDT_SHORT": 2,
     "ETH/USDT:USDT_SHORT": 2,
     "BTC/USDT:USDT_SHORT": 1
   },
-  "total_unrealized_pnl": -2445.23,
-  "total_crypto_roi_pct": -1.99,
+  "total_unrealized_pnl": 2511.89,
+  "total_crypto_roi_pct": 1.97,
   "active_positions": [
     {
       "symbol": "SOL/USDT:USDT",
       "side": "SHORT",
       "contracts": 1200.0,
-      "leverage": "6.0x",
+      "leverage": "6x",
       "entry_price": 87.66,
-      "mark_price": 88.17,
-      "margin_usdt": 17634.0,
-      "notional_usdt": 105667.51,
-      "unrealized_pnl": -611.45,
-      "roi_pct": -3.49,
+      "mark_price": 86.76,
+      "margin_usdt": 17352.0,
+      "notional_usdt": 103981.86,
+      "unrealized_pnl": 1080.55,
+      "roi_pct": 6.23,
       "tp_pct": 2.4,
-      "sl_pct": 1.76,
+      "sl_pct": 1.6,
       "tp_trigger_px": 85.56,
       "sl_trigger_px": 86.78,
       "stage": 2,
       "stage_badge": "💰 已平半倉 & 止損鎖 +1%",
-      "reason": "波動率定錨止盈 +2.4% | ROI滿5%自動移止損保本、滿9%平半倉鎖+1%"
+      "reason": "【Half-B 記憶進化+雙周期】SOL/USDT:USDT 具備高期望值做空優勢，且雙周期共振空頭。儘管RSI/BB超賣，但遵循趨勢與記憶庫，等待反彈後續跌。"
     },
     {
       "symbol": "ETH/USDT:USDT",
       "side": "SHORT",
       "contracts": 1200.0,
-      "leverage": "6.0x",
+      "leverage": "6x",
       "entry_price": 2140.99,
-      "mark_price": 2156.19,
-      "margin_usdt": 43123.8,
-      "notional_usdt": 258409.02,
-      "unrealized_pnl": -1823.41,
-      "roi_pct": -4.26,
-      "tp_pct": 2.3,
-      "sl_pct": 1.7,
-      "tp_trigger_px": 2091.75,
+      "mark_price": 2128.9,
+      "margin_usdt": 42578.0,
+      "notional_usdt": 255148.67,
+      "unrealized_pnl": 1451.39,
+      "roi_pct": 3.41,
+      "tp_pct": 2.2,
+      "sl_pct": 1.5,
+      "tp_trigger_px": 2093.89,
       "sl_trigger_px": 2119.58,
       "stage": 2,
       "stage_badge": "💰 已平半倉 & 止損鎖 +1%",
-      "reason": "【Half-B 強弱配對】ETH維持空頭趨勢，儘管動能略弱，但歷史空單表現優異，配合BTC多單進行強弱配對。"
+      "reason": "【Half-A 記憶進化+雙周期】ETH/USDT:USDT 具備高期望值做空優勢，且雙周期共振空頭。儘管RSI超賣，但遵循趨勢與記憶庫，等待反彈後續跌。"
     },
     {
       "symbol": "BTC/USDT:USDT",
       "side": "LONG",
       "contracts": 1.0,
-      "leverage": "6.0x",
+      "leverage": "6x",
       "entry_price": 76403.63,
-      "mark_price": 75366.99,
-      "margin_usdt": 125.61,
-      "notional_usdt": 752.7,
-      "unrealized_pnl": -10.37,
-      "roi_pct": -8.14,
-      "tp_pct": 1.8,
-      "sl_pct": 1.3,
-      "tp_trigger_px": 77778.9,
-      "sl_trigger_px": 75410.38,
+      "mark_price": 74398.88,
+      "margin_usdt": 124.0,
+      "notional_usdt": 743.06,
+      "unrealized_pnl": -20.05,
+      "roi_pct": -16.17,
+      "tp_pct": 1.5,
+      "sl_pct": 1.2,
+      "tp_trigger_px": 77549.68,
+      "sl_trigger_px": 75486.79,
       "stage": 0,
       "stage_badge": "⚡ 監控中 (滿5%保本/滿9%平半倉)",
-      "reason": "【Half-A 波動定錨】BTC趨勢強勁，動能未減，依波動率定錨追蹤多頭。"
+      "reason": "AI 記憶進化策略 | 1H:BEARISH RSI:14.8 | 滿5%保本、滿9%平半倉"
     }
   ],
   "market_prices": {
     "BTC/USDT:USDT": {
-      "last_price": 75367.05,
-      "change_24h_pct": -0.35,
-      "bar_15m_change_pct": -0.15,
-      "vol_spike_ratio": 0.26,
+      "last_price": 74337.9,
+      "change_24h_pct": -1.92,
+      "bar_15m_change_pct": -0.0,
+      "vol_spike_ratio": 0.0,
       "funding_rate_pct": 0.01,
-      "open_interest": 2147874343.89,
-      "ma5": 75261.86,
-      "ma10": 75133.44,
-      "ma20": 75041.43,
-      "atr_15m_pct": 0.64,
-      "recent_swing_pct": 1.54,
+      "open_interest": 2149676332.71,
+      "ma5": 74522.96,
+      "ma10": 74734.34,
+      "ma20": 74938.46,
+      "rsi_14": 14.8,
+      "rsi_zone": "OVERSOLD_HIGH_RISK_SHORT",
+      "bb_upper": 75545.86,
+      "bb_lower": 74331.05,
+      "bb_pos_pct": 0.6,
+      "trend_1h": "BEARISH",
+      "trend": "BEARISH",
+      "multi_tf_regime": "RESONANCE_BEAR",
+      "atr_15m_pct": 0.48,
+      "recent_swing_pct": 1.63,
       "anchored_tp_pct": 1.5,
       "anchored_sl_pct": 1.2,
-      "trend": "BULLISH",
-      "momentum_weakening_long": false,
-      "momentum_weakening_short": true
+      "momentum_weakening_long": true,
+      "momentum_weakening_short": false
     },
     "ETH/USDT:USDT": {
-      "last_price": 2156.92,
-      "change_24h_pct": -4.06,
-      "bar_15m_change_pct": 0.1,
-      "vol_spike_ratio": 0.3,
-      "funding_rate_pct": 0.001,
-      "open_interest": 3136440535.2,
-      "ma5": 2148.72,
-      "ma10": 2141.85,
-      "ma20": 2151.69,
-      "atr_15m_pct": 1.21,
-      "recent_swing_pct": 2.85,
-      "anchored_tp_pct": 2.13,
-      "anchored_sl_pct": 1.57,
+      "last_price": 2129.65,
+      "change_24h_pct": -5.14,
+      "bar_15m_change_pct": 0.02,
+      "vol_spike_ratio": 0.01,
+      "funding_rate_pct": 0.01,
+      "open_interest": 3135664827.87,
+      "ma5": 2133.67,
+      "ma10": 2138.06,
+      "ma20": 2140.5,
+      "rsi_14": 23.3,
+      "rsi_zone": "OVERSOLD_HIGH_RISK_SHORT",
+      "bb_upper": 2156.26,
+      "bb_lower": 2124.74,
+      "bb_pos_pct": 15.6,
+      "trend_1h": "BEARISH",
       "trend": "BEARISH",
-      "momentum_weakening_long": false,
-      "momentum_weakening_short": true
+      "multi_tf_regime": "RESONANCE_BEAR",
+      "atr_15m_pct": 0.81,
+      "recent_swing_pct": 1.63,
+      "anchored_tp_pct": 1.5,
+      "anchored_sl_pct": 1.2,
+      "momentum_weakening_long": true,
+      "momentum_weakening_short": false
     },
     "SOL/USDT:USDT": {
-      "last_price": 88.16,
-      "change_24h_pct": -3.0,
-      "bar_15m_change_pct": -0.08,
-      "vol_spike_ratio": 0.1,
+      "last_price": 86.8,
+      "change_24h_pct": -4.85,
+      "bar_15m_change_pct": -0.01,
+      "vol_spike_ratio": 0.0,
       "funding_rate_pct": 0.01,
-      "open_interest": 14861950.37,
-      "ma5": 88.0,
-      "ma10": 87.56,
-      "ma20": 87.4,
-      "atr_15m_pct": 0.97,
-      "recent_swing_pct": 3.2,
-      "anchored_tp_pct": 2.4,
-      "anchored_sl_pct": 1.76,
-      "trend": "BULLISH",
-      "momentum_weakening_long": false,
-      "momentum_weakening_short": true
+      "open_interest": 14729076.61,
+      "ma5": 87.02,
+      "ma10": 87.28,
+      "ma20": 87.51,
+      "rsi_14": 22.6,
+      "rsi_zone": "OVERSOLD_HIGH_RISK_SHORT",
+      "bb_upper": 88.35,
+      "bb_lower": 86.67,
+      "bb_pos_pct": 7.7,
+      "trend_1h": "BEARISH",
+      "trend": "BEARISH",
+      "multi_tf_regime": "RESONANCE_BEAR",
+      "atr_15m_pct": 0.76,
+      "recent_swing_pct": 2.17,
+      "anchored_tp_pct": 1.62,
+      "anchored_sl_pct": 1.2,
+      "momentum_weakening_long": true,
+      "momentum_weakening_short": false
     }
   },
   "latest_news": [
-    "快軌 20 秒級別高速監控中 (自動執行 ROI +5% 保本 / +9% 半倉落袋與 +1% 鎖利)"
+    "Zcash devs propose another block time cut days after NU7 upgrade",
+    "tBTC bridge partially resumes as $120M Aave reserve remains frozen",
+    "Vitalik ‘pivots’ ETH to store of value, crypto suffers after US midterms: Hodler’s Digest"
   ],
   "ai_broadcast_signals": {
-    "updated_at": "10:43:19",
-    "confidence": 88,
-    "summary": "市場波動定錨，BTC多頭趨勢強勁，ETH空頭歷史表現佳，進行強弱配對。",
+    "updated_at": "13:45:56",
+    "confidence": 80,
+    "summary": "結合記憶庫高勝率做空經驗與雙周期空頭共振，積極為 ETH/SOL 規劃做空訂單，儘管短期指標超賣，仍相信趨勢與記憶優勢。",
     "half_a_orders": [
       {
-        "symbol": "BTC/USDT:USDT",
-        "action": "BUY",
-        "weight": 1.5,
+        "symbol": "ETH/USDT:USDT",
+        "action": "SELL",
+        "weight": 1.6,
         "leverage": 6,
-        "tp_pct": 1.8,
-        "sl_pct": 1.3,
-        "reason": "【Half-A 波動定錨】BTC趨勢強勁，動能未減，依波動率定錨追蹤多頭。"
+        "tp_pct": 2.2,
+        "sl_pct": 1.5,
+        "reason": "【Half-A 記憶進化+雙周期】ETH/USDT:USDT 具備高期望值做空優勢，且雙周期共振空頭。儘管RSI超賣，但遵循趨勢與記憶庫，等待反彈後續跌。"
       }
     ],
     "half_b_orders": [
       {
-        "symbol": "ETH/USDT:USDT",
+        "symbol": "SOL/USDT:USDT",
         "action": "SELL",
-        "weight": 1.2,
+        "weight": 1.6,
         "leverage": 6,
-        "tp_pct": 2.3,
-        "sl_pct": 1.7,
-        "reason": "【Half-B 強弱配對】ETH維持空頭趨勢，儘管動能略弱，但歷史空單表現優異，配合BTC多單進行強弱配對。"
+        "tp_pct": 2.4,
+        "sl_pct": 1.6,
+        "reason": "【Half-B 記憶進化+雙周期】SOL/USDT:USDT 具備高期望值做空優勢，且雙周期共振空頭。儘管RSI/BB超賣，但遵循趨勢與記憶庫，等待反彈後續跌。"
       }
     ]
   },
   "ai_last_decision": {
-    "action": "今日已實現 $+6,470.96 | 本期累計(11/05 17:01起) $+26,543.84 (勝率 30.0%)",
-    "confidence": 88,
-    "reason": "市場波動定錨，BTC多頭趨勢強勁，ETH空頭歷史表現佳，進行強弱配對。"
+    "action": "今日已實現 $+6,470.96 | 本期累計 $+26,543.84 (AI記憶庫已學習 21 筆)",
+    "confidence": 80,
+    "reason": "結合記憶庫高勝率做空經驗與雙周期空頭共振，積極為 ETH/SOL 規劃做空訂單，儘管短期指標超賣，仍相信趨勢與記憶優勢。"
   },
   "orders": [
+    {
+      "id": "POS-106496",
+      "full_id": "4075589924224106496_1794203156086",
+      "timestamp_ms": 1794203156086,
+      "open_timestamp_ms": 1793964444841,
+      "time": "2026-11-09 13:45:56",
+      "market": "crypto",
+      "marketBadge": "📦 歷史倉位 (249.0張)",
+      "asset": "BTC/USDT:USDT",
+      "direction": "做多倉位結算 (LONG)",
+      "leverage": "7.0x 倉位槓桿",
+      "pool": "平倉張數: 249.0 張合約",
+      "entryExit": "開倉均價 $76,403.63 ➔ 平倉均價 $74,414.55",
+      "roi": "已實現損益 $-5,114.78 USDT (-16.13%)",
+      "pnl": "倉位結算收益: $-5,114.78 USDT",
+      "realized_pnl_num": -5114.78,
+      "fee": "倉位累計手續費 161.9734 USDT",
+      "rr": "開倉 $76,403.63 / 平倉 $74,414.55",
+      "reason": "結合記憶庫高勝率做空經驗與雙周期空頭共振，積極為 ETH/SOL 規劃做空訂單，儘管短期指標超賣，仍相信趨勢與記憶優勢。",
+      "hash": "0x7882921ceb1e780a"
+    },
     {
       "id": "POS-393475",
       "full_id": "4072363062748393475_1794188315887",
@@ -227,7 +363,7 @@
       "realized_pnl_num": 4683.48,
       "fee": "倉位累計手續費 262.2334 USDT",
       "rr": "開倉 $75,852.07 / 平倉 $74,856.78",
-      "reason": "【Half-A 波動定錨】BTC趨勢強勁，動能未減，依波動率定錨追蹤多頭。",
+      "reason": "結合記憶庫高勝率做空經驗與雙周期空頭共振，積極為 ETH/SOL 規劃做空訂單，儘管短期指標超賣，仍相信趨勢與記憶優勢。",
       "hash": "0x9f526418c268ab65"
     },
     {
@@ -248,7 +384,7 @@
       "realized_pnl_num": 13315.49,
       "fee": "倉位累計手續費 253.6776 USDT",
       "rr": "開倉 $2,238.13 / 平倉 $2,143.18",
-      "reason": "【Half-B 強弱配對】ETH維持空頭趨勢，儘管動能略弱，但歷史空單表現優異，配合BTC多單進行強弱配對。",
+      "reason": "【Half-A 記憶進化+雙周期】ETH/USDT:USDT 具備高期望值做空優勢，且雙周期共振空頭。儘管RSI超賣，但遵循趨勢與記憶庫，等待反彈後續跌。",
       "hash": "0x434fc212ae602cb5"
     },
     {
@@ -269,29 +405,8 @@
       "realized_pnl_num": -4243.31,
       "fee": "倉位累計手續費 245.1619 USDT",
       "rr": "開倉 $89.24 / 平倉 $90.76",
-      "reason": "市場波動定錨，BTC多頭趨勢強勁，ETH空頭歷史表現佳，進行強弱配對。",
+      "reason": "【Half-B 記憶進化+雙周期】SOL/USDT:USDT 具備高期望值做空優勢，且雙周期共振空頭。儘管RSI/BB超賣，但遵循趨勢與記憶庫，等待反彈後續跌。",
       "hash": "0xfe688010661c2d80"
-    },
-    {
-      "id": "POS-106496",
-      "full_id": "4075589924224106496_1794174940906",
-      "timestamp_ms": 1794174940906,
-      "open_timestamp_ms": 1793964444841,
-      "time": "2026-11-09 05:55:40",
-      "market": "crypto",
-      "marketBadge": "📦 歷史倉位 (249.0張)",
-      "asset": "BTC/USDT:USDT",
-      "direction": "做多倉位結算 (LONG)",
-      "leverage": "6.0x 倉位槓桿",
-      "pool": "平倉張數: 249.0 張合約",
-      "entryExit": "開倉均價 $76,403.63 ➔ 平倉均價 $74,414.55",
-      "roi": "已實現損益 $-5,114.78 USDT (-16.13%)",
-      "pnl": "倉位結算收益: $-5,114.78 USDT",
-      "realized_pnl_num": -5114.78,
-      "fee": "倉位累計手續費 161.9734 USDT",
-      "rr": "開倉 $76,403.63 / 平倉 $74,414.55",
-      "reason": "【Half-A 波動定錨】BTC趨勢強勁，動能未減，依波動率定錨追蹤多頭。",
-      "hash": "0xdc9003ca23f8c6b2"
     },
     {
       "id": "POS-879296",
@@ -311,7 +426,7 @@
       "realized_pnl_num": -801.63,
       "fee": "倉位累計手續費 19.0871 USDT",
       "rr": "開倉 $2,238.89 / 平倉 $2,148.95",
-      "reason": "【Half-B 強弱配對】ETH維持空頭趨勢，儘管動能略弱，但歷史空單表現優異，配合BTC多單進行強弱配對。",
+      "reason": "【Half-A 記憶進化+雙周期】ETH/USDT:USDT 具備高期望值做空優勢，且雙周期共振空頭。儘管RSI超賣，但遵循趨勢與記憶庫，等待反彈後續跌。",
       "hash": "0xe0eebbd2597ad06f"
     },
     {
@@ -332,7 +447,7 @@
       "realized_pnl_num": -1368.29,
       "fee": "倉位累計手續費 35.5248 USDT",
       "rr": "開倉 $90.64 / 平倉 $87.32",
-      "reason": "市場波動定錨，BTC多頭趨勢強勁，ETH空頭歷史表現佳，進行強弱配對。",
+      "reason": "【Half-B 記憶進化+雙周期】SOL/USDT:USDT 具備高期望值做空優勢，且雙周期共振空頭。儘管RSI/BB超賣，但遵循趨勢與記憶庫，等待反彈後續跌。",
       "hash": "0xefee4df8d802ead2"
     },
     {
@@ -353,7 +468,7 @@
       "realized_pnl_num": 7756.78,
       "fee": "倉位累計手續費 140.2233 USDT",
       "rr": "開倉 $96.11 / 平倉 $90.85",
-      "reason": "市場波動定錨，BTC多頭趨勢強勁，ETH空頭歷史表現佳，進行強弱配對。",
+      "reason": "【Half-B 記憶進化+雙周期】SOL/USDT:USDT 具備高期望值做空優勢，且雙周期共振空頭。儘管RSI/BB超賣，但遵循趨勢與記憶庫，等待反彈後續跌。",
       "hash": "0xd01315afd67aa4ff"
     },
     {
@@ -374,7 +489,7 @@
       "realized_pnl_num": 5893.29,
       "fee": "倉位累計手續費 139.5713 USDT",
       "rr": "開倉 $80,101.64 / 平倉 $76,720.00",
-      "reason": "【Half-A 波動定錨】BTC趨勢強勁，動能未減，依波動率定錨追蹤多頭。",
+      "reason": "結合記憶庫高勝率做空經驗與雙周期空頭共振，積極為 ETH/SOL 規劃做空訂單，儘管短期指標超賣，仍相信趨勢與記憶優勢。",
       "hash": "0x0464b9e8172f544f"
     },
     {
@@ -395,7 +510,7 @@
       "realized_pnl_num": 11653.4,
       "fee": "倉位累計手續費 189.8662 USDT",
       "rr": "開倉 $2,414.77 / 平倉 $2,267.50",
-      "reason": "【Half-B 強弱配對】ETH維持空頭趨勢，儘管動能略弱，但歷史空單表現優異，配合BTC多單進行強弱配對。",
+      "reason": "【Half-A 記憶進化+雙周期】ETH/USDT:USDT 具備高期望值做空優勢，且雙周期共振空頭。儘管RSI超賣，但遵循趨勢與記憶庫，等待反彈後續跌。",
       "hash": "0x5dc027defd835cf7"
     },
     {
@@ -416,7 +531,7 @@
       "realized_pnl_num": -412.56,
       "fee": "倉位累計手續費 168.3077 USDT",
       "rr": "開倉 $80,204.66 / 平倉 $80,088.35",
-      "reason": "【Half-A 波動定錨】BTC趨勢強勁，動能未減，依波動率定錨追蹤多頭。",
+      "reason": "結合記憶庫高勝率做空經驗與雙周期空頭共振，積極為 ETH/SOL 規劃做空訂單，儘管短期指標超賣，仍相信趨勢與記憶優勢。",
       "hash": "0x5c8b7e5ecba865d2"
     },
     {
@@ -437,7 +552,7 @@
       "realized_pnl_num": -870.38,
       "fee": "倉位累計手續費 144.5279 USDT",
       "rr": "開倉 $96.59 / 平倉 $96.11",
-      "reason": "市場波動定錨，BTC多頭趨勢強勁，ETH空頭歷史表現佳，進行強弱配對。",
+      "reason": "【Half-B 記憶進化+雙周期】SOL/USDT:USDT 具備高期望值做空優勢，且雙周期共振空頭。儘管RSI/BB超賣，但遵循趨勢與記憶庫，等待反彈後續跌。",
       "hash": "0x4cfa6679379294cc"
     },
     {
@@ -458,7 +573,7 @@
       "realized_pnl_num": 102.62,
       "fee": "倉位累計手續費 195.0288 USDT",
       "rr": "開倉 $80,320.00 / 平倉 $80,197.51",
-      "reason": "【Half-A 波動定錨】BTC趨勢強勁，動能未減，依波動率定錨追蹤多頭。",
+      "reason": "結合記憶庫高勝率做空經驗與雙周期空頭共振，積極為 ETH/SOL 規劃做空訂單，儘管短期指標超賣，仍相信趨勢與記憶優勢。",
       "hash": "0x2bd922fffcb02427"
     },
     {
@@ -479,7 +594,7 @@
       "realized_pnl_num": -309.52,
       "fee": "倉位累計手續費 197.8130 USDT",
       "rr": "開倉 $2,415.98 / 平倉 $2,414.62",
-      "reason": "【Half-B 強弱配對】ETH維持空頭趨勢，儘管動能略弱，但歷史空單表現優異，配合BTC多單進行強弱配對。",
+      "reason": "【Half-A 記憶進化+雙周期】ETH/USDT:USDT 具備高期望值做空優勢，且雙周期共振空頭。儘管RSI超賣，但遵循趨勢與記憶庫，等待反彈後續跌。",
       "hash": "0x3c3791546427b620"
     },
     {
@@ -500,7 +615,7 @@
       "realized_pnl_num": -371.12,
       "fee": "倉位累計手續費 197.6739 USDT",
       "rr": "開倉 $80,390.51 / 平倉 $80,320.00",
-      "reason": "【Half-A 波動定錨】BTC趨勢強勁，動能未減，依波動率定錨追蹤多頭。",
+      "reason": "結合記憶庫高勝率做空經驗與雙周期空頭共振，積極為 ETH/SOL 規劃做空訂單，儘管短期指標超賣，仍相信趨勢與記憶優勢。",
       "hash": "0x0c7289bd40b8bad2"
     },
     {
@@ -521,7 +636,7 @@
       "realized_pnl_num": -503.8,
       "fee": "倉位累計手續費 199.1517 USDT",
       "rr": "開倉 $2,412.11 / 平倉 $2,415.81",
-      "reason": "【Half-B 強弱配對】ETH維持空頭趨勢，儘管動能略弱，但歷史空單表現優異，配合BTC多單進行強弱配對。",
+      "reason": "【Half-A 記憶進化+雙周期】ETH/USDT:USDT 具備高期望值做空優勢，且雙周期共振空頭。儘管RSI超賣，但遵循趨勢與記憶庫，等待反彈後續跌。",
       "hash": "0xe15dfd2946881c0c"
     },
     {
@@ -542,7 +657,7 @@
       "realized_pnl_num": -317.19,
       "fee": "倉位累計手續費 198.4498 USDT",
       "rr": "開倉 $80,320.00 / 平倉 $80,368.07",
-      "reason": "【Half-A 波動定錨】BTC趨勢強勁，動能未減，依波動率定錨追蹤多頭。",
+      "reason": "結合記憶庫高勝率做空經驗與雙周期空頭共振，積極為 ETH/SOL 規劃做空訂單，儘管短期指標超賣，仍相信趨勢與記憶優勢。",
       "hash": "0xe94a27227314eee2"
     },
     {
@@ -563,7 +678,7 @@
       "realized_pnl_num": -843.8,
       "fee": "倉位累計手續費 265.4173 USDT",
       "rr": "開倉 $2,417.71 / 平倉 $2,412.45",
-      "reason": "【Half-B 強弱配對】ETH維持空頭趨勢，儘管動能略弱，但歷史空單表現優異，配合BTC多單進行強弱配對。",
+      "reason": "【Half-A 記憶進化+雙周期】ETH/USDT:USDT 具備高期望值做空優勢，且雙周期共振空頭。儘管RSI超賣，但遵循趨勢與記憶庫，等待反彈後續跌。",
       "hash": "0x68ed928b8969fe78"
     },
     {
@@ -584,7 +699,7 @@
       "realized_pnl_num": -1424.73,
       "fee": "倉位累計手續費 391.6807 USDT",
       "rr": "開倉 $80,533.30 / 平倉 $80,321.18",
-      "reason": "【Half-A 波動定錨】BTC趨勢強勁，動能未減，依波動率定錨追蹤多頭。",
+      "reason": "結合記憶庫高勝率做空經驗與雙周期空頭共振，積極為 ETH/SOL 規劃做空訂單，儘管短期指標超賣，仍相信趨勢與記憶優勢。",
       "hash": "0xc665bf2f64319dfe"
     },
     {
@@ -605,7 +720,7 @@
       "realized_pnl_num": -57.35,
       "fee": "倉位累計手續費 108.5541 USDT",
       "rr": "開倉 $2,418.26 / 平倉 $2,417.12",
-      "reason": "【Half-B 強弱配對】ETH維持空頭趨勢，儘管動能略弱，但歷史空單表現優異，配合BTC多單進行強弱配對。",
+      "reason": "【Half-A 記憶進化+雙周期】ETH/USDT:USDT 具備高期望值做空優勢，且雙周期共振空頭。儘管RSI超賣，但遵循趨勢與記憶庫，等待反彈後續跌。",
       "hash": "0xe00b99fbcb49f402"
     },
     {
@@ -626,7 +741,7 @@
       "realized_pnl_num": -222.77,
       "fee": "倉位累計手續費 167.4752 USDT",
       "rr": "開倉 $80,503.61 / 平倉 $80,530.20",
-      "reason": "【Half-A 波動定錨】BTC趨勢強勁，動能未減，依波動率定錨追蹤多頭。",
+      "reason": "結合記憶庫高勝率做空經驗與雙周期空頭共振，積極為 ETH/SOL 規劃做空訂單，儘管短期指標超賣，仍相信趨勢與記憶優勢。",
       "hash": "0xe1ebd159b085345d"
     }
   ]
