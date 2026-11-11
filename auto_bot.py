@@ -32,33 +32,46 @@ GEMINI_API_KEY      = os.environ.get("GEMINI_API_KEY", "請填入你的_Gemini_A
 DISCORD_WEBHOOK_URL = os.environ.get("DISCORD_WEBHOOK_URL", "").strip()
 
 # ==========================================================
-# ⚙️ 2. v10.4 三層資金池 (80/10/10) 與死守 -10% 止損鐵律參數
+# ⚙️ 2. v10.5 純實戰完全體參數設定
 # ==========================================================
 WHITELIST_SYMBOLS = ['BTC/USDT:USDT', 'ETH/USDT:USDT', 'SOL/USDT:USDT']
 
-POOL_NORMAL_RATIO = 0.80  # 80% 常態雙核心池
-POOL_HEDGE_RATIO  = 0.10  # 10% 緊急急跌對沖池
-POOL_SNIPER_RATIO = 0.10  # 10% 黑天鵝突發狙擊池
+POOL_NORMAL_RATIO       = 0.80  # 80% 常態雙核心池
+POOL_HEDGE_RATIO        = 0.10  # 10% 緊急急跌對沖池
+POOL_SNIPER_RATIO       = 0.10  # 10% 黑天鵝突發狙擊池
 
-MAX_ORDERS_PER_HALF       = 3
-MAX_SINGLE_MARGIN_RATIO   = 0.28  # 單筆訂單保證金上限為總資產 28% (取代舊版 1200 張上限，防止 ETH 部位過大)
+MAX_ORDERS_PER_HALF     = 3
+MAX_SINGLE_MARGIN_RATIO = 0.28  # 單筆訂單保證金上限為總資產 28%
 
 # 🛑 鐵律一：含槓桿 ROI 止損絕對上限設定 (死守 -10% 鐵律！)
-MAX_SL_ROI_TRIGGER_PCT    = 8.8   # 掛單觸發止損設為含槓桿 ROI -8.8% (預留 1.2% 給滑價與手續費，確保結算死守在 -10% 內)
-HARD_CUT_SL_ROI_PCT       = -9.2  # 快軌每 20 秒硬斷頭保護：一旦實時含槓桿 ROI <= -9.2%，立即市價全平砍單！
+MAX_SL_ROI_TRIGGER_PCT  = 8.8   # 掛單觸發止損設為含槓桿 ROI -8.8% (預留滑價，確保結算死守在 -10% 內)
+HARD_CUT_SL_ROI_PCT     = -9.2  # 快軌每 20 秒硬斷頭保護：一旦實時含槓桿 ROI <= -9.2%，立即市價全平砍單！
 
-# 🎯 順勢單 (與 1H 大趨勢同向) 鎖利門檻
-STAGE1_ROI_TRIGGER_PCT    = 5.0   # 順勢單 ROI 達 +5.0% -> 撤舊單，止損移至開倉價 +0.25% 保本
-STAGE1_PRICE_LOCK_PCT     = 0.25
-STAGE2_ROI_TRIGGER_PCT    = 9.0   # 順勢單 ROI 達 +9.0% -> 平倉 50% 落袋，剩餘 50% 止損鎖在開倉價 +1.0%
-STAGE2_PRICE_LOCK_PCT     = 1.00
+# 🎯 四階段動態鎖利與無限追蹤止損門檻 (Stage 1 ~ Stage 4)
+STAGE1_ROI_TRIGGER_PCT  = 5.0   # 階段一：順勢單 ROI 達 +5.0% -> 撤舊單，止損移至開倉價 +0.25% 保本
+STAGE1_PRICE_LOCK_PCT   = 0.25
+STAGE2_ROI_TRIGGER_PCT  = 9.0   # 階段二：順勢單 ROI 達 +9.0% -> 平倉 50% 落袋，剩餘 50% 止損鎖在開倉價 +1.0%
+STAGE2_PRICE_LOCK_PCT   = 1.00
+STAGE3_ROI_TRIGGER_PCT  = 14.0  # 階段三 (v10.5新增)：剩餘半倉 ROI 達 +14.0% -> 止損上推至開倉價 +1.8%，止盈外推 1.3 倍
+STAGE3_PRICE_LOCK_PCT   = 1.80
+STAGE4_ROI_TRIGGER_PCT  = 20.0  # 階段四 (v10.5新增)：剩餘半倉 ROI 達 +20.0% -> 止損上推至開倉價 +2.6%，止盈外推 1.6 倍
+STAGE4_PRICE_LOCK_PCT   = 2.60
 
-# ⚡ 逆勢搶反彈/回調單 (與 1H 大趨勢相反) 快進快出鎖利門檻
-COUNTER_STAGE1_ROI_PCT    = 4.0   # 逆勢單 ROI 達 +4.0% -> 立即移至開倉價 +0.25% 保本防回吐
-COUNTER_STAGE2_ROI_PCT    = 7.5   # 逆勢單 ROI 達 +7.5% -> 立即平倉 50% 落袋，剩餘鎖在開倉價 +0.8%
-COUNTER_STAGE2_LOCK_PCT   = 0.80
+# ⚡ 逆勢搶反彈/回調單 快進快出鎖利門檻
+COUNTER_STAGE1_ROI_PCT  = 4.0   # 逆勢單 ROI 達 +4.0% -> 立即移至開倉價 +0.25% 保本
+COUNTER_STAGE2_ROI_PCT  = 7.5   # 逆勢單 ROI 達 +7.5% -> 立即平倉 50% 落袋，剩餘鎖在開倉價 +0.8%
+COUNTER_STAGE2_LOCK_PCT = 0.80
 
-EARLY_HARVEST_ROI_PCT     = 4.2   # 若帳面 ROI >= +4.2% 且短線均線動能反轉衰竭，提前收割全平
+EARLY_HARVEST_ROI_PCT   = 4.2   # 若帳面 ROI >= +4.2% 且短線均線動能反轉衰竭，提前收割全平
+
+# ⏳ 殭屍單超時清理參數 (v10.5新增)
+ZOMBIE_MAX_HOLD_MINUTES = 210   # 持倉超過 210 分鐘 (3.5 小時)
+ZOMBIE_MIN_ROI_PCT      = -2.5  # 且含槓桿 ROI 卡在 -2.5% ~ +2.5% 之間毫無動能，自動市價清理釋放資金
+ZOMBIE_MAX_ROI_PCT      = 2.5
+
+# 🛡️ 單日盈虧動態火力調節參數 (v10.5新增)
+DAILY_DRAWDOWN_HALF_PCT = -3.0  # 若今日已實現虧損達總資產 -3.0%，自動切換為 50% 半火力防守模式
+DAILY_PROFIT_LOCK_USDT  = 8000  # 若今日已實現獲利達 +$8,000，切換為 80% 穩健鎖利模式
 
 IS_GITHUB_ACTIONS     = os.environ.get("GITHUB_ACTIONS") == "true"
 RUN_CONTINUOUS_LOOP   = True
@@ -72,10 +85,9 @@ POSITION_STAGE_MAP = {}
 HEDGE_ACTIVE_SYMS  = set()
 LAST_GIT_PUSH_TS   = 0.0
 
-# 🧠 AI 永久累積記憶結構 (新增 historical_reasons 永久封存每一筆歷史倉位的當下進場理由！)
 AI_MEMORY_BANK = {
-    "entry_snapshots": {},        # 當前持倉進場時的技術特徵與當時理由
-    "historical_reasons": {},     # 永久封存已結算歷史倉位的真實進場理由: { unique_key: "當時理由" }
+    "entry_snapshots": {},
+    "historical_reasons": {},
     "processed_pos_keys": [],
     "pattern_stats": {},
     "symbol_direction_stats": {},
@@ -116,7 +128,7 @@ def send_discord_alert(title, description, color=3066993, fields=None):
         "description": description,
         "color": color,
         "timestamp": datetime.now(timezone.utc).isoformat(),
-        "footer": {"text": "QuantGuard AI v10.4 | 死守-10%止損鐵律 × 防摸頂連環爆終端"}
+        "footer": {"text": "QuantGuard AI v10.5 | 四階段無限鎖利 × BTC領頭羊連動終端"}
     }
     if fields:
         embed["fields"] = fields
@@ -124,7 +136,7 @@ def send_discord_alert(title, description, color=3066993, fields=None):
         req = urllib.request.Request(
             DISCORD_WEBHOOK_URL,
             data=json.dumps({"embeds": [embed]}).encode('utf-8'),
-            headers={'Content-Type': 'application/json', 'User-Agent': 'QuantGuardBot/10.4'}
+            headers={'Content-Type': 'application/json', 'User-Agent': 'QuantGuardBot/10.5'}
         )
         urllib.request.urlopen(req, timeout=5)
     except Exception as e:
@@ -132,7 +144,6 @@ def send_discord_alert(title, description, color=3066993, fields=None):
 
 
 def load_previous_state():
-    """從 live_data.json 載入過去累積的 AI 永久記憶庫、已封存的歷史訂單理由與鎖利階段"""
     global NOTIFIED_POS_IDS, POSITION_STAGE_MAP, AI_MEMORY_BANK
     if not os.path.exists("live_data.json"):
         return
@@ -175,7 +186,7 @@ def push_live_data_immediately(force=False):
         subprocess.run(["git", "add", "live_data.json"], check=False)
         diff_res = subprocess.run(["git", "diff", "--staged", "--quiet"])
         if diff_res.returncode != 0:
-            subprocess.run(["git", "commit", "-m", "Real-time sync live_data.json v10.4 (-10% Max SL Enforced)"], check=False)
+            subprocess.run(["git", "commit", "-m", "Real-time sync live_data.json v10.5"], check=False)
             subprocess.run(["git", "pull", "--rebase", "origin", "main"], check=False)
             subprocess.run(["git", "push", "origin", "main"], check=False)
             LAST_GIT_PUSH_TS = now_ts
@@ -222,7 +233,7 @@ def compute_rsi(closes, period=14):
 
 def fetch_whitelist_market_data(exchange):
     """
-    抓取雙周期指標，並直接根據當下波動率反推『死守 -10% ROI 的最高安全槓桿 (max_safe_leverage)』！
+    抓取雙周期指標、反推死守 -10% ROI 的安全槓桿，並計算『BTC 領頭羊大盤風向鎖 (btc_master_bias)』！
     """
     market_summary = {}
     for sym in WHITELIST_SYMBOLS:
@@ -277,7 +288,6 @@ def fetch_whitelist_market_data(exchange):
             avg_vol = (sum(vols[:-1]) / max(1, len(vols) - 1)) if len(vols) > 1 else 1.0
             vol_spike_ratio = round(vols[-1] / avg_vol, 2) if avg_vol > 0 else 1.0
 
-            # 🎯 根據波動率計算合理幣價止盈與止損緩衝，並反推「不超過 -8.8% ROI 觸發線」的安全槓桿！
             anchored_tp_pct = round(max(1.6, min(3.2, swing_pct * 0.75)), 2)
             natural_sl_pct  = round(max(1.2, min(2.2, swing_pct * 0.50)), 2)
             max_safe_lev    = max(3, min(7, int(MAX_SL_ROI_TRIGGER_PCT // natural_sl_pct)))
@@ -325,6 +335,23 @@ def fetch_whitelist_market_data(exchange):
             }
         except Exception as e:
             print(f"⚠️ 抓取 {sym} 行情異常: {e}", flush=True)
+
+    # 🌟 v10.5 新增：計算 BTC 領頭羊大盤風向鎖，注入所有幣種供建倉過濾
+    btc_info = market_summary.get('BTC/USDT:USDT', {})
+    btc_15m_chg = float(btc_info.get('bar_15m_change_pct', 0.0))
+    btc_t1h     = btc_info.get('trend_1h', 'BULLISH')
+    btc_t15m    = btc_info.get('trend', 'BULLISH')
+
+    if btc_15m_chg <= -0.55 or (btc_t1h == 'BEARISH' and btc_t15m == 'BEARISH' and btc_15m_chg < -0.2):
+        btc_master_bias = "DUMP_WARNING_NO_ALT_LONG"    # BTC 急殺中，嚴禁 ETH/SOL 開立多單
+    elif btc_15m_chg >= 0.55 or (btc_t1h == 'BULLISH' and btc_t15m == 'BULLISH' and btc_15m_chg > 0.2):
+        btc_master_bias = "PUMP_WARNING_NO_ALT_SHORT"   # BTC 急拉中，嚴禁 ETH/SOL 開立空單
+    else:
+        btc_master_bias = "NEUTRAL_NORMAL"
+
+    for s_k in market_summary:
+        market_summary[s_k]["btc_master_bias"] = btc_master_bias
+
     return market_summary
 
 
@@ -375,8 +402,9 @@ def update_ai_memory_bank_from_history(history_records):
         pat_stats[pat_key]["net_pnl"] = round(pat_stats[pat_key]["net_pnl"] + pnl, 2)
 
     lessons = [
-        "🛑【止損鐵律】全倉位強制執行『含槓桿最大止損 -8.8% 觸發 (死守 -10% 上限)』，徹底終結超額虧損互抵！",
-        "🚫【防摸頂軋空】當 1H 與 15m 呈雙周期多頭共振時，嚴禁因布林上軌偏高而摸頂做空！"
+        "🛑【止損鐵律】全倉位強制執行『含槓桿最大止損 -8.8% 觸發 (死守 -10% 上限)』！",
+        "🚀【四階無限鎖利】滿+5%鎖保本 ➔ 滿+9%平半倉鎖+1% ➔ 滿+14%鎖+1.8% ➔ 滿+20%鎖+2.6%！",
+        "🧭【BTC領頭羊保護】當 BTC 急殺時嚴禁 ETH/SOL 逆勢接刀做多；持倉逾 3.5 小時無動能自動清理！"
     ]
     for s_sym, c_loss in consec_losses.items():
         if c_loss >= 2:
@@ -400,10 +428,6 @@ def update_ai_memory_bank_from_history(history_records):
 
 
 def build_fallback_plan(market_data):
-    """
-    🌟 修正後的本地端策略：順從 1H 大趨勢方向（不因布林通道 > 75% 就去摸頂擋火車），
-    並嚴格套用 max_safe_leverage 與死守 -10% ROI 的止損設定！
-    """
     half_a, half_b = [], []
     for sym in WHITELIST_SYMBOLS:
         info      = market_data.get(sym, {})
@@ -414,22 +438,21 @@ def build_fallback_plan(market_data):
         tp_v      = float(info.get("anchored_tp_pct", 2.2))
         sl_v      = float(info.get("anchored_sl_pct", 1.5))
 
-        # 順應 1H 大趨勢為主！除非 1H 與 15m 同步轉空才做空，絕不在 1H BULLISH 時摸頂做空！
         act = "BUY" if trend_1h == "BULLISH" else "SELL"
 
         half_a.append({
             "symbol": sym, "action": act, "weight": 1.3, "leverage": safe_lev,
             "tp_pct": tp_v, "sl_pct": sl_v,
-            "reason": f"【Half-A 順應1H大勢】1H:{trend_1h}/15m:{trend_15m}，安全槓桿{safe_lev}x，含槓桿止損鎖定 -{round(sl_v*safe_lev,1)}% (<10%)。"
+            "reason": f"【Half-A 順應1H大勢】1H:{trend_1h}/15m:{trend_15m}，安全槓桿{safe_lev}x，含槓桿止損鎖定 -{round(sl_v*safe_lev,1)}%。"
         })
         half_b.append({
             "symbol": sym, "action": act, "weight": 1.1, "leverage": safe_lev,
             "tp_pct": round(tp_v * 1.1, 2), "sl_pct": sl_v,
-            "reason": f"【Half-B 波動定錨】RSI={rsi_val}，止盈+{tp_v}%，滿+5%保本/滿+9%平半倉。"
+            "reason": f"【Half-B 四階鎖利】RSI={rsi_val}，滿+5%保本/滿+9%平半倉/滿+14%無限上推。"
         })
     return {
-        "overall_confidence": 88,
-        "overall_summary": "嚴格執行順應 1H 大趨勢與含槓桿最大止損 -8.8% 觸發鐵律 (死守 -10% 上限)，杜絕逆勢摸頂連環爆。",
+        "overall_confidence": 89,
+        "overall_summary": "啟動 v10.5 四階段無限追蹤鎖利、BTC 領頭羊風向連動與死守 -10% 止損鐵律。",
         "black_swan_detected": False,
         "sniper_order": None,
         "half_a_orders": half_a[:2],
@@ -445,11 +468,9 @@ def ask_gemini_quant_brain(market_data, news_headlines, current_held_symbols, mi
     client = genai.Client(api_key=gemini_key)
 
     prompt = f"""
-    你是 QuantGuard AI v10.4 旗艦量化決策核心。我們剛修正了兩大關鍵問題：
-    第一，過去在 `trend_1h == BULLISH` (1小時大牛市) 時，因為看到布林通道偏高 (77%~89%) 就同時開立三張逆勢空單 (SHORT)，結果遭牛市走軌行情連環軋空止損！
-    第二，我們現在立下絕對鐵律：【每一筆訂單乘上槓桿後的保證金止損 (sl_pct * leverage) 絕對不可超過 -8.8% (加滑價死守在 -10% 以內)】！
+    你是 QuantGuard AI v10.5 旗艦量化決策核心。請根據以下五大實戰鐵律規劃本輪最佳建倉組合：
 
-    【1. 三大幣種即時多維度指標 (請特別注意 trend_1h、max_safe_leverage 與 anchored_sl_pct)】：
+    【1. 三大幣種即時多維度指標 (含 trend_1h、btc_master_bias、vol_spike_ratio、max_safe_leverage)】：
     {json.dumps(market_data, ensure_ascii=False)}
 
     【2. 🧠 AI 永久累積記憶庫與連敗狀態】：
@@ -461,26 +482,25 @@ def ask_gemini_quant_brain(market_data, news_headlines, current_held_symbols, mi
     【3. 最新國際新聞】：{json.dumps(news_headlines, ensure_ascii=False)}
     【4. 目前持有倉位】：{json.dumps(current_held_symbols, ensure_ascii=False)}
 
-    【v10.4 絕對建倉鐵律 (請嚴格遵守)】：
-    1. 嚴禁大牛市摸頂擋火車：
-       - 當某幣種 `trend_1h == "BULLISH"` 時，大方向必須優先以做多 (`BUY`) 為主！若該幣種 `bb_pos_pct > 80%`，請優先挑另一個 `bb_pos_pct` 較低 (如 30%~65%) 的幣種做多，絕對禁止同時對三個 `trend_1h == BULLISH` 的幣種全部開空單 (`SELL`)！
-       - 當某幣種 `trend_1h == "BEARISH"` 時，大方向優先以做空 (`SELL`) 為主！
-    2. 止損死守 -10% 鐵律 (槓桿與止損雙向綁定)：
-       - 每個幣種的 `leverage` 請優先採用該幣種的 `max_safe_leverage` (約 4~6 倍)。
-       - 幣價止損百分比 `sl_pct` 乘上 `leverage` 後，必須 `<= 8.8`（例如 6x 槓桿時，`sl_pct` 最多只能設 `1.45%`；5x 槓桿時，`sl_pct` 最多設 `1.75%`）！
-    3. 維持優秀盈虧比：`tp_pct` 設為 `1.8% ~ 3.0%`（含槓桿目標 ROI 為 +10% ~ +18%，配合快軌滿 +5% 保本、滿 +9% 平半倉）。
+    【v10.5 五大絕對建倉鐵律】：
+    1. BTC 領頭羊大盤風向鎖：
+       - 若 `btc_master_bias == "DUMP_WARNING_NO_ALT_LONG"`，代表 BTC 正在急殺，嚴禁對 ETH 或 SOL 開立 BUY 多單！
+       - 若 `btc_master_bias == "PUMP_WARNING_NO_ALT_SHORT"`，代表 BTC 正在急拉，嚴禁對 ETH 或 SOL 開立 SELL 空單！
+    2. 順應 1H 大趨勢：當 `trend_1h == "BULLISH"` 時優先做多 (`BUY`)；當 `trend_1h == "BEARISH"` 時優先做空 (`SELL`)，嚴禁大牛市同時開三張空單摸頂。
+    3. 止損死守 -10% 鐵律：`leverage` 請採用 `max_safe_leverage` (4~6倍)，且 `sl_pct * leverage` 必須 `<= 8.8`。
+    4. 量價配合：優先將高權重 (`weight`: 1.5~2.0) 配置給 `vol_spike_ratio >= 1.1` 且近期無連敗之標的。
 
     請嚴格只輸出 JSON 格式：
     {{
-      "overall_confidence": 90,
-      "overall_summary": "繁體中文60字內：說明本輪如何順應1H大趨勢並嚴格鎖定含槓桿-8.8%止損上限",
+      "overall_confidence": 91,
+      "overall_summary": "繁體中文60字內：說明本輪如何結合BTC領頭羊風向、1H大趨勢與-8.8%止損上限進行布局",
       "black_swan_detected": false,
       "sniper_order": null,
       "half_a_orders": [
-        {{"symbol": "BTC/USDT:USDT", "action": "BUY", "weight": 1.5, "leverage": 5, "tp_pct": 2.2, "sl_pct": 1.6, "reason": "【Half-A 順應1H大勢】..."}}
+        {{"symbol": "BTC/USDT:USDT", "action": "BUY", "weight": 1.6, "leverage": 5, "tp_pct": 2.2, "sl_pct": 1.6, "reason": "【Half-A 領頭羊順勢】..."}}
       ],
       "half_b_orders": [
-        {{"symbol": "SOL/USDT:USDT", "action": "BUY", "weight": 1.3, "leverage": 5, "tp_pct": 2.4, "sl_pct": 1.7, "reason": "【Half-B 波動定錨】..."}}
+        {{"symbol": "SOL/USDT:USDT", "action": "BUY", "weight": 1.4, "leverage": 5, "tp_pct": 2.4, "sl_pct": 1.7, "reason": "【Half-B 量價共振】..."}}
       ]
     }}
     """
@@ -501,11 +521,6 @@ def ask_gemini_quant_brain(market_data, news_headlines, current_held_symbols, mi
 
 
 def calculate_safe_contracts(exchange, symbol, desired_margin_usdt, leverage, price, total_equity):
-    """
-    🌟 修正 1200 張上限導致 ETH 部位過大問題：
-    改以『美元保證金上限 (不超過總資產 28% 且不超過可用餘額 80%)』等比例換算張數，
-    確保 BTC、ETH、SOL 每筆訂單承擔的美元風險完全一致！
-    """
     try:
         bal = exchange.fetch_balance()
         current_free = float(bal.get('USDT', {}).get('free', 0.0))
@@ -618,7 +633,6 @@ def place_okx_order_with_tpsl(exchange, sym, action, contracts, leverage, tp_pri
     side = 'buy' if action == 'BUY' else 'sell'
     pos_side = 'long' if side == 'buy' else 'short'
 
-    # 雙重確保 OKX 雙向與單向全倉槓桿皆正確設定為評估後的安全倍率
     for p_param in [{'mgnMode': 'cross', 'posSide': pos_side}, {'mgnMode': 'cross'}]:
         try:
             exchange.set_leverage(leverage, sym, params=p_param)
@@ -655,11 +669,16 @@ def place_okx_order_with_tpsl(exchange, sym, action, contracts, leverage, tp_pri
 
 def fast_track_smart_harvest_and_hedge(exchange, active_positions, market_data, total_equity, total_upl):
     """
-    ⚡ v10.4 快軌核心：
-    1. 【新增】硬斷頭保護：一旦發現任何持倉的含槓桿 ROI <= -9.2% (或舊單止損設太遠)，立即市價砍單或修正止損至 -8.8% ROI 線！
-    2. 順勢單滿 +5% 保本、滿 +9% 平半倉；逆勢單滿 +4% 保本、滿 +7.5% 平半倉！
+    ⚡ v10.5 快軌五大實戰動作：
+    1. -9.2% ROI 硬斷頭保護 (死守 -10% 鐵律)。
+    2. 3.5 小時 (210 分鐘) 殭屍單自動清理釋放資金。
+    3. 階段四 (+20% ROI)：止損上推至開倉價 +2.6%，止盈外推 1.6x。
+    4. 階段三 (+14% ROI)：止損上推至開倉價 +1.8%，止盈外推 1.3x。
+    5. 階段二 (+9% ROI 平半倉鎖 +1%) & 階段一 (+5% ROI 鎖保本 +0.25%)。
     """
     state_changed = False
+    now_dt = datetime.now(TW_TZ)
+    snapshots = AI_MEMORY_BANK.get("entry_snapshots", {})
 
     for pos in active_positions:
         sym       = pos['symbol']
@@ -667,7 +686,6 @@ def fast_track_smart_harvest_and_hedge(exchange, active_positions, market_data, 
         entry_px  = float(pos['entry_price'])
         contracts = int(float(pos['contracts']))
         roi_pct   = float(pos['roi_pct'])
-        lev_num   = float(str(pos.get('leverage', '5x')).replace('x', '')) or 5.0
         tp_pct    = float(pos.get('tp_pct', 2.2))
         pos_key   = f"{sym}_{side}"
         cur_stage = int(POSITION_STAGE_MAP.get(pos_key, 0))
@@ -675,14 +693,31 @@ def fast_track_smart_harvest_and_hedge(exchange, active_positions, market_data, 
         if entry_px <= 0 or contracts <= 0:
             continue
 
-        # 🛑 0. 絕對止損鐵律攔截：若實時含槓桿 ROI 已跌破 -9.2%，不等條件單，直接市價砍單死守 -10% 底線！
+        # 🛑 1. 絕對止損鐵律攔截：若實時含槓桿 ROI <= -9.2%，立即市價砍單死守 -10% 底線！
         if roi_pct <= HARD_CUT_SL_ROI_PCT:
-            print(f"🛑 [-10% 鐵律硬斷頭觸發] {sym} ({side}) 實時 ROI 達 {roi_pct:.2f}% (觸及 {HARD_CUT_SL_ROI_PCT}% 防滑價底線)，立即市價平倉止血！", flush=True)
+            print(f"🛑 [-10% 鐵律硬斷頭觸發] {sym} ({side}) 實時 ROI 達 {roi_pct:.2f}%，立即市價平倉止血！", flush=True)
             cancel_existing_algo_orders_for_symbol(exchange, sym)
             close_partial_or_full_position(exchange, sym, side, contracts, "死守-10%鐵律硬止損")
             POSITION_STAGE_MAP.pop(pos_key, None)
             state_changed = True
             continue
+
+        # ⏳ 2. 殭屍單超時清理：若持倉超過 210 分鐘且 ROI 卡在 -2.5% ~ +2.5% 毫無動能，自動平倉換股！
+        snap_info = snapshots.get(sym, {})
+        entry_time_str = snap_info.get("entry_time")
+        if entry_time_str and cur_stage == 0:
+            try:
+                entry_dt = datetime.strptime(entry_time_str, "%Y-%m-%d %H:%M:%S").replace(tzinfo=TW_TZ)
+                held_minutes = (now_dt - entry_dt).total_seconds() / 60.0
+                if held_minutes >= ZOMBIE_MAX_HOLD_MINUTES and (ZOMBIE_MIN_ROI_PCT <= roi_pct <= ZOMBIE_MAX_ROI_PCT):
+                    print(f"⏳ [殭屍單超時清理] {sym} ({side}) 已持倉 {int(held_minutes)} 分鐘且 ROI 僅 {roi_pct:+.2f}%，主動平倉釋放資金！", flush=True)
+                    cancel_existing_algo_orders_for_symbol(exchange, sym)
+                    close_partial_or_full_position(exchange, sym, side, contracts, f"持倉逾{int(held_minutes)}分無動能清理")
+                    POSITION_STAGE_MAP.pop(pos_key, None)
+                    state_changed = True
+                    continue
+            except Exception:
+                pass
 
         m_info   = market_data.get(sym, {})
         trend_1h = m_info.get("trend_1h", "BULLISH")
@@ -692,24 +727,48 @@ def fast_track_smart_harvest_and_hedge(exchange, active_positions, market_data, 
         s2_trigger = COUNTER_STAGE2_ROI_PCT if is_counter_trend else STAGE2_ROI_TRIGGER_PCT
         s2_lock_p  = COUNTER_STAGE2_LOCK_PCT if is_counter_trend else STAGE2_PRICE_LOCK_PCT
 
-        tp_px = round(entry_px * (1 + tp_pct / 100.0) if side == 'LONG' else entry_px * (1 - tp_pct / 100.0), 2)
+        base_tp_px = round(entry_px * (1 + tp_pct / 100.0) if side == 'LONG' else entry_px * (1 - tp_pct / 100.0), 2)
 
-        # 🌟 階段二：平倉 50% 落袋 + 剩餘 50% 鎖利
-        if roi_pct >= s2_trigger and cur_stage < 2:
+        # 🚀 3. 階段四 (ROI >= +20%)：止損上推至開倉價 +2.6% (鎖住約 +15% ROI)，止盈外推 1.6 倍吃大波段！
+        if roi_pct >= STAGE4_ROI_TRIGGER_PCT and cur_stage < 4:
+            lock_s4_sl = round(entry_px * (1 + STAGE4_PRICE_LOCK_PCT / 100.0) if side == 'LONG' else entry_px * (1 - STAGE4_PRICE_LOCK_PCT / 100.0), 2)
+            ext_tp_px  = round(entry_px * (1 + (tp_pct * 1.6) / 100.0) if side == 'LONG' else entry_px * (1 - (tp_pct * 1.6) / 100.0), 2)
+            update_position_tpsl_on_okx(exchange, sym, side, contracts, ext_tp_px, lock_s4_sl)
+            POSITION_STAGE_MAP[pos_key] = 4
+            pos['sl_trigger_px'] = lock_s4_sl
+            pos['tp_trigger_px'] = ext_tp_px
+            pos['stage_badge']   = f"🔥 四階暴利鎖 (+{STAGE4_PRICE_LOCK_PCT}%)"
+            pos['reason']        = f"🔥【ROI衝破+20%無限推鎖】止損已上推至開倉價 +{STAGE4_PRICE_LOCK_PCT}% (${lock_s4_sl})，止盈外推至 ${ext_tp_px}！"
+            state_changed = True
+
+        # 🚀 4. 階段三 (ROI >= +14%)：止損上推至開倉價 +1.8% (鎖住約 +10% ROI)，止盈外推 1.3 倍！
+        elif roi_pct >= STAGE3_ROI_TRIGGER_PCT and cur_stage < 3:
+            lock_s3_sl = round(entry_px * (1 + STAGE3_PRICE_LOCK_PCT / 100.0) if side == 'LONG' else entry_px * (1 - STAGE3_PRICE_LOCK_PCT / 100.0), 2)
+            ext_tp_px  = round(entry_px * (1 + (tp_pct * 1.3) / 100.0) if side == 'LONG' else entry_px * (1 - (tp_pct * 1.3) / 100.0), 2)
+            update_position_tpsl_on_okx(exchange, sym, side, contracts, ext_tp_px, lock_s3_sl)
+            POSITION_STAGE_MAP[pos_key] = 3
+            pos['sl_trigger_px'] = lock_s3_sl
+            pos['tp_trigger_px'] = ext_tp_px
+            pos['stage_badge']   = f"🚀 三階推鎖 (+{STAGE3_PRICE_LOCK_PCT}%)"
+            pos['reason']        = f"🚀【ROI滿+14%三階推鎖】止損已上推至開倉價 +{STAGE3_PRICE_LOCK_PCT}% (${lock_s3_sl})，讓剩餘半倉奔跑！"
+            state_changed = True
+
+        # 💰 5. 階段二 (ROI >= +9% / 逆勢 +7.5%)：平倉 50% 落袋 + 剩餘 50% 鎖在 +1%
+        elif roi_pct >= s2_trigger and cur_stage < 2:
             half_qty = max(1, contracts // 2)
             remain_qty = max(1, contracts - half_qty)
             lock_sl = round(entry_px * (1 + s2_lock_p / 100.0) if side == 'LONG' else entry_px * (1 - s2_lock_p / 100.0), 2)
 
-            print(f"💰 [階段二觸發：ROI +{roi_pct:.2f}% >= +{s2_trigger}%] {sym} ({side}) 立即平半倉 ({half_qty}張) 落袋，剩餘 {remain_qty} 張止損鎖在 +{s2_lock_p}% (${lock_sl})！", flush=True)
+            print(f"💰 [階段二觸發：ROI +{roi_pct:.2f}% >= +{s2_trigger}%] {sym} ({side}) 平半倉 ({half_qty}張) 落袋！", flush=True)
             if contracts >= 2:
                 close_partial_or_full_position(exchange, sym, side, half_qty, f"ROI滿+{s2_trigger}%半倉落袋")
-            update_position_tpsl_on_okx(exchange, sym, side, remain_qty, tp_px, lock_sl)
+            update_position_tpsl_on_okx(exchange, sym, side, remain_qty, base_tp_px, lock_sl)
 
             POSITION_STAGE_MAP[pos_key] = 2
             pos['contracts']     = remain_qty
             pos['sl_trigger_px'] = lock_sl
-            pos['tp_trigger_px'] = tp_px
-            pos['stage_badge']   = f"💰 已平半倉落袋 & 止損鎖 +{s2_lock_p}%"
+            pos['tp_trigger_px'] = base_tp_px
+            pos['stage_badge']   = f"💰 已平半倉 & 止損鎖 +{s2_lock_p}%"
             pos['reason']        = f"💰【已落袋50%倉位】剩餘 {remain_qty} 張止損已鎖定於開倉價 +{s2_lock_p}% (${lock_sl})"
             state_changed = True
 
@@ -719,14 +778,13 @@ def fast_track_smart_harvest_and_hedge(exchange, active_positions, market_data, 
                 color=3066993
             )
 
-        # 🌟 階段一：撤除舊止損單，上移至開倉價 +0.25% 保本
+        # 🛡️ 6. 階段一 (ROI >= +5% / 逆勢 +4%)：撤除舊止損單，上移至開倉價 +0.25% 保本
         elif roi_pct >= s1_trigger and cur_stage < 1:
             lock_be_sl = round(entry_px * (1 + STAGE1_PRICE_LOCK_PCT / 100.0) if side == 'LONG' else entry_px * (1 - STAGE1_PRICE_LOCK_PCT / 100.0), 2)
-            print(f"🛡️ [階段一觸發：ROI +{roi_pct:.2f}% >= +{s1_trigger}%] {sym} ({side}) 撤舊單並將止損上移至保本價 ${lock_be_sl} (+0.25%)！", flush=True)
-            update_position_tpsl_on_okx(exchange, sym, side, contracts, tp_px, lock_be_sl)
+            update_position_tpsl_on_okx(exchange, sym, side, contracts, base_tp_px, lock_be_sl)
             POSITION_STAGE_MAP[pos_key] = 1
             pos['sl_trigger_px'] = lock_be_sl
-            pos['tp_trigger_px'] = tp_px
+            pos['tp_trigger_px'] = base_tp_px
             pos['stage_badge']   = "🛡️ 已鎖保本 (+0.25%)"
             pos['reason']        = f"🛡️【ROI滿+{s1_trigger}%已鎖保本】舊止損已撤除，新止損鎖定於 ${lock_be_sl}"
             state_changed = True
@@ -737,11 +795,10 @@ def fast_track_smart_harvest_and_hedge(exchange, active_positions, market_data, 
                 color=5763719
             )
 
-        # 🌟 動能衰竭提前收割
-        elif roi_pct >= EARLY_HARVEST_ROI_PCT:
+        # 🌾 7. 動能衰竭提前收割
+        elif roi_pct >= EARLY_HARVEST_ROI_PCT and cur_stage < 2:
             is_weak = m_info.get("momentum_weakening_long") if side == "LONG" else m_info.get("momentum_weakening_short")
             if is_weak:
-                print(f"🌾 [動能衰竭提前收割] {sym} ({side}) ROI +{roi_pct:.2f}% 且均線轉弱，果斷全平落袋！", flush=True)
                 cancel_existing_algo_orders_for_symbol(exchange, sym)
                 close_partial_or_full_position(exchange, sym, side, contracts, "動能轉弱提前收割")
                 POSITION_STAGE_MAP.pop(pos_key, None)
@@ -752,11 +809,8 @@ def fast_track_smart_harvest_and_hedge(exchange, active_positions, market_data, 
 
 def execute_pool_orders(exchange, pool_name, orders_list, pool_budget_usdt, market_data, reason_lookup, held_symbols_map, total_equity):
     """
-    🌟 v10.4 建倉引擎四大防護：
-    1. 強制將幣價止損設為 `sl_pct = min(raw_sl, 8.8% / leverage)`，確保含槓桿止損永遠 <= -8.8% (加滑價死守 -10% 內)！
-    2. 禁止在 1H 與 15m 雙周期多頭共振時無腦摸頂做空，且同一時間全帳戶最多只允許 1 張逆 1H 大勢單 (防三幣連環爆)！
-    3. 馬可維茲連敗降權 (連敗 >= 2 次權重減半)。
-    4. 單筆保證金上限鎖定總資產 28%，防止 ETH 因 1200 張上限而部位過大。
+    🌟 v10.5 建倉引擎：
+    結合『BTC 領頭羊風向鎖』、『量價確認權重微調』、『馬可維茲連敗降權』與『死守 -8.8% 觸發止損鐵律』！
     """
     valid_orders = [o for o in orders_list[:MAX_ORDERS_PER_HALF] if str(o.get("action", "")).upper() in ["BUY", "SELL"]]
     if not valid_orders or pool_budget_usdt < 30:
@@ -765,17 +819,22 @@ def execute_pool_orders(exchange, pool_name, orders_list, pool_budget_usdt, mark
     any_placed = False
     consec_losses = AI_MEMORY_BANK.get("consecutive_losses", {})
 
+    # 計算『連敗降權 × 量價確認』後的動態權重
     adjusted_weights = []
     for o in valid_orders:
         s_sym = o.get("symbol", "ETH/USDT:USDT")
         w = max(0.5, min(3.0, float(o.get("weight", 1.0))))
         if consec_losses.get(s_sym, 0) >= 2:
-            w = round(w * 0.5, 2)
-        adjusted_weights.append(w)
+            w *= 0.5
+        vol_ratio = float(market_data.get(s_sym, {}).get("vol_spike_ratio", 1.0))
+        if vol_ratio < 0.65:
+            w *= 0.70  # 極度縮量，防假突破降權 30%
+        elif vol_ratio >= 1.35:
+            w *= 1.20  # 帶量突破，加碼 20%
+        adjusted_weights.append(round(w, 2))
 
     total_weight = sum(adjusted_weights) if sum(adjusted_weights) > 0 else 1.0
 
-    # 統計目前已持有的逆 1H 大勢單數量 (最多只准 1 張逆勢單，防止三幣同向逆勢連環爆)
     counter_trend_held_count = 0
     for h_sym, h_side in held_symbols_map.items():
         h_t1h = market_data.get(h_sym, {}).get("trend_1h", "BULLISH")
@@ -794,11 +853,19 @@ def execute_pool_orders(exchange, pool_name, orders_list, pool_budget_usdt, mark
         trend_1h    = m_info.get("trend_1h", "BULLISH")
         trend_15m   = m_info.get("trend", "BULLISH")
         rsi_val     = float(m_info.get("rsi_14", 50.0))
+        btc_bias    = m_info.get("btc_master_bias", "NEUTRAL_NORMAL")
 
         action   = str(ord_spec.get("action", "BUY")).upper()
         weight   = adjusted_weights[idx - 1]
 
-        # 🚫 防摸頂擋火車保護：若 1H 與 15m 皆為 BULLISH 且 RSI 未達極端 78，禁止逆勢摸頂做空！直接校正為順勢 BUY！
+        # 🧭 1. BTC 領頭羊大盤風向鎖：防止 ETH/SOL 在 BTC 急殺時逆勢做多、或在 BTC 急拉時逆勢做空
+        if sym != "BTC/USDT:USDT":
+            if btc_bias == "DUMP_WARNING_NO_ALT_LONG" and action == "BUY":
+                action = "SELL"
+            elif btc_bias == "PUMP_WARNING_NO_ALT_SHORT" and action == "SELL":
+                action = "BUY"
+
+        # 🚫 2. 防摸頂擋火車保護：若 1H 與 15m 雙周期多頭共振且 RSI < 78，禁止逆勢做空
         if action == "SELL" and trend_1h == "BULLISH" and trend_15m == "BULLISH" and rsi_val < 78:
             action = "BUY"
         elif action == "BUY" and trend_1h == "BEARISH" and trend_15m == "BEARISH" and rsi_val > 22:
@@ -806,17 +873,15 @@ def execute_pool_orders(exchange, pool_name, orders_list, pool_budget_usdt, mark
 
         is_counter = (action == "BUY" and trend_1h == "BEARISH") or (action == "SELL" and trend_1h == "BULLISH")
         if is_counter and counter_trend_held_count >= 1:
-            # 若場上已經有 1 張逆勢單，第 2 張以後強制轉為順應 1H 大勢，杜絕三幣逆勢連環爆！
             action = "BUY" if trend_1h == "BULLISH" else "SELL"
             is_counter = False
 
-        # 🛑 決定槓桿與『死守 -10% ROI (設 -8.8% 觸發)』的幣價止損百分比！
+        # 🛑 3. 決定槓桿與『死守 -10% ROI (設 -8.8% 觸發)』的幣價止損百分比
         ai_lev   = int(ord_spec.get("leverage", safe_lev))
         leverage = max(3, min(6, min(ai_lev, safe_lev)))
         if is_counter:
             leverage = min(5, leverage)
 
-        # 核心公式：最大允許幣價止損 % = 8.8% / 槓桿倍率 (例如 6x 槓桿 -> 幣價止損最多 1.46%)
         max_price_sl_for_10pct_roi = round(MAX_SL_ROI_TRIGGER_PCT / float(leverage), 2)
         raw_sl = float(ord_spec.get("sl_pct", anchored_sl))
         sl_pct = round(max(0.9, min(raw_sl, anchored_sl, max_price_sl_for_10pct_roi)), 2)
@@ -830,7 +895,7 @@ def execute_pool_orders(exchange, pool_name, orders_list, pool_budget_usdt, mark
             mode_tag = f"🚀順應1H大勢(止損鎖-{round(sl_pct*leverage,1)}%)"
 
         loss_streak = consec_losses.get(sym, 0)
-        streak_note = f"[連敗{loss_streak}次已降權]" if loss_streak >= 2 else ""
+        streak_note = f"[連敗{loss_streak}次降權]" if loss_streak >= 2 else ""
         clean_ai_reason = str(ord_spec.get("reason", f"{pool_name} 順勢策略")).replace("【Half-B 逆勢搶反彈】", "")
         reason = f"[{mode_tag}]{streak_note} {clean_ai_reason}"
 
@@ -860,7 +925,6 @@ def execute_pool_orders(exchange, pool_name, orders_list, pool_budget_usdt, mark
             held_symbols_map[sym] = 'LONG' if side == 'buy' else 'SHORT'
             if is_counter:
                 counter_trend_held_count += 1
-            # 將開倉當下的真實理由與指標存入 entry_snapshots，平倉時永久封存！
             AI_MEMORY_BANK.setdefault("entry_snapshots", {})[sym] = {
                 "side": held_symbols_map[sym],
                 "reason": reason,
@@ -880,10 +944,6 @@ def execute_pool_orders(exchange, pool_name, orders_list, pool_budget_usdt, mark
 
 
 def fetch_okx_positions_history_and_analytics(exchange, market_data, reason_lookup, ai_summary, total_equity, total_upl):
-    """
-    🌟 修復歷史紀錄理由被最新一輪覆蓋的 Bug：
-    一旦某筆 unique_key 的歷史倉位結算，優先從 AI_MEMORY_BANK['historical_reasons'] 讀取它當初封存的真實進場理由！
-    """
     history_records = []
     seen_pos_ids = set()
     hist_reasons = AI_MEMORY_BANK.setdefault("historical_reasons", {})
@@ -974,7 +1034,6 @@ def fetch_okx_positions_history_and_analytics(exchange, market_data, reason_look
             if realized_pnl > 0:
                 asset_win_map[sym]["wins"] += 1
 
-        # 🌟 鎖死每筆歷史紀錄的原始進場理由，絕不讓新理由覆蓋舊歷史！
         if unique_key in hist_reasons:
             locked_reason = hist_reasons[unique_key]
         else:
@@ -985,9 +1044,7 @@ def fetch_okx_positions_history_and_analytics(exchange, market_data, reason_look
         pnl_sign = "+" if realized_pnl >= 0 else ""
         raw_audit = f"{pos_id}_{sym}_{open_avg_px}_{close_avg_px}_{realized_pnl}_{dt_clean}"
         sha_hash  = "0x" + hashlib.sha256(raw_audit.encode('utf-8')).hexdigest()[:16]
-
-        # 使用 posId 後4碼 + 平倉時間秒數後2碼，避免同倉位分批平倉時編號完全重複
-        short_id = f"POS-{pos_id[-4:]}{u_time[-3:-1]}" if len(pos_id) >= 4 and len(u_time) >= 3 else f"POS-{u_ts_ms % 1000000}"
+        short_id  = f"POS-{pos_id[-4:]}{u_time[-3:-1]}" if len(pos_id) >= 4 and len(u_time) >= 3 else f"POS-{u_ts_ms % 1000000}"
 
         history_records.append({
             "id": short_id,
@@ -1112,13 +1169,25 @@ def run_single_cycle(exchange, cycle_num=1):
         )
         print(f"🧠 [AI 決策更新]: {LAST_AI_PLAN_CACHE.get('overall_summary')}", flush=True)
     else:
-        news_list = ["快軌 20 秒級別高速監控中 (死守含槓桿 -10% 止損上限，滿 +5% 保本 / 滿 +9% 平半倉)"]
+        news_list = ["快軌 20 秒級別高速監控中 (四階段無限鎖利 + 死守-10%止損 + 3.5h殭屍單清理)"]
         print(f"⚡ [快軌盯盤] 總資產: ${real_usdt:,.2f} | 今日已實現: ${perf_stats['today_realized_pnl']:+,.2f} | 本期累計: ${perf_stats['all_time_realized_pnl']:+,.2f}", flush=True)
 
     ai_plan = LAST_AI_PLAN_CACHE or build_fallback_plan(market_data)
 
+    # 🛡️ v10.5 單日盈虧動態火力調節器：若今日已虧損逾 -3% 則切換 50% 半火力防守；若已大賺逾 +$8000 則切換 80% 鎖利火力
+    today_pnl_val = float(perf_stats.get("today_realized_pnl", 0.0))
+    daily_dd_pct  = (today_pnl_val / real_usdt * 100.0) if real_usdt > 0 else 0.0
+    if daily_dd_pct <= DAILY_DRAWDOWN_HALF_PCT:
+        daily_throttle_mult = 0.50
+        print(f"🛡️ [單日回撤保護啟動] 今日已實現 {today_pnl_val:+.2f} ({daily_dd_pct:.2f}%)，自動切換為 50% 半火力防守模式！", flush=True)
+    elif today_pnl_val >= DAILY_PROFIT_LOCK_USDT:
+        daily_throttle_mult = 0.80
+        print(f"💰 [單日獲利鎖定啟動] 今日已大賺 +${today_pnl_val:,.2f}，保留 20% 利潤，以 80% 穩健火力運行！", flush=True)
+    else:
+        daily_throttle_mult = 1.00
+
     used_margin_now = max(0.0, real_usdt - free_usdt)
-    normal_pool_target = real_usdt * POOL_NORMAL_RATIO
+    normal_pool_target = real_usdt * POOL_NORMAL_RATIO * daily_throttle_mult
     remaining_normal_budget = max(0.0, min(free_usdt * 0.78, normal_pool_target - used_margin_now))
 
     half_a_budget = round(remaining_normal_budget / 2.0, 2)
@@ -1127,8 +1196,8 @@ def run_single_cycle(exchange, cycle_num=1):
     reason_lookup = {}
     order_placed = False
     if remaining_normal_budget >= 80 and len(held_symbols_map) < 3:
-        p1 = execute_pool_orders(exchange, "Half-A 順勢記憶池 (40%)", ai_plan.get("half_a_orders", []), half_a_budget, market_data, reason_lookup, held_symbols_map, real_usdt)
-        p2 = execute_pool_orders(exchange, "Half-B 波動定錨池 (40%)", ai_plan.get("half_b_orders", []), half_b_budget, market_data, reason_lookup, held_symbols_map, real_usdt)
+        p1 = execute_pool_orders(exchange, "Half-A 領頭羊順勢池 (40%)", ai_plan.get("half_a_orders", []), half_a_budget, market_data, reason_lookup, held_symbols_map, real_usdt)
+        p2 = execute_pool_orders(exchange, "Half-B 量價定錨池 (40%)", ai_plan.get("half_b_orders", []), half_b_budget, market_data, reason_lookup, held_symbols_map, real_usdt)
         order_placed = p1 or p2
 
     balance   = exchange.fetch_balance()
@@ -1161,7 +1230,6 @@ def run_single_cycle(exchange, cycle_num=1):
                 snap_info = snapshots.get(sym, {})
                 r_info    = reason_lookup.get(sym, {})
 
-                # 🛑 強制計算符合『含槓桿 ROI <= -8.8%』的最大幣價止損百分比
                 max_sl_p = round(MAX_SL_ROI_TRIGGER_PCT / max(1.0, lev_num), 2)
                 tp_p_val = float(snap_info.get("tp_pct") or r_info.get("tp_pct") or m_info.get("anchored_tp_pct", 2.2))
                 raw_sl_p = float(snap_info.get("sl_pct") or r_info.get("sl_pct") or m_info.get("anchored_sl_pct", 1.5))
@@ -1172,7 +1240,13 @@ def run_single_cycle(exchange, cycle_num=1):
                 trend_1h  = m_info.get("trend_1h", "BULLISH")
                 is_cnt    = (side_u == "LONG" and trend_1h == "BEARISH") or (side_u == "SHORT" and trend_1h == "BULLISH")
 
-                if cur_stage == 2:
+                if cur_stage == 4:
+                    sl_trig = round(entry_px * (1 + STAGE4_PRICE_LOCK_PCT / 100.0) if side_u == 'LONG' else entry_px * (1 - STAGE4_PRICE_LOCK_PCT / 100.0), 2)
+                    stage_badge = f"🔥 四階暴利鎖 (+{STAGE4_PRICE_LOCK_PCT}%)"
+                elif cur_stage == 3:
+                    sl_trig = round(entry_px * (1 + STAGE3_PRICE_LOCK_PCT / 100.0) if side_u == 'LONG' else entry_px * (1 - STAGE3_PRICE_LOCK_PCT / 100.0), 2)
+                    stage_badge = f"🚀 三階推鎖 (+{STAGE3_PRICE_LOCK_PCT}%)"
+                elif cur_stage == 2:
                     lock_p = COUNTER_STAGE2_LOCK_PCT if is_cnt else STAGE2_PRICE_LOCK_PCT
                     sl_trig = round(entry_px * (1 + lock_p / 100.0) if side_u == 'LONG' else entry_px * (1 - lock_p / 100.0), 2)
                     stage_badge = f"💰 已平半倉 & 止損鎖 +{lock_p}%"
@@ -1181,7 +1255,7 @@ def run_single_cycle(exchange, cycle_num=1):
                     stage_badge = "🛡️ 已鎖保本 (+0.25%)"
                 else:
                     sl_trig = round(entry_px * (1 - sl_p_val / 100.0) if side_u == 'LONG' else entry_px * (1 + sl_p_val / 100.0), 2)
-                    stage_badge = f"🛑 止損死守-{round(sl_p_val*lev_num,1)}% (滿5%保本/滿9%平半)"
+                    stage_badge = f"🛑 止損死守-{round(sl_p_val*lev_num,1)}% (四階鎖利監控)"
 
                 tp_trig = round(entry_px * (1 + tp_p_val / 100.0) if side_u == 'LONG' else entry_px * (1 - tp_p_val / 100.0), 2)
 
@@ -1202,7 +1276,7 @@ def run_single_cycle(exchange, cycle_num=1):
                     "sl_trigger_px": sl_trig,
                     "stage": cur_stage,
                     "stage_badge": stage_badge,
-                    "reason": snap_info.get("reason") or r_info.get("reason") or f"1H:{trend_1h} | 含槓桿最大止損鎖定 -{round(sl_p_val*lev_num,1)}% (死守-10%鐵律)"
+                    "reason": snap_info.get("reason") or r_info.get("reason") or f"1H:{trend_1h} | 含槓桿最大止損鎖定 -{round(sl_p_val*lev_num,1)}% (四階無限鎖利)"
                 }
                 active_positions.append(pos_obj)
     except Exception as e:
@@ -1221,7 +1295,7 @@ def run_single_cycle(exchange, cycle_num=1):
         "free_usdt": free_usdt,
         "used_usdt": used_usdt,
         "allocations": {
-            "normal_80_usdt": round(real_usdt * POOL_NORMAL_RATIO, 2),
+            "normal_80_usdt": round(real_usdt * POOL_NORMAL_RATIO * daily_throttle_mult, 2),
             "hedge_10_usdt": round(real_usdt * POOL_HEDGE_RATIO, 2),
             "sniper_10_usdt": round(real_usdt * POOL_SNIPER_RATIO, 2)
         },
@@ -1235,14 +1309,14 @@ def run_single_cycle(exchange, cycle_num=1):
         "latest_news": news_list,
         "ai_broadcast_signals": {
             "updated_at": datetime.now(TW_TZ).strftime("%H:%M:%S"),
-            "confidence": ai_plan.get("overall_confidence", 90),
+            "confidence": ai_plan.get("overall_confidence", 91),
             "summary": ai_plan.get("overall_summary", ""),
             "half_a_orders": ai_plan.get("half_a_orders", []),
             "half_b_orders": ai_plan.get("half_b_orders", [])
         },
         "ai_last_decision": {
             "action": f"今日已實現 ${final_perf_stats['today_realized_pnl']:+,.2f} | 本期累計 ${final_perf_stats['all_time_realized_pnl']:+,.2f} (盈虧比 {final_perf_stats['profit_factor']}x)",
-            "confidence": ai_plan.get("overall_confidence", 90),
+            "confidence": ai_plan.get("overall_confidence", 91),
             "reason": ai_plan.get("overall_summary", "")
         },
         "orders": positions_history_formatted
@@ -1259,7 +1333,7 @@ def run_single_cycle(exchange, cycle_num=1):
 
 def main():
     print("=========================================================================", flush=True)
-    print("🚀 QuantGuard AI v10.4 - 死守 -10% 含槓桿止損鐵律 × 防摸頂連環爆 × 歷史理由封存", flush=True)
+    print("🚀 QuantGuard AI v10.5 - 四階無限鎖利 × BTC領頭羊風向鎖 × 單日動態火力 × 殭屍單清理", flush=True)
     print("=========================================================================", flush=True)
     load_previous_state()
     exchange = init_okx_exchange()
