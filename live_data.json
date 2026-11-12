@@ -1,33 +1,33 @@
 {
-  "updated_at": "2026-11-12 12:09:11",
+  "updated_at": "2026-11-12 12:10:00",
   "epoch_cutoff": "2026-11-05 17:01:00",
-  "real_usdt": 115570.1,
-  "free_usdt": 69470.38,
-  "used_usdt": 46099.72,
+  "real_usdt": 115410.01,
+  "free_usdt": 69250.87,
+  "used_usdt": 46159.14,
   "allocations": {
-    "normal_80_usdt": 46228.04,
-    "hedge_10_usdt": 11557.01,
-    "sniper_10_usdt": 11557.01
+    "normal_80_usdt": 46164.0,
+    "hedge_10_usdt": 11541.0,
+    "sniper_10_usdt": 11541.0
   },
   "performance_stats": {
     "epoch_start": "2026-11-05 17:01:16",
     "today_date": "2026-11-12",
-    "today_realized_pnl": -5501.78,
-    "today_trades_count": 3,
-    "all_time_realized_pnl": 16470.08,
-    "gross_profit_usdt": 62816.64,
+    "today_realized_pnl": -5439.08,
+    "today_trades_count": 5,
+    "all_time_realized_pnl": 16532.79,
+    "gross_profit_usdt": 62879.35,
     "gross_loss_usdt": 46346.56,
-    "total_fees_usdt": 6788.77,
-    "implied_initial_capital": 98842.7,
+    "total_fees_usdt": 6946.67,
+    "implied_initial_capital": 98849.47,
     "profit_factor": 1.36,
-    "total_settled_count": 42,
-    "win_count": 15,
+    "total_settled_count": 44,
+    "win_count": 17,
     "loss_count": 27,
-    "win_rate_pct": 35.7,
+    "win_rate_pct": 38.6,
     "daily_pnl_history": [
       {
         "date": "2026-11-12",
-        "pnl": -5501.79
+        "pnl": -5439.08
       },
       {
         "date": "2026-11-11",
@@ -57,44 +57,44 @@
         "pnl": -1001.86
       },
       "ETH/USDT:USDT": {
-        "wins": 5,
-        "total": 15,
-        "pnl": 18297.48
+        "wins": 6,
+        "total": 16,
+        "pnl": 18323.32
       },
       "SOL/USDT:USDT": {
-        "wins": 5,
-        "total": 13,
-        "pnl": -825.57
+        "wins": 6,
+        "total": 14,
+        "pnl": -788.7
       }
     }
   },
   "ai_memory_bank": {
     "entry_snapshots": {
       "ETH/USDT:USDT": {
-        "side": "LONG",
-        "reason": "[🚀順應1H大勢(止損鎖-8.3%)][連敗3次降權] 【Half-B 回調做空】ETH處於牛市回調，歷史做空勝率高且具正期望值，做多勝率為零，且近期連敗需降權。",
-        "tp_pct": 2.08,
-        "sl_pct": 1.39,
-        "leverage": 6,
-        "multi_tf_regime": "BULL_PULLBACK",
-        "rsi_14": 29.4,
+        "side": "SHORT",
+        "reason": "[🚀順應1H大勢(止損鎖-6.0%)] BTC大盤中性偏空，ETH 1H趨勢明確看跌，歷史做空具顯著獲利優勢，且多頭動能減弱，符合順勢操作。",
+        "tp_pct": 1.84,
+        "sl_pct": 1.2,
+        "leverage": 5,
+        "multi_tf_regime": "RESONANCE_BEAR",
+        "rsi_14": 37.7,
         "rsi_zone": "HEALTHY_TREND_ZONE",
-        "bb_pos_pct": 12.9,
-        "funding_rate_pct": 0.0024,
-        "entry_time": "2026-11-12 07:38:30"
+        "bb_pos_pct": 37.4,
+        "funding_rate_pct": 0.0043,
+        "entry_time": "2026-11-12 12:09:59"
       },
       "SOL/USDT:USDT": {
-        "side": "LONG",
-        "reason": "[🚀順應1H大勢(止損鎖-7.5%)][連敗4次降權] 【Half-B 超賣反彈】SOL 1H趨勢看漲且RSI處於極度超賣區，有望在牛市回調後反彈，但需注意連敗降權導致權重減半，並嚴格控制止損 (1.87% * 4 = 7.48% <= 8.8%)。",
-        "tp_pct": 3.2,
-        "sl_pct": 1.87,
-        "leverage": 4,
-        "multi_tf_regime": "BULL_PULLBACK",
-        "rsi_14": 23.9,
-        "rsi_zone": "EXTREME_OVERSOLD",
-        "bb_pos_pct": 6.1,
+        "side": "SHORT",
+        "reason": "[🚀順應1H大勢(止損鎖-6.0%)] SOL 1H趨勢明確看跌，歷史做空具正期望值，且多頭動能減弱，符合順勢操作原則。",
+        "tp_pct": 1.84,
+        "sl_pct": 1.2,
+        "leverage": 5,
+        "multi_tf_regime": "RESONANCE_BEAR",
+        "rsi_14": 39.2,
+        "rsi_zone": "HEALTHY_TREND_ZONE",
+        "bb_pos_pct": 35.1,
         "funding_rate_pct": 0.01,
-        "entry_time": "2026-11-12 07:37:35"
+        "entry_time": "2026-11-12 12:10:00"
       },
       "BTC/USDT:USDT": {
         "side": "SHORT",
@@ -153,7 +153,9 @@
       "4088008502755864579_1794396315684": "[🚀順應1H大勢(止損鎖-7.2%)] 【Half-A 順應1H大勢】ETH/USDT:USDT 1小時與多週期均呈強烈空頭共振 (RESONANCE_BEAR)，且空單歷史勝率高，止損符合鐵律 (7x * 1.2% = 8.4% <= 8.8%)。",
       "4090818865784303617_1794436295209": "[🚀順應1H大勢(止損鎖-8.4%)][連敗2次降權] 【Half-B 順勢但降權】ETH 1H 趨勢看漲，但因連敗紀錄與過熱指標，權重減半並嚴控風險 (1.4% * 6x = 8.4% <= 8.8%)。",
       "4090816247431311363_1794430152511": "[🚀順應1H大勢(止損鎖-7.7%)][連敗3次降權] 【Half-B 量價共振】SOL 1H趨勢看漲，量價配合良好，但因連敗紀錄權重減半，需嚴格止損。",
-      "4089816920143572993_1794440256699": "[🚀順應1H大勢(止損鎖-6.0%)] 【Half-A 領頭羊順勢】BTC 1H 大趨勢為 BULLISH，多週期共振看漲，符合順勢做多原則。儘管歷史多單勝率低，但依鐵律順應1H大趨勢。"
+      "4089816920143572993_1794440256699": "[🚀順應1H大勢(止損鎖-6.0%)] 【Half-A 領頭羊順勢】BTC 1H 大趨勢為 BULLISH，多週期共振看漲，符合順勢做多原則。儘管歷史多單勝率低，但依鐵律順應1H大趨勢。",
+      "4090816247431311363_1794456550709": "[🚀順應1H大勢(止損鎖-7.5%)][連敗4次降權] 【Half-B 超賣反彈】SOL 1H趨勢看漲且RSI處於極度超賣區，有望在牛市回調後反彈，但需注意連敗降權導致權重減半，並嚴格控制止損 (1.87% * 4 = 7.48% <= 8.8%)。",
+      "4090818865784303617_1794456549950": "[🚀順應1H大勢(止損鎖-8.3%)][連敗3次降權] 【Half-B 回調做空】ETH處於牛市回調，歷史做空勝率高且具正期望值，做多勝率為零，且近期連敗需降權。"
     },
     "processed_pos_keys": [
       "4075589951403196416_1794174780015",
@@ -175,6 +177,7 @@
       "4072090672499929091_1793896363262",
       "4089816920143572993_1794440256699",
       "4075589924224106496_1794174940906",
+      "4090818865784303617_1794456549950",
       "4072090672499929091_1794208340252",
       "4075589924224106496_1794243453817",
       "4072363062748393475_1794325459367",
@@ -187,6 +190,7 @@
       "4084853071216783363_1794244773268",
       "4071987727334780929_1793870655178",
       "4072363062748393475_1793880977244",
+      "4090816247431311363_1794456550709",
       "4084853071216783363_1794317427077",
       "4088008487018835971_1794383817002",
       "4088008518861991937_1794403166129",
@@ -251,6 +255,16 @@
         "wins": 0,
         "losses": 1,
         "net_pnl": -2481.06
+      },
+      "LONG_under_BULL_PULLBACK_HEALTHY_TREND_ZONE": {
+        "wins": 1,
+        "losses": 0,
+        "net_pnl": 25.84
+      },
+      "LONG_under_BULL_PULLBACK_EXTREME_OVERSOLD": {
+        "wins": 1,
+        "losses": 0,
+        "net_pnl": 36.87
       }
     },
     "symbol_direction_stats": {
@@ -276,16 +290,16 @@
         "avg_loss": 0.0
       },
       "ETH/USDT:USDT_LONG": {
-        "wins": 0,
+        "wins": 1,
         "losses": 5,
-        "net_pnl": -5735.05,
+        "net_pnl": -5709.21,
         "avg_win": 0.0,
         "avg_loss": 0.0
       },
       "SOL/USDT:USDT_LONG": {
-        "wins": 0,
+        "wins": 1,
         "losses": 3,
-        "net_pnl": -5278.86,
+        "net_pnl": -5241.99,
         "avg_win": 0.0,
         "avg_loss": 0.0
       },
@@ -299,20 +313,18 @@
     },
     "consecutive_losses": {
       "BTC/USDT:USDT": 0,
-      "ETH/USDT:USDT": 3,
-      "SOL/USDT:USDT": 4
+      "ETH/USDT:USDT": 0,
+      "SOL/USDT:USDT": 0
     },
     "lessons_learned": [
       "🛑【止損鐵律】全倉位強制執行『含槓桿最大止損 -8.8% 觸發 (死守 -10% 上限)』！",
       "🚀【四階無限鎖利】滿+5%鎖保本 ➔ 滿+9%平半倉鎖+1% ➔ 滿+14%鎖+1.8% ➔ 滿+20%鎖+2.6%！",
       "🧭【BTC領頭羊保護】當 BTC 急殺時嚴禁 ETH/SOL 逆勢接刀做多；持倉逾 3.5 小時無動能自動清理！",
-      "🛡️【馬可維茲連敗降權】ETH/USDT:USDT 近期連續虧損 3 筆，系統自動將其配置權重減半 (0.5x)！",
-      "🛡️【馬可維茲連敗降權】SOL/USDT:USDT 近期連續虧損 4 筆，系統自動將其配置權重減半 (0.5x)！",
       "✅【正期望值主力】BTC/USDT:USDT_SHORT 累計 4勝4敗 (勝率50.0%，淨賺+$8990.73)，具顯著獲利優勢！",
       "✅【正期望值主力】ETH/USDT:USDT_SHORT 累計 5勝5敗 (勝率50.0%，淨賺+$24032.53)，具顯著獲利優勢！",
       "⚠️【高敗率警告】BTC/USDT:USDT_LONG 累計 1勝7敗 (勝率12.5%，淨虧$-20222.15)，請順應 1H 大趨勢方向！",
-      "⚠️【高敗率警告】ETH/USDT:USDT_LONG 累計 0勝5敗 (勝率0.0%，淨虧$-5735.05)，請順應 1H 大趨勢方向！",
-      "⚠️【高敗率警告】SOL/USDT:USDT_LONG 累計 0勝3敗 (勝率0.0%，淨虧$-5278.86)，請順應 1H 大趨勢方向！",
+      "⚠️【高敗率警告】ETH/USDT:USDT_LONG 累計 1勝5敗 (勝率16.7%，淨虧$-5709.21)，請順應 1H 大趨勢方向！",
+      "⚠️【高敗率警告】SOL/USDT:USDT_LONG 累計 1勝3敗 (勝率25.0%，淨虧$-5241.99)，請順應 1H 大趨勢方向！",
       "✅【正期望值主力】SOL/USDT:USDT_SHORT 累計 5勝5敗 (勝率50.0%，淨賺+$4453.29)，具顯著獲利優勢！"
     ]
   },
@@ -321,27 +333,46 @@
     "ETH/USDT:USDT_SHORT": 2,
     "BTC/USDT:USDT_SHORT": 1
   },
-  "total_unrealized_pnl": 257.32,
-  "total_crypto_roi_pct": 0.22,
+  "total_unrealized_pnl": 27.75,
+  "total_crypto_roi_pct": 0.02,
   "active_positions": [
     {
+      "symbol": "SOL/USDT:USDT",
+      "side": "SHORT",
+      "contracts": 989.0,
+      "leverage": "5x",
+      "entry_price": 83.19,
+      "mark_price": 83.19,
+      "margin_usdt": 16454.98,
+      "notional_usdt": 82165.48,
+      "unrealized_pnl": -1.04,
+      "roi_pct": -0.01,
+      "tp_pct": 1.84,
+      "sl_pct": 1.2,
+      "tp_trigger_px": 81.66,
+      "sl_trigger_px": 82.36,
+      "stage": 2,
+      "stage_badge": "💰 已平半倉 & 止損鎖 +1.0%",
+      "reason": "[🚀順應1H大勢(止損鎖-6.0%)] SOL 1H趨勢明確看跌，歷史做空具正期望值，且多頭動能減弱，符合順勢操作原則。"
+    },
+    {
       "symbol": "ETH/USDT:USDT",
-      "side": "LONG",
-      "contracts": 391.0,
-      "leverage": "6x",
-      "entry_price": 2050.84,
-      "mark_price": 2053.61,
-      "margin_usdt": 13382.69,
-      "notional_usdt": 80189.36,
-      "unrealized_pnl": 108.37,
-      "roi_pct": 0.81,
-      "tp_pct": 2.08,
-      "sl_pct": 1.39,
-      "tp_trigger_px": 2093.5,
-      "sl_trigger_px": 2022.33,
-      "stage": 0,
-      "stage_badge": "🛑 止損死守-8.3% (四階鎖利監控)",
-      "reason": "[🚀順應1H大勢(止損鎖-8.3%)][連敗3次降權] 【Half-B 回調做空】ETH處於牛市回調，歷史做空勝率高且具正期望值，做多勝率為零，且近期連敗需降權。"
+      "side": "SHORT",
+      "contracts": 400.0,
+      "leverage": "5x",
+      "entry_price": 2053.15,
+      "mark_price": 2053.32,
+      "margin_usdt": 16426.56,
+      "notional_usdt": 82023.56,
+      "unrealized_pnl": -6.69,
+      "roi_pct": -0.04,
+      "tp_pct": 1.84,
+      "sl_pct": 1.2,
+      "tp_trigger_px": 2015.37,
+      "sl_trigger_px": 2032.62,
+      "stage": 2,
+      "stage_badge": "💰 已平半倉 & 止損鎖 +1.0%",
+      "reason": "[🚀順應1H大勢(止損鎖-6.0%)] BTC大盤中性偏空，ETH 1H趨勢明確看跌，歷史做空具顯著獲利優勢，且多頭動能減弱，符合順勢操作。"
     },
     {
       "symbol": "BTC/USDT:USDT",
@@ -349,11 +380,11 @@
       "contracts": 90.0,
       "leverage": "5x",
       "entry_price": 73804.31,
-      "mark_price": 73793.48,
-      "margin_usdt": 13282.83,
-      "notional_usdt": 66325.8,
-      "unrealized_pnl": 9.74,
-      "roi_pct": 0.07,
+      "mark_price": 73764.88,
+      "margin_usdt": 13277.68,
+      "notional_usdt": 66300.1,
+      "unrealized_pnl": 35.48,
+      "roi_pct": 0.27,
       "tp_pct": 1.3,
       "sl_pct": 1.2,
       "tp_trigger_px": 72844.85,
@@ -361,43 +392,24 @@
       "stage": 1,
       "stage_badge": "🛡️ 已鎖保本 (+0.25%)",
       "reason": "[⚡逆勢快單(止損鎖-6.0%)] 【Half-A 領頭羊反轉】BTC處於牛市回調區間，歷史做空勝率高且具正期望值，做多勝率極低，故順勢做空。"
-    },
-    {
-      "symbol": "SOL/USDT:USDT",
-      "side": "LONG",
-      "contracts": 934.0,
-      "leverage": "4x",
-      "entry_price": 83.08,
-      "mark_price": 83.23,
-      "margin_usdt": 19434.21,
-      "notional_usdt": 77633.43,
-      "unrealized_pnl": 139.21,
-      "roi_pct": 0.72,
-      "tp_pct": 3.2,
-      "sl_pct": 1.87,
-      "tp_trigger_px": 85.74,
-      "sl_trigger_px": 81.53,
-      "stage": 0,
-      "stage_badge": "🛑 止損死守-7.5% (四階鎖利監控)",
-      "reason": "[🚀順應1H大勢(止損鎖-7.5%)][連敗4次降權] 【Half-B 超賣反彈】SOL 1H趨勢看漲且RSI處於極度超賣區，有望在牛市回調後反彈，但需注意連敗降權導致權重減半，並嚴格控制止損 (1.87% * 4 = 7.48% <= 8.8%)。"
     }
   ],
   "market_prices": {
     "BTC/USDT:USDT": {
-      "last_price": 73770.0,
-      "change_24h_pct": -0.11,
-      "bar_15m_change_pct": 0.01,
+      "last_price": 73764.2,
+      "change_24h_pct": -0.08,
+      "bar_15m_change_pct": -0.01,
       "vol_spike_ratio": 0.41,
       "funding_rate_pct": 0.01,
-      "open_interest": 2152689229.23,
-      "ma5": 73765.06,
-      "ma10": 73789.04,
-      "ma20": 73836.95,
-      "rsi_14": 38.4,
+      "open_interest": 2152691753.79,
+      "ma5": 73761.28,
+      "ma10": 73787.15,
+      "ma20": 73836.0,
+      "rsi_14": 37.7,
       "rsi_zone": "HEALTHY_TREND_ZONE",
-      "bb_upper": 74094.62,
-      "bb_lower": 73579.27,
-      "bb_pos_pct": 37.0,
+      "bb_upper": 74094.59,
+      "bb_lower": 73577.41,
+      "bb_pos_pct": 36.1,
       "trend_1h": "BEARISH",
       "trend": "BEARISH",
       "multi_tf_regime": "RESONANCE_BEAR",
@@ -411,20 +423,20 @@
       "btc_master_bias": "NEUTRAL_NORMAL"
     },
     "ETH/USDT:USDT": {
-      "last_price": 2053.56,
-      "change_24h_pct": -0.61,
-      "bar_15m_change_pct": -0.04,
-      "vol_spike_ratio": 0.18,
+      "last_price": 2053.08,
+      "change_24h_pct": -0.62,
+      "bar_15m_change_pct": -0.06,
+      "vol_spike_ratio": 0.19,
       "funding_rate_pct": 0.0043,
-      "open_interest": 3143524732.89,
-      "ma5": 2053.48,
-      "ma10": 2055.05,
-      "ma20": 2055.05,
-      "rsi_14": 38.1,
+      "open_interest": 3143518093.67,
+      "ma5": 2053.38,
+      "ma10": 2055.0,
+      "ma20": 2055.03,
+      "rsi_14": 37.7,
       "rsi_zone": "HEALTHY_TREND_ZONE",
       "bb_upper": 2062.79,
-      "bb_lower": 2047.31,
-      "bb_pos_pct": 40.4,
+      "bb_lower": 2047.27,
+      "bb_pos_pct": 37.4,
       "trend_1h": "BEARISH",
       "trend": "BEARISH",
       "multi_tf_regime": "RESONANCE_BEAR",
@@ -433,25 +445,25 @@
       "anchored_tp_pct": 1.6,
       "anchored_sl_pct": 1.2,
       "max_safe_leverage": 7,
-      "momentum_weakening_long": false,
+      "momentum_weakening_long": true,
       "momentum_weakening_short": false,
       "btc_master_bias": "NEUTRAL_NORMAL"
     },
     "SOL/USDT:USDT": {
-      "last_price": 83.23,
-      "change_24h_pct": -0.17,
-      "bar_15m_change_pct": -0.12,
-      "vol_spike_ratio": 0.05,
+      "last_price": 83.18,
+      "change_24h_pct": -0.18,
+      "bar_15m_change_pct": -0.18,
+      "vol_spike_ratio": 0.06,
       "funding_rate_pct": 0.01,
-      "open_interest": 18029299.23,
-      "ma5": 83.23,
-      "ma10": 83.3,
+      "open_interest": 18028443.93,
+      "ma5": 83.22,
+      "ma10": 83.29,
       "ma20": 83.29,
-      "rsi_14": 40.1,
+      "rsi_14": 39.2,
       "rsi_zone": "HEALTHY_TREND_ZONE",
       "bb_upper": 83.68,
       "bb_lower": 82.91,
-      "bb_pos_pct": 41.6,
+      "bb_pos_pct": 35.1,
       "trend_1h": "BEARISH",
       "trend": "BEARISH",
       "multi_tf_regime": "RESONANCE_BEAR",
@@ -471,47 +483,82 @@
     "Nvidia preparing to oust CEO Jensen Huang after affairs: WSJ"
   ],
   "ai_broadcast_signals": {
-    "updated_at": "12:09:11",
+    "updated_at": "12:10:00",
     "confidence": 91,
-    "summary": "本輪建倉策略嚴格遵循 BTC 領頭羊風向，全數順應 1H 熊市大趨勢開立空單，並嚴守槓桿止損 -8.8% 上限，同時考量連敗降權。",
+    "summary": "本輪建倉依BTC中性偏空風向，結合ETH與SOL的1H明確看跌趨勢，優先布局做空。槓桿5倍，止損嚴守8.8%上限，確保風險可控。",
     "half_a_orders": [
       {
-        "symbol": "BTC/USDT:USDT",
+        "symbol": "ETH/USDT:USDT",
         "action": "SELL",
         "weight": 1.8,
-        "leverage": 6,
-        "tp_pct": 2.0,
-        "sl_pct": 1.4,
-        "reason": "【Half-A 領頭羊順勢】BTC 1H 趨勢明確看跌，且 SHORT 策略具正期望值，無連敗，符合大盤風向。"
+        "leverage": 5,
+        "tp_pct": 2.5,
+        "sl_pct": 1.7,
+        "reason": "BTC大盤中性偏空，ETH 1H趨勢明確看跌，歷史做空具顯著獲利優勢，且多頭動能減弱，符合順勢操作。"
       }
     ],
     "half_b_orders": [
       {
-        "symbol": "ETH/USDT:USDT",
-        "action": "SELL",
-        "weight": 0.7,
-        "leverage": 6,
-        "tp_pct": 2.0,
-        "sl_pct": 1.4,
-        "reason": "【Half-B 趨勢共振】ETH 1H 趨勢看跌，SHORT 策略具正期望值，但因連敗 3 筆，權重減半謹慎配置。"
-      },
-      {
         "symbol": "SOL/USDT:USDT",
         "action": "SELL",
-        "weight": 0.7,
-        "leverage": 6,
-        "tp_pct": 2.0,
-        "sl_pct": 1.4,
-        "reason": "【Half-B 趨勢共振】SOL 1H 趨勢看跌，SHORT 策略具正期望值，但因連敗 4 筆，權重減半謹慎配置。"
+        "weight": 1.6,
+        "leverage": 5,
+        "tp_pct": 2.4,
+        "sl_pct": 1.6,
+        "reason": "SOL 1H趨勢明確看跌，歷史做空具正期望值，且多頭動能減弱，符合順勢操作原則。"
       }
     ]
   },
   "ai_last_decision": {
-    "action": "今日已實現 $-5,501.78 | 本期累計 $+16,470.08 (盈虧比 1.36x)",
+    "action": "今日已實現 $-5,439.08 | 本期累計 $+16,532.79 (盈虧比 1.36x)",
     "confidence": 91,
-    "reason": "本輪建倉策略嚴格遵循 BTC 領頭羊風向，全數順應 1H 熊市大趨勢開立空單，並嚴守槓桿止損 -8.8% 上限，同時考量連敗降權。"
+    "reason": "本輪建倉依BTC中性偏空風向，結合ETH與SOL的1H明確看跌趨勢，優先布局做空。槓桿5倍，止損嚴守8.8%上限，確保風險可控。"
   },
   "orders": [
+    {
+      "id": "POS-136370",
+      "full_id": "4090816247431311363_1794456550709",
+      "timestamp_ms": 1794456550709,
+      "open_timestamp_ms": 1794440255469,
+      "time": "2026-11-12 12:09:10",
+      "market": "crypto",
+      "marketBadge": "📦 歷史倉位 (934.0張)",
+      "asset": "SOL/USDT:USDT",
+      "direction": "做多倉位結算 (LONG)",
+      "leverage": "4.0x 倉位槓桿",
+      "pool": "平倉張數: 934.0 張合約",
+      "entryExit": "開倉均價 $83.08 ➔ 平倉均價 $83.21",
+      "roi": "已實現損益 +$36.87 USDT (+0.19%)",
+      "pnl": "倉位結算收益: +$36.87 USDT",
+      "realized_pnl_num": 36.87,
+      "fee_num": 77.6588,
+      "fee": "倉位累計手續費 77.6588 USDT",
+      "rr": "開倉 $83.08 / 平倉 $83.21",
+      "reason": "[🚀順應1H大勢(止損鎖-7.5%)][連敗4次降權] 【Half-B 超賣反彈】SOL 1H趨勢看漲且RSI處於極度超賣區，有望在牛市回調後反彈，但需注意連敗降權導致權重減半，並嚴格控制止損 (1.87% * 4 = 7.48% <= 8.8%)。",
+      "hash": "0x6bccd7e613709e1e"
+    },
+    {
+      "id": "POS-361795",
+      "full_id": "4090818865784303617_1794456549950",
+      "timestamp_ms": 1794456549950,
+      "open_timestamp_ms": 1794440310251,
+      "time": "2026-11-12 12:09:09",
+      "market": "crypto",
+      "marketBadge": "📦 歷史倉位 (391.0張)",
+      "asset": "ETH/USDT:USDT",
+      "direction": "做多倉位結算 (LONG)",
+      "leverage": "6.0x 倉位槓桿",
+      "pool": "平倉張數: 391.0 張合約",
+      "entryExit": "開倉均價 $2,050.84 ➔ 平倉均價 $2,053.60",
+      "roi": "已實現損益 +$25.84 USDT (+0.19%)",
+      "pnl": "倉位結算收益: +$25.84 USDT",
+      "realized_pnl_num": 25.84,
+      "fee_num": 80.2418,
+      "fee": "倉位累計手續費 80.2418 USDT",
+      "rr": "開倉 $2,050.84 / 平倉 $2,053.60",
+      "reason": "[🚀順應1H大勢(止損鎖-8.3%)][連敗3次降權] 【Half-B 回調做空】ETH處於牛市回調，歷史做空勝率高且具正期望值，做多勝率為零，且近期連敗需降權。",
+      "hash": "0x061bd84706d59728"
+    },
     {
       "id": "POS-299369",
       "full_id": "4089816920143572993_1794440256699",
