@@ -32,8 +32,7 @@ GEMINI_API_KEY      = os.environ.get("GEMINI_API_KEY", "請填入你的_Gemini_A
 DISCORD_WEBHOOK_URL = os.environ.get("DISCORD_WEBHOOK_URL", "").strip()
 
 # ==========================================================
-# ⚙️ 2. v10.7 方案B：全參數統一採用「含槓桿後之真實保證金 ROI %」設定！
-#    (程式內部會自動除以該筆訂單的槓桿倍數換算成 OKX 觸發價，絕不搞混！)
+# ⚙️ 2. v10.8 方案B：全參數統一採用「含槓桿後之真實保證金 ROI %」設定
 # ==========================================================
 WHITELIST_SYMBOLS = ['BTC/USDT:USDT', 'ETH/USDT:USDT', 'SOL/USDT:USDT']
 
@@ -48,8 +47,8 @@ MAX_SINGLE_MARGIN_RATIO = 0.28  # 單筆訂單保證金上限為總資產 28%
 MAX_SL_ROI_TRIGGER_PCT  = 8.8   # 初始止損單固定設在「含槓桿 ROI -8.8%」觸發 (預留滑價，確保結算死守在 -10% 內)
 HARD_CUT_SL_ROI_PCT     = -9.2  # 快軌硬斷頭保護：一旦實時含槓桿 ROI <= -9.2%，立即市價砍單！
 
-# 💰 方案B 分批落袋與鎖保底參數 (以下全部都是「含槓桿後的保證金 ROI %」，不是槓桿前的幣價 %！)
-STAGE1_TRIGGER_ROI_PCT  = 5.0   # 【階段一】當含槓桿 ROI 達 +5.0% -> 立即市價平倉 50% 落袋幾百美金現金！
+# 💰 方案B 分批落袋與鎖保底參數 (全部都是「含槓桿後的保證金 ROI %」)
+STAGE1_TRIGGER_ROI_PCT  = 5.0   # 【階段一】當含槓桿 ROI 達 +5.0% -> 立即市價平倉 50% 落袋現金！
 STAGE1_LOCK_ROI_PCT     = 1.2   #           並將剩餘 50% 倉位的止損移至「含槓桿 ROI +1.2%」(扣手續費後穩賺保底)！
 
 STAGE2_TRIGGER_ROI_PCT  = 10.0  # 【階段二】當剩餘半倉含槓桿 ROI 達 +10.0% -> 止損上推鎖死在「含槓桿 ROI +5.0%」！
@@ -63,8 +62,8 @@ DEFAULT_TARGET_TP_ROI   = 14.0  # 預設初始總止盈目標為「含槓桿 ROI
 IS_GITHUB_ACTIONS     = os.environ.get("GITHUB_ACTIONS") == "true"
 RUN_CONTINUOUS_LOOP   = True
 FAST_TRACK_INTERVAL   = 20    # 快軌：每 20 秒高速巡檢一次 OKX
-SLOW_AI_EVERY_N_TICKS = 30    # 慢軌：每 30 個快軌或有空倉時呼叫 Gemini AI
-MAX_JOB_RUNTIME_SEC   = int(os.environ.get("MAX_JOB_RUNTIME_SEC", "240"))
+SLOW_AI_EVERY_N_TICKS = 15    # 慢軌：每 15 個快軌 (約 5 分鐘) 或持倉未滿時呼叫 Gemini AI
+MAX_JOB_RUNTIME_SEC   = int(os.environ.get("MAX_JOB_RUNTIME_SEC", "210"))
 
 LAST_AI_PLAN_CACHE = None
 NOTIFIED_POS_IDS   = set()
@@ -110,8 +109,6 @@ def init_okx_exchange():
 def roi_to_price(entry_px, side_upper, target_leveraged_roi_pct, leverage_num):
     """
     🌟 核心換算器：將『含槓桿後的目標 ROI (%)』精準除以『槓桿倍率』，換算成 OKX 幣價觸發價！
-    - 若 target_leveraged_roi_pct 為正數 (例如 +5.0% 或 +1.2%)：代表獲利方向的價格 (做多高於開倉價、做空低於開倉價)
-    - 若 target_leveraged_roi_pct 為負數 (例如 -8.8%)：代表虧損止損方向的價格 (做多低於開倉價、做空高於開倉價)
     """
     lev = max(1.0, float(leverage_num))
     price_move_fraction = (float(target_leveraged_roi_pct) / lev) / 100.0
@@ -129,7 +126,7 @@ def send_discord_alert(title, description, color=3066993, fields=None):
         "description": description,
         "color": color,
         "timestamp": datetime.now(timezone.utc).isoformat(),
-        "footer": {"text": "QuantGuard AI v10.7 | 方案B：含槓桿ROI+5%平半倉落袋 × 保底堆錢終端"}
+        "footer": {"text": "QuantGuard AI v10.8 | 方案B：含槓桿ROI+5%平半倉落袋 × 防卡死終端"}
     }
     if fields:
         embed["fields"] = fields
@@ -137,7 +134,7 @@ def send_discord_alert(title, description, color=3066993, fields=None):
         req = urllib.request.Request(
             DISCORD_WEBHOOK_URL,
             data=json.dumps({"embeds": [embed]}).encode('utf-8'),
-            headers={'Content-Type': 'application/json', 'User-Agent': 'QuantGuardBot/10.7'}
+            headers={'Content-Type': 'application/json', 'User-Agent': 'QuantGuardBot/10.8'}
         )
         urllib.request.urlopen(req, timeout=5)
     except Exception as e:
@@ -175,23 +172,41 @@ def load_previous_state():
 
 
 def push_live_data_immediately(force=False):
+    """
+    🌟 v10.8 防衝突強化版 Git Push：
+    即使遠端分支有更新，也能透過 rebase / reset 自動化解衝突並強制將最新 live_data.json 推送上網！
+    """
     global LAST_GIT_PUSH_TS
     if not IS_GITHUB_ACTIONS:
         return
     now_ts = time.time()
-    if not force and (now_ts - LAST_GIT_PUSH_TS < 60):
+    if not force and (now_ts - LAST_GIT_PUSH_TS < 45):
         return
     try:
+        with open("live_data.json", "r", encoding="utf-8") as f:
+            latest_json_content = f.read()
+
         subprocess.run(["git", "config", "--local", "user.email", "bot@quantguard.ai"], check=False)
         subprocess.run(["git", "config", "--local", "user.name", "QuantGuard AutoBot"], check=False)
         subprocess.run(["git", "add", "live_data.json"], check=False)
+
         diff_res = subprocess.run(["git", "diff", "--staged", "--quiet"])
         if diff_res.returncode != 0:
-            subprocess.run(["git", "commit", "-m", "Real-time sync live_data.json v10.7 (Plan B Active)"], check=False)
-            subprocess.run(["git", "pull", "--rebase", "origin", "main"], check=False)
+            subprocess.run(["git", "commit", "-m", "Real-time sync live_data.json v10.8"], check=False)
+            pull_res = subprocess.run(["git", "pull", "--rebase", "-X", "ours", "origin", "main"], check=False)
+            if pull_res.returncode != 0:
+                # 若 rebase 發生衝突，自動放棄 rebase、對齊遠端並重新寫入最新 live_data.json
+                subprocess.run(["git", "rebase", "--abort"], check=False)
+                subprocess.run(["git", "fetch", "origin", "main"], check=False)
+                subprocess.run(["git", "reset", "--hard", "origin/main"], check=False)
+                with open("live_data.json", "w", encoding="utf-8") as f:
+                    f.write(latest_json_content)
+                subprocess.run(["git", "add", "live_data.json"], check=False)
+                subprocess.run(["git", "commit", "-m", "Force sync live_data.json v10.8"], check=False)
+
             subprocess.run(["git", "push", "origin", "main"], check=False)
             LAST_GIT_PUSH_TS = now_ts
-            print("🚀 [即時雲端同步] 已將最新 live_data.json 推送至雲端！", flush=True)
+            print("🚀 [即時雲端同步] 已成功將最新 live_data.json 推送至網站！", flush=True)
     except Exception as e:
         print(f"ℹ️ 背景 Git 同步提示: {e}", flush=True)
 
@@ -286,11 +301,9 @@ def fetch_whitelist_market_data(exchange):
             avg_vol = (sum(vols[:-1]) / max(1, len(vols) - 1)) if len(vols) > 1 else 1.0
             vol_spike_ratio = round(vols[-1] / avg_vol, 2) if avg_vol > 0 else 1.0
 
-            # 根據波動率決定安全槓桿 (4x~6x)，並將目標止盈與止損全部以「含槓桿 ROI %」為核心！
             natural_sl_pct = round(max(1.3, min(2.0, swing_pct * 0.55)), 2)
             max_safe_lev   = max(4, min(6, int(MAX_SL_ROI_TRIGGER_PCT // natural_sl_pct)))
 
-            # 換算為幣價 % (僅供顯示與相容)：實際掛單一律確保 sl_pct * lev <= 8.8% (死守 -10% ROI)
             enforced_sl_pct = round(MAX_SL_ROI_TRIGGER_PCT / float(max_safe_lev), 2)
             anchored_tp_pct = round(max(2.2, min(3.6, DEFAULT_TARGET_TP_ROI / float(max_safe_lev))), 2)
 
@@ -400,7 +413,7 @@ def update_ai_memory_bank_from_history(history_records):
         pat_stats[pat_key]["net_pnl"] = round(pat_stats[pat_key]["net_pnl"] + pnl, 2)
 
     lessons = [
-        "💰【方案B堆錢鐵律】當『含槓桿 ROI 達 +5.0%』立即市價平掉 50% 倉位落袋幾百美金，剩餘 50% 止損鎖在含槓桿 ROI +1.2% 保底！",
+        "💰【方案B堆錢鐵律】當『含槓桿 ROI 達 +5.0%』立即市價平掉 50% 倉位落袋現金，剩餘 50% 止損鎖在含槓桿 ROI +1.2% 保底！",
         "🛑【止損死守-10%】所有倉位初始止損強制設於『含槓桿 ROI -8.8%』觸發，快軌 -9.2% 硬斷頭！",
         "🚀【尾倉階梯推進】剩餘半倉含槓桿 ROI 達 +10% 鎖住 +5% ROI；達 +16% 鎖住 +10% ROI 並外推止盈！"
     ]
@@ -453,8 +466,8 @@ def build_fallback_plan(market_data):
         "overall_summary": "全面執行方案B：含槓桿 ROI 滿 +5.0% 立即市價平半倉落袋並鎖定 +1.2% ROI 保底，止損死守 -10% 內。",
         "black_swan_detected": False,
         "sniper_order": None,
-        "half_a_orders": half_a[:2],
-        "half_b_orders": half_b[:2]
+        "half_a_orders": half_a[:3],
+        "half_b_orders": half_b[:3]
     }
 
 
@@ -466,7 +479,7 @@ def ask_gemini_quant_brain(market_data, news_headlines, current_held_symbols, mi
     client = genai.Client(api_key=gemini_key)
 
     prompt = f"""
-    你是 QuantGuard AI v10.7 旗艦量化決策核心。我們現在採用【方案B：半倉秒收 + 尾倉保底堆錢法】：
+    你是 QuantGuard AI v10.8 旗艦量化決策核心。我們現在採用【方案B：半倉秒收 + 尾倉保底堆錢法】：
     - 只要持倉的『含槓桿後保證金收益率 (Leveraged ROI)』達到 `+5.0%`，快軌會立刻自動市價賣出 50% 倉位把幾百美金現金放進口袋，並將剩餘 50% 倉位的止損移到『含槓桿 ROI +1.2%』(成本+手續費+微利保底)！
     - 同時，初始止損嚴格鎖定在『含槓桿後 ROI -8.8%』(加滑價死守 -10% 內)！
 
@@ -479,10 +492,10 @@ def ask_gemini_quant_brain(market_data, news_headlines, current_held_symbols, mi
     - 各幣種多空歷史累計勝敗：{json.dumps(AI_MEMORY_BANK.get("symbol_direction_stats", {}), ensure_ascii=False)}
 
     【3. 最新國際新聞】：{json.dumps(news_headlines, ensure_ascii=False)}
-    【4. 目前持有倉位】：{json.dumps(current_held_symbols, ensure_ascii=False)}
+    【4. 目前持有倉位 (請為尚未持有的幣種規劃建倉指令)】：{json.dumps(current_held_symbols, ensure_ascii=False)}
 
-    【v10.7 建倉鐵律】：
-    1. 選出最容易先走出『含槓桿 +5% ROI (約 1.0% 幣價順向波動)』的方向，讓我們能快速觸發方案B平半倉鎖保底！
+    【v10.8 建倉鐵律】：
+    1. 積極為未持倉之幣種 (BTC/USDT:USDT, ETH/USDT:USDT, SOL/USDT:USDT) 規劃高把握度訂單，選出最容易先走出『含槓桿 +5% ROI』的方向！
     2. 順應 1H 大趨勢 (`trend_1h`) 與 BTC 領頭羊風向 (`btc_master_bias`)：
        - 若 `btc_master_bias == "DUMP_WARNING_NO_ALT_LONG"`，嚴禁對 ETH/SOL 開多單；若為 `PUMP_WARNING_NO_ALT_SHORT`，嚴禁對 ETH/SOL 開空單。
     3. `leverage` 請採用 `max_safe_leverage` (4~6倍)。
@@ -494,7 +507,8 @@ def ask_gemini_quant_brain(market_data, news_headlines, current_held_symbols, mi
       "black_swan_detected": false,
       "sniper_order": null,
       "half_a_orders": [
-        {{"symbol": "BTC/USDT:USDT", "action": "BUY", "weight": 1.6, "leverage": 5, "tp_pct": 2.8, "sl_pct": 1.7, "reason": "【Half-A 方案B堆錢】..."}}
+        {{"symbol": "BTC/USDT:USDT", "action": "BUY", "weight": 1.6, "leverage": 5, "tp_pct": 2.8, "sl_pct": 1.7, "reason": "【Half-A 方案B堆錢】..."}},
+        {{"symbol": "ETH/USDT:USDT", "action": "BUY", "weight": 1.3, "leverage": 5, "tp_pct": 2.8, "sl_pct": 1.7, "reason": "【Half-A 順勢布局】..."}}
       ],
       "half_b_orders": [
         {{"symbol": "SOL/USDT:USDT", "action": "BUY", "weight": 1.4, "leverage": 5, "tp_pct": 3.0, "sl_pct": 1.7, "reason": "【Half-B 順勢共振】..."}}
@@ -665,13 +679,6 @@ def place_okx_order_with_tpsl(exchange, sym, action, contracts, leverage, tp_pri
 
 
 def fast_track_smart_harvest_and_hedge(exchange, active_positions, market_data, total_equity, total_upl):
-    """
-    ⚡ v10.7 方案B 快軌核心 (所有判斷與鎖利 100% 採用『含槓桿 ROI %』除以槓桿換算)：
-    - 【硬止損保護】實時含槓桿 ROI <= -9.2% ➔ 立即市價砍單，死守 -10% 鐵律！
-    - 【階段一：含槓桿 ROI >= +5.0%】➔ 立即市價平掉 50% 倉位落袋幾百美金現金！並將剩餘 50% 倉位止損移至『含槓桿 ROI +1.2%』(成本+手續費保底)！
-    - 【階段二：含槓桿 ROI >= +10.0%】➔ 剩餘半倉止損上推鎖死在『含槓桿 ROI +5.0%』！
-    - 【階段三：含槓桿 ROI >= +16.0%】➔ 剩餘半倉止損上推鎖死在『含槓桿 ROI +10.0%』，且止盈目標外推 1.4 倍！
-    """
     state_changed = False
 
     for pos in active_positions:
@@ -679,7 +686,7 @@ def fast_track_smart_harvest_and_hedge(exchange, active_positions, market_data, 
         side      = pos['side']
         entry_px  = float(pos['entry_price'])
         contracts = int(float(pos['contracts']))
-        roi_pct   = float(pos['roi_pct'])  # 真實含槓桿 ROI % (例如 +5.25 代表 +5.25%)
+        roi_pct   = float(pos['roi_pct'])
         lev_num   = max(1.0, float(str(pos.get('leverage', '5x')).replace('x', '')))
         tp_pct    = float(pos.get('tp_pct', 2.8))
         pos_key   = f"{sym}_{side}"
@@ -757,12 +764,6 @@ def fast_track_smart_harvest_and_hedge(exchange, active_positions, market_data, 
 
 
 def execute_pool_orders(exchange, pool_name, orders_list, pool_budget_usdt, market_data, reason_lookup, held_symbols_map, total_equity):
-    """
-    🌟 v10.7 建倉引擎：
-    所有止盈與止損全部以「含槓桿後 ROI %」除以槓桿倍數換算，確保：
-    - 初始止損嚴格鎖在「含槓桿 ROI -8.8%」(幣價止損 % = 8.8% / 槓桿)
-    - 階段一在「含槓桿 ROI +5.0%」(幣價順向 5.0% / 槓桿) 立即平半倉落袋並鎖保底！
-    """
     valid_orders = [o for o in orders_list[:MAX_ORDERS_PER_HALF] if str(o.get("action", "")).upper() in ["BUY", "SELL"]]
     if not valid_orders or pool_budget_usdt < 30:
         return False
@@ -813,9 +814,7 @@ def execute_pool_orders(exchange, pool_name, orders_list, pool_budget_usdt, mark
         ai_lev   = int(ord_spec.get("leverage", safe_lev))
         leverage = max(4, min(6, min(ai_lev, safe_lev)))
 
-        # 🛑 核心換算：由「含槓桿 ROI -8.8%」直接除以槓桿，得出幣價止損 % (確保乘上槓桿永遠 <= -8.8%)
         sl_pct = round(MAX_SL_ROI_TRIGGER_PCT / float(leverage), 2)
-        # 🎯 尾倉最終止盈目標：由「含槓桿 ROI +14% ~ +18%」除以槓桿換算 (中間在含槓桿 +5.0% 時會先平半倉落袋)
         tp_pct = round(max(2.4, min(3.6, DEFAULT_TARGET_TP_ROI / float(leverage))), 2)
 
         mode_tag = f"💰方案B(滿+5%ROI平半倉鎖保底/止損鎖-{round(sl_pct*leverage,1)}%ROI)"
@@ -842,14 +841,12 @@ def execute_pool_orders(exchange, pool_name, orders_list, pool_budget_usdt, mark
             continue
 
         side_upper = 'LONG' if action == 'BUY' else 'SHORT'
-        # 使用統一換算器：傳入含槓桿目標 ROI 與槓桿倍數，算出精準幣價
         tp_price = roi_to_price(current_price, side_upper, round(tp_pct * leverage, 2), leverage)
         sl_price = roi_to_price(current_price, side_upper, -MAX_SL_ROI_TRIGGER_PCT, leverage)
 
         order = place_okx_order_with_tpsl(exchange, sym, action, contracts, leverage, tp_price, sl_price, pool_name)
         if order:
             held_symbols_map[sym] = side_upper
-            # 新開倉時重置該幣種的階段鎖為 Stage 0
             POSITION_STAGE_MAP[f"{sym}_{side_upper}"] = 0
             AI_MEMORY_BANK.setdefault("entry_snapshots", {})[sym] = {
                 "side": side_upper,
@@ -1057,7 +1054,6 @@ def fetch_okx_positions_history_and_analytics(exchange, market_data, reason_look
 
 
 def compute_exact_position_roi(side_upper, entry_px, mark_px, lev_num, upl, margin_used):
-    """強制計算含槓桿後之真實保證金 ROI %"""
     if margin_used > 0 and abs(upl) > 0:
         return round((upl / margin_used) * 100.0, 2)
     if entry_px > 0 and mark_px > 0:
@@ -1085,7 +1081,6 @@ def run_single_cycle(exchange, cycle_num=1):
     except Exception as e:
         print(f"⚠️ 初始倉位讀取提示: {e}", flush=True)
 
-    # 清除已經不在持倉中的舊階段紀錄，確保下次開倉從 Stage 0 重新算
     active_pos_keys = {f"{s}_{sd}" for s, sd in held_symbols_map.items()}
     for old_k in list(POSITION_STAGE_MAP.keys()):
         if old_k not in active_pos_keys:
@@ -1099,9 +1094,10 @@ def run_single_cycle(exchange, cycle_num=1):
         for h in prelim_history[:5]
     ]
 
+    # 🌟 只要目前持倉少於 2 筆 (例如剛全部止盈平倉完) 或到了慢軌時間，立即呼叫 AI 重新布局新單！
     should_call_ai = (
         LAST_AI_PLAN_CACHE is None
-        or len(held_symbols_map) < 3
+        or len(held_symbols_map) < 2
         or (cycle_num % SLOW_AI_EVERY_N_TICKS == 0)
     )
 
@@ -1130,6 +1126,12 @@ def run_single_cycle(exchange, cycle_num=1):
         p1 = execute_pool_orders(exchange, "Half-A 方案B堆錢池 (40%)", ai_plan.get("half_a_orders", []), half_a_budget, market_data, reason_lookup, held_symbols_map, real_usdt)
         p2 = execute_pool_orders(exchange, "Half-B 順勢共振池 (40%)", ai_plan.get("half_b_orders", []), half_b_budget, market_data, reason_lookup, held_symbols_map, real_usdt)
         order_placed = p1 or p2
+
+        # 🌟 保底補倉機制：若 AI 規劃的幣種剛好都在持倉中導致沒下到新單，自動用本地順勢計畫補齊未持倉幣種！
+        if not order_placed and len(held_symbols_map) == 0:
+            fb_plan = build_fallback_plan(market_data)
+            p3 = execute_pool_orders(exchange, "Half-A 自動補倉池 (40%)", fb_plan.get("half_a_orders", []), half_a_budget, market_data, reason_lookup, held_symbols_map, real_usdt)
+            order_placed = order_placed or p3
 
     balance   = exchange.fetch_balance()
     real_usdt = round(float(balance.get('USDT', {}).get('total', 0.0)), 2)
@@ -1251,14 +1253,14 @@ def run_single_cycle(exchange, cycle_num=1):
         json.dump(live_payload, f, ensure_ascii=False, indent=2)
 
     if order_placed or fast_changed or cycle_num == 1:
-        push_live_data_immediately(force=(order_placed or fast_changed))
+        push_live_data_immediately(force=True)
     else:
         push_live_data_immediately(force=False)
 
 
 def main():
     print("=========================================================================", flush=True)
-    print("🚀 QuantGuard AI v10.7 - 方案B：含槓桿 ROI +5% 平半倉落袋 × +1.2% ROI 尾倉保底 × 死守 -10% 止損", flush=True)
+    print("🚀 QuantGuard AI v10.8 - 方案B堆錢完全體 × Git防衝突自動同步 × 空倉即刻補單", flush=True)
     print("=========================================================================", flush=True)
     load_previous_state()
     exchange = init_okx_exchange()
