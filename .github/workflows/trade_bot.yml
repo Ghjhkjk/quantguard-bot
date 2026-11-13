@@ -1,47 +1,47 @@
-name: QuantGuard AI 24/7 Autonomous Bot
+name: QuantGuard 24/7 Auto Trading
 
 on:
   schedule:
-    - cron: '*/5 * * * *'
-  workflow_dispatch:
+    - cron: '*/5 * * * *'   # 每 5 分鐘自動觸發一次
+  workflow_dispatch:        # 支援手動點擊 Run workflow 立即執行
 
+# 🌟 核心防撞車鎖：確保同一時間只有 1 個排程在運行，上一輪跑完才會接下一輪，絕不卡死！
 concurrency:
   group: quantguard-live-bot
   cancel-in-progress: false
 
-permissions:
-  contents: write
-
 jobs:
   run-bot:
     runs-on: ubuntu-latest
-    steps:
-      - name: 📥 檢出專案程式碼
-        uses: actions/checkout@v4
+    timeout-minutes: 6
+    permissions:
+      contents: write
 
-      - name: 🐍 安裝 Python 環境
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python 3.11
         uses: actions/setup-python@v5
         with:
-          python-version: '3.10'
+          python-version: '3.11'
 
-      - name: 📦 安裝量化交易與 AI 套件
+      - name: Install dependencies
         run: |
-          pip install ccxt google-genai feedparser
+          python -m pip install --upgrade pip
+          pip install ccxt feedparser google-genai
 
-      - name: 🚀 執行 80/10/10 快慢雙軌量化引擎 (每 20 秒高速巡檢)
+      - name: Run QuantGuard AutoBot v10.8
         env:
+          GITHUB_ACTIONS: "true"
           OKX_API_KEY: ${{ secrets.OKX_API_KEY }}
           OKX_SECRET_KEY: ${{ secrets.OKX_SECRET_KEY }}
           OKX_PASSPHRASE: ${{ secrets.OKX_PASSPHRASE }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
-          MAX_JOB_RUNTIME_SEC: "240"
+          MAX_JOB_RUNTIME_SEC: "210"
         run: |
           python auto_bot.py
-
-      - name: 💾 自動將最新 live_data.json 存回 GitHub 供網站實時顯示
-        run: |
-          git config --local user.email "bot@quantguard.ai"
-          git config --local user.name "QuantGuard AutoBot"
-          git add live_data.json
-          git diff --staged --quiet || (git commit -m "Auto-sync OKX live_data.json v9.0" && git pull --rebase origin main && git push origin main)
+          
