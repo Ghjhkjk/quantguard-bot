@@ -1,33 +1,33 @@
 {
-  "updated_at": "2026-11-14 22:54:47",
+  "updated_at": "2026-11-14 22:55:37",
   "epoch_cutoff": "2026-11-05 17:01:00",
-  "real_usdt": 131809.1,
-  "free_usdt": 91084.56,
-  "used_usdt": 40724.54,
+  "real_usdt": 132160.87,
+  "free_usdt": 90231.89,
+  "used_usdt": 41928.98,
   "allocations": {
-    "normal_80_usdt": 105447.28,
-    "hedge_10_usdt": 13180.91,
-    "sniper_10_usdt": 13180.91
+    "normal_80_usdt": 105728.7,
+    "hedge_10_usdt": 13216.09,
+    "sniper_10_usdt": 13216.09
   },
   "performance_stats": {
     "epoch_start": "2026-11-05 17:01:16",
     "today_date": "2026-11-14",
-    "today_realized_pnl": 2978.64,
-    "today_trades_count": 4,
-    "all_time_realized_pnl": 32174.4,
-    "gross_profit_usdt": 84912.73,
+    "today_realized_pnl": 4342.51,
+    "today_trades_count": 5,
+    "all_time_realized_pnl": 33538.26,
+    "gross_profit_usdt": 86276.6,
     "gross_loss_usdt": 52738.34,
-    "total_fees_usdt": 8367.21,
-    "implied_initial_capital": 98861.05,
-    "profit_factor": 1.61,
-    "total_settled_count": 59,
-    "win_count": 28,
+    "total_fees_usdt": 8436.79,
+    "implied_initial_capital": 98871.58,
+    "profit_factor": 1.64,
+    "total_settled_count": 60,
+    "win_count": 29,
     "loss_count": 31,
-    "win_rate_pct": 47.5,
+    "win_rate_pct": 48.3,
     "daily_pnl_history": [
       {
         "date": "2026-11-14",
-        "pnl": 2978.63
+        "pnl": 4342.5
       },
       {
         "date": "2026-11-13",
@@ -66,9 +66,9 @@
         "pnl": 24576.58
       },
       "SOL/USDT:USDT": {
-        "wins": 9,
-        "total": 19,
-        "pnl": 1725.64
+        "wins": 10,
+        "total": 20,
+        "pnl": 3089.51
       }
     }
   },
@@ -90,15 +90,15 @@
       "SOL/USDT:USDT": {
         "side": "SHORT",
         "reason": "[💰方案B(滿+5%ROI平半倉鎖保底/止損鎖-8.8%ROI)] 【Half-A 方案B堆錢】1H:BEARISH/15m:BEARISH，含槓桿ROI滿+5%先平半倉落袋並鎖+1.2%保底，止損死守-8.8% ROI。",
-        "tp_pct": 2.4,
-        "sl_pct": 1.47,
-        "leverage": 6,
+        "tp_pct": 3.5,
+        "sl_pct": 2.2,
+        "leverage": 4,
         "multi_tf_regime": "RESONANCE_BEAR",
-        "rsi_14": 43.5,
-        "rsi_zone": "HEALTHY_TREND_ZONE",
-        "bb_pos_pct": 29.6,
+        "rsi_14": 19.4,
+        "rsi_zone": "EXTREME_OVERSOLD",
+        "bb_pos_pct": -7.7,
         "funding_rate_pct": 0.01,
-        "entry_time": "2026-11-14 16:01:51"
+        "entry_time": "2026-11-14 22:55:36"
       },
       "BTC/USDT:USDT": {
         "side": "SHORT",
@@ -176,7 +176,8 @@
       "4090816247431311363_1794610947269": "[💰方案B(滿+5%ROI平半倉鎖保底/止損鎖-8.8%ROI)] 【Half-A 方案B堆錢】1H:BULLISH/15m:BEARISH，含槓桿ROI滿+5%先平半倉落袋並鎖+1.2%保底，止損死守-8.8% ROI。",
       "4097608453601243137_1794623297609": "[💰方案B(滿+5%ROI平半倉鎖保底/止損鎖-8.8%ROI)][連敗2次降權] 【Half-A 方案B堆錢】1H:BEARISH/15m:BEARISH，含槓桿ROI滿+5%先平半倉落袋並鎖+1.2%保底，止損死守-8.8% ROI。",
       "4088008487018835971_1794666392946": "[💰方案B(滿+5%ROI平半倉鎖保底/止損鎖-8.8%ROI)] 【Half-A 方案B堆錢】1H:BEARISH/15m:BEARISH，含槓桿ROI滿+5%先平半倉落袋並鎖+1.2%保底，止損死守-8.8% ROI。",
-      "4092103890504921091_1794666273151": "[💰方案B(滿+5%ROI平半倉鎖保底/止損鎖-8.8%ROI)] 【Half-A 方案B堆錢】1H:BEARISH/15m:BEARISH，含槓桿ROI滿+5%先平半倉落袋並鎖+1.2%保底，止損死守-8.8% ROI。"
+      "4092103890504921091_1794666273151": "[💰方案B(滿+5%ROI平半倉鎖保底/止損鎖-8.8%ROI)] 【Half-A 方案B堆錢】1H:BEARISH/15m:BEARISH，含槓桿ROI滿+5%先平半倉落袋並鎖+1.2%保底，止損死守-8.8% ROI。",
+      "4097608453601243137_1794668131600": "[💰方案B(滿+5%ROI平半倉鎖保底/止損鎖-8.8%ROI)] 【Half-A 方案B堆錢】1H:BEARISH/15m:BEARISH，含槓桿ROI滿+5%先平半倉落袋並鎖+1.2%保底，止損死守-8.8% ROI。"
     },
     "processed_pos_keys": [
       "4092103890504921091_1794539929171",
@@ -198,6 +199,7 @@
       "4072363087947771907_1793880977435",
       "4075589924224106496_1794291465001",
       "4090816247431311363_1794456550709",
+      "4097608453601243137_1794668131600",
       "4072363062748393475_1794188315887",
       "4072363062748393475_1793880977244",
       "4088008518861991937_1794342053268",
@@ -280,9 +282,9 @@
         "net_pnl": 2758.12
       },
       "SHORT_under_RESONANCE_BEAR_HEALTHY_TREND_ZONE": {
-        "wins": 11,
+        "wins": 12,
         "losses": 7,
-        "net_pnl": 9416.51
+        "net_pnl": 10780.38
       },
       "SHORT_under_RESONANCE_BEAR_EXTREME_OVERSOLD": {
         "wins": 4,
@@ -352,9 +354,9 @@
         "avg_loss": 0.0
       },
       "SOL/USDT:USDT_SHORT": {
-        "wins": 8,
+        "wins": 9,
         "losses": 6,
-        "net_pnl": 8513.71,
+        "net_pnl": 9877.58,
         "avg_win": 0.0,
         "avg_loss": 0.0
       }
@@ -373,28 +375,47 @@
       "⚠️【高敗率警告】BTC/USDT:USDT_LONG 累計 1勝7敗 (勝率12.5%，淨虧$-20222.15)，請順應 1H 大趨勢方向！",
       "⚠️【高敗率警告】ETH/USDT:USDT_LONG 累計 1勝5敗 (勝率16.7%，淨虧$-5709.21)，請順應 1H 大趨勢方向！",
       "⚠️【高敗率警告】SOL/USDT:USDT_LONG 累計 1勝4敗 (勝率20.0%，淨虧$-6788.07)，請順應 1H 大趨勢方向！",
-      "✅【正期望值主力】SOL/USDT:USDT_SHORT 累計 8勝6敗 (勝率57.1%，淨賺+$8513.71)，具顯著獲利優勢！"
+      "✅【正期望值主力】SOL/USDT:USDT_SHORT 累計 9勝6敗 (勝率60.0%，淨賺+$9877.58)，具顯著獲利優勢！"
     ]
   },
   "position_stage_map": {
-    "SOL/USDT:USDT_SHORT": 2,
     "BTC/USDT:USDT_SHORT": 0,
-    "ETH/USDT:USDT_SHORT": 0
+    "ETH/USDT:USDT_SHORT": 0,
+    "SOL/USDT:USDT_SHORT": 0
   },
-  "total_unrealized_pnl": 773.65,
-  "total_crypto_roi_pct": 0.59,
+  "total_unrealized_pnl": -248.97,
+  "total_crypto_roi_pct": -0.19,
   "active_positions": [
+    {
+      "symbol": "SOL/USDT:USDT",
+      "side": "SHORT",
+      "contracts": 689.0,
+      "leverage": "4x",
+      "entry_price": 74.04,
+      "mark_price": 74.01,
+      "margin_usdt": 12748.22,
+      "notional_usdt": 50948.53,
+      "unrealized_pnl": 20.67,
+      "roi_pct": 0.16,
+      "tp_pct": 3.5,
+      "sl_pct": 2.2,
+      "tp_trigger_px": 71.45,
+      "sl_trigger_px": 75.67,
+      "stage": 0,
+      "stage_badge": "⚡ 滿+5%ROI平半倉鎖保底 (止損鎖-8.8%ROI)",
+      "reason": "[💰方案B(滿+5%ROI平半倉鎖保底/止損鎖-8.8%ROI)] 【Half-A 方案B堆錢】1H:BEARISH/15m:BEARISH，含槓桿ROI滿+5%先平半倉落袋並鎖+1.2%保底，止損死守-8.8% ROI。"
+    },
     {
       "symbol": "ETH/USDT:USDT",
       "side": "SHORT",
       "contracts": 388.0,
       "leverage": "4x",
       "entry_price": 1848.23,
-      "mark_price": 1851.29,
-      "margin_usdt": 17957.51,
-      "notional_usdt": 71767.56,
-      "unrealized_pnl": -118.59,
-      "roi_pct": -0.66,
+      "mark_price": 1851.01,
+      "margin_usdt": 17954.8,
+      "notional_usdt": 71756.71,
+      "unrealized_pnl": -107.73,
+      "roi_pct": -0.6,
       "tp_pct": 3.5,
       "sl_pct": 2.2,
       "tp_trigger_px": 1783.54,
@@ -409,11 +430,11 @@
       "contracts": 85.0,
       "leverage": "5x",
       "entry_price": 65849.1,
-      "mark_price": 66056.41,
-      "margin_usdt": 11229.59,
-      "notional_usdt": 56099.1,
-      "unrealized_pnl": -176.21,
-      "roi_pct": -1.57,
+      "mark_price": 66039.59,
+      "margin_usdt": 11226.73,
+      "notional_usdt": 56084.82,
+      "unrealized_pnl": -161.91,
+      "roi_pct": -1.44,
       "tp_pct": 2.8,
       "sl_pct": 1.76,
       "tp_trigger_px": 64005.33,
@@ -421,43 +442,24 @@
       "stage": 0,
       "stage_badge": "⚡ 滿+5%ROI平半倉鎖保底 (止損鎖-8.8%ROI)",
       "reason": "[💰方案B(滿+5%ROI平半倉鎖保底/止損鎖-8.8%ROI)] 【Half-A 方案B堆錢】1H:BEARISH/15m:BEARISH，含槓桿ROI滿+5%先平半倉落袋並鎖+1.2%保底，止損死守-8.8% ROI。"
-    },
-    {
-      "symbol": "SOL/USDT:USDT",
-      "side": "SHORT",
-      "contracts": 934.0,
-      "leverage": "6x",
-      "entry_price": 75.26,
-      "mark_price": 74.12,
-      "margin_usdt": 11538.01,
-      "notional_usdt": 69167.85,
-      "unrealized_pnl": 1068.45,
-      "roi_pct": 9.26,
-      "tp_pct": 2.4,
-      "sl_pct": 1.47,
-      "tp_trigger_px": 73.45,
-      "sl_trigger_px": 74.63,
-      "stage": 2,
-      "stage_badge": "🚀 尾倉鎖 +5.0% ROI",
-      "reason": "[💰方案B(滿+5%ROI平半倉鎖保底/止損鎖-8.8%ROI)] 【Half-A 方案B堆錢】1H:BEARISH/15m:BEARISH，含槓桿ROI滿+5%先平半倉落袋並鎖+1.2%保底，止損死守-8.8% ROI。"
     }
   ],
   "market_prices": {
     "BTC/USDT:USDT": {
-      "last_price": 66173.0,
-      "change_24h_pct": -4.13,
-      "bar_15m_change_pct": 0.25,
-      "vol_spike_ratio": 0.74,
+      "last_price": 66109.71,
+      "change_24h_pct": -4.02,
+      "bar_15m_change_pct": 0.02,
+      "vol_spike_ratio": 1.46,
       "funding_rate_pct": 0.01,
-      "open_interest": 2141546714.72,
-      "ma5": 66332.92,
-      "ma10": 66599.99,
-      "ma20": 66905.86,
-      "rsi_14": 21.8,
+      "open_interest": 2141870732.15,
+      "ma5": 66303.82,
+      "ma10": 66585.44,
+      "ma20": 66898.59,
+      "rsi_14": 15.2,
       "rsi_zone": "EXTREME_OVERSOLD",
-      "bb_upper": 67699.05,
-      "bb_lower": 66112.68,
-      "bb_pos_pct": 3.8,
+      "bb_upper": 67720.67,
+      "bb_lower": 66076.51,
+      "bb_pos_pct": 2.0,
       "trend_1h": "BEARISH",
       "trend": "BEARISH",
       "multi_tf_regime": "RESONANCE_BEAR",
@@ -469,53 +471,53 @@
       "btc_master_bias": "NEUTRAL_NORMAL"
     },
     "ETH/USDT:USDT": {
-      "last_price": 1850.42,
-      "change_24h_pct": -5.23,
-      "bar_15m_change_pct": -0.19,
-      "vol_spike_ratio": 2.09,
-      "funding_rate_pct": -0.2788,
-      "open_interest": 3136994278.83,
-      "ma5": 1865.25,
-      "ma10": 1879.99,
-      "ma20": 1894.02,
-      "rsi_14": 9.3,
+      "last_price": 1853.0,
+      "change_24h_pct": -4.8,
+      "bar_15m_change_pct": -0.05,
+      "vol_spike_ratio": 2.27,
+      "funding_rate_pct": -0.28,
+      "open_interest": 3136940345.22,
+      "ma5": 1865.77,
+      "ma10": 1880.25,
+      "ma20": 1894.15,
+      "rsi_14": 9.7,
       "rsi_zone": "EXTREME_OVERSOLD",
-      "bb_upper": 1932.78,
-      "bb_lower": 1855.26,
-      "bb_pos_pct": -6.2,
+      "bb_upper": 1932.34,
+      "bb_lower": 1855.96,
+      "bb_pos_pct": -3.9,
       "trend_1h": "BEARISH",
       "trend": "BEARISH",
       "multi_tf_regime": "RESONANCE_BEAR",
       "atr_15m_pct": 0.75,
-      "recent_swing_pct": 3.87,
+      "recent_swing_pct": 3.86,
       "anchored_tp_pct": 3.5,
       "anchored_sl_pct": 2.2,
       "max_safe_leverage": 4,
       "btc_master_bias": "NEUTRAL_NORMAL"
     },
     "SOL/USDT:USDT": {
-      "last_price": 74.1,
-      "change_24h_pct": -8.47,
-      "bar_15m_change_pct": 0.07,
-      "vol_spike_ratio": 2.59,
+      "last_price": 74.05,
+      "change_24h_pct": -8.27,
+      "bar_15m_change_pct": -0.03,
+      "vol_spike_ratio": 4.13,
       "funding_rate_pct": 0.01,
-      "open_interest": 17964791.98,
-      "ma5": 74.57,
-      "ma10": 75.04,
+      "open_interest": 17975062.16,
+      "ma5": 74.55,
+      "ma10": 75.03,
       "ma20": 75.41,
-      "rsi_14": 21.0,
+      "rsi_14": 19.4,
       "rsi_zone": "EXTREME_OVERSOLD",
-      "bb_upper": 76.57,
-      "bb_lower": 74.25,
-      "bb_pos_pct": -6.5,
+      "bb_upper": 76.58,
+      "bb_lower": 74.23,
+      "bb_pos_pct": -7.7,
       "trend_1h": "BEARISH",
       "trend": "BEARISH",
       "multi_tf_regime": "RESONANCE_BEAR",
-      "atr_15m_pct": 0.58,
-      "recent_swing_pct": 3.18,
-      "anchored_tp_pct": 2.8,
-      "anchored_sl_pct": 1.76,
-      "max_safe_leverage": 5,
+      "atr_15m_pct": 0.6,
+      "recent_swing_pct": 3.59,
+      "anchored_tp_pct": 3.5,
+      "anchored_sl_pct": 2.2,
+      "max_safe_leverage": 4,
       "btc_master_bias": "NEUTRAL_NORMAL"
     }
   },
@@ -523,7 +525,7 @@
     "快軌 20 秒級別監控中 (方案B：含槓桿 ROI 滿 +5% 平半倉落袋並鎖 +1.2% ROI 保底 / 死守 -10% 止損)"
   ],
   "ai_broadcast_signals": {
-    "updated_at": "22:54:47",
+    "updated_at": "22:55:37",
     "confidence": 91,
     "summary": "全面執行方案B：含槓桿 ROI 滿 +5.0% 立即市價平半倉落袋並鎖定 +1.2% ROI 保底，止損死守 -10% 內。",
     "half_a_orders": [
@@ -586,11 +588,33 @@
     ]
   },
   "ai_last_decision": {
-    "action": "今日已實現 $+2,978.64 | 本期累計 $+32,174.40 (盈虧比 1.61x)",
+    "action": "今日已實現 $+4,342.51 | 本期累計 $+33,538.26 (盈虧比 1.64x)",
     "confidence": 91,
     "reason": "全面執行方案B：含槓桿 ROI 滿 +5.0% 立即市價平半倉落袋並鎖定 +1.2% ROI 保底，止損死守 -10% 內。"
   },
   "orders": [
+    {
+      "id": "POS-313760",
+      "full_id": "4097608453601243137_1794668131600",
+      "timestamp_ms": 1794668131600,
+      "open_timestamp_ms": 1794643311129,
+      "time": "2026-11-14 22:55:31",
+      "market": "crypto",
+      "marketBadge": "📦 歷史倉位 (934.0張)",
+      "asset": "SOL/USDT:USDT",
+      "direction": "做空倉位結算 (SHORT)",
+      "leverage": "6.0x 倉位槓桿",
+      "pool": "平倉張數: 934.0 張合約",
+      "entryExit": "開倉均價 $75.26 ➔ 平倉均價 $73.73",
+      "roi": "已實現損益 +$1,363.87 USDT (+11.64%)",
+      "pnl": "倉位結算收益: +$1,363.87 USDT",
+      "realized_pnl_num": 1363.87,
+      "fee_num": 69.5798,
+      "fee": "倉位累計手續費 69.5798 USDT",
+      "rr": "開倉 $75.26 / 平倉 $73.73",
+      "reason": "[💰方案B(滿+5%ROI平半倉鎖保底/止損鎖-8.8%ROI)] 【Half-A 方案B堆錢】1H:BEARISH/15m:BEARISH，含槓桿ROI滿+5%先平半倉落袋並鎖+1.2%保底，止損死守-8.8% ROI。",
+      "hash": "0x1a8448c94b82410d"
+    },
     {
       "id": "POS-597194",
       "full_id": "4088008487018835971_1794666392946",
