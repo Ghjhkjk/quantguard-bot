@@ -1,13 +1,13 @@
 {
-  "updated_at": "2026-11-18 08:05:13",
+  "updated_at": "2026-11-18 08:06:03",
   "epoch_cutoff": "2026-11-05 17:01:00",
-  "real_usdt": 133492.72,
-  "free_usdt": 112619.37,
-  "used_usdt": 20873.35,
+  "real_usdt": 133513.33,
+  "free_usdt": 112636.55,
+  "used_usdt": 20876.78,
   "allocations": {
-    "normal_80_usdt": 106794.18,
-    "hedge_10_usdt": 13349.27,
-    "sniper_10_usdt": 13349.27
+    "normal_80_usdt": 106810.66,
+    "hedge_10_usdt": 13351.33,
+    "sniper_10_usdt": 13351.33
   },
   "performance_stats": {
     "epoch_start": "2026-11-05 17:01:16",
@@ -439,8 +439,8 @@
   "position_stage_map": {
     "ETH/USDT:USDT_LONG": 0
   },
-  "total_unrealized_pnl": -5.34,
-  "total_crypto_roi_pct": -0.0,
+  "total_unrealized_pnl": 15.27,
+  "total_crypto_roi_pct": 0.01,
   "active_positions": [
     {
       "symbol": "ETH/USDT:USDT",
@@ -448,11 +448,11 @@
       "contracts": 687.0,
       "leverage": "6x",
       "entry_price": 1823.08,
-      "mark_price": 1823.0,
-      "margin_usdt": 20873.35,
-      "notional_usdt": 125102.34,
-      "unrealized_pnl": -5.34,
-      "roi_pct": -0.03,
+      "mark_price": 1823.3,
+      "margin_usdt": 20876.78,
+      "notional_usdt": 125124.18,
+      "unrealized_pnl": 15.27,
+      "roi_pct": 0.07,
       "tp_pct": 2.5,
       "sl_pct": 1.25,
       "tp_trigger_px": 1868.66,
@@ -464,22 +464,22 @@
   ],
   "market_prices": {
     "BTC/USDT:USDT": {
-      "last_price": 64848.14,
-      "change_24h_pct": 0.22,
-      "bar_15m_change_pct": -0.1,
+      "last_price": 64855.99,
+      "change_24h_pct": 0.23,
+      "bar_15m_change_pct": -0.09,
       "vol_spike_ratio": 0.25,
-      "funding_rate_pct": 0.0095,
-      "open_interest": 2158799600.78,
-      "ma5": 64962.7,
-      "ma10": 64764.51,
-      "ma20": 64365.15,
-      "ma20_dist_pct": 0.75,
+      "funding_rate_pct": 0.0096,
+      "open_interest": 2158799594.58,
+      "ma5": 64964.17,
+      "ma10": 64765.24,
+      "ma20": 64365.52,
+      "ma20_dist_pct": 0.76,
       "wick_signal": "NONE",
-      "rsi_14": 75.4,
+      "rsi_14": 75.7,
       "rsi_zone": "EXTREME_OVERBOUGHT",
-      "bb_upper": 65291.76,
-      "bb_lower": 63438.54,
-      "bb_pos_pct": 76.1,
+      "bb_upper": 65292.89,
+      "bb_lower": 63438.14,
+      "bb_pos_pct": 76.4,
       "bb_width_pct": 2.88,
       "trend_1h": "BULLISH",
       "trend": "BULLISH",
@@ -494,23 +494,23 @@
       "global_allowed_action": "BUY"
     },
     "ETH/USDT:USDT": {
-      "last_price": 1822.81,
-      "change_24h_pct": 0.39,
-      "bar_15m_change_pct": -0.06,
+      "last_price": 1823.38,
+      "change_24h_pct": 0.43,
+      "bar_15m_change_pct": -0.03,
       "vol_spike_ratio": 0.23,
       "funding_rate_pct": -0.0416,
-      "open_interest": 3133907342.4,
-      "ma5": 1824.82,
-      "ma10": 1817.32,
-      "ma20": 1807.22,
-      "ma20_dist_pct": 0.86,
+      "open_interest": 3133908302.52,
+      "ma5": 1824.93,
+      "ma10": 1817.38,
+      "ma20": 1807.24,
+      "ma20_dist_pct": 0.89,
       "wick_signal": "BULL_PINBAR_NO_SHORT",
-      "rsi_14": 72.1,
+      "rsi_14": 72.8,
       "rsi_zone": "EXTREME_OVERBOUGHT",
-      "bb_upper": 1832.45,
-      "bb_lower": 1781.98,
-      "bb_pos_pct": 80.9,
-      "bb_width_pct": 2.79,
+      "bb_upper": 1832.55,
+      "bb_lower": 1781.94,
+      "bb_pos_pct": 81.9,
+      "bb_width_pct": 2.8,
       "trend_1h": "BULLISH",
       "trend": "BULLISH",
       "is_timeframe_aligned": true,
@@ -524,23 +524,23 @@
       "global_allowed_action": "BUY"
     },
     "SOL/USDT:USDT": {
-      "last_price": 75.02,
-      "change_24h_pct": 5.08,
-      "bar_15m_change_pct": -0.12,
-      "vol_spike_ratio": 0.17,
+      "last_price": 75.05,
+      "change_24h_pct": 5.13,
+      "bar_15m_change_pct": -0.08,
+      "vol_spike_ratio": 0.18,
       "funding_rate_pct": 0.01,
-      "open_interest": 19379293.29,
+      "open_interest": 19379529.29,
       "ma5": 75.1,
       "ma10": 74.44,
       "ma20": 73.73,
-      "ma20_dist_pct": 1.75,
+      "ma20_dist_pct": 1.79,
       "wick_signal": "NONE",
-      "rsi_14": 79.0,
+      "rsi_14": 79.7,
       "rsi_zone": "EXTREME_OVERBOUGHT",
       "bb_upper": 75.52,
-      "bb_lower": 71.95,
-      "bb_pos_pct": 86.0,
-      "bb_width_pct": 4.84,
+      "bb_lower": 71.94,
+      "bb_pos_pct": 86.9,
+      "bb_width_pct": 4.86,
       "trend_1h": "BULLISH",
       "trend": "BULLISH",
       "is_timeframe_aligned": true,
@@ -562,7 +562,7 @@
     "CFTC halts some Kalshi Trump mention markets over manipulation concerns"
   ],
   "ai_broadcast_signals": {
-    "updated_at": "08:05:13",
+    "updated_at": "08:06:03",
     "confidence": 93,
     "summary": "🚀 啟動 v11.0 雙周期共振引擎：1H 與 15m 同向 (1H:BULLISH/15m:BULLISH)，滿 +7% 平 40% 鎖保底、止損鎖 -7.5% ROI。",
     "half_a_orders": [
@@ -602,7 +602,7 @@
         "leverage": 6,
         "tp_pct": 2.75,
         "sl_pct": 1.25,
-        "reason": "【Half-B 波段鎖利】RSI=75.4，【1H×15m雙周期BULLISH共振】滿+7%ROI平40%倉並鎖+1.5%保底，止損收緊至-7.5%ROI。"
+        "reason": "【Half-B 波段鎖利】RSI=75.7，【1H×15m雙周期BULLISH共振】滿+7%ROI平40%倉並鎖+1.5%保底，止損收緊至-7.5%ROI。"
       },
       {
         "symbol": "ETH/USDT:USDT",
@@ -611,7 +611,7 @@
         "leverage": 6,
         "tp_pct": 2.75,
         "sl_pct": 1.25,
-        "reason": "【Half-B 波段鎖利】RSI=72.1，【1H×15m雙周期BULLISH共振】滿+7%ROI平40%倉並鎖+1.5%保底，止損收緊至-7.5%ROI。"
+        "reason": "【Half-B 波段鎖利】RSI=72.8，【1H×15m雙周期BULLISH共振】滿+7%ROI平40%倉並鎖+1.5%保底，止損收緊至-7.5%ROI。"
       },
       {
         "symbol": "SOL/USDT:USDT",
@@ -620,7 +620,7 @@
         "leverage": 4,
         "tp_pct": 4.12,
         "sl_pct": 1.88,
-        "reason": "【Half-B 波段鎖利】RSI=79.0，【1H×15m雙周期BULLISH共振】滿+7%ROI平40%倉並鎖+1.5%保底，止損收緊至-7.5%ROI。"
+        "reason": "【Half-B 波段鎖利】RSI=79.7，【1H×15m雙周期BULLISH共振】滿+7%ROI平40%倉並鎖+1.5%保底，止損收緊至-7.5%ROI。"
       }
     ]
   },
