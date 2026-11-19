@@ -1,13 +1,13 @@
 {
-  "updated_at": "2026-11-20 05:49:44",
+  "updated_at": "2026-11-20 05:50:34",
   "epoch_cutoff": "2026-11-05 17:01:00",
-  "real_usdt": 135709.59,
-  "free_usdt": 111868.65,
-  "used_usdt": 23840.94,
+  "real_usdt": 135688.41,
+  "free_usdt": 111838.42,
+  "used_usdt": 23849.99,
   "allocations": {
-    "normal_80_usdt": 108567.67,
-    "hedge_10_usdt": 13570.96,
-    "sniper_10_usdt": 13570.96
+    "normal_80_usdt": 108550.73,
+    "hedge_10_usdt": 13568.84,
+    "sniper_10_usdt": 13568.84
   },
   "performance_stats": {
     "epoch_start": "2026-11-05 17:01:16",
@@ -18,7 +18,7 @@
     "gross_profit_usdt": 105120.14,
     "gross_loss_usdt": 68865.74,
     "total_fees_usdt": 10382.73,
-    "implied_initial_capital": 98930.09,
+    "implied_initial_capital": 98920.63,
     "profit_factor": 1.53,
     "total_settled_count": 86,
     "win_count": 43,
@@ -509,8 +509,8 @@
     "ETH/USDT:USDT_LONG": 1,
     "SOL/USDT:USDT_SHORT": 0
   },
-  "total_unrealized_pnl": 525.1,
-  "total_crypto_roi_pct": 0.39,
+  "total_unrealized_pnl": 513.38,
+  "total_crypto_roi_pct": 0.38,
   "active_positions": [
     {
       "symbol": "SOL/USDT:USDT",
@@ -518,11 +518,11 @@
       "contracts": 1007.0,
       "leverage": "5x",
       "entry_price": 73.86,
-      "mark_price": 73.5,
-      "margin_usdt": 14802.9,
-      "notional_usdt": 73928.64,
-      "unrealized_pnl": 360.84,
-      "roi_pct": 2.44,
+      "mark_price": 73.52,
+      "margin_usdt": 14806.93,
+      "notional_usdt": 73949.5,
+      "unrealized_pnl": 340.7,
+      "roi_pct": 2.3,
       "tp_pct": 2.9,
       "sl_pct": 1.5,
       "tp_trigger_px": 71.72,
@@ -537,11 +537,11 @@
       "contracts": 153.0,
       "leverage": "3x",
       "entry_price": 1761.86,
-      "mark_price": 1772.6,
-      "margin_usdt": 9040.26,
-      "notional_usdt": 27089.32,
-      "unrealized_pnl": 164.26,
-      "roi_pct": 1.82,
+      "mark_price": 1773.15,
+      "margin_usdt": 9043.07,
+      "notional_usdt": 27098.0,
+      "unrealized_pnl": 172.68,
+      "roi_pct": 1.91,
       "tp_pct": 4.2,
       "sl_pct": 2.5,
       "tp_trigger_px": 1835.86,
@@ -554,11 +554,11 @@
   "market_prices": {
     "BTC/USDT:USDT": {
       "last_price": 62285.71,
-      "change_24h_pct": -0.13,
+      "change_24h_pct": -0.11,
       "bar_15m_change_pct": -0.02,
       "vol_spike_ratio": 0.2,
       "funding_rate_pct": 0.375,
-      "open_interest": 2161789304.34,
+      "open_interest": 2161789574.27,
       "ma5": 62515.48,
       "ma10": 62737.46,
       "ma20": 63057.05,
@@ -591,11 +591,11 @@
     },
     "ETH/USDT:USDT": {
       "last_price": 1775.0,
-      "change_24h_pct": 0.6,
+      "change_24h_pct": 0.63,
       "bar_15m_change_pct": -0.21,
       "vol_spike_ratio": 0.14,
       "funding_rate_pct": 0.75,
-      "open_interest": 3136313126.6,
+      "open_interest": 3136313134.22,
       "ma5": 1783.98,
       "ma10": 1786.99,
       "ma20": 1787.54,
@@ -628,11 +628,11 @@
     },
     "SOL/USDT:USDT": {
       "last_price": 73.55,
-      "change_24h_pct": 0.74,
+      "change_24h_pct": 0.81,
       "bar_15m_change_pct": 0.04,
       "vol_spike_ratio": 0.07,
       "funding_rate_pct": 0.01,
-      "open_interest": 20292988.16,
+      "open_interest": 20292984.18,
       "ma5": 73.39,
       "ma10": 73.63,
       "ma20": 73.52,
@@ -665,10 +665,14 @@
     }
   },
   "latest_news": [
-    "快軌 20 秒監控中 (v11.1：震盪/趨勢體質自適應 × 12h天地空間比試算 × 特徵指紋記憶)"
+    "Sky's USDS stablecoin shrinks 35% as $1.5 billion exits reserves after illicit-finance report",
+    "Trump's Democratic SEC pick suggests tokenization policy deserves full rule process",
+    "Anthropic gains after IPO, but pulls off highest levels",
+    "Here’s what happened in crypto today",
+    "MoonPay seeks US bank charter for stablecoin, custody services"
   ],
   "ai_broadcast_signals": {
-    "updated_at": "05:49:44",
+    "updated_at": "05:50:34",
     "confidence": 93,
     "summary": "啟動 v11.1 智慧體質自適應引擎：依震盪/趨勢體質與 12h 空間盈虧比動態切換高拋低吸與順勢追擊。",
     "half_a_orders": [
@@ -679,7 +683,7 @@
         "leverage": 5,
         "tp_pct": 2.9,
         "sl_pct": 1.5,
-        "reason": "【RANGE_MEAN_REVERSION】【震盪盤逢低做多】價格回踩支撐區(BB:-2.8%/區間:0.5%)，向上獲利空間 2.73% > 向下空間 0.05%，高勝率抄底反彈！"
+        "reason": "【RANGE_MEAN_REVERSION】【震盪盤逢低做多】價格回踩支撐區(BB:4.1%/區間:0.0%)，向上獲利空間 2.74% > 向下空間 0.05%，高勝率抄底反彈！"
       },
       {
         "symbol": "ETH/USDT:USDT",
@@ -688,7 +692,7 @@
         "leverage": 5,
         "tp_pct": 2.9,
         "sl_pct": 1.5,
-        "reason": "【RANGE_MEAN_REVERSION】【震盪盤逢低做多】價格回踩支撐區(BB:12.0%/區間:34.4%)，向上獲利空間 3.75% > 向下空間 1.97%，高勝率抄底反彈！"
+        "reason": "【RANGE_MEAN_REVERSION】【震盪盤逢低做多】價格回踩支撐區(BB:2.8%/區間:32.4%)，向上獲利空間 3.86% > 向下空間 1.86%，高勝率抄底反彈！"
       },
       {
         "symbol": "SOL/USDT:USDT",
@@ -697,7 +701,7 @@
         "leverage": 5,
         "tp_pct": 2.9,
         "sl_pct": 1.5,
-        "reason": "【RANGE_MEAN_REVERSION】【震盪盤逢低做多】價格回踩支撐區(BB:50.9%/區間:29.2%)，向上獲利空間 2.43% > 向下空間 1.01%，高勝率抄底反彈！"
+        "reason": "【RANGE_MEAN_REVERSION】【震盪盤逢低做多】價格回踩支撐區(BB:52.6%/區間:30.4%)，向上獲利空間 2.39% > 向下空間 1.05%，高勝率抄底反彈！"
       }
     ],
     "half_b_orders": [
@@ -708,7 +712,7 @@
         "leverage": 5,
         "tp_pct": 3.19,
         "sl_pct": 1.5,
-        "reason": "【空間盈虧比優選】【震盪盤逢低做多】價格回踩支撐區(BB:-2.8%/區間:0.5%)，向上獲利空間 2.73% > 向下空間 0.05%，高勝率抄底反彈！"
+        "reason": "【空間盈虧比優選】【震盪盤逢低做多】價格回踩支撐區(BB:4.1%/區間:0.0%)，向上獲利空間 2.74% > 向下空間 0.05%，高勝率抄底反彈！"
       },
       {
         "symbol": "ETH/USDT:USDT",
@@ -717,7 +721,7 @@
         "leverage": 5,
         "tp_pct": 3.19,
         "sl_pct": 1.5,
-        "reason": "【空間盈虧比優選】【震盪盤逢低做多】價格回踩支撐區(BB:12.0%/區間:34.4%)，向上獲利空間 3.75% > 向下空間 1.97%，高勝率抄底反彈！"
+        "reason": "【空間盈虧比優選】【震盪盤逢低做多】價格回踩支撐區(BB:2.8%/區間:32.4%)，向上獲利空間 3.86% > 向下空間 1.86%，高勝率抄底反彈！"
       },
       {
         "symbol": "SOL/USDT:USDT",
@@ -726,7 +730,7 @@
         "leverage": 5,
         "tp_pct": 3.19,
         "sl_pct": 1.5,
-        "reason": "【空間盈虧比優選】【震盪盤逢低做多】價格回踩支撐區(BB:50.9%/區間:29.2%)，向上獲利空間 2.43% > 向下空間 1.01%，高勝率抄底反彈！"
+        "reason": "【空間盈虧比優選】【震盪盤逢低做多】價格回踩支撐區(BB:52.6%/區間:30.4%)，向上獲利空間 2.39% > 向下空間 1.05%，高勝率抄底反彈！"
       }
     ]
   },
