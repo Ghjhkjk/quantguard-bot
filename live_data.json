@@ -1,13 +1,13 @@
 {
-  "updated_at": "2026-11-20 07:25:46",
+  "updated_at": "2026-11-20 07:26:36",
   "epoch_cutoff": "2026-11-05 17:01:00",
-  "real_usdt": 136254.23,
-  "free_usdt": 112387.49,
-  "used_usdt": 23866.74,
+  "real_usdt": 136257.13,
+  "free_usdt": 112389.43,
+  "used_usdt": 23867.7,
   "allocations": {
-    "normal_80_usdt": 109003.38,
-    "hedge_10_usdt": 13625.42,
-    "sniper_10_usdt": 13625.42
+    "normal_80_usdt": 109005.7,
+    "hedge_10_usdt": 13625.71,
+    "sniper_10_usdt": 13625.71
   },
   "performance_stats": {
     "epoch_start": "2026-11-05 17:01:16",
@@ -18,7 +18,7 @@
     "gross_profit_usdt": 105120.14,
     "gross_loss_usdt": 68865.74,
     "total_fees_usdt": 10382.73,
-    "implied_initial_capital": 98920.64,
+    "implied_initial_capital": 98921.55,
     "profit_factor": 1.53,
     "total_settled_count": 86,
     "win_count": 43,
@@ -509,7 +509,7 @@
     "ETH/USDT:USDT_LONG": 1,
     "SOL/USDT:USDT_SHORT": 0
   },
-  "total_unrealized_pnl": 1079.19,
+  "total_unrealized_pnl": 1081.18,
   "total_crypto_roi_pct": 0.79,
   "active_positions": [
     {
@@ -537,11 +537,11 @@
       "contracts": 153.0,
       "leverage": "3x",
       "entry_price": 1761.86,
-      "mark_price": 1789.07,
-      "margin_usdt": 9124.26,
-      "notional_usdt": 27341.29,
-      "unrealized_pnl": 416.25,
-      "roi_pct": 4.56,
+      "mark_price": 1789.2,
+      "margin_usdt": 9124.92,
+      "notional_usdt": 27343.28,
+      "unrealized_pnl": 418.24,
+      "roi_pct": 4.58,
       "tp_pct": 4.2,
       "sl_pct": 2.5,
       "tp_trigger_px": 1835.86,
@@ -554,7 +554,7 @@
   "market_prices": {
     "BTC/USDT:USDT": {
       "last_price": 62749.99,
-      "change_24h_pct": -0.05,
+      "change_24h_pct": 0.1,
       "bar_15m_change_pct": 0.12,
       "vol_spike_ratio": 0.26,
       "funding_rate_pct": 0.375,
@@ -591,11 +591,11 @@
     },
     "ETH/USDT:USDT": {
       "last_price": 1790.42,
-      "change_24h_pct": 0.99,
+      "change_24h_pct": 1.12,
       "bar_15m_change_pct": -0.09,
-      "vol_spike_ratio": 0.16,
+      "vol_spike_ratio": 0.17,
       "funding_rate_pct": 0.75,
-      "open_interest": 3136576116.49,
+      "open_interest": 3136577912.23,
       "ma5": 1792.37,
       "ma10": 1787.8,
       "ma20": 1789.09,
@@ -628,11 +628,11 @@
     },
     "SOL/USDT:USDT": {
       "last_price": 73.2,
-      "change_24h_pct": -0.29,
+      "change_24h_pct": -0.1,
       "bar_15m_change_pct": -0.05,
       "vol_spike_ratio": 0.03,
       "funding_rate_pct": 0.01,
-      "open_interest": 20292059.75,
+      "open_interest": 20292060.01,
       "ma5": 73.32,
       "ma10": 73.38,
       "ma20": 73.53,
@@ -668,7 +668,7 @@
     "快軌 20 秒監控中 (v11.1：震盪/趨勢體質自適應 × 12h天地空間比試算 × 特徵指紋記憶)"
   ],
   "ai_broadcast_signals": {
-    "updated_at": "07:25:46",
+    "updated_at": "07:26:36",
     "confidence": 93,
     "summary": "啟動 v11.1 智慧體質自適應引擎：依震盪/趨勢體質與 12h 空間盈虧比動態切換高拋低吸與順勢追擊。",
     "half_a_orders": [
