@@ -1,13 +1,13 @@
 {
-  "updated_at": "2026-11-20 06:07:38",
+  "updated_at": "2026-11-20 06:08:28",
   "epoch_cutoff": "2026-11-05 17:01:00",
-  "real_usdt": 135898.32,
-  "free_usdt": 112037.44,
-  "used_usdt": 23860.88,
+  "real_usdt": 135866.01,
+  "free_usdt": 112021.27,
+  "used_usdt": 23844.74,
   "allocations": {
-    "normal_80_usdt": 108718.66,
-    "hedge_10_usdt": 13589.83,
-    "sniper_10_usdt": 13589.83
+    "normal_80_usdt": 108692.81,
+    "hedge_10_usdt": 13586.6,
+    "sniper_10_usdt": 13586.6
   },
   "performance_stats": {
     "epoch_start": "2026-11-05 17:01:16",
@@ -18,7 +18,7 @@
     "gross_profit_usdt": 105120.14,
     "gross_loss_usdt": 68865.74,
     "total_fees_usdt": 10382.73,
-    "implied_initial_capital": 98920.48,
+    "implied_initial_capital": 98920.63,
     "profit_factor": 1.53,
     "total_settled_count": 86,
     "win_count": 43,
@@ -509,8 +509,8 @@
     "ETH/USDT:USDT_LONG": 1,
     "SOL/USDT:USDT_SHORT": 0
   },
-  "total_unrealized_pnl": 723.44,
-  "total_crypto_roi_pct": 0.53,
+  "total_unrealized_pnl": 690.98,
+  "total_crypto_roi_pct": 0.51,
   "active_positions": [
     {
       "symbol": "SOL/USDT:USDT",
@@ -518,11 +518,11 @@
       "contracts": 1007.0,
       "leverage": "5x",
       "entry_price": 73.86,
-      "mark_price": 73.41,
-      "margin_usdt": 14784.77,
-      "notional_usdt": 73838.86,
-      "unrealized_pnl": 451.47,
-      "roi_pct": 3.05,
+      "mark_price": 73.4,
+      "margin_usdt": 14782.76,
+      "notional_usdt": 73829.54,
+      "unrealized_pnl": 461.54,
+      "roi_pct": 3.12,
       "tp_pct": 2.9,
       "sl_pct": 1.5,
       "tp_trigger_px": 71.72,
@@ -537,11 +537,11 @@
       "contracts": 153.0,
       "leverage": "3x",
       "entry_price": 1761.86,
-      "mark_price": 1779.64,
-      "margin_usdt": 9076.16,
-      "notional_usdt": 27197.18,
-      "unrealized_pnl": 271.97,
-      "roi_pct": 3.0,
+      "mark_price": 1776.86,
+      "margin_usdt": 9061.99,
+      "notional_usdt": 27154.97,
+      "unrealized_pnl": 229.44,
+      "roi_pct": 2.53,
       "tp_pct": 4.2,
       "sl_pct": 2.5,
       "tp_trigger_px": 1835.86,
@@ -554,11 +554,11 @@
   "market_prices": {
     "BTC/USDT:USDT": {
       "last_price": 62434.37,
-      "change_24h_pct": 0.1,
+      "change_24h_pct": 0.16,
       "bar_15m_change_pct": 0.24,
-      "vol_spike_ratio": 0.17,
+      "vol_spike_ratio": 0.18,
       "funding_rate_pct": 0.375,
-      "open_interest": 2161812271.6,
+      "open_interest": 2161813003.78,
       "ma5": 62429.0,
       "ma10": 62655.26,
       "ma20": 63024.53,
@@ -591,11 +591,11 @@
     },
     "ETH/USDT:USDT": {
       "last_price": 1782.84,
-      "change_24h_pct": 1.05,
+      "change_24h_pct": 1.11,
       "bar_15m_change_pct": 0.26,
       "vol_spike_ratio": 0.22,
       "funding_rate_pct": 0.75,
-      "open_interest": 3136415165.41,
+      "open_interest": 3136415179.36,
       "ma5": 1783.07,
       "ma10": 1786.59,
       "ma20": 1788.04,
@@ -628,7 +628,7 @@
     },
     "SOL/USDT:USDT": {
       "last_price": 73.4,
-      "change_24h_pct": 0.73,
+      "change_24h_pct": 0.8,
       "bar_15m_change_pct": -0.22,
       "vol_spike_ratio": 0.27,
       "funding_rate_pct": 0.01,
@@ -668,7 +668,7 @@
     "快軌 20 秒監控中 (v11.1：震盪/趨勢體質自適應 × 12h天地空間比試算 × 特徵指紋記憶)"
   ],
   "ai_broadcast_signals": {
-    "updated_at": "06:07:38",
+    "updated_at": "06:08:28",
     "confidence": 93,
     "summary": "啟動 v11.1 智慧體質自適應引擎：依震盪/趨勢體質與 12h 空間盈虧比動態切換高拋低吸與順勢追擊。",
     "half_a_orders": [
