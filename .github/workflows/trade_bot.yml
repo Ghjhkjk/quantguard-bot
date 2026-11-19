@@ -1,21 +1,22 @@
-name: QuantGuard 24/7 Auto Trading
+name: QuantGuard 24/7 Cloud Autonomous Relay
 
 on:
   schedule:
-    - cron: '*/5 * * * *'   # 每 5 分鐘自動觸發一次
-  workflow_dispatch:        # 支援手動點擊 Run workflow 立即執行
+    - cron: '*/5 * * * *'   # 備援定時鬧鐘：萬一自喚醒遇到網路瞬斷，每 5 分鐘鬧鐘會自動補位
+  workflow_dispatch:        # 允許手動點擊 Run workflow 啟動第一棒
 
-# 🌟 核心防撞車鎖：確保同一時間只有 1 個排程在運行，上一輪跑完才會接下一輪，絕不卡死！
+# 🌟 防撞車鎖：確保全雲端同一時間只有 1 台機器人在跑，絕不重複下單或 Git 衝突！
 concurrency:
-  group: quantguard-live-bot
+  group: quantguard-autonomous-bot
   cancel-in-progress: false
 
 jobs:
   run-bot:
     runs-on: ubuntu-latest
-    timeout-minutes: 6
+    timeout-minutes: 30     # 給予 30 分鐘安全執行上限
     permissions:
       contents: write
+      actions: write        # 🌟 關鍵權限：允許機器人在下班前「自己觸發下一輪排程」！
 
     steps:
       - name: Checkout repository
@@ -33,7 +34,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install ccxt feedparser google-genai
 
-      - name: Run QuantGuard AutoBot v10.8
+      - name: Run QuantGuard AutoBot (25-Minute Continuous Loop)
         env:
           GITHUB_ACTIONS: "true"
           OKX_API_KEY: ${{ secrets.OKX_API_KEY }}
@@ -41,7 +42,15 @@ jobs:
           OKX_PASSPHRASE: ${{ secrets.OKX_PASSPHRASE }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
-          MAX_JOB_RUNTIME_SEC: "210"
+          MAX_JOB_RUNTIME_SEC: "1450"   # 🌟 每次啟動連續巡檢 1450 秒 (約 24 分鐘，每 20 秒掃描一次)
         run: |
           python auto_bot.py
-          
+
+      # 🔄 永動接力核心：無論本輪正常結束或超時，最後一秒自動呼叫 GitHub API 啟動下一棒！
+      - name: Self-Trigger Next Relay Run
+        if: always()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "🔄 本輪 24 分鐘雲端巡檢結束，正在自動喚醒下一棒排程..."
+          gh workflow run "${{ github.workflow }}" --ref "${{ github.ref_name }}" || true
