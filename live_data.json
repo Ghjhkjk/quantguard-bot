@@ -1,13 +1,13 @@
 {
-  "updated_at": "2026-11-20 13:41:59",
+  "updated_at": "2026-11-20 13:42:49",
   "epoch_cutoff": "2026-11-05 17:01:00",
-  "real_usdt": 136818.5,
-  "free_usdt": 105483.25,
-  "used_usdt": 31335.25,
+  "real_usdt": 136787.8,
+  "free_usdt": 105461.94,
+  "used_usdt": 31325.86,
   "allocations": {
-    "normal_80_usdt": 109454.8,
-    "hedge_10_usdt": 13681.85,
-    "sniper_10_usdt": 13681.85
+    "normal_80_usdt": 109430.24,
+    "hedge_10_usdt": 13678.78,
+    "sniper_10_usdt": 13678.78
   },
   "performance_stats": {
     "epoch_start": "2026-11-05 17:01:16",
@@ -18,7 +18,7 @@
     "gross_profit_usdt": 106937.15,
     "gross_loss_usdt": 68865.74,
     "total_fees_usdt": 10469.76,
-    "implied_initial_capital": 98625.29,
+    "implied_initial_capital": 98624.49,
     "profit_factor": 1.55,
     "total_settled_count": 87,
     "win_count": 44,
@@ -518,8 +518,8 @@
     "BTC/USDT:USDT_LONG": 0,
     "ETH/USDT:USDT_LONG": 0
   },
-  "total_unrealized_pnl": 121.8,
-  "total_crypto_roi_pct": 0.09,
+  "total_unrealized_pnl": 91.9,
+  "total_crypto_roi_pct": 0.07,
   "active_positions": [
     {
       "symbol": "ETH/USDT:USDT",
@@ -527,11 +527,11 @@
       "contracts": 271.0,
       "leverage": "3x",
       "entry_price": 1729.45,
-      "mark_price": 1744.24,
-      "margin_usdt": 15756.3,
-      "notional_usdt": 47219.27,
-      "unrealized_pnl": 400.81,
-      "roi_pct": 2.54,
+      "mark_price": 1743.37,
+      "margin_usdt": 15748.44,
+      "notional_usdt": 47195.72,
+      "unrealized_pnl": 377.23,
+      "roi_pct": 2.4,
       "tp_pct": 4.2,
       "sl_pct": 2.5,
       "tp_trigger_px": 1802.09,
@@ -546,11 +546,11 @@
       "contracts": 125.0,
       "leverage": "5x",
       "entry_price": 62539.0,
-      "mark_price": 62315.79,
-      "margin_usdt": 15578.95,
-      "notional_usdt": 77812.95,
-      "unrealized_pnl": -279.01,
-      "roi_pct": -1.79,
+      "mark_price": 62310.74,
+      "margin_usdt": 15577.69,
+      "notional_usdt": 77806.64,
+      "unrealized_pnl": -285.33,
+      "roi_pct": -1.83,
       "tp_pct": 2.9,
       "sl_pct": 1.5,
       "tp_trigger_px": 64352.63,
@@ -562,34 +562,34 @@
   ],
   "market_prices": {
     "BTC/USDT:USDT": {
-      "last_price": 62311.25,
-      "change_24h_pct": -1.58,
-      "bar_15m_change_pct": -0.13,
-      "vol_spike_ratio": 0.32,
+      "last_price": 62321.15,
+      "change_24h_pct": -1.54,
+      "bar_15m_change_pct": -0.11,
+      "vol_spike_ratio": 0.52,
       "funding_rate_pct": 0.375,
-      "open_interest": 2161697388.87,
-      "ma5": 62280.01,
-      "ma10": 62432.96,
-      "ma20": 62489.56,
-      "ma20_1h": 63026.68,
-      "ma60_1h": 63501.64,
-      "ma20_dist_pct": -0.29,
+      "open_interest": 2161709925.56,
+      "ma5": 62281.99,
+      "ma10": 62433.95,
+      "ma20": 62490.05,
+      "ma20_1h": 63027.2,
+      "ma60_1h": 63501.82,
+      "ma20_dist_pct": -0.27,
       "wick_signal": "NONE",
-      "rsi_14": 52.6,
-      "bb_upper": 63037.06,
-      "bb_lower": 61942.05,
-      "bb_pos_pct": 33.7,
+      "rsi_14": 52.8,
+      "bb_upper": 63036.93,
+      "bb_lower": 61943.18,
+      "bb_pos_pct": 34.6,
       "bb_width_pct": 1.75,
       "resistance_12h": 63781.81,
       "support_12h": 62023.81,
-      "range_pos_pct": 16.4,
-      "upside_room_pct": 2.36,
-      "downside_room_pct": 0.46,
+      "range_pos_pct": 16.9,
+      "upside_room_pct": 2.34,
+      "downside_room_pct": 0.48,
       "macro_structure_1h": "TRUE_BEAR_TREND",
       "market_regime_type": "RANGE_MEAN_REVERSION",
       "entry_zone_bucket": "LOW_ZONE",
       "tactical_signal": "BUY",
-      "tactical_desc": "【震盪盤逢低做多】價格回踩支撐區(BB:33.7%/區間:16.4%)，向上獲利空間 2.36% > 向下空間 0.46%，高勝率抄底反彈！",
+      "tactical_desc": "【震盪盤逢低做多】價格回踩支撐區(BB:34.6%/區間:16.9%)，向上獲利空間 2.34% > 向下空間 0.48%，高勝率抄底反彈！",
       "trend_1h": "BEARISH",
       "trend": "BEARISH",
       "atr_15m_pct": 0.38,
@@ -599,34 +599,34 @@
       "max_safe_leverage": 5
     },
     "ETH/USDT:USDT": {
-      "last_price": 1744.41,
+      "last_price": 1744.0,
       "change_24h_pct": -2.99,
-      "bar_15m_change_pct": -0.46,
-      "vol_spike_ratio": 0.62,
-      "funding_rate_pct": 0.0674,
-      "open_interest": 3134846010.4,
-      "ma5": 1746.6,
-      "ma10": 1745.66,
-      "ma20": 1748.4,
-      "ma20_1h": 1780.36,
-      "ma60_1h": 1788.13,
-      "ma20_dist_pct": -0.23,
+      "bar_15m_change_pct": -0.49,
+      "vol_spike_ratio": 0.69,
+      "funding_rate_pct": 0.0679,
+      "open_interest": 3134842434.4,
+      "ma5": 1746.51,
+      "ma10": 1745.62,
+      "ma20": 1748.38,
+      "ma20_1h": 1780.34,
+      "ma60_1h": 1788.12,
+      "ma20_dist_pct": -0.25,
       "wick_signal": "NONE",
-      "rsi_14": 46.6,
-      "bb_upper": 1768.65,
-      "bb_lower": 1728.16,
-      "bb_pos_pct": 40.1,
+      "rsi_14": 46.5,
+      "bb_upper": 1768.64,
+      "bb_lower": 1728.12,
+      "bb_pos_pct": 39.2,
       "bb_width_pct": 2.32,
       "resistance_12h": 1803.01,
       "support_12h": 1712.29,
-      "range_pos_pct": 35.4,
-      "upside_room_pct": 3.36,
-      "downside_room_pct": 1.84,
+      "range_pos_pct": 35.0,
+      "upside_room_pct": 3.38,
+      "downside_room_pct": 1.82,
       "macro_structure_1h": "TRUE_BEAR_TREND",
       "market_regime_type": "RANGE_MEAN_REVERSION",
       "entry_zone_bucket": "MID_ZONE",
       "tactical_signal": "BUY",
-      "tactical_desc": "【區間空間優先】依12h高低點空間比(3.36% vs 1.84%)擇優高拋低吸。",
+      "tactical_desc": "【區間空間優先】依12h高低點空間比(3.38% vs 1.82%)擇優高拋低吸。",
       "trend_1h": "BEARISH",
       "trend": "BEARISH",
       "atr_15m_pct": 0.79,
@@ -637,10 +637,10 @@
     },
     "SOL/USDT:USDT": {
       "last_price": 71.23,
-      "change_24h_pct": -4.39,
+      "change_24h_pct": -4.33,
       "bar_15m_change_pct": 0.08,
       "vol_spike_ratio": 0.26,
-      "funding_rate_pct": 0.0001,
+      "funding_rate_pct": 0.0003,
       "open_interest": 20218875.8,
       "ma5": 71.02,
       "ma10": 71.16,
@@ -674,10 +674,14 @@
     }
   },
   "latest_news": [
-    "快軌 20 秒監控中 (v11.1：震盪/趨勢體質自適應 × 12h天地空間比試算 × 特徵指紋記憶)"
+    "This Bitcoin miner sold 267 BTC to clear $22 million debt. It still may not survive",
+    "Big money bought a net $4 billion of bitcoin funds in Q3, ending 9 months of selling",
+    "Ethereum’s next big upgrade is pushed into 2027 by apps it would break",
+    "Institutions pile back into US Bitcoin ETFs in Q3 after selling streak",
+    "Ledger CTO Charles Guillemet to leave after nine years at company"
   ],
   "ai_broadcast_signals": {
-    "updated_at": "13:41:59",
+    "updated_at": "13:42:49",
     "confidence": 93,
     "summary": "啟動 v11.1 智慧體質自適應引擎：依震盪/趨勢體質與 12h 空間盈虧比動態切換高拋低吸與順勢追擊。",
     "half_a_orders": [
@@ -688,7 +692,7 @@
         "leverage": 5,
         "tp_pct": 2.9,
         "sl_pct": 1.5,
-        "reason": "【RANGE_MEAN_REVERSION】【震盪盤逢低做多】價格回踩支撐區(BB:39.9%/區間:20.4%)，向上獲利空間 2.24% > 向下空間 0.58%，高勝率抄底反彈！"
+        "reason": "【RANGE_MEAN_REVERSION】【震盪盤逢低做多】價格回踩支撐區(BB:34.6%/區間:16.9%)，向上獲利空間 2.34% > 向下空間 0.48%，高勝率抄底反彈！"
       },
       {
         "symbol": "ETH/USDT:USDT",
@@ -697,7 +701,7 @@
         "leverage": 4,
         "tp_pct": 3.62,
         "sl_pct": 1.88,
-        "reason": "【RANGE_MEAN_REVERSION】【區間空間優先】依12h高低點空間比(3.24% vs 1.96%)擇優高拋低吸。"
+        "reason": "【RANGE_MEAN_REVERSION】【區間空間優先】依12h高低點空間比(3.38% vs 1.82%)擇優高拋低吸。"
       },
       {
         "symbol": "SOL/USDT:USDT",
@@ -706,7 +710,7 @@
         "leverage": 5,
         "tp_pct": 2.9,
         "sl_pct": 1.5,
-        "reason": "【RANGE_MEAN_REVERSION】【震盪盤逢高做空】價格位於壓力區(BB:55.5%/區間:26.3%)，向下獲利空間 1.45% > 向上空間 4.05%，高勝率做空回歸均線！"
+        "reason": "【RANGE_MEAN_REVERSION】【震盪盤逢高做空】價格位於壓力區(BB:57.2%/區間:27.4%)，向下獲利空間 1.5% > 向上空間 3.99%，高勝率做空回歸均線！"
       }
     ],
     "half_b_orders": [
@@ -717,7 +721,7 @@
         "leverage": 5,
         "tp_pct": 3.19,
         "sl_pct": 1.5,
-        "reason": "【空間盈虧比優選】【震盪盤逢低做多】價格回踩支撐區(BB:39.9%/區間:20.4%)，向上獲利空間 2.24% > 向下空間 0.58%，高勝率抄底反彈！"
+        "reason": "【空間盈虧比優選】【震盪盤逢低做多】價格回踩支撐區(BB:34.6%/區間:16.9%)，向上獲利空間 2.34% > 向下空間 0.48%，高勝率抄底反彈！"
       },
       {
         "symbol": "ETH/USDT:USDT",
@@ -726,7 +730,7 @@
         "leverage": 4,
         "tp_pct": 3.98,
         "sl_pct": 1.88,
-        "reason": "【空間盈虧比優選】【區間空間優先】依12h高低點空間比(3.24% vs 1.96%)擇優高拋低吸。"
+        "reason": "【空間盈虧比優選】【區間空間優先】依12h高低點空間比(3.38% vs 1.82%)擇優高拋低吸。"
       },
       {
         "symbol": "SOL/USDT:USDT",
@@ -735,7 +739,7 @@
         "leverage": 5,
         "tp_pct": 3.19,
         "sl_pct": 1.5,
-        "reason": "【空間盈虧比優選】【震盪盤逢高做空】價格位於壓力區(BB:55.5%/區間:26.3%)，向下獲利空間 1.45% > 向上空間 4.05%，高勝率做空回歸均線！"
+        "reason": "【空間盈虧比優選】【震盪盤逢高做空】價格位於壓力區(BB:57.2%/區間:27.4%)，向下獲利空間 1.5% > 向上空間 3.99%，高勝率做空回歸均線！"
       }
     ]
   },
