@@ -191,10 +191,10 @@
         </div>
       </section>
 
-      <!-- 目前持有倉位 -->
+      <!-- 即時訂單：目前持有倉位（含下單原因） -->
       <section class="glass-card rounded-2xl p-5 space-y-4">
         <div class="flex items-center justify-between">
-          <h2 class="text-base md:text-lg font-bold text-white">🔥 目前持有倉位</h2>
+          <h2 class="text-base md:text-lg font-bold text-white">🔥 即時訂單（目前持有倉位）</h2>
           <span id="active-pos-count" class="px-3 py-1 rounded-full text-xs font-semibold bg-amber-500/15 text-amber-300 border border-amber-500/30">
             0 筆持倉中
           </span>
@@ -209,21 +209,22 @@
                 <th class="py-3 px-3">保證金 / 名目總值</th>
                 <th class="py-3 px-3">開倉均價 ➔ 標記現價</th>
                 <th class="py-3 px-3">止盈 / 止損參考</th>
+                <th class="py-3 px-3">下單原因</th>
                 <th class="py-3 px-3 text-right">含槓桿 ROI / 浮盈</th>
               </tr>
             </thead>
             <tbody id="active-positions-tbody" class="divide-y divide-slate-800/70">
-              <tr><td colspan="6" class="py-6 text-center text-slate-400">目前無未平倉部位。</td></tr>
+              <tr><td colspan="7" class="py-6 text-center text-slate-400">目前無未平倉部位。</td></tr>
             </tbody>
           </table>
         </div>
       </section>
 
-      <!-- 歷史倉位結算紀錄與 CSV 匯出 -->
+      <!-- 歷史訂單：本期歷史倉位結算紀錄（含下單/結算原因） -->
       <section class="glass-card rounded-2xl p-5 space-y-4">
         <div class="flex flex-wrap items-center justify-between gap-2">
           <div class="flex items-center gap-2">
-            <h2 class="text-base md:text-lg font-bold text-white">📦 本期歷史倉位結算紀錄</h2>
+            <h2 class="text-base md:text-lg font-bold text-white">📦 歷史訂單（本期歷史倉位結算紀錄）</h2>
             <span id="history-count-badge" class="px-2.5 py-0.5 rounded-full text-xs bg-slate-800 text-slate-300">0 筆</span>
           </div>
           <button onclick="exportHistoryToCSV()" class="px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-slate-800 text-emerald-300 border border-emerald-500/30 hover:bg-slate-700 transition">
@@ -239,12 +240,13 @@
                 <th class="py-3 px-3">標的 / 方向</th>
                 <th class="py-3 px-3">槓桿 / 規模</th>
                 <th class="py-3 px-3">開倉 ➔ 平倉均價</th>
+                <th class="py-3 px-3">下單 / 結算原因</th>
                 <th class="py-3 px-3">已實現損益 / 收益率</th>
                 <th class="py-3 px-3">SHA-256 雜湊</th>
               </tr>
             </thead>
             <tbody id="history-orders-tbody" class="divide-y divide-slate-800/70">
-              <tr><td colspan="6" class="py-6 text-center text-slate-400">尚無歷史結算紀錄。</td></tr>
+              <tr><td colspan="7" class="py-6 text-center text-slate-400">尚無歷史結算紀錄。</td></tr>
             </tbody>
           </table>
         </div>
@@ -305,7 +307,8 @@
           roi_pct: 2.58,
           tp_trigger_px: 63244.00,
           sl_trigger_px: 66422.50,
-          stage_badge: "模擬示範持倉"
+          stage_badge: "模擬示範持倉",
+          reason: "【震盪盤逢高做空】價格接近 12h 高檔壓力區，向下空間大於向上空間，順勢高拋低吸。"
         }
       ],
       market_prices: {
@@ -322,6 +325,7 @@
           leverage: "4x 倉位槓桿",
           pool: "平倉張數: 120 張合約",
           entryExit: "開倉均價 $1,840.00 ➔ 平倉均價 $1,812.00",
+          reason: "【震盪盤逢高做空】布林上軌受阻回落，達止盈目標平倉獲利。",
           roi: "已實現損益 +$1,680.00 USDT (+6.09%)",
           realized_pnl_num: 1680.00,
           hash: "0x8f92c1a4e7b03d19"
@@ -334,6 +338,14 @@
       const absStr = Math.abs(val).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
       if (signed) return (val >= 0 ? `+$${absStr}` : `-$${absStr}`);
       return `$${absStr}`;
+    }
+
+    function escapeHtml(str) {
+      return String(str ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
     }
 
     function switchMode(mode) {
@@ -440,7 +452,7 @@
           const p = Number(d.pnl || 0);
           const cls = p >= 0 ? "border-emerald-500/30 bg-emerald-950/20 text-emerald-300" : "border-rose-500/30 bg-rose-950/20 text-rose-300";
           return `<div class="border ${cls} rounded-xl p-3">
-            <div class="text-xs text-slate-400">${d.date}</div>
+            <div class="text-xs text-slate-400">${escapeHtml(d.date)}</div>
             <div class="text-sm font-bold mt-1">${fmtMoney(p, true)}</div>
           </div>`;
         }).join("");
@@ -451,29 +463,30 @@
       document.getElementById("memory-count-badge").textContent = `${expCount} 筆經驗`;
       const lessons = mem.lessons_learned || [];
       document.getElementById("lessons-list").innerHTML = lessons.length
-        ? lessons.map(item => `<li class="bg-slate-900/70 border border-slate-800 rounded-lg p-2.5">${item}</li>`).join("")
+        ? lessons.map(item => `<li class="bg-slate-900/70 border border-slate-800 rounded-lg p-2.5">${escapeHtml(item)}</li>`).join("")
         : `<li class="text-slate-400">持續累積實戰經驗中。</li>`;
 
       const posList = data.active_positions || [];
       document.getElementById("active-pos-count").textContent = `${posList.length} 筆持倉中`;
       const posTbody = document.getElementById("active-positions-tbody");
       if (posList.length === 0) {
-        posTbody.innerHTML = `<tr><td colspan="6" class="py-6 text-center text-slate-400">目前無未平倉部位。</td></tr>`;
+        posTbody.innerHTML = `<tr><td colspan="7" class="py-6 text-center text-slate-400">目前無未平倉部位。</td></tr>`;
       } else {
         posTbody.innerHTML = posList.map(p => {
           const roi = Number(p.roi_pct || 0);
           const upnl = Number(p.unrealized_pnl || 0);
           const isLong = String(p.side || "").toUpperCase() === "LONG";
-          return `<tr class="hover:bg-slate-800/40">
+          const reasonText = p.reason || "依策略規則建倉與風控管理中";
+          return `<tr class="hover:bg-slate-800/40 align-top">
             <td class="py-3 px-3">
-              <div class="font-bold text-white">${p.symbol}</div>
-              <div class="text-xs text-indigo-300 mt-0.5">${p.stage_badge || ""}</div>
+              <div class="font-bold text-white">${escapeHtml(p.symbol)}</div>
+              <div class="text-xs text-indigo-300 mt-0.5">${escapeHtml(p.stage_badge || "")}</div>
             </td>
             <td class="py-3 px-3">
               <span class="px-2 py-0.5 rounded text-xs font-bold ${isLong ? "bg-emerald-500/20 text-emerald-300" : "bg-rose-500/20 text-rose-300"}">
                 ${isLong ? "做多 LONG" : "做空 SHORT"}
               </span>
-              <div class="text-xs text-slate-400 mt-1">${p.leverage || ""} ｜ ${p.contracts || 0} 張</div>
+              <div class="text-xs text-slate-400 mt-1">${escapeHtml(p.leverage || "")} ｜ ${escapeHtml(p.contracts || 0)} 張</div>
             </td>
             <td class="py-3 px-3 text-xs">
               <div>保證金：${fmtMoney(p.margin_usdt)}</div>
@@ -487,6 +500,9 @@
               <div>止盈：$${Number(p.tp_trigger_px || 0).toLocaleString()}</div>
               <div>止損：$${Number(p.sl_trigger_px || 0).toLocaleString()}</div>
             </td>
+            <td class="py-3 px-3 text-xs text-slate-300 max-w-xs leading-relaxed">
+              ${escapeHtml(reasonText)}
+            </td>
             <td class="py-3 px-3 text-right">
               <div class="font-bold ${roi >= 0 ? "text-emerald-400" : "text-rose-400"}">${roi >= 0 ? "+" : ""}${roi.toFixed(2)}%</div>
               <div class="text-xs ${upnl >= 0 ? "text-emerald-300" : "text-rose-300"}">${fmtMoney(upnl, true)}</div>
@@ -499,28 +515,30 @@
       document.getElementById("history-count-badge").textContent = `${orders.length} 筆`;
       const ordTbody = document.getElementById("history-orders-tbody");
       if (orders.length === 0) {
-        ordTbody.innerHTML = `<tr><td colspan="6" class="py-6 text-center text-slate-400">尚無歷史結算紀錄。</td></tr>`;
+        ordTbody.innerHTML = `<tr><td colspan="7" class="py-6 text-center text-slate-400">尚無歷史結算紀錄。</td></tr>`;
       } else {
         ordTbody.innerHTML = orders.slice(0, 30).map(o => {
           const pnlNum = Number(o.realized_pnl_num || 0);
-          return `<tr class="hover:bg-slate-800/40">
+          const orderReason = o.reason || "歷史倉位結算紀錄";
+          return `<tr class="hover:bg-slate-800/40 align-top">
             <td class="py-3 px-3 text-xs">
-              <div class="font-semibold text-white">${o.id || ""}</div>
-              <div class="text-slate-400">${o.time || ""}</div>
+              <div class="font-semibold text-white">${escapeHtml(o.id || "")}</div>
+              <div class="text-slate-400">${escapeHtml(o.time || "")}</div>
             </td>
             <td class="py-3 px-3 text-xs">
-              <div class="font-bold text-white">${o.asset || ""}</div>
-              <div class="text-slate-300">${o.direction || ""}</div>
+              <div class="font-bold text-white">${escapeHtml(o.asset || "")}</div>
+              <div class="text-slate-300">${escapeHtml(o.direction || "")}</div>
             </td>
             <td class="py-3 px-3 text-xs text-slate-300">
-              <div>${o.leverage || ""}</div>
-              <div class="text-slate-400">${o.pool || ""}</div>
+              <div>${escapeHtml(o.leverage || "")}</div>
+              <div class="text-slate-400">${escapeHtml(o.pool || "")}</div>
             </td>
-            <td class="py-3 px-3 text-xs text-slate-300">${o.entryExit || ""}</td>
+            <td class="py-3 px-3 text-xs text-slate-300">${escapeHtml(o.entryExit || "")}</td>
+            <td class="py-3 px-3 text-xs text-slate-300 max-w-xs leading-relaxed">${escapeHtml(orderReason)}</td>
             <td class="py-3 px-3 text-xs font-bold ${pnlNum >= 0 ? "text-emerald-400" : "text-rose-400"}">
-              ${o.roi || fmtMoney(pnlNum, true)}
+              ${escapeHtml(o.roi || fmtMoney(pnlNum, true))}
             </td>
-            <td class="py-3 px-3 text-xs font-mono text-slate-400">${o.hash || ""}</td>
+            <td class="py-3 px-3 text-xs font-mono text-slate-400">${escapeHtml(o.hash || "")}</td>
           </tr>`;
         }).join("");
       }
@@ -530,12 +548,12 @@
       const sourceData = currentMode === "sandbox" ? SANDBOX_DATA : cachedLiveData;
       const rows = sourceData?.orders || [];
       if (!rows.length) return;
-      const headers = ["編號", "結算時間", "標的", "方向", "槓桿", "開倉與平倉", "已實現損益", "SHA256雜湊"];
+      const headers = ["編號", "結算時間", "標的", "方向", "槓桿", "開倉與平倉", "下單與結算原因", "已實現損益", "SHA256雜湊"];
       const csvLines = [headers.join(",")];
       rows.forEach(r => {
         const line = [
           r.id || "", r.time || "", r.asset || "", r.direction || "",
-          r.leverage || "", r.entryExit || "", r.realized_pnl_num ?? 0, r.hash || ""
+          r.leverage || "", r.entryExit || "", r.reason || "", r.realized_pnl_num ?? 0, r.hash || ""
         ].map(v => `"${String(v).replace(/"/g, '""')}"`).join(",");
         csvLines.push(line);
       });
