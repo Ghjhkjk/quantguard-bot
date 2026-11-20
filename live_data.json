@@ -1,24 +1,24 @@
 {
-  "updated_at": "2026-11-20 15:28:46",
+  "updated_at": "2026-11-20 15:29:36",
   "epoch_cutoff": "2026-11-05 17:01:00",
-  "real_usdt": 136448.74,
-  "free_usdt": 108437.52,
-  "used_usdt": 28011.22,
+  "real_usdt": 136334.39,
+  "free_usdt": 117763.79,
+  "used_usdt": 18570.6,
   "allocations": {
-    "normal_80_usdt": 109158.99,
-    "hedge_10_usdt": 13644.87,
-    "sniper_10_usdt": 13644.87
+    "normal_80_usdt": 109067.51,
+    "hedge_10_usdt": 13633.44,
+    "sniper_10_usdt": 13633.44
   },
   "performance_stats": {
     "epoch_start": "2026-11-05 17:01:16",
     "today_date": "2026-11-20",
-    "today_realized_pnl": 4809.4,
+    "today_realized_pnl": 4934.6,
     "today_trades_count": 7,
-    "all_time_realized_pnl": 37057.38,
-    "gross_profit_usdt": 107444.46,
+    "all_time_realized_pnl": 37182.58,
+    "gross_profit_usdt": 107569.66,
     "gross_loss_usdt": 70387.08,
-    "total_fees_usdt": 10556.93,
-    "implied_initial_capital": 98920.4,
+    "total_fees_usdt": 10571.1,
+    "implied_initial_capital": 98920.57,
     "profit_factor": 1.53,
     "total_settled_count": 89,
     "win_count": 45,
@@ -27,7 +27,7 @@
     "daily_pnl_history": [
       {
         "date": "2026-11-20",
-        "pnl": 4809.4
+        "pnl": 4934.6
       },
       {
         "date": "2026-11-19",
@@ -63,7 +63,7 @@
       "ETH/USDT:USDT": {
         "wins": 17,
         "total": 34,
-        "pnl": 24445.0
+        "pnl": 24570.2
       },
       "SOL/USDT:USDT": {
         "wins": 14,
@@ -226,7 +226,8 @@
       "4113270577442729985_1795132072576": "[🧠v11.1(RANGE|HIGH_ZONE|止損-7.5%ROI)] ✅ [空間與體質核驗通過] 體質:RANGE_MEAN_REVERSION | 位置:HIGH_ZONE(BB:93.2%) | 向上空間:1.78% / 向下空間:1.64% | 【RANGE_MEAN_REVERSION】【震盪盤逢高做空】價格位於壓力區(BB:93.2%/區間:47.8%)，向下獲利空間 1.64% > 向上空間 1.78%，高勝率做空回歸均線！",
       "4113270577442729985_1795133584592": "[🧠v11.1(RANGE|HIGH_ZONE|止損-7.5%ROI)] ✅ [空間與體質核驗通過] 體質:RANGE_MEAN_REVERSION | 位置:HIGH_ZONE(BB:93.2%) | 向上空間:1.78% / 向下空間:1.64% | 【RANGE_MEAN_REVERSION】【震盪盤逢高做空】價格位於壓力區(BB:93.2%/區間:47.8%)，向下獲利空間 1.64% > 向上空間 1.78%，高勝率做空回歸均線！",
       "4113896806692827139_1795154629993": "[🧠v11.1(RANGE|LOW_ZONE|止損-7.5%ROI)] ✅ [空間與體質核驗通過] 體質:RANGE_MEAN_REVERSION | 位置:LOW_ZONE(BB:-6.7%) | 向上空間:6.6% / 向下空間:0.43% | 【RANGE_MEAN_REVERSION】【震盪盤逢低做多】價格回踩支撐區(BB:-6.7%/區間:6.1%)，向上獲利空間 6.6% > 向下空間 0.43%，高勝率抄底反彈！",
-      "4111360537202917377_1795159089280": "[🧠v11.1(RANGE|LOW_ZONE|止損-7.5%ROI)] ✅ [空間與體質核驗通過] 體質:RANGE_MEAN_REVERSION | 位置:LOW_ZONE(BB:28.4%) | 向上空間:2.37% / 向下空間:0.37% | 【RANGE_MEAN_REVERSION】【震盪盤逢低做多】價格回踩支撐區(BB:28.4%/區間:13.4%)，向上獲利空間 2.37% > 向下空間 0.37%，高勝率抄底反彈！"
+      "4111360537202917377_1795159089280": "[🧠v11.1(RANGE|LOW_ZONE|止損-7.5%ROI)] ✅ [空間與體質核驗通過] 體質:RANGE_MEAN_REVERSION | 位置:LOW_ZONE(BB:28.4%) | 向上空間:2.37% / 向下空間:0.37% | 【RANGE_MEAN_REVERSION】【震盪盤逢低做多】價格回踩支撐區(BB:28.4%/區間:13.4%)，向上獲利空間 2.37% > 向下空間 0.37%，高勝率抄底反彈！",
+      "4113896806692827139_1795159731589": "[🧠v11.1(RANGE|LOW_ZONE|止損-7.5%ROI)] ✅ [空間與體質核驗通過] 體質:RANGE_MEAN_REVERSION | 位置:LOW_ZONE(BB:-6.7%) | 向上空間:6.6% / 向下空間:0.43% | 【RANGE_MEAN_REVERSION】【震盪盤逢低做多】價格回踩支撐區(BB:-6.7%/區間:6.1%)，向上獲利空間 6.6% > 向下空間 0.43%，高勝率抄底反彈！"
     },
     "processed_pos_keys": [
       "4088008487018835971_1794711654683",
@@ -310,6 +311,7 @@
       "4072363062748393475_1794325459367",
       "4092103910604025859_1794577097319",
       "4112472077423489025_1795105177255",
+      "4113896806692827139_1795159731589",
       "4097608453601243137_1794687433952",
       "4090816247431311363_1794610947269",
       "4092103890504921091_1794539929171",
@@ -411,9 +413,9 @@
         "net_pnl": 1666.32
       },
       "LONG_in_RANGE_MEAN_REVERSION_at_LOW_ZONE": {
-        "wins": 6,
+        "wins": 7,
         "losses": 1,
-        "net_pnl": 2772.41
+        "net_pnl": 3404.92
       },
       "LONG_in_RANGE_MEAN_REVERSION_at_HIGH_ZONE": {
         "wins": 2,
@@ -454,9 +456,9 @@
         "avg_loss": 0.0
       },
       "ETH/USDT:USDT_LONG": {
-        "wins": 6,
+        "wins": 7,
         "losses": 9,
-        "net_pnl": -8042.47,
+        "net_pnl": -7409.96,
         "avg_win": 0.0,
         "avg_loss": 0.0
       },
@@ -496,11 +498,11 @@
         "pnl": 1706.07
       },
       "ETH/USDT:USDT": {
-        "timestamp_ms": 1795154629993,
-        "time_str": "2026-11-20 14:03:49",
+        "timestamp_ms": 1795159731589,
+        "time_str": "2026-11-20 15:28:51",
         "side": "LONG",
-        "close_px": 1779.4826407407406,
-        "pnl": 507.31
+        "close_px": 1754.531827306273,
+        "pnl": 632.51
       }
     },
     "lessons_learned": [
@@ -515,15 +517,14 @@
       "🏆【印鈔機型態確認】特徵『SHORT_under_RESONANCE_BEAR_HEALTHY_TREND_ZONE』歷史 13勝8敗 (勝率61.9%，淨賺+$11261.73)，出現時優先重倉出擊！",
       "🏆【印鈔機型態確認】特徵『SHORT_under_RESONANCE_BEAR_EXTREME_OVERSOLD』歷史 7勝3敗 (勝率70.0%，淨賺+$5260.01)，出現時優先重倉出擊！",
       "🏆【印鈔機型態確認】特徵『LONG_in_RANGE_MEAN_REVERSION_at_MID_ZONE』歷史 2勝0敗 (勝率100.0%，淨賺+$1666.32)，出現時優先重倉出擊！",
-      "🏆【印鈔機型態確認】特徵『LONG_in_RANGE_MEAN_REVERSION_at_LOW_ZONE』歷史 6勝1敗 (勝率85.7%，淨賺+$2772.41)，出現時優先重倉出擊！"
+      "🏆【印鈔機型態確認】特徵『LONG_in_RANGE_MEAN_REVERSION_at_LOW_ZONE』歷史 7勝1敗 (勝率87.5%，淨賺+$3404.92)，出現時優先重倉出擊！"
     ]
   },
   "position_stage_map": {
-    "ETH/USDT:USDT_LONG": 1,
     "SOL/USDT:USDT_SHORT": 0
   },
-  "total_unrealized_pnl": 470.96,
-  "total_crypto_roi_pct": 0.35,
+  "total_unrealized_pnl": 231.24,
+  "total_crypto_roi_pct": 0.17,
   "active_positions": [
     {
       "symbol": "SOL/USDT:USDT",
@@ -531,11 +532,11 @@
       "contracts": 1026.0,
       "leverage": "4x",
       "entry_price": 72.63,
-      "mark_price": 72.34,
-      "margin_usdt": 18555.21,
-      "notional_usdt": 74145.88,
-      "unrealized_pnl": 292.8,
-      "roi_pct": 1.58,
+      "mark_price": 72.4,
+      "margin_usdt": 18570.6,
+      "notional_usdt": 74207.37,
+      "unrealized_pnl": 231.24,
+      "roi_pct": 1.25,
       "tp_pct": 3.62,
       "sl_pct": 1.88,
       "tp_trigger_px": 70.0,
@@ -543,57 +544,38 @@
       "stage": 0,
       "stage_badge": "🧠 滿+6.8%平40%鎖保底 (寬耐震-7.5%ROI)",
       "reason": "[🧠v11.1(RANGE|HIGH_ZONE|止損-7.5%ROI)] ✅ [空間與體質核驗通過] 體質:RANGE_MEAN_REVERSION | 位置:HIGH_ZONE(BB:99.6%) | 向上空間:1.97% / 向下空間:3.41% | 【RANGE_MEAN_REVERSION】【震盪盤逢高做空】價格位於壓力區(BB:99.6%/區間:63.4%)，向下獲利空間 3.41% > 向上空間 1.97%，高勝率做空回歸均線！"
-    },
-    {
-      "symbol": "ETH/USDT:USDT",
-      "side": "LONG",
-      "contracts": 163.0,
-      "leverage": "3x",
-      "entry_price": 1729.45,
-      "mark_price": 1740.38,
-      "margin_usdt": 9456.06,
-      "notional_usdt": 28339.54,
-      "unrealized_pnl": 178.16,
-      "roi_pct": 1.88,
-      "tp_pct": 4.2,
-      "sl_pct": 2.5,
-      "tp_trigger_px": 1802.09,
-      "sl_trigger_px": 1738.1,
-      "stage": 1,
-      "stage_badge": "💰 已平40% & 60%主力鎖+1.5%ROI",
-      "reason": "[🧠v11.1(RANGE|LOW_ZONE|止損-7.5%ROI)] ✅ [空間與體質核驗通過] 體質:RANGE_MEAN_REVERSION | 位置:LOW_ZONE(BB:-6.7%) | 向上空間:6.6% / 向下空間:0.43% | 【RANGE_MEAN_REVERSION】【震盪盤逢低做多】價格回踩支撐區(BB:-6.7%/區間:6.1%)，向上獲利空間 6.6% > 向下空間 0.43%，高勝率抄底反彈！"
     }
   ],
   "market_prices": {
     "BTC/USDT:USDT": {
-      "last_price": 61654.0,
-      "change_24h_pct": -2.98,
-      "bar_15m_change_pct": -0.53,
-      "vol_spike_ratio": 6.73,
+      "last_price": 61619.41,
+      "change_24h_pct": -3.03,
+      "bar_15m_change_pct": -0.58,
+      "vol_spike_ratio": 6.89,
       "funding_rate_pct": 0.375,
-      "open_interest": 2161608466.85,
-      "ma5": 62139.66,
-      "ma10": 62287.68,
-      "ma20": 62384.08,
-      "ma20_1h": 62837.16,
-      "ma60_1h": 63443.41,
-      "ma20_dist_pct": -1.17,
+      "open_interest": 2161616717.83,
+      "ma5": 62133.92,
+      "ma10": 62284.81,
+      "ma20": 62382.64,
+      "ma20_1h": 62835.72,
+      "ma60_1h": 63442.94,
+      "ma20_dist_pct": -1.22,
       "wick_signal": "BULL_PINBAR_REVERSAL",
-      "rsi_14": 21.4,
-      "bb_upper": 62946.94,
-      "bb_lower": 61821.21,
-      "bb_pos_pct": -14.9,
-      "bb_width_pct": 1.8,
+      "rsi_14": 21.1,
+      "bb_upper": 62953.1,
+      "bb_lower": 61812.19,
+      "bb_pos_pct": -16.9,
+      "bb_width_pct": 1.83,
       "resistance_12h": 63493.15,
       "support_12h": 61571.43,
-      "range_pos_pct": 4.3,
-      "upside_room_pct": 2.98,
-      "downside_room_pct": 0.13,
+      "range_pos_pct": 2.5,
+      "upside_room_pct": 3.04,
+      "downside_room_pct": 0.08,
       "macro_structure_1h": "TRUE_BEAR_TREND",
       "market_regime_type": "RANGE_MEAN_REVERSION",
       "entry_zone_bucket": "LOW_ZONE",
       "tactical_signal": "BUY",
-      "tactical_desc": "【震盪盤逢低做多】價格回踩支撐區(BB:-14.9%/區間:4.3%)，向上獲利空間 2.98% > 向下空間 0.13%，高勝率抄底反彈！",
+      "tactical_desc": "【震盪盤逢低做多】價格回踩支撐區(BB:-16.9%/區間:2.5%)，向上獲利空間 3.04% > 向下空間 0.08%，高勝率抄底反彈！",
       "trend_1h": "BEARISH",
       "trend": "BEARISH",
       "atr_15m_pct": 0.41,
@@ -603,34 +585,34 @@
       "max_safe_leverage": 5
     },
     "ETH/USDT:USDT": {
-      "last_price": 1740.49,
-      "change_24h_pct": -3.47,
-      "bar_15m_change_pct": -0.45,
-      "vol_spike_ratio": 2.61,
-      "funding_rate_pct": 0.4114,
-      "open_interest": 3134948581.83,
-      "ma5": 1759.46,
-      "ma10": 1755.04,
-      "ma20": 1752.14,
-      "ma20_1h": 1773.25,
-      "ma60_1h": 1786.82,
-      "ma20_dist_pct": -0.67,
+      "last_price": 1741.17,
+      "change_24h_pct": -3.36,
+      "bar_15m_change_pct": -0.41,
+      "vol_spike_ratio": 2.86,
+      "funding_rate_pct": 0.4125,
+      "open_interest": 3135032183.1,
+      "ma5": 1759.6,
+      "ma10": 1755.11,
+      "ma20": 1752.18,
+      "ma20_1h": 1773.29,
+      "ma60_1h": 1786.83,
+      "ma20_dist_pct": -0.63,
       "wick_signal": "NONE",
-      "rsi_14": 43.1,
-      "bb_upper": 1777.18,
-      "bb_lower": 1727.11,
-      "bb_pos_pct": 26.7,
-      "bb_width_pct": 2.86,
+      "rsi_14": 43.3,
+      "bb_upper": 1777.15,
+      "bb_lower": 1727.21,
+      "bb_pos_pct": 28.0,
+      "bb_width_pct": 2.85,
       "resistance_12h": 1803.01,
       "support_12h": 1712.29,
-      "range_pos_pct": 31.1,
-      "upside_room_pct": 3.59,
-      "downside_room_pct": 1.62,
+      "range_pos_pct": 31.8,
+      "upside_room_pct": 3.55,
+      "downside_room_pct": 1.66,
       "macro_structure_1h": "TRUE_BEAR_TREND",
       "market_regime_type": "RANGE_MEAN_REVERSION",
       "entry_zone_bucket": "LOW_ZONE",
       "tactical_signal": "BUY",
-      "tactical_desc": "【震盪盤逢低做多】價格回踩支撐區(BB:26.7%/區間:31.1%)，向上獲利空間 3.59% > 向下空間 1.62%，高勝率抄底反彈！",
+      "tactical_desc": "【震盪盤逢低做多】價格回踩支撐區(BB:28.0%/區間:31.8%)，向上獲利空間 3.55% > 向下空間 1.66%，高勝率抄底反彈！",
       "trend_1h": "BEARISH",
       "trend": "BULLISH",
       "atr_15m_pct": 0.9,
@@ -640,34 +622,34 @@
       "max_safe_leverage": 3
     },
     "SOL/USDT:USDT": {
-      "last_price": 72.34,
-      "change_24h_pct": -3.21,
-      "bar_15m_change_pct": -0.51,
-      "vol_spike_ratio": 0.55,
+      "last_price": 72.4,
+      "change_24h_pct": -3.13,
+      "bar_15m_change_pct": -0.43,
+      "vol_spike_ratio": 0.57,
       "funding_rate_pct": 0.01,
-      "open_interest": 18102535.68,
-      "ma5": 72.12,
+      "open_interest": 18102743.71,
+      "ma5": 72.13,
       "ma10": 71.65,
       "ma20": 71.32,
       "ma20_1h": 72.83,
       "ma60_1h": 73.71,
-      "ma20_dist_pct": 1.43,
+      "ma20_dist_pct": 1.51,
       "wick_signal": "NONE",
-      "rsi_14": 66.2,
-      "bb_upper": 72.58,
-      "bb_lower": 70.07,
-      "bb_pos_pct": 90.4,
-      "bb_width_pct": 3.52,
+      "rsi_14": 67.6,
+      "bb_upper": 72.59,
+      "bb_lower": 70.06,
+      "bb_pos_pct": 92.5,
+      "bb_width_pct": 3.55,
       "resistance_12h": 74.07,
       "support_12h": 70.16,
-      "range_pos_pct": 55.8,
-      "upside_room_pct": 2.39,
-      "downside_room_pct": 3.01,
+      "range_pos_pct": 57.3,
+      "upside_room_pct": 2.31,
+      "downside_room_pct": 3.09,
       "macro_structure_1h": "TRUE_BEAR_TREND",
       "market_regime_type": "RANGE_MEAN_REVERSION",
       "entry_zone_bucket": "HIGH_ZONE",
       "tactical_signal": "SELL",
-      "tactical_desc": "【震盪盤逢高做空】價格位於壓力區(BB:90.4%/區間:55.8%)，向下獲利空間 3.01% > 向上空間 2.39%，高勝率做空回歸均線！",
+      "tactical_desc": "【震盪盤逢高做空】價格位於壓力區(BB:92.5%/區間:57.3%)，向下獲利空間 3.09% > 向上空間 2.31%，高勝率做空回歸均線！",
       "trend_1h": "BEARISH",
       "trend": "BULLISH",
       "atr_15m_pct": 0.44,
@@ -685,7 +667,7 @@
     "Here’s what happened in crypto today"
   ],
   "ai_broadcast_signals": {
-    "updated_at": "15:28:46",
+    "updated_at": "15:29:36",
     "confidence": 93,
     "summary": "啟動 v11.1 智慧體質自適應引擎：依震盪/趨勢體質與 12h 空間盈虧比動態切換高拋低吸與順勢追擊。",
     "half_a_orders": [
@@ -696,7 +678,7 @@
         "leverage": 5,
         "tp_pct": 2.9,
         "sl_pct": 1.5,
-        "reason": "【RANGE_MEAN_REVERSION】【震盪盤逢低做多】價格回踩支撐區(BB:-14.9%/區間:4.3%)，向上獲利空間 2.98% > 向下空間 0.13%，高勝率抄底反彈！"
+        "reason": "【RANGE_MEAN_REVERSION】【震盪盤逢低做多】價格回踩支撐區(BB:-16.9%/區間:2.5%)，向上獲利空間 3.04% > 向下空間 0.08%，高勝率抄底反彈！"
       },
       {
         "symbol": "ETH/USDT:USDT",
@@ -705,7 +687,7 @@
         "leverage": 3,
         "tp_pct": 4.2,
         "sl_pct": 2.5,
-        "reason": "【RANGE_MEAN_REVERSION】【震盪盤逢低做多】價格回踩支撐區(BB:26.7%/區間:31.1%)，向上獲利空間 3.59% > 向下空間 1.62%，高勝率抄底反彈！"
+        "reason": "【RANGE_MEAN_REVERSION】【震盪盤逢低做多】價格回踩支撐區(BB:28.0%/區間:31.8%)，向上獲利空間 3.55% > 向下空間 1.66%，高勝率抄底反彈！"
       },
       {
         "symbol": "SOL/USDT:USDT",
@@ -714,7 +696,7 @@
         "leverage": 4,
         "tp_pct": 3.62,
         "sl_pct": 1.88,
-        "reason": "【RANGE_MEAN_REVERSION】【震盪盤逢高做空】價格位於壓力區(BB:90.4%/區間:55.8%)，向下獲利空間 3.01% > 向上空間 2.39%，高勝率做空回歸均線！"
+        "reason": "【RANGE_MEAN_REVERSION】【震盪盤逢高做空】價格位於壓力區(BB:92.5%/區間:57.3%)，向下獲利空間 3.09% > 向上空間 2.31%，高勝率做空回歸均線！"
       }
     ],
     "half_b_orders": [
@@ -725,7 +707,7 @@
         "leverage": 5,
         "tp_pct": 3.19,
         "sl_pct": 1.5,
-        "reason": "【空間盈虧比優選】【震盪盤逢低做多】價格回踩支撐區(BB:-14.9%/區間:4.3%)，向上獲利空間 2.98% > 向下空間 0.13%，高勝率抄底反彈！"
+        "reason": "【空間盈虧比優選】【震盪盤逢低做多】價格回踩支撐區(BB:-16.9%/區間:2.5%)，向上獲利空間 3.04% > 向下空間 0.08%，高勝率抄底反彈！"
       },
       {
         "symbol": "ETH/USDT:USDT",
@@ -734,7 +716,7 @@
         "leverage": 3,
         "tp_pct": 4.62,
         "sl_pct": 2.5,
-        "reason": "【空間盈虧比優選】【震盪盤逢低做多】價格回踩支撐區(BB:26.7%/區間:31.1%)，向上獲利空間 3.59% > 向下空間 1.62%，高勝率抄底反彈！"
+        "reason": "【空間盈虧比優選】【震盪盤逢低做多】價格回踩支撐區(BB:28.0%/區間:31.8%)，向上獲利空間 3.55% > 向下空間 1.66%，高勝率抄底反彈！"
       },
       {
         "symbol": "SOL/USDT:USDT",
@@ -743,16 +725,39 @@
         "leverage": 4,
         "tp_pct": 3.98,
         "sl_pct": 1.88,
-        "reason": "【空間盈虧比優選】【震盪盤逢高做空】價格位於壓力區(BB:90.4%/區間:55.8%)，向下獲利空間 3.01% > 向上空間 2.39%，高勝率做空回歸均線！"
+        "reason": "【空間盈虧比優選】【震盪盤逢高做空】價格位於壓力區(BB:92.5%/區間:57.3%)，向下獲利空間 3.09% > 向上空間 2.31%，高勝率做空回歸均線！"
       }
     ]
   },
   "ai_last_decision": {
-    "action": "今日已實現 $+4,809.40 | 本期累計 $+37,057.38 (盈虧比 1.53x)",
+    "action": "今日已實現 $+4,934.60 | 本期累計 $+37,182.58 (盈虧比 1.53x)",
     "confidence": 93,
     "reason": "啟動 v11.1 智慧體質自適應引擎：依震盪/趨勢體質與 12h 空間盈虧比動態切換高拋低吸與順勢追擊。"
   },
   "orders": [
+    {
+      "id": "POS-713958",
+      "full_id": "4113896806692827139_1795159731589",
+      "timestamp_ms": 1795159731589,
+      "open_timestamp_ms": 1795133590230,
+      "time": "2026-11-20 15:28:51",
+      "market": "crypto",
+      "marketBadge": "📦 歷史倉位 (271.0張)",
+      "asset": "ETH/USDT:USDT",
+      "direction": "做多倉位結算 (LONG)",
+      "leverage": "3.0x 倉位槓桿",
+      "pool": "平倉張數: 271.0 張合約",
+      "entryExit": "開倉均價 $1,729.45 ➔ 平倉均價 $1,754.53",
+      "close_px_num": 1754.531827306273,
+      "roi": "已實現損益 +$632.51 USDT (+4.05%)",
+      "pnl": "倉位結算收益: +$632.51 USDT",
+      "realized_pnl_num": 632.51,
+      "fee_num": 47.208,
+      "fee": "倉位累計手續費 47.2080 USDT",
+      "rr": "開倉 $1,729.45 / 平倉 $1,754.53",
+      "reason": "[🧠v11.1(RANGE|LOW_ZONE|止損-7.5%ROI)] ✅ [空間與體質核驗通過] 體質:RANGE_MEAN_REVERSION | 位置:LOW_ZONE(BB:-6.7%) | 向上空間:6.6% / 向下空間:0.43% | 【RANGE_MEAN_REVERSION】【震盪盤逢低做多】價格回踩支撐區(BB:-6.7%/區間:6.1%)，向上獲利空間 6.6% > 向下空間 0.43%，高勝率抄底反彈！",
+      "hash": "0x326e5596cc8e6613"
+    },
     {
       "id": "POS-737728",
       "full_id": "4111360537202917377_1795159089280",
@@ -775,29 +780,6 @@
       "rr": "開倉 $62,539.00 / 平倉 $61,600.00",
       "reason": "[🧠v11.1(RANGE|LOW_ZONE|止損-7.5%ROI)] ✅ [空間與體質核驗通過] 體質:RANGE_MEAN_REVERSION | 位置:LOW_ZONE(BB:28.4%) | 向上空間:2.37% / 向下空間:0.37% | 【RANGE_MEAN_REVERSION】【震盪盤逢低做多】價格回踩支撐區(BB:28.4%/區間:13.4%)，向上獲利空間 2.37% > 向下空間 0.37%，高勝率抄底反彈！",
       "hash": "0x4f430f3243e64b4a"
-    },
-    {
-      "id": "POS-713999",
-      "full_id": "4113896806692827139_1795154629993",
-      "timestamp_ms": 1795154629993,
-      "open_timestamp_ms": 1795133590230,
-      "time": "2026-11-20 14:03:49",
-      "market": "crypto",
-      "marketBadge": "📦 歷史倉位 (108.0張)",
-      "asset": "ETH/USDT:USDT",
-      "direction": "做多倉位結算 (LONG)",
-      "leverage": "3.0x 倉位槓桿",
-      "pool": "平倉張數: 108.0 張合約",
-      "entryExit": "開倉均價 $1,729.45 ➔ 平倉均價 $1,779.48",
-      "close_px_num": 1779.4826407407406,
-      "roi": "已實現損益 +$507.31 USDT (+8.15%)",
-      "pnl": "倉位結算收益: +$507.31 USDT",
-      "realized_pnl_num": 507.31,
-      "fee_num": 33.0433,
-      "fee": "倉位累計手續費 33.0433 USDT",
-      "rr": "開倉 $1,729.45 / 平倉 $1,779.48",
-      "reason": "[🧠v11.1(RANGE|LOW_ZONE|止損-7.5%ROI)] ✅ [空間與體質核驗通過] 體質:RANGE_MEAN_REVERSION | 位置:LOW_ZONE(BB:-6.7%) | 向上空間:6.6% / 向下空間:0.43% | 【RANGE_MEAN_REVERSION】【震盪盤逢低做多】價格回踩支撐區(BB:-6.7%/區間:6.1%)，向上獲利空間 6.6% > 向下空間 0.43%，高勝率抄底反彈！",
-      "hash": "0x2fa2443ef20307eb"
     },
     {
       "id": "POS-998559",
