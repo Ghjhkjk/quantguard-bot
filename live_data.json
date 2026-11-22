@@ -1,13 +1,13 @@
 {
-  "updated_at": "2026-11-22 12:57:48",
+  "updated_at": "2026-11-22 12:58:37",
   "epoch_cutoff": "2026-11-05 17:01:00",
-  "real_usdt": 135690.27,
-  "free_usdt": 107599.07,
-  "used_usdt": 28091.2,
+  "real_usdt": 135693.35,
+  "free_usdt": 107603.18,
+  "used_usdt": 28090.17,
   "allocations": {
-    "normal_80_usdt": 108552.22,
-    "hedge_10_usdt": 13569.03,
-    "sniper_10_usdt": 13569.03
+    "normal_80_usdt": 108554.68,
+    "hedge_10_usdt": 13569.34,
+    "sniper_10_usdt": 13569.34
   },
   "performance_stats": {
     "epoch_start": "2026-11-05 17:01:16",
@@ -18,7 +18,7 @@
     "gross_profit_usdt": 116288.69,
     "gross_loss_usdt": 77733.31,
     "total_fees_usdt": 10212.24,
-    "implied_initial_capital": 96063.62,
+    "implied_initial_capital": 96063.51,
     "profit_factor": 1.5,
     "total_settled_count": 100,
     "win_count": 52,
@@ -574,7 +574,7 @@
     "ETH/USDT:USDT_SHORT": 1,
     "SOL/USDT:USDT_LONG": 0
   },
-  "total_unrealized_pnl": 1071.27,
+  "total_unrealized_pnl": 1074.46,
   "total_crypto_roi_pct": 0.79,
   "active_positions": [
     {
@@ -585,7 +585,7 @@
       "entry_price": 69.3,
       "mark_price": 69.37,
       "margin_usdt": 11321.18,
-      "notional_usdt": 56480.82,
+      "notional_usdt": 56482.52,
       "unrealized_pnl": 58.66,
       "roi_pct": 0.52,
       "tp_pct": 2.9,
@@ -602,11 +602,11 @@
       "contracts": 167.0,
       "leverage": "3x",
       "entry_price": 1695.08,
-      "mark_price": 1663.09,
-      "margin_usdt": 9257.87,
-      "notional_usdt": 27712.22,
-      "unrealized_pnl": 534.2,
-      "roi_pct": 5.77,
+      "mark_price": 1663.05,
+      "margin_usdt": 9257.64,
+      "notional_usdt": 27712.39,
+      "unrealized_pnl": 534.86,
+      "roi_pct": 5.78,
       "tp_pct": 4.2,
       "sl_pct": 2.5,
       "tp_trigger_px": 1623.89,
@@ -621,11 +621,11 @@
       "contracts": 38.0,
       "leverage": "3x",
       "entry_price": 60565.19,
-      "mark_price": 59306.22,
-      "margin_usdt": 7512.12,
-      "notional_usdt": 22486.56,
-      "unrealized_pnl": 478.41,
-      "roi_pct": 6.37,
+      "mark_price": 59299.55,
+      "margin_usdt": 7511.28,
+      "notional_usdt": 22484.71,
+      "unrealized_pnl": 480.94,
+      "roi_pct": 6.4,
       "tp_pct": 4.2,
       "sl_pct": 2.5,
       "tp_trigger_px": 58021.45,
@@ -637,34 +637,34 @@
   ],
   "market_prices": {
     "BTC/USDT:USDT": {
-      "last_price": 59305.15,
-      "change_24h_pct": 5.39,
-      "bar_15m_change_pct": 0.03,
-      "vol_spike_ratio": 0.77,
-      "funding_rate_pct": 0.0068,
-      "open_interest": 2147451274.63,
-      "ma5": 59319.11,
-      "ma10": 59353.11,
-      "ma20": 59740.1,
-      "ma20_1h": 59690.42,
-      "ma60_1h": 60256.11,
-      "ma20_dist_pct": -0.73,
+      "last_price": 59299.11,
+      "change_24h_pct": 5.34,
+      "bar_15m_change_pct": 0.02,
+      "vol_spike_ratio": 0.82,
+      "funding_rate_pct": 0.0074,
+      "open_interest": 2147459197.41,
+      "ma5": 59317.91,
+      "ma10": 59352.51,
+      "ma20": 59739.8,
+      "ma20_1h": 59690.12,
+      "ma60_1h": 60256.01,
+      "ma20_dist_pct": -0.74,
       "wick_signal": "BEAR_PINBAR_REVERSAL",
-      "rsi_14": 24.8,
-      "bb_upper": 60553.88,
-      "bb_lower": 58926.32,
-      "bb_pos_pct": 23.3,
-      "bb_width_pct": 2.72,
+      "rsi_14": 24.5,
+      "bb_upper": 60554.23,
+      "bb_lower": 58925.37,
+      "bb_pos_pct": 22.9,
+      "bb_width_pct": 2.73,
       "resistance_12h": 60772.62,
       "support_12h": 58900.0,
-      "range_pos_pct": 21.6,
-      "upside_room_pct": 2.47,
-      "downside_room_pct": 0.68,
+      "range_pos_pct": 21.3,
+      "upside_room_pct": 2.48,
+      "downside_room_pct": 0.67,
       "macro_structure_1h": "TRUE_BEAR_TREND",
       "market_regime_type": "RANGE_MEAN_REVERSION",
       "entry_zone_bucket": "LOW_ZONE",
       "tactical_signal": "SELL",
-      "tactical_desc": "【震盪盤逢高做空】價格位於壓力區(BB:23.3%/區間:21.6%)，向下獲利空間 0.68% > 向上空間 2.47%，高勝率做空回歸均線！",
+      "tactical_desc": "【震盪盤逢高做空】價格位於壓力區(BB:22.9%/區間:21.3%)，向下獲利空間 0.67% > 向上空間 2.48%，高勝率做空回歸均線！",
       "trend_1h": "BEARISH",
       "trend": "BEARISH",
       "atr_15m_pct": 0.61,
@@ -674,22 +674,22 @@
       "max_safe_leverage": 5
     },
     "ETH/USDT:USDT": {
-      "last_price": 1662.87,
-      "change_24h_pct": 6.53,
+      "last_price": 1662.86,
+      "change_24h_pct": 6.49,
       "bar_15m_change_pct": 0.03,
       "vol_spike_ratio": 0.51,
       "funding_rate_pct": 0.0003,
-      "open_interest": 3125632214.75,
-      "ma5": 1662.23,
+      "open_interest": 3125630540.57,
+      "ma5": 1662.22,
       "ma10": 1663.6,
-      "ma20": 1673.79,
+      "ma20": 1673.78,
       "ma20_1h": 1675.22,
       "ma60_1h": 1687.7,
       "ma20_dist_pct": -0.65,
       "wick_signal": "BEAR_PINBAR_REVERSAL",
-      "rsi_14": 24.3,
+      "rsi_14": 24.2,
       "bb_upper": 1695.06,
-      "bb_lower": 1652.52,
+      "bb_lower": 1652.51,
       "bb_pos_pct": 24.3,
       "bb_width_pct": 2.54,
       "resistance_12h": 1696.38,
@@ -711,9 +711,9 @@
       "max_safe_leverage": 5
     },
     "SOL/USDT:USDT": {
-      "last_price": 69.38,
-      "change_24h_pct": 5.09,
-      "bar_15m_change_pct": -0.13,
+      "last_price": 69.37,
+      "change_24h_pct": 5.06,
+      "bar_15m_change_pct": -0.14,
       "vol_spike_ratio": 0.42,
       "funding_rate_pct": 0.01,
       "open_interest": 12518958.83,
@@ -722,23 +722,23 @@
       "ma20": 69.87,
       "ma20_1h": 69.93,
       "ma60_1h": 70.19,
-      "ma20_dist_pct": -0.7,
+      "ma20_dist_pct": -0.72,
       "wick_signal": "BEAR_PINBAR_REVERSAL",
-      "rsi_14": 28.6,
+      "rsi_14": 28.5,
       "bb_upper": 70.74,
-      "bb_lower": 69.01,
-      "bb_pos_pct": 21.4,
-      "bb_width_pct": 2.48,
+      "bb_lower": 69.0,
+      "bb_pos_pct": 21.3,
+      "bb_width_pct": 2.49,
       "resistance_12h": 70.94,
       "support_12h": 68.75,
-      "range_pos_pct": 28.8,
-      "upside_room_pct": 2.25,
-      "downside_room_pct": 0.91,
+      "range_pos_pct": 28.3,
+      "upside_room_pct": 2.26,
+      "downside_room_pct": 0.89,
       "macro_structure_1h": "TRUE_BEAR_TREND",
       "market_regime_type": "RANGE_MEAN_REVERSION",
       "entry_zone_bucket": "LOW_ZONE",
       "tactical_signal": "SELL",
-      "tactical_desc": "【震盪盤逢高做空】價格位於壓力區(BB:21.4%/區間:28.8%)，向下獲利空間 0.91% > 向上空間 2.25%，高勝率做空回歸均線！",
+      "tactical_desc": "【震盪盤逢高做空】價格位於壓力區(BB:21.3%/區間:28.3%)，向下獲利空間 0.89% > 向上空間 2.26%，高勝率做空回歸均線！",
       "trend_1h": "BEARISH",
       "trend": "BEARISH",
       "atr_15m_pct": 0.4,
@@ -749,10 +749,14 @@
     }
   },
   "latest_news": [
-    "快軌 20 秒監控中 (v11.1：震盪/趨勢體質自適應 × 12h天地空間比試算 × 特徵指紋記憶)"
+    "Bitcoin rebounds above $60,000 after $1.8 billion crypto liquidation wave",
+    "Cross-chain protocol Chainflip's FLIP tanks 30% after suspected $4.86 million vault drain",
+    "Ether treasury firm BTCS warns SEC its $54 million Aave loan could be liquidated",
+    "Here’s what happened in crypto today",
+    "ECB seeks industry partners for tokenized deposits, securities experiments"
   ],
   "ai_broadcast_signals": {
-    "updated_at": "12:57:48",
+    "updated_at": "12:58:37",
     "confidence": 93,
     "summary": "啟動 v11.1 智慧體質自適應引擎：依震盪/趨勢體質與 12h 空間盈虧比動態切換高拋低吸與順勢追擊。",
     "half_a_orders": [
@@ -763,7 +767,7 @@
         "leverage": 5,
         "tp_pct": 2.9,
         "sl_pct": 1.5,
-        "reason": "【RANGE_MEAN_REVERSION】【震盪盤逢高做空】價格位於壓力區(BB:21.9%/區間:20.3%)，向下獲利空間 0.64% > 向上空間 2.52%，高勝率做空回歸均線！"
+        "reason": "【RANGE_MEAN_REVERSION】【震盪盤逢高做空】價格位於壓力區(BB:22.9%/區間:21.3%)，向下獲利空間 0.67% > 向上空間 2.48%，高勝率做空回歸均線！"
       },
       {
         "symbol": "ETH/USDT:USDT",
@@ -772,7 +776,7 @@
         "leverage": 5,
         "tp_pct": 2.9,
         "sl_pct": 1.5,
-        "reason": "【RANGE_MEAN_REVERSION】【震盪盤逢高做空】價格位於壓力區(BB:22.6%/區間:25.9%)，向下獲利空間 0.72% > 向上空間 2.07%，高勝率做空回歸均線！"
+        "reason": "【RANGE_MEAN_REVERSION】【震盪盤逢高做空】價格位於壓力區(BB:24.3%/區間:27.7%)，向下獲利空間 0.77% > 向上空間 2.02%，高勝率做空回歸均線！"
       },
       {
         "symbol": "SOL/USDT:USDT",
@@ -781,7 +785,7 @@
         "leverage": 5,
         "tp_pct": 2.9,
         "sl_pct": 1.5,
-        "reason": "【RANGE_MEAN_REVERSION】【震盪盤逢高做空】價格位於壓力區(BB:22.5%/區間:29.7%)，向下獲利空間 0.94% > 向上空間 2.22%，高勝率做空回歸均線！"
+        "reason": "【RANGE_MEAN_REVERSION】【震盪盤逢高做空】價格位於壓力區(BB:21.3%/區間:28.3%)，向下獲利空間 0.89% > 向上空間 2.26%，高勝率做空回歸均線！"
       }
     ],
     "half_b_orders": [
@@ -792,7 +796,7 @@
         "leverage": 5,
         "tp_pct": 3.19,
         "sl_pct": 1.5,
-        "reason": "【空間盈虧比優選】【震盪盤逢高做空】價格位於壓力區(BB:21.9%/區間:20.3%)，向下獲利空間 0.64% > 向上空間 2.52%，高勝率做空回歸均線！"
+        "reason": "【空間盈虧比優選】【震盪盤逢高做空】價格位於壓力區(BB:22.9%/區間:21.3%)，向下獲利空間 0.67% > 向上空間 2.48%，高勝率做空回歸均線！"
       },
       {
         "symbol": "ETH/USDT:USDT",
@@ -801,7 +805,7 @@
         "leverage": 5,
         "tp_pct": 3.19,
         "sl_pct": 1.5,
-        "reason": "【空間盈虧比優選】【震盪盤逢高做空】價格位於壓力區(BB:22.6%/區間:25.9%)，向下獲利空間 0.72% > 向上空間 2.07%，高勝率做空回歸均線！"
+        "reason": "【空間盈虧比優選】【震盪盤逢高做空】價格位於壓力區(BB:24.3%/區間:27.7%)，向下獲利空間 0.77% > 向上空間 2.02%，高勝率做空回歸均線！"
       },
       {
         "symbol": "SOL/USDT:USDT",
@@ -810,7 +814,7 @@
         "leverage": 5,
         "tp_pct": 3.19,
         "sl_pct": 1.5,
-        "reason": "【空間盈虧比優選】【震盪盤逢高做空】價格位於壓力區(BB:22.5%/區間:29.7%)，向下獲利空間 0.94% > 向上空間 2.22%，高勝率做空回歸均線！"
+        "reason": "【空間盈虧比優選】【震盪盤逢高做空】價格位於壓力區(BB:21.3%/區間:28.3%)，向下獲利空間 0.89% > 向上空間 2.26%，高勝率做空回歸均線！"
       }
     ]
   },
