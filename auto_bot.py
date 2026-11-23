@@ -32,25 +32,31 @@ GEMINI_API_KEY      = os.environ.get("GEMINI_API_KEY", "請填入你的_Gemini_A
 DISCORD_WEBHOOK_URL = os.environ.get("DISCORD_WEBHOOK_URL", "").strip()
 
 # ==========================================================
-# ⚙️ 2. v11.1 智慧體質變通 × 空間盈虧比 × 特徵記憶參數
+# ⚙️ 2. v11.2 智慧體質變通 × 防軋空盾 × 20%火力 × 手續費保本鎖
 # ==========================================================
 WHITELIST_SYMBOLS = ['BTC/USDT:USDT', 'ETH/USDT:USDT', 'SOL/USDT:USDT']
 
-POOL_NORMAL_RATIO       = 0.80  # 80% 常態雙核心池
-POOL_HEDGE_RATIO        = 0.10  # 10% 緊急急跌對沖池
-POOL_SNIPER_RATIO       = 0.10  # 10% 黑天鵝突發狙擊池
+POOL_NORMAL_RATIO         = 0.80  # 80% 常態雙核心池
+POOL_HEDGE_RATIO          = 0.10  # 10% 緊急急跌對沖池
+POOL_SNIPER_RATIO         = 0.10  # 10% 黑天鵝突發狙擊池
 
-MAX_ORDERS_PER_HALF     = 3
-MAX_SINGLE_MARGIN_RATIO = 0.26  # 單筆訂單保證金上限為總資產 26%
+MAX_ORDERS_PER_HALF       = 3
+TARGET_SINGLE_MARGIN_RATIO = 0.20  # 🔥 v11.2 單筆目標保證金拉高至總資產 20% (提升資金動用效益)
+MAX_SINGLE_MARGIN_RATIO    = 0.24  # 單筆訂單保證金硬上限為總資產 24%
 
 # 🛑 止損與耐震設定 (採 3x~5x 寬耐震槓桿，初始止損設於含槓桿 ROI -7.5% 觸發，防插針被洗！)
 MAX_SL_ROI_TRIGGER_PCT  = 7.5   # 掛單觸發止損設於「含槓桿 ROI -7.5%」(在 4x 槓桿下擁有 1.88% 的寬敞耐震空間)
 HARD_CUT_SL_ROI_PCT     = -8.2  # 快軌 20 秒硬斷頭保護：實時含槓桿 ROI <= -8.2% 市價砍單防滑價
 
+# 🛡️ v11.2 新增：保本 + OKX 雙邊手續費提前護鎖 (Stage 0.5)
+EST_ROUND_TRIP_FEE_RATE        = 0.0010  # OKX 雙邊吃單預估名目費率 0.10% (開0.05% + 平0.05%)
+BREAKEVEN_TRIGGER_ROI_PCT      = 3.2     # 當含槓桿 ROI 達 +3.2% -> 止損從 -7.5% 拉升至「手續費 + 0.7% ROI」
+BREAKEVEN_EXTRA_BUFFER_ROI_PCT = 0.7     # 覆蓋本金與手續費後額外保留 +0.7% ROI 緩衝利潤
+
 # 💰 三階段智慧鎖利 (全參數為「含槓桿後真實保證金 ROI %」)
 STAGE1_CLOSE_RATIO      = 0.40  # 【階段一】當含槓桿 ROI 達 +6.8% -> 先平倉 40% 落袋現金！
 STAGE1_TRIGGER_ROI_PCT  = 6.8
-STAGE1_LOCK_ROI_PCT     = 1.5   #           剩餘 60% 主力倉止損移至「含槓桿 ROI +1.5%」(留 5.3% ROI 緩衝空間衝大波段)！
+STAGE1_LOCK_ROI_PCT     = 1.8   #           剩餘 60% 主力倉止損移至「含槓桿 ROI +1.8%」(留 5.0% ROI 緩衝空間衝大波段)！
 
 STAGE2_TRIGGER_ROI_PCT  = 12.0  # 【階段二】當剩餘 60% 倉位含槓桿 ROI 達 +12.0% -> 止損上推鎖死在「含槓桿 ROI +6.0%」！
 STAGE2_LOCK_ROI_PCT     = 6.0
@@ -62,7 +68,10 @@ DEFAULT_TARGET_TP_ROI   = 14.5  # 預設初始總止盈目標為「含槓桿 ROI
 
 # ⏳ 同型態防重複踩坑冷卻時間
 LOSS_COOLDOWN_MINUTES   = 45    # 止損後等待 3 根 15m K 線 (45分鐘) 重新評估盤勢體質
-WIN_COOLDOWN_MINUTES    = 15    # 止盈後等待 1 根 15m K 線 (15分鐘) 觀察回踩
+WIN_COOLDOWN_MINUTES    = 12    # 止盈或保本鎖出場後等待 12 分鐘加速週轉
+
+# 📰 新聞高波動雷達快取間隔
+NEWS_REFRESH_INTERVAL_SEC = 720  # 每 12 分鐘刷新一次新聞快訊與高波動警戒
 
 IS_GITHUB_ACTIONS     = os.environ.get("GITHUB_ACTIONS") == "true"
 RUN_CONTINUOUS_LOOP   = True
@@ -74,6 +83,7 @@ LAST_AI_PLAN_CACHE = None
 NOTIFIED_POS_IDS   = set()
 POSITION_STAGE_MAP = {}
 LAST_GIT_PUSH_TS   = 0.0
+NEWS_RADAR_CACHE   = {"last_ts": 0.0, "headlines": [], "high_alert": False, "alert_note": ""}
 
 AI_MEMORY_BANK = {
     "entry_snapshots": {},
@@ -123,12 +133,19 @@ def roi_to_price(entry_px, side_upper, target_leveraged_roi_pct, leverage_num):
         return round(entry_px * (1.0 - price_move_fraction), 2)
 
 
+def calc_breakeven_lock_roi(leverage_num):
+    """計算覆蓋 OKX 雙邊手續費 + 0.7% 緩衝後的保本鎖 ROI (%)"""
+    lev = max(1.0, float(leverage_num))
+    fee_roi_pct = EST_ROUND_TRIP_FEE_RATE * lev * 100.0
+    return round(fee_roi_pct + BREAKEVEN_EXTRA_BUFFER_ROI_PCT, 2)
+
+
 def classify_entry_zone_bucket(bb_pos_pct, range_pos_pct):
     """
     將進場時的價格位置歸納為三種空間特徵指紋：
-    - HIGH_ZONE (高檔壓力區：BB > 68% 或位於 12h 區間頂部 > 72%)
-    - LOW_ZONE  (低檔支撐區：BB < 32% 或位於 12h 區間底部 < 28%)
-    - MID_ZONE  (中軸過渡區)
+- HIGH_ZONE (高檔壓力區：BB > 68% 或位於 12h 區間頂部 > 72%)
+- LOW_ZONE  (低檔支撐區：BB < 32% 或位於 12h 區間底部 < 28%)
+- MID_ZONE  (中軸過渡區)
     """
     if bb_pos_pct >= 68.0 or range_pos_pct >= 72.0:
         return "HIGH_ZONE"
@@ -145,7 +162,7 @@ def send_discord_alert(title, description, color=3066993, fields=None):
         "description": description,
         "color": color,
         "timestamp": datetime.now(timezone.utc).isoformat(),
-        "footer": {"text": "QuantGuard AI v11.1 | 盤勢體質自適應 × 空間盈虧比 × 特徵記憶終端"}
+        "footer": {"text": "QuantGuard AI v11.2 | 防軋空盾 × 20%火力 × 手續費保本鎖"}
     }
     if fields:
         embed["fields"] = fields
@@ -153,7 +170,7 @@ def send_discord_alert(title, description, color=3066993, fields=None):
         req = urllib.request.Request(
             DISCORD_WEBHOOK_URL,
             data=json.dumps({"embeds": [embed]}).encode('utf-8'),
-            headers={'Content-Type': 'application/json', 'User-Agent': 'QuantGuardBot/11.1'}
+            headers={'Content-Type': 'application/json', 'User-Agent': 'QuantGuardBot/11.2'}
         )
         urllib.request.urlopen(req, timeout=5)
     except Exception as e:
@@ -207,7 +224,7 @@ def push_live_data_immediately(force=False):
 
         diff_res = subprocess.run(["git", "diff", "--staged", "--quiet"])
         if diff_res.returncode != 0:
-            subprocess.run(["git", "commit", "-m", "Real-time sync live_data.json v11.1"], check=False)
+            subprocess.run(["git", "commit", "-m", "Real-time sync live_data.json v11.2"], check=False)
             pull_res = subprocess.run(["git", "pull", "--rebase", "-X", "ours", "origin", "main"], check=False)
             if pull_res.returncode != 0:
                 subprocess.run(["git", "rebase", "--abort"], check=False)
@@ -216,7 +233,7 @@ def push_live_data_immediately(force=False):
                 with open("live_data.json", "w", encoding="utf-8") as f:
                     f.write(latest_json_content)
                 subprocess.run(["git", "add", "live_data.json"], check=False)
-                subprocess.run(["git", "commit", "-m", "Force sync live_data.json v11.1"], check=False)
+                subprocess.run(["git", "commit", "-m", "Force sync live_data.json v11.2"], check=False)
 
             subprocess.run(["git", "push", "origin", "main"], check=False)
             LAST_GIT_PUSH_TS = now_ts
@@ -226,6 +243,12 @@ def push_live_data_immediately(force=False):
 
 
 def fetch_live_crypto_news():
+    """📰 v11.2 升級：每 12 分鐘自動快取更新新聞快訊，並偵測重大宏觀／幣圈高波動警戒關鍵字"""
+    global NEWS_RADAR_CACHE
+    now_ts = time.time()
+    if NEWS_RADAR_CACHE["headlines"] and (now_ts - NEWS_RADAR_CACHE["last_ts"]) < NEWS_REFRESH_INTERVAL_SEC:
+        return NEWS_RADAR_CACHE["headlines"]
+
     rss_urls = [
         "https://www.coindesk.com/arc/outboundfeeds/rss/",
         "https://cointelegraph.com/rss"
@@ -238,7 +261,24 @@ def fetch_live_crypto_news():
                 headlines.append(entry.title)
         except Exception:
             continue
-    return headlines[:5] if headlines else ["Institutional crypto volume steady amid macro watch."]
+
+    final_headlines = headlines[:6] if headlines else ["Institutional crypto volume steady amid macro watch."]
+    joined_lower = " | ".join(final_headlines).lower()
+    high_impact_kws = [
+        "fed", "powell", "cpi", "pce", "rate", "sec", "etf", "hack", "exploit",
+        "liquidation", "surge", "plunge", "crash", "rally", "nvidia", "trump", "tariff", "war"
+    ]
+    matched_kws = [kw for kw in high_impact_kws if kw in joined_lower]
+    high_alert = len(matched_kws) > 0
+    alert_note = f"高波動新聞警戒({','.join(matched_kws[:3])})" if high_alert else "新聞情緒平穩"
+
+    NEWS_RADAR_CACHE = {
+        "last_ts": now_ts,
+        "headlines": final_headlines,
+        "high_alert": high_alert,
+        "alert_note": alert_note
+    }
+    return final_headlines
 
 
 def compute_rsi(closes, period=14):
@@ -284,10 +324,10 @@ def detect_pinbar_wick_signal(ohlcv_15m):
 
 def fetch_whitelist_market_data(exchange):
     """
-    🌟 v11.1 智慧盤勢體質與空間盈虧比探測器：
-    1. 抓取 1H 60根 K 線 (計算 MA20_1h 與 MA60_1h 長線真結構，不被短線死貓跳騙去追多)。
-    2. 抓取 15m 48根 K 線 (過去 12 小時真實天花板 resistance_12h 與地板 support_12h)，計算向上與向下獲利空間 (Room-to-Run)。
-    3. 自動辨識當下體質為『RANGE_MEAN_REVERSION (震盪高拋低吸盤)』或『TREND_BREAKOUT (帶量真突破趨勢盤)』！
+    🌟 v11.2 智慧盤勢體質、防軋空盾牌與空間盈虧比探測器：
+1. 抓取 1H 60根 K 線 (計算 MA20_1h 與 MA60_1h 長線真結構)。
+2. 抓取 15m 48根 K 線 (過去 12 小時真實天花板 resistance_12h 與地板 support_12h)，計算向上與向下獲利空間。
+3. 新增防軋空盾 (anti_squeeze_block_short) 與防接刀盾 (anti_knife_block_long)，杜絕強勢單邊行情逆勢摸頂做空！
     """
     market_summary = {}
     for sym in WHITELIST_SYMBOLS:
@@ -296,9 +336,10 @@ def fetch_whitelist_market_data(exchange):
             ohlcv_15m = exchange.fetch_ohlcv(sym, timeframe='15m', limit=48)
             ohlcv_1h  = exchange.fetch_ohlcv(sym, timeframe='1h', limit=60)
 
-            closes = [c[4] for c in ohlcv_15m]
+            opens  = [c[1] for c in ohlcv_15m]
             highs  = [c[2] for c in ohlcv_15m]
             lows   = [c[3] for c in ohlcv_15m]
+            closes = [c[4] for c in ohlcv_15m]
             vols   = [c[5] for c in ohlcv_15m]
             current_price = float(ticker['last'])
 
@@ -321,30 +362,54 @@ def fetch_whitelist_market_data(exchange):
             range_span     = max(0.0001, resistance_12h - support_12h)
             range_pos_pct  = round(((current_price - support_12h) / range_span) * 100.0, 1)
 
-            # 計算現價距離天花板與地板的真實獲利空間 (%)
             upside_room_pct   = round(max(0.05, ((resistance_12h - current_price) / current_price) * 100.0), 2)
             downside_room_pct = round(max(0.05, ((current_price - support_12h) / current_price) * 100.0), 2)
 
-            # 🧭 計算 1H 大結構 (加入 MA60 長線生命線，區分『真多頭』與『空頭死貓跳反彈』)
+            # 🧭 計算 1H 大結構
             closes_1h = [c[4] for c in ohlcv_1h]
-            ma5_1h  = sum(closes_1h[-5:]) / 5 if len(closes_1h) >= 5 else current_price
             ma20_1h = sum(closes_1h[-20:]) / 20 if len(closes_1h) >= 20 else current_price
             ma60_1h = sum(closes_1h[-60:]) / len(closes_1h) if len(closes_1h) >= 25 else ma20_1h
 
             if current_price > ma20_1h and ma20_1h >= ma60_1h:
-                macro_structure_1h = "TRUE_BULL_TREND"      # 站上 MA20 與 MA60 且多頭排列：真多頭格局
+                macro_structure_1h = "TRUE_BULL_TREND"
                 trend_1h = "BULLISH"
             elif current_price < ma20_1h and ma20_1h <= ma60_1h:
-                macro_structure_1h = "TRUE_BEAR_TREND"      # 跌破 MA20 與 MA60 且空頭排列：真空頭格局
+                macro_structure_1h = "TRUE_BEAR_TREND"
                 trend_1h = "BEARISH"
             elif current_price > ma20_1h and current_price < ma60_1h:
-                macro_structure_1h = "BEAR_MARKET_REBOUND"  # 雖站上短均線但壓在 MA60 下方：空頭反彈測試壓力區
+                macro_structure_1h = "BEAR_MARKET_REBOUND"
                 trend_1h = "BEARISH"
             else:
-                macro_structure_1h = "BULL_MARKET_PULLBACK" # 雖跌破短均線但守在 MA60 上方：多頭回踩測試支撐區
+                macro_structure_1h = "BULL_MARKET_PULLBACK"
                 trend_1h = "BULLISH"
 
             trend_15m = "BULLISH" if ma5 > ma20 else "BEARISH"
+
+            # 🛡️ v11.2 新增：連續動能與轉弱/止跌確認（防溫水煮青蛙式軋空）
+            recent_3_green = len(closes) >= 3 and all(closes[-i] > opens[-i] for i in (1, 2, 3))
+            recent_3_red   = len(closes) >= 3 and all(closes[-i] < opens[-i] for i in (1, 2, 3))
+            bear_reversal_confirmed = (
+                (len(closes) >= 2 and closes[-1] < opens[-1] and closes[-1] < closes[-2])
+                or wick_signal == "BEAR_PINBAR_REVERSAL"
+            )
+            bull_reversal_confirmed = (
+                (len(closes) >= 2 and closes[-1] > opens[-1] and closes[-1] > closes[-2])
+                or wick_signal == "BULL_PINBAR_REVERSAL"
+            )
+
+            # 只要 1H 真多頭、連三紅、或布林突破 90% 且還沒看到陰線/上影線轉弱 -> 啟動防軋空硬鎖！
+            anti_squeeze_block_short = (
+                macro_structure_1h == "TRUE_BULL_TREND"
+                or recent_3_green
+                or (bb_pos_pct >= 90.0 and not bear_reversal_confirmed)
+                or (ma5 > ma20 and current_price > ma5 and not bear_reversal_confirmed)
+            )
+            anti_knife_block_long = (
+                macro_structure_1h == "TRUE_BEAR_TREND"
+                or recent_3_red
+                or (bb_pos_pct <= 10.0 and not bull_reversal_confirmed)
+                or (ma5 < ma20 and current_price < ma5 and not bull_reversal_confirmed)
+            )
 
             tr_list   = [(highs[i] - lows[i]) / closes[i] * 100 for i in range(len(closes))]
             atr_pct   = sum(tr_list) / len(tr_list) if tr_list else 0.8
@@ -355,44 +420,41 @@ def fetch_whitelist_market_data(exchange):
             avg_vol = (sum(vols[:-1]) / max(1, len(vols) - 1)) if len(vols) > 1 else 1.0
             vol_spike_ratio = round(vols[-1] / avg_vol, 2) if avg_vol > 0 else 1.0
 
-            # 🧠 核心智慧判定：當下是『帶量真突破趨勢盤 (TREND_BREAKOUT)』還是『箱型震盪高拋低吸盤 (RANGE_MEAN_REVERSION)』？
-            is_volume_breakout = (vol_spike_ratio >= 1.35 and abs(bar_change_pct) >= 0.45 and bb_width_pct >= 2.2)
-            if is_volume_breakout:
-                market_regime_type = "TREND_BREAKOUT"
-            else:
-                market_regime_type = "RANGE_MEAN_REVERSION"
-
+            # 🧠 核心智慧判定：帶量突破 OR 連三紅/連三黑強動能推進 -> 皆視為 TREND_BREAKOUT！
+            is_volume_breakout = (
+                (vol_spike_ratio >= 1.35 and abs(bar_change_pct) >= 0.45 and bb_width_pct >= 2.2)
+                or recent_3_green
+                or recent_3_red
+            )
+            market_regime_type = "TREND_BREAKOUT" if is_volume_breakout else "RANGE_MEAN_REVERSION"
             entry_zone_bucket = classify_entry_zone_bucket(bb_pos_pct, range_pos_pct)
 
-            # 🛡️ 根據波動率決定寬耐震安全槓桿 (3x ~ 5x)，讓止損能扛住 1.5% ~ 2.5% 的洗盤插針
             natural_sl_pct = round(max(1.5, min(2.4, swing_pct * 0.60)), 2)
             max_safe_lev   = max(3, min(5, int(MAX_SL_ROI_TRIGGER_PCT // natural_sl_pct)))
 
             enforced_sl_pct = round(MAX_SL_ROI_TRIGGER_PCT / float(max_safe_lev), 2)
             anchored_tp_pct = round(max(2.6, min(4.2, DEFAULT_TARGET_TP_ROI / float(max_safe_lev))), 2)
 
-            # 💡 智慧戰術建議生成 (直接給 AI 與本地備援最具期望值的出手建議)
             if market_regime_type == "RANGE_MEAN_REVERSION":
-                if entry_zone_bucket == "HIGH_ZONE" or rsi_14 >= 61.0 or wick_signal == "BEAR_PINBAR_REVERSAL":
+                if (entry_zone_bucket == "HIGH_ZONE" or rsi_14 >= 61.0 or wick_signal == "BEAR_PINBAR_REVERSAL") and not anti_squeeze_block_short:
                     tactical_signal = "SELL"
-                    tactical_desc   = f"【震盪盤逢高做空】價格位於壓力區(BB:{bb_pos_pct}%/區間:{range_pos_pct}%)，向下獲利空間 {downside_room_pct}% > 向上空間 {upside_room_pct}%，高勝率做空回歸均線！"
-                elif entry_zone_bucket == "LOW_ZONE" or rsi_14 <= 39.0 or wick_signal == "BULL_PINBAR_REVERSAL":
+                    tactical_desc   = f"【震盪盤受阻逢高做空】價格位於壓力區(BB:{bb_pos_pct}%/區間:{range_pos_pct}%)且已確認轉弱，向下空間 {downside_room_pct}% > 向上空間 {upside_room_pct}%！"
+                elif (entry_zone_bucket == "LOW_ZONE" or rsi_14 <= 39.0 or wick_signal == "BULL_PINBAR_REVERSAL") and not anti_knife_block_long:
                     tactical_signal = "BUY"
-                    tactical_desc   = f"【震盪盤逢低做多】價格回踩支撐區(BB:{bb_pos_pct}%/區間:{range_pos_pct}%)，向上獲利空間 {upside_room_pct}% > 向下空間 {downside_room_pct}%，高勝率抄底反彈！"
+                    tactical_desc   = f"【震盪盤止跌逢低做多】價格回踩支撐區(BB:{bb_pos_pct}%/區間:{range_pos_pct}%)且出現止跌訊號，向上空間 {upside_room_pct}% > 向下空間 {downside_room_pct}%！"
                 else:
-                    # 位於中間軸時，順應 1H MA60 大結構且選擇空間較大的一方
-                    if upside_room_pct >= downside_room_pct * 1.35 and trend_1h == "BULLISH":
+                    if trend_1h == "BULLISH" and not anti_knife_block_long:
                         tactical_signal = "BUY"
-                        tactical_desc   = f"【中軸偏多回踩】1H大結構偏多且上方空間({upside_room_pct}%)為下方({downside_room_pct}%)之1.35倍以上。"
-                    elif downside_room_pct >= upside_room_pct * 1.35 and trend_1h == "BEARISH":
+                        tactical_desc   = f"【順勢偏多結構】1H大結構偏多，避開逆勢摸頂做空，擇優順勢偏多。"
+                    elif trend_1h == "BEARISH" and not anti_squeeze_block_short:
                         tactical_signal = "SELL"
-                        tactical_desc   = f"【中軸偏空反彈】1H大結構偏空且下方空間({downside_room_pct}%)為上方({upside_room_pct}%)之1.35倍以上。"
+                        tactical_desc   = f"【順勢偏空結構】1H大結構偏空且無軋空風險，擇優順勢偏空。"
                     else:
-                        tactical_signal = "SELL" if range_pos_pct >= 50.0 else "BUY"
-                        tactical_desc   = f"【區間空間優先】依12h高低點空間比({upside_room_pct}% vs {downside_room_pct}%)擇優高拋低吸。"
+                        tactical_signal = "HOLD"
+                        tactical_desc   = f"【防軋空/防接刀觀望】盤勢動能尚未轉弱或空間比不足，耐心等待確認訊號。"
             else:
-                tactical_signal = "BUY" if bar_change_pct > 0 else "SELL"
-                tactical_desc   = f"【帶量真突破追擊】量能爆發({vol_spike_ratio}x)伴隨 K線突破({bar_change_pct:+.2f}%)，順勢追擊大波段！"
+                tactical_signal = "BUY" if (bar_change_pct > 0 or recent_3_green) else "SELL"
+                tactical_desc   = f"【強勢動能突破順勢追擊】量能/連K動能強({vol_spike_ratio}x, {bar_change_pct:+.2f}%)，嚴禁逆勢硬扛，順勢追擊大波段！"
 
             funding_rate_pct = 0.01
             try:
@@ -435,6 +497,10 @@ def fetch_whitelist_market_data(exchange):
                 "macro_structure_1h": macro_structure_1h,
                 "market_regime_type": market_regime_type,
                 "entry_zone_bucket": entry_zone_bucket,
+                "anti_squeeze_block_short": anti_squeeze_block_short,
+                "anti_knife_block_long": anti_knife_block_long,
+                "bear_reversal_confirmed": bear_reversal_confirmed,
+                "bull_reversal_confirmed": bull_reversal_confirmed,
                 "tactical_signal": tactical_signal,
                 "tactical_desc": tactical_desc,
                 "trend_1h": trend_1h,
@@ -452,10 +518,6 @@ def fetch_whitelist_market_data(exchange):
 
 
 def update_ai_memory_bank_from_history(history_records):
-    """
-    🧠 v11.1 特徵指紋記憶引擎 (Feature Fingerprint Memory)：
-    不死板封殺『某幣種做多或做空』，而是統計『在什麼盤勢體質 + 什麼價位區間做什麼動作 (如 LONG_in_RANGE_at_HIGH_ZONE)』的勝率與期望值！
-    """
     processed_set  = set(AI_MEMORY_BANK.get("processed_pos_keys", []))
     sym_stats      = AI_MEMORY_BANK.get("symbol_direction_stats", {})
     pat_stats      = AI_MEMORY_BANK.get("pattern_stats", {})
@@ -502,7 +564,6 @@ def update_ai_memory_bank_from_history(history_records):
             sym_stats[sd_key]["losses"] += 1
         sym_stats[sd_key]["net_pnl"] = round(sym_stats[sd_key]["net_pnl"] + pnl, 2)
 
-        # 提取進場時的環境特徵指紋 (盤勢體質 + 高低位區間)
         snap        = snapshots.get(sym, {})
         regime_type = snap.get("market_regime_type", "RANGE_MEAN_REVERSION")
         zone_bucket = snap.get("entry_zone_bucket")
@@ -520,20 +581,19 @@ def update_ai_memory_bank_from_history(history_records):
         pat_stats[pat_key]["net_pnl"] = round(pat_stats[pat_key]["net_pnl"] + pnl, 2)
 
     lessons = [
-        "🧠【v11.1 體質自適應】震盪盤(RANGE)全面改採『支撐區逢低買(BB<38%)、壓力區逢高空(BB>62%)』；帶量突破盤(TREND_BREAKOUT)才順勢追擊！",
-        "📐【空間盈虧比鐵律】開多前必算頭頂天花板空間、開空前必算腳底地板空間；嚴禁在區間頂部追多或在地板追空！",
-        "🛡️【3x~5x 寬耐震 & 40/60鎖利】降低槓桿放大幣價耐震度至 1.8%~2.5%，滿 +6.8% ROI 平 40% 落袋、60% 主力鎖 +1.5% 保底！"
+        "🔥【v11.2 單筆 20% 火力升級】單筆保證金目標拉高至 20%，未保底上限鎖 2 筆，保留 ~60% 防爆安全墊！",
+        "🛡️【防軋空硬鎖 & 防接刀盾】1H 多頭排列、連三紅或 BB>=90% 未轉弱時，嚴禁逆勢摸頂做空！",
+        "💰【保本+OKX手續費提前護鎖】浮盈達 +3.2% ROI 立即把 OKX 止損上移至『手續費+0.7%』，徹底消滅浮盈變大虧！"
     ]
 
-    # 從特徵指紋庫提煉真正的『型態教訓』(不封殺幣種，只攔截高敗率愚蠢型態)
     for p_k, pst in pat_stats.items():
         ptot = pst["wins"] + pst["losses"]
         if ptot >= 2:
             pwr = round((pst["wins"] / ptot) * 100, 1)
             if pwr <= 35.0 and pst["net_pnl"] < -500:
-                lessons.append(f"🚫【高敗率型態攔截】特徵『{p_k}』歷史 {pst['wins']}勝{pst['losses']}敗 (淨虧${pst['net_pnl']})，遇到此位置禁止追單，應反手或等回踩！")
+                lessons.append(f"🚫【高敗率型態攔截】特徵『{p_k}』歷史 {pst['wins']}勝{pst['losses']}敗 (淨虧${pst['net_pnl']})，遇到此位置禁止追單！")
             elif pwr >= 55.0 and pst["net_pnl"] > 1000:
-                lessons.append(f"🏆【印鈔機型態確認】特徵『{p_k}』歷史 {pst['wins']}勝{pst['losses']}敗 (勝率{pwr}%，淨賺+${pst['net_pnl']})，出現時優先重倉出擊！")
+                lessons.append(f"🏆【印鈔機型態確認】特徵『{p_k}』歷史 {pst['wins']}勝{pst['losses']}敗 (勝率{pwr}%，淨賺+${pst['net_pnl']})，出現時優先出擊！")
 
     AI_MEMORY_BANK["processed_pos_keys"]     = list(processed_set)[-300:]
     AI_MEMORY_BANK["symbol_direction_stats"] = sym_stats
@@ -545,14 +605,8 @@ def update_ai_memory_bank_from_history(history_records):
 
 def evaluate_room_to_run_and_pattern(sym, action, current_price, market_data):
     """
-    🧠 v11.1 智慧交易員進場評估器 (取代死板的黑名單)：
-    1. 【空間盈虧比檢查 (Room-to-Run)】与【自動變通反轉】：
-       - 若在震盪盤 (RANGE_MEAN_REVERSION) 卻想在頂部高檔區 (range_pos >= 74% 或 BB >= 72%) 追多 (`BUY`)：
-         系統不會死板卡住，而是自己判斷『現在買在天花板沒肉吃，反而向下回歸均線空間超大』，直接智慧變通反轉為逢高做空 (`SELL`) 或等待回踩！
-       - 若在震盪盤卻想在底部地板區 (range_pos <= 26% 或 BB <= 28%) 追空 (`SELL`)：
-         系統自己判斷『現在空在地板太危險，反而向上反彈空間超大』，直接智慧變通為逢低抄底做多 (`BUY`) 或等待反彈！
-    2. 【特徵指紋記憶比對】：
-       - 檢查當下『方向 + 盤勢體質 + 高低位置』指紋是否在歷史記憶中屬於高敗率陷阱。
+    🧠 v11.2 智慧交易員進場評估器：
+    加入防軋空盾 (anti_squeeze_block_short)、防接刀盾 (anti_knife_block_long) 與新聞高波動警戒！
     """
     m_info       = market_data.get(sym, {})
     regime_type  = m_info.get("market_regime_type", "RANGE_MEAN_REVERSION")
@@ -565,7 +619,16 @@ def evaluate_room_to_run_and_pattern(sym, action, current_price, market_data):
     wick_sig     = m_info.get("wick_signal", "NONE")
     macro_1h     = m_info.get("macro_structure_1h", "BEAR_MARKET_REBOUND")
 
-    # 1. 短線冷卻檢查 (避免同一根 K 線原地重複刷單耗損手續費)
+    anti_squeeze = bool(m_info.get("anti_squeeze_block_short", False))
+    anti_knife   = bool(m_info.get("anti_knife_block_long", False))
+    bear_rev     = bool(m_info.get("bear_reversal_confirmed", False))
+    bull_rev     = bool(m_info.get("bull_reversal_confirmed", False))
+    news_alert   = bool(NEWS_RADAR_CACHE.get("high_alert", False))
+
+    if action not in ["BUY", "SELL"]:
+        return False, action, f"⏸️ {sym} 當前訊號為觀望 ({action})"
+
+    # 1. 短線冷卻檢查
     exit_info = AI_MEMORY_BANK.get("last_exit_info", {}).get(sym)
     if exit_info:
         now_ms = int(time.time() * 1000)
@@ -576,25 +639,28 @@ def evaluate_room_to_run_and_pattern(sym, action, current_price, market_data):
         if last_pnl >= 0 and elapsed_mins < WIN_COOLDOWN_MINUTES:
             return False, action, f"⏳ {sym} 剛止盈 ({int(elapsed_mins)}分前)，等待 {WIN_COOLDOWN_MINUTES} 分鐘換線觀察"
 
-    # 2. 震盪盤 (RANGE_MEAN_REVERSION) 空間盈虧比與高低位智慧變通
+    # 🛡️ 2. v11.2 最高優先權：防軋空硬鎖 & 防接刀硬鎖
+    if action == "SELL" and anti_squeeze:
+        return False, action, f"🛡️ [防軋空盾攔截] {sym} 處於強勢多頭/連紅推升或 BB:{bb_pos}% 未轉弱，嚴禁逆勢摸頂做空！"
+    if action == "BUY" and anti_knife:
+        return False, action, f"🛡️ [防接刀盾攔截] {sym} 處於強勢空頭/連黑急殺或 BB:{bb_pos}% 未止跌，嚴禁盲目抄底接刀！"
+
+    # 3. 震盪盤空間盈虧比與高低位智慧變通（必須同時通過防軋空/防接刀與轉弱確認）
     if regime_type == "RANGE_MEAN_REVERSION":
-        # 情況 A：AI 或訊號想在「高檔天花板區」追多 (這就是 11/18 連輸 4 筆的元兇！)
         if action == "BUY" and (zone_bucket == "HIGH_ZONE" or bb_pos >= 68.0 or range_pos >= 72.0 or rsi_val >= 64.0):
-            if dn_room >= 1.2 and (rsi_val >= 60.0 or wick_sig == "BEAR_PINBAR_REVERSAL" or macro_1h in ["TRUE_BEAR_TREND", "BEAR_MARKET_REBOUND"]):
-                return True, "SELL", f"🔄 [智慧變通：拒絕山頂追多➔反手逢高做空] {sym} 現處12h高檔壓力區(BB:{bb_pos}%/區間:{range_pos}%)，上方僅剩 {up_room}% 而下方空間達 {dn_room}%！"
-            return False, action, f"⏸️ [空間不足拒絕追高] {sym} 現處高檔區(BB:{bb_pos}%)，距離上方天花板僅 {up_room}%，等待回踩支撐再買！"
+            if not anti_squeeze and bear_rev and not news_alert and dn_room >= 1.2 and (rsi_val >= 60.0 or wick_sig == "BEAR_PINBAR_REVERSAL" or macro_1h in ["TRUE_BEAR_TREND", "BEAR_MARKET_REBOUND"]):
+                return True, "SELL", f"🔄 [智慧變通：受阻轉弱➔逢高做空] {sym} 處於12h壓力區(BB:{bb_pos}%)且已出現轉弱訊號，下方空間 {dn_room}% > 上方 {up_room}%！"
+            return False, action, f"⏸️ [高檔防追高/防軋空觀望] {sym} 處於高檔區(BB:{bb_pos}%)，上方僅剩 {up_room}% 且未達安全轉空條件，先觀望！"
 
-        # 情況 B：AI 或訊號想在「低檔地板區」追空 (這就是 11/15 早上地板追空被反彈雙巴的元兇！)
         if action == "SELL" and (zone_bucket == "LOW_ZONE" or bb_pos <= 32.0 or range_pos <= 28.0 or rsi_val <= 36.0):
-            if up_room >= 1.2 and (rsi_val <= 40.0 or wick_sig == "BULL_PINBAR_REVERSAL" or macro_1h in ["TRUE_BULL_TREND", "BULL_MARKET_PULLBACK"]):
-                return True, "BUY", f"🔄 [智慧變通：拒絕地板追空➔反手逢低抄底] {sym} 現處12h低檔支撐區(BB:{bb_pos}%/區間:{range_pos}%)，下方僅剩 {dn_room}% 而上方反彈空間達 {up_room}%！"
-            return False, action, f"⏸️ [空間不足拒絕殺低] {sym} 現處低檔區(BB:{bb_pos}%)，距離下方地板僅 {dn_room}%，等待反彈壓力位再空！"
+            if not anti_knife and bull_rev and not news_alert and up_room >= 1.2 and (rsi_val <= 40.0 or wick_sig == "BULL_PINBAR_REVERSAL" or macro_1h in ["TRUE_BULL_TREND", "BULL_MARKET_PULLBACK"]):
+                return True, "BUY", f"🔄 [智慧變通：止跌反轉➔逢低抄底] {sym} 處於12h支撐區(BB:{bb_pos}%)且已止跌，上方反彈空間達 {up_room}%！"
+            return False, action, f"⏸️ [低檔防殺低/防接刀觀望] {sym} 處於低檔區(BB:{bb_pos}%)，下方僅剩 {dn_room}% 且未達安全轉多條件，先觀望！"
 
-        # 情況 C：在空頭死貓跳反彈至 MA60 壓力區時，若空間比不利於做多，優先逢高做空
-        if action == "BUY" and macro_1h == "BEAR_MARKET_REBOUND" and bb_pos >= 55.0 and dn_room > up_room:
-            return True, "SELL", f"🔄 [看透死貓跳反彈➔逢高布空] {sym} 處於 1H MA60 下方之空頭反彈高點(BB:{bb_pos}%)，向下空間({dn_room}%)優於向上({up_room}%)！"
+        if action == "BUY" and macro_1h == "BEAR_MARKET_REBOUND" and bb_pos >= 55.0 and dn_room > up_room and not anti_squeeze and bear_rev:
+            return True, "SELL", f"🔄 [看透死貓跳反彈➔逢高布空] {sym} 處於 1H MA60 下方反彈受阻(BB:{bb_pos}%)，向下空間({dn_room}%)優於向上({up_room}%)！"
 
-    # 3. 檢查特徵指紋記憶庫：若該『動作 + 體質 + 位置』在歷史上連敗且期望值為負，自動攔截或反轉
+    # 4. 檢查特徵指紋記憶庫
     side_str = "LONG" if action == "BUY" else "SHORT"
     pat_key  = f"{side_str}_in_{regime_type}_at_{zone_bucket}"
     pat_stat = AI_MEMORY_BANK.get("pattern_stats", {}).get(pat_key, {})
@@ -604,15 +670,17 @@ def evaluate_room_to_run_and_pattern(sym, action, current_price, market_data):
         if pwr < 30.0 and pat_stat.get("net_pnl", 0.0) < -1000:
             return False, action, f"🧠 [記憶庫型態攔截] 特徵指紋『{pat_key}』歷史勝率僅 {pwr:.0f}%，拒絕在同一陷阱重複跌倒！"
 
-    return True, action, f"✅ [空間與體質核驗通過] 體質:{regime_type} | 位置:{zone_bucket}(BB:{bb_pos}%) | 向上空間:{up_room}% / 向下空間:{dn_room}%"
+    return True, action, f"✅ [v11.2 防軋空與空間核驗通過] 體質:{regime_type} | 位置:{zone_bucket}(BB:{bb_pos}%) | 向上:{up_room}% / 向下:{dn_room}%"
 
 
 def build_fallback_plan(market_data):
     half_a, half_b = [], []
     for sym in WHITELIST_SYMBOLS:
         info        = market_data.get(sym, {})
-        act         = info.get("tactical_signal", "BUY")
-        desc        = info.get("tactical_desc", "依空間盈虧比與布林位置擇優高拋低吸")
+        act         = info.get("tactical_signal", "HOLD")
+        if act not in ["BUY", "SELL"]:
+            continue
+        desc        = info.get("tactical_desc", "依空間盈虧比與防軋空結構擇優出擊")
         safe_lev    = int(info.get("max_safe_leverage", 4))
         tp_v        = float(info.get("anchored_tp_pct", 3.0))
         sl_v        = float(info.get("anchored_sl_pct", 1.8))
@@ -630,7 +698,7 @@ def build_fallback_plan(market_data):
         })
     return {
         "overall_confidence": 93,
-        "overall_summary": "啟動 v11.1 智慧體質自適應引擎：依震盪/趨勢體質與 12h 空間盈虧比動態切換高拋低吸與順勢追擊。",
+        "overall_summary": f"v11.2 防軋空盾＋20%火力＋手續費保本鎖運行中（{NEWS_RADAR_CACHE.get('alert_note', '新聞監控中')}）。",
         "black_swan_detected": False,
         "sniper_order": None,
         "half_a_orders": half_a[:3],
@@ -646,43 +714,38 @@ def ask_gemini_quant_brain(market_data, news_headlines, current_held_symbols, mi
     client = genai.Client(api_key=gemini_key)
 
     prompt = f"""
-    你是 QuantGuard AI v11.1 頂級對沖基金交易大腦。你的任務是「看透當下市場體質，靈活變通賺取穩定收益」，絕不死板追高殺低！
+    你是 QuantGuard AI v11.2 頂級對沖基金交易大腦。你的任務是「看透當下市場體質、嚴格防範軋空與急殺，靈活變通賺取穩定收益」！
 
-    請根據每個幣種的三大核心維度做出最聰明的判斷：
-    1. 【看懂盤勢體質 (`market_regime_type` & `macro_structure_1h`)】：
-       - 當 `market_regime_type == "RANGE_MEAN_REVERSION"`（無量箱型震盪盤，佔 75% 時間）：
-         此時均線交叉都是假突破陷阱！請採**【高拋低吸（Mean Reversion）】**：
-         👉 價格位於低檔支撐區（`bb_pos_pct < 38%` 或 `range_pos_pct < 32%` 或出現 `BULL_PINBAR_REVERSAL`）且 `upside_room_pct > downside_room_pct` 時 ➔ 果斷抄底做多 (`"BUY"`)！
-         👉 價格位於高檔壓力區（`bb_pos_pct > 62%` 或 `range_pos_pct > 68%` 或 `macro_structure_1h == "BEAR_MARKET_REBOUND"`）且 `downside_room_pct > upside_room_pct` 時 ➔ 果斷逢高做空 (`"SELL"`)！
-       - 當 `market_regime_type == "TREND_BREAKOUT"`（成交量爆發 > 1.35倍 + 布林帶開口放大）：
-         代表真單邊行情啟動，請順應突破方向追擊大波段！
-    2. 【看懂頭頂天花板 vs 腳底地板空間比 (`upside_room_pct` vs `downside_room_pct`)】：
-       - 做多 (`BUY`) 前必須確認距離 12h 天花板還有足夠空間（避免買在山頂當韭菜）；做空 (`SELL`) 前必須確認距離 12h 地板還有足夠空間（避免空在地板被反彈軋爆）。可參考系統預先算好的 `tactical_signal` 與 `tactical_desc`。
-    3. 【從特徵指紋記憶庫學習 (`pattern_stats`)】：
-       - 觀察哪些『環境特徵指紋 (如 LONG_in_RANGE_at_HIGH_ZONE)』在歷史上虧損，主動避開錯誤型態、選擇正期望值型態！
+    請根據每個幣種的核心維度做出最聰明的判斷：
+1. 【防軋空與防接刀鐵律】：
+  - 若 `anti_squeeze_block_short == true`，代表正在強勢拉升或處於多頭結構，**嚴禁輸出 `"SELL"`**（請選 `"BUY"` 或 `"HOLD"`）！
+  - 若 `anti_knife_block_long == true`，代表正在強勢急殺或處於空頭結構，**嚴禁輸出 `"BUY"`**（請選 `"SELL"` 或 `"HOLD"`）！
+2. 【看懂盤勢體質 (`market_regime_type` & `macro_structure_1h`)】：
+  - 震盪盤 (`RANGE_MEAN_REVERSION`) 須等出現轉弱/止跌確認 (`bear_reversal_confirmed` / `bull_reversal_confirmed`) 才做高拋低吸。
+  - 突破盤 (`TREND_BREAKOUT`) 順勢追擊大波段，絕不逆勢摸頂做空！
+3. 【新聞高波動警戒】：當前狀態為 `{NEWS_RADAR_CACHE.get('alert_note', '平穩')}`，遇重大消息勿盲目逆勢。
 
-    【1. 三大幣種即時多維度體質、12h天地空間比與戰術建議】：
+    【1. 三大幣種即時多維度體質、防軋空狀態與 12h 空間比】：
     {json.dumps(market_data, ensure_ascii=False)}
 
-    【2. 🧠 AI 特徵指紋記憶庫 (`pattern_stats` 與 `lessons_learned`)】：
-    - 型態勝敗統計：{json.dumps(AI_MEMORY_BANK.get("pattern_stats", {}), ensure_ascii=False)}
-    - 提煉法則：{json.dumps(AI_MEMORY_BANK.get("lessons_learned", []), ensure_ascii=False)}
+    【2. 🧠 AI 特徵指紋記憶庫】：
+- 型態勝敗統計：{json.dumps(AI_MEMORY_BANK.get("pattern_stats", {}), ensure_ascii=False)}
+- 提煉法則：{json.dumps(AI_MEMORY_BANK.get("lessons_learned", []), ensure_ascii=False)}
 
     【3. 最新國際新聞】：{json.dumps(news_headlines, ensure_ascii=False)}
     【4. 目前持有倉位】：{json.dumps(current_held_symbols, ensure_ascii=False)}
 
-    請嚴格只輸出 JSON 格式（`leverage` 請設為 `3` ~ `5` 倍以提供寬裕耐震空間）：
+    請嚴格只輸出 JSON 格式（`leverage` 請設為 `3` ~ `5` 倍）：
     {{
       "overall_confidence": 94,
-      "overall_summary": "繁體中文65字內：說明目前盤勢屬於震盪或趨勢體質、各幣種天地空間比，以及為何採取逢低買進或逢高做空",
+      "overall_summary": "繁體中文65字內：說明目前盤勢體質、新聞警戒狀態與防軋空/順勢策略方向",
       "black_swan_detected": false,
       "sniper_order": null,
       "half_a_orders": [
-        {{"symbol": "BTC/USDT:USDT", "action": "SELL", "weight": 1.6, "leverage": 4, "tp_pct": 3.0, "sl_pct": 1.8, "reason": "【體質與空間比判斷】..."}},
-        {{"symbol": "ETH/USDT:USDT", "action": "SELL", "weight": 1.4, "leverage": 4, "tp_pct": 3.2, "sl_pct": 1.8, "reason": "【體質與空間比判斷】..."}}
+        {{"symbol": "BTC/USDT:USDT", "action": "BUY", "weight": 1.6, "leverage": 4, "tp_pct": 3.0, "sl_pct": 1.8, "reason": "【體質與防軋空判斷】..."}}
       ],
       "half_b_orders": [
-        {{"symbol": "SOL/USDT:USDT", "action": "BUY", "weight": 1.3, "leverage": 4, "tp_pct": 3.2, "sl_pct": 1.8, "reason": "【體質與空間比判斷】..."}}
+        {{"symbol": "SOL/USDT:USDT", "action": "BUY", "weight": 1.3, "leverage": 4, "tp_pct": 3.2, "sl_pct": 1.8, "reason": "【體質與防軋空判斷】..."}}
       ]
     }}
     """
@@ -710,7 +773,7 @@ def calculate_safe_contracts(exchange, symbol, desired_margin_usdt, leverage, pr
         current_free = desired_margin_usdt
 
     max_allowed_margin = total_equity * MAX_SINGLE_MARGIN_RATIO if total_equity > 0 else desired_margin_usdt
-    safe_margin = min(desired_margin_usdt, max_allowed_margin, current_free * 0.80)
+    safe_margin = min(desired_margin_usdt, max_allowed_margin, current_free * 0.85)
     if safe_margin < 15.0 or price <= 0:
         return 0, 0.0
 
@@ -724,8 +787,8 @@ def calculate_safe_contracts(exchange, symbol, desired_margin_usdt, leverage, pr
     contracts = max(1, raw_contracts)
 
     required_margin = (contracts * notional_per_contract) / leverage
-    if required_margin > current_free * 0.85:
-        contracts = int((current_free * 0.80 * leverage) // notional_per_contract)
+    if required_margin > current_free * 0.88:
+        contracts = int((current_free * 0.82 * leverage) // notional_per_contract)
 
     actual_margin = round((contracts * notional_per_contract) / leverage, 2)
     return max(0, contracts), actual_margin
@@ -873,7 +936,7 @@ def fast_track_smart_harvest_and_hedge(exchange, active_positions, market_data, 
         lev_num   = max(1.0, float(str(pos.get('leverage', '4x')).replace('x', '')))
         tp_pct    = float(pos.get('tp_pct', 3.0))
         pos_key   = f"{sym}_{side}"
-        cur_stage = int(POSITION_STAGE_MAP.get(pos_key, 0))
+        cur_stage = float(POSITION_STAGE_MAP.get(pos_key, 0.0))
 
         if entry_px <= 0 or contracts <= 0:
             continue
@@ -889,8 +952,8 @@ def fast_track_smart_harvest_and_hedge(exchange, active_positions, market_data, 
 
         base_tp_px = round(entry_px * (1 + tp_pct / 100.0) if side == 'LONG' else entry_px * (1 - tp_pct / 100.0), 2)
 
-        # 🔥 2. 階段三：含槓桿 ROI >= +18.0% ➔ 剩餘 60% 倉位止損鎖在「含槓桿 ROI +12.0%」，止盈外推 1.4 倍！
-        if roi_pct >= STAGE3_TRIGGER_ROI_PCT and cur_stage < 3:
+        # 🔥 2. 階段三：含槓桿 ROI >= +18.0%
+        if roi_pct >= STAGE3_TRIGGER_ROI_PCT and cur_stage < 3.0:
             lock_s3_sl = roi_to_price(entry_px, side, STAGE3_LOCK_ROI_PCT, lev_num)
             ext_tp_px  = round(entry_px * (1 + (tp_pct * 1.4) / 100.0) if side == 'LONG' else entry_px * (1 - (tp_pct * 1.4) / 100.0), 2)
             update_position_tpsl_on_okx(exchange, sym, side, contracts, ext_tp_px, lock_s3_sl)
@@ -901,8 +964,8 @@ def fast_track_smart_harvest_and_hedge(exchange, active_positions, market_data, 
             pos['reason']        = f"🔥【含槓桿ROI滿+{STAGE3_TRIGGER_ROI_PCT}%】60%主力尾倉止損已鎖定於含槓桿 ROI +{STAGE3_LOCK_ROI_PCT}% (${lock_s3_sl})！"
             state_changed = True
 
-        # 🚀 3. 階段二：含槓桿 ROI >= +12.0% ➔ 剩餘 60% 倉位止損鎖在「含槓桿 ROI +6.0%」！
-        elif roi_pct >= STAGE2_TRIGGER_ROI_PCT and cur_stage < 2:
+        # 🚀 3. 階段二：含槓桿 ROI >= +12.0%
+        elif roi_pct >= STAGE2_TRIGGER_ROI_PCT and cur_stage < 2.0:
             lock_s2_sl = roi_to_price(entry_px, side, STAGE2_LOCK_ROI_PCT, lev_num)
             update_position_tpsl_on_okx(exchange, sym, side, contracts, base_tp_px, lock_s2_sl)
             POSITION_STAGE_MAP[pos_key] = 2
@@ -918,13 +981,13 @@ def fast_track_smart_harvest_and_hedge(exchange, active_positions, market_data, 
                 color=5763719
             )
 
-        # 💰 4. 階段一：含槓桿 ROI >= +6.8% ➔ 先平 40% 倉位落袋現金！剩餘 60% 主力倉止損移至「含槓桿 ROI +1.5%」保底！
-        elif roi_pct >= STAGE1_TRIGGER_ROI_PCT and cur_stage < 1:
+        # 💰 4. 階段一：含槓桿 ROI >= +6.8% ➔ 先平 40% 落袋！剩餘 60% 止損鎖 +1.8%
+        elif roi_pct >= STAGE1_TRIGGER_ROI_PCT and cur_stage < 1.0:
             close_qty  = max(1, int(round(contracts * STAGE1_CLOSE_RATIO)))
             remain_qty = max(1, contracts - close_qty)
             lock_s1_sl = roi_to_price(entry_px, side, STAGE1_LOCK_ROI_PCT, lev_num)
 
-            print(f"💰 [v11.1 階段一觸發：ROI +{roi_pct:.2f}% >= +{STAGE1_TRIGGER_ROI_PCT}%] {sym} ({side}) 平 40% 倉位 ({close_qty}張) 落袋！剩餘 60% ({remain_qty}張) 鎖在 +{STAGE1_LOCK_ROI_PCT}% ROI (${lock_s1_sl})！", flush=True)
+            print(f"💰 [v11.2 階段一觸發：ROI +{roi_pct:.2f}% >= +{STAGE1_TRIGGER_ROI_PCT}%] {sym} ({side}) 平 40% 倉位 ({close_qty}張) 落袋！剩餘 60% ({remain_qty}張) 鎖在 +{STAGE1_LOCK_ROI_PCT}% ROI (${lock_s1_sl})！", flush=True)
             if contracts >= 3:
                 close_partial_or_full_position(exchange, sym, side, close_qty, "含槓桿ROI滿+6.8%平40%倉落袋")
             update_position_tpsl_on_okx(exchange, sym, side, remain_qty, base_tp_px, lock_s1_sl)
@@ -934,7 +997,7 @@ def fast_track_smart_harvest_and_hedge(exchange, active_positions, market_data, 
             pos['sl_trigger_px'] = lock_s1_sl
             pos['tp_trigger_px'] = base_tp_px
             pos['stage_badge']   = f"💰 已平40%落袋 & 60%主力鎖+{STAGE1_LOCK_ROI_PCT}%ROI"
-            pos['reason']        = f"💰【已落袋40%倉位】剩餘 60% ({remain_qty}張) 止損鎖於 +{STAGE1_LOCK_ROI_PCT}% ROI (${lock_s1_sl})，留 5.3% 空間衝大波段！"
+            pos['reason']        = f"💰【已落袋40%倉位】剩餘 60% ({remain_qty}張) 止損鎖於 +{STAGE1_LOCK_ROI_PCT}% ROI (${lock_s1_sl})，留 5.0% 空間衝大波段！"
             state_changed = True
 
             send_discord_alert(
@@ -943,7 +1006,27 @@ def fast_track_smart_harvest_and_hedge(exchange, active_positions, market_data, 
                 color=3066993
             )
 
-        # 🛡️ 5. 孤兒單防裸奔自癒檢查
+        # 🛡️ 5. v11.2 新增（Stage 0.5）：含槓桿 ROI >= +3.2% ➔ 止損直接上移至「覆蓋本金 + OKX雙邊手續費 + 0.7%」！
+        elif roi_pct >= BREAKEVEN_TRIGGER_ROI_PCT and cur_stage < 0.5:
+            be_lock_roi = calc_breakeven_lock_roi(lev_num)
+            lock_be_sl  = roi_to_price(entry_px, side, be_lock_roi, lev_num)
+            print(f"🛡️ [v11.2 保本+手續費護鎖觸發：ROI +{roi_pct:.2f}% >= +{BREAKEVEN_TRIGGER_ROI_PCT}%] {sym} ({side}) 止損上移至 +{be_lock_roi}% ROI (${lock_be_sl})！", flush=True)
+            update_position_tpsl_on_okx(exchange, sym, side, contracts, base_tp_px, lock_be_sl)
+
+            POSITION_STAGE_MAP[pos_key] = 0.5
+            pos['sl_trigger_px'] = lock_be_sl
+            pos['tp_trigger_px'] = base_tp_px
+            pos['stage_badge']   = f"🛡️ 已鎖本金+手續費 (+{be_lock_roi}%ROI)"
+            pos['reason']        = f"🛡️【已啟動保本+OKX手續費護鎖】止損已上移至 +{be_lock_roi}% ROI (${lock_be_sl})，覆蓋雙邊手續費並保留衝刺空間！"
+            state_changed = True
+
+            send_discord_alert(
+                title=f"🛡️ 保本＋手續費護鎖啟動 (+{be_lock_roi}% ROI) | {sym}",
+                description=f"**{sym} ({side} {int(lev_num)}x)** 浮盈已達 **+{roi_pct:.2f}% ROI**！\n已自動將 OKX 止損單從 `-7.5%` 上移至 **${lock_be_sl:,.2f} (+{be_lock_roi}% ROI，已覆蓋本金與雙邊手續費)**！",
+                color=3447003
+            )
+
+        # 🛡️ 6. 孤兒單防裸奔自癒檢查
         else:
             if not has_pending_tpsl_algo_order(exchange, sym):
                 cur_sl_px = float(pos.get('sl_trigger_px') or roi_to_price(entry_px, side, -MAX_SL_ROI_TRIGGER_PCT, lev_num))
@@ -955,8 +1038,8 @@ def fast_track_smart_harvest_and_hedge(exchange, active_positions, market_data, 
 
 def execute_pool_orders(exchange, pool_name, orders_list, pool_budget_usdt, market_data, reason_lookup, held_symbols_map, total_equity, max_allowed_active_positions):
     """
-    🌟 v11.1 智慧自適應建倉引擎：
-    結合『盤勢體質識別 (震盪高拋低吸 vs 趨勢帶量突破)』、『12h 天花板與地板空間比試算』與『特徵指紋記憶庫』！
+    🌟 v11.2 智慧自適應建倉引擎：
+    單筆目標保證金直接錨定總資產 20% (不再被稀釋成 10%)，同時受防軋空盾與並發熱度鎖嚴格保護！
     """
     valid_orders = [o for o in orders_list[:MAX_ORDERS_PER_HALF] if str(o.get("action", "")).upper() in ["BUY", "SELL"]]
     if not valid_orders or pool_budget_usdt < 30:
@@ -965,18 +1048,7 @@ def execute_pool_orders(exchange, pool_name, orders_list, pool_budget_usdt, mark
     any_placed = False
     consec_losses = AI_MEMORY_BANK.get("consecutive_losses", {})
 
-    adjusted_weights = []
-    for o in valid_orders:
-        s_sym = o.get("symbol", "ETH/USDT:USDT")
-        w = max(0.5, min(3.0, float(o.get("weight", 1.0))))
-        # 若剛吃過敗仗，先以 65% 輕倉試水溫，打贏一筆立刻恢復 100% 滿火力
-        if consec_losses.get(s_sym, 0) >= 1:
-            w *= 0.65
-        adjusted_weights.append(round(w, 2))
-
-    total_weight = sum(adjusted_weights) if sum(adjusted_weights) > 0 else 1.0
-
-    for idx, ord_spec in enumerate(valid_orders, start=1):
+    for ord_spec in valid_orders:
         sym = ord_spec.get("symbol", "ETH/USDT:USDT")
         if sym not in WHITELIST_SYMBOLS:
             sym = "ETH/USDT:USDT"
@@ -987,26 +1059,24 @@ def execute_pool_orders(exchange, pool_name, orders_list, pool_budget_usdt, mark
         zone_bucket = m_info.get("entry_zone_bucket", "MID_ZONE")
         rsi_val     = float(m_info.get("rsi_14", 50.0))
 
-        raw_action    = str(ord_spec.get("action", m_info.get("tactical_signal", "BUY"))).upper()
-        weight        = adjusted_weights[idx - 1]
+        raw_action    = str(ord_spec.get("action", m_info.get("tactical_signal", "HOLD"))).upper()
         current_price = float(m_info.get("last_price", 0))
         if current_price <= 0:
             continue
 
-        # 🧠 核心智慧核驗：試算頭頂天花板 vs 腳底地板空間比，若在震盪頂部買多或地板追空則自動變通反轉或等待！
+        # 🧠 核心智慧核驗（含防軋空盾、防接刀盾與空間比）
         can_enter, final_action, eval_msg = evaluate_room_to_run_and_pattern(sym, raw_action, current_price, market_data)
         print(f"   [{sym}] {eval_msg}", flush=True)
         if not can_enter:
             continue
 
-        # 採用 3x ~ 5x 寬耐震槓桿，避免被 1.2% 的小插針洗出場
         ai_lev   = int(ord_spec.get("leverage", safe_lev))
         leverage = max(3, min(5, min(ai_lev, safe_lev)))
 
         sl_pct = round(MAX_SL_ROI_TRIGGER_PCT / float(leverage), 2)
         tp_pct = round(max(2.6, min(4.2, DEFAULT_TARGET_TP_ROI / float(leverage))), 2)
 
-        mode_tag = f"🧠v11.1({regime_type[:5]}|{zone_bucket}|止損-{round(sl_pct*leverage,1)}%ROI)"
+        mode_tag = f"🧠v11.2({regime_type[:5]}|{zone_bucket}|20%倉|止損-{round(sl_pct*leverage,1)}%ROI)"
         clean_ai_reason = str(ord_spec.get("reason", m_info.get("tactical_desc", "")))
         reason = f"[{mode_tag}] {eval_msg} | {clean_ai_reason}"
 
@@ -1022,7 +1092,10 @@ def execute_pool_orders(exchange, pool_name, orders_list, pool_budget_usdt, mark
             print(f"🛡️ [投資組合熱度鎖] 目前已持有 {len(held_symbols_map)} 筆且尚有倉位未達保底線，暫緩開立第 3 筆 ({sym})！", flush=True)
             continue
 
-        desired_margin = round(pool_budget_usdt * (weight / total_weight), 2)
+        # 🔥 v11.2 單筆目標保證金錨定總資產 20%（若該幣種剛連虧則略降為 15% 試水溫）
+        target_ratio = TARGET_SINGLE_MARGIN_RATIO * (0.75 if consec_losses.get(sym, 0) >= 1 else 1.0)
+        desired_margin = round(min(total_equity * target_ratio, pool_budget_usdt), 2)
+
         contracts, safe_margin = calculate_safe_contracts(exchange, sym, desired_margin, leverage, current_price, total_equity)
         if contracts <= 0:
             continue
@@ -1277,7 +1350,7 @@ def run_single_cycle(exchange, cycle_num=1):
         if old_k not in active_pos_keys:
             POSITION_STAGE_MAP.pop(old_k, None)
 
-    unprotected_stage0_count = sum(1 for k in active_pos_keys if int(POSITION_STAGE_MAP.get(k, 0)) == 0)
+    unprotected_stage0_count = sum(1 for k in active_pos_keys if float(POSITION_STAGE_MAP.get(k, 0.0)) < 0.5)
     max_allowed_active_positions = 2 if unprotected_stage0_count >= 1 else 3
 
     market_data = fetch_whitelist_market_data(exchange)
@@ -1288,6 +1361,8 @@ def run_single_cycle(exchange, cycle_num=1):
         for h in prelim_history[:5]
     ]
 
+    news_list = fetch_live_crypto_news()
+
     should_call_ai = (
         LAST_AI_PLAN_CACHE is None
         or len(held_symbols_map) < max_allowed_active_positions
@@ -1295,34 +1370,29 @@ def run_single_cycle(exchange, cycle_num=1):
     )
 
     if should_call_ai:
-        news_list = fetch_live_crypto_news()
         LAST_AI_PLAN_CACHE = ask_gemini_quant_brain(
             market_data, news_list, held_symbols_map, mistake_memory
         )
         print(f"🧠 [AI 智慧決策更新]: {LAST_AI_PLAN_CACHE.get('overall_summary')}", flush=True)
     else:
-        news_list = ["快軌 20 秒監控中 (v11.1：震盪/趨勢體質自適應 × 12h天地空間比試算 × 特徵指紋記憶)"]
         print(f"⚡ [快軌盯盤] 總資產: ${real_usdt:,.2f} | 今日已實現: ${perf_stats['today_realized_pnl']:+,.2f} | 本期累計: ${perf_stats['all_time_realized_pnl']:+,.2f}", flush=True)
 
     ai_plan = LAST_AI_PLAN_CACHE or build_fallback_plan(market_data)
 
     used_margin_now = max(0.0, real_usdt - free_usdt)
     normal_pool_target = real_usdt * POOL_NORMAL_RATIO
-    remaining_normal_budget = max(0.0, min(free_usdt * 0.78, normal_pool_target - used_margin_now))
-
-    half_a_budget = round(remaining_normal_budget / 2.0, 2)
-    half_b_budget = round(remaining_normal_budget / 2.0, 2)
+    remaining_normal_budget = max(0.0, min(free_usdt * 0.85, normal_pool_target - used_margin_now))
 
     reason_lookup = {}
     order_placed = False
     if remaining_normal_budget >= 80 and len(held_symbols_map) < max_allowed_active_positions:
-        p1 = execute_pool_orders(exchange, "Half-A 體質自適應池 (40%)", ai_plan.get("half_a_orders", []), half_a_budget, market_data, reason_lookup, held_symbols_map, real_usdt, max_allowed_active_positions)
-        p2 = execute_pool_orders(exchange, "Half-B 空間盈虧比池 (40%)", ai_plan.get("half_b_orders", []), half_b_budget, market_data, reason_lookup, held_symbols_map, real_usdt, max_allowed_active_positions)
+        p1 = execute_pool_orders(exchange, "Half-A 防軋空主力池 (20%倉)", ai_plan.get("half_a_orders", []), remaining_normal_budget, market_data, reason_lookup, held_symbols_map, real_usdt, max_allowed_active_positions)
+        p2 = execute_pool_orders(exchange, "Half-B 空間優選池 (20%倉)", ai_plan.get("half_b_orders", []), remaining_normal_budget, market_data, reason_lookup, held_symbols_map, real_usdt, max_allowed_active_positions)
         order_placed = p1 or p2
 
         if not order_placed and len(held_symbols_map) == 0:
             fb_plan = build_fallback_plan(market_data)
-            p3 = execute_pool_orders(exchange, "Half-A 空間優選補倉池 (40%)", fb_plan.get("half_a_orders", []), half_a_budget, market_data, reason_lookup, held_symbols_map, real_usdt, max_allowed_active_positions)
+            p3 = execute_pool_orders(exchange, "Half-A 空間優選補倉池 (20%倉)", fb_plan.get("half_a_orders", []), remaining_normal_budget, market_data, reason_lookup, held_symbols_map, real_usdt, max_allowed_active_positions)
             order_placed = order_placed or p3
 
     balance   = exchange.fetch_balance()
@@ -1360,21 +1430,25 @@ def run_single_cycle(exchange, cycle_num=1):
                 sl_p_val = max_sl_p
 
                 pos_key   = f"{sym}_{side_u}"
-                cur_stage = int(POSITION_STAGE_MAP.get(pos_key, 0))
+                cur_stage = float(POSITION_STAGE_MAP.get(pos_key, 0.0))
                 regime_t  = m_info.get("market_regime_type", "RANGE")
+                be_roi    = calc_breakeven_lock_roi(lev_num)
 
-                if cur_stage == 3:
+                if cur_stage >= 3.0:
                     sl_trig = roi_to_price(entry_px, side_u, STAGE3_LOCK_ROI_PCT, lev_num)
                     stage_badge = f"🔥 尾倉鎖 +{STAGE3_LOCK_ROI_PCT}% ROI"
-                elif cur_stage == 2:
+                elif cur_stage >= 2.0:
                     sl_trig = roi_to_price(entry_px, side_u, STAGE2_LOCK_ROI_PCT, lev_num)
                     stage_badge = f"🚀 尾倉鎖 +{STAGE2_LOCK_ROI_PCT}% ROI"
-                elif cur_stage == 1:
+                elif cur_stage >= 1.0:
                     sl_trig = roi_to_price(entry_px, side_u, STAGE1_LOCK_ROI_PCT, lev_num)
                     stage_badge = f"💰 已平40% & 60%主力鎖+{STAGE1_LOCK_ROI_PCT}%ROI"
+                elif cur_stage >= 0.5:
+                    sl_trig = roi_to_price(entry_px, side_u, be_roi, lev_num)
+                    stage_badge = f"🛡️ 已鎖本金+手續費 (+{be_roi}%ROI)"
                 else:
                     sl_trig = roi_to_price(entry_px, side_u, -MAX_SL_ROI_TRIGGER_PCT, lev_num)
-                    stage_badge = f"🧠 滿+{STAGE1_TRIGGER_ROI_PCT}%平40%鎖保底 (寬耐震-{MAX_SL_ROI_TRIGGER_PCT}%ROI)"
+                    stage_badge = f"🛡️ 滿+{BREAKEVEN_TRIGGER_ROI_PCT}%鎖手續費 / +{STAGE1_TRIGGER_ROI_PCT}%平40%"
 
                 tp_trig = round(entry_px * (1 + tp_p_val / 100.0) if side_u == 'LONG' else entry_px * (1 - tp_p_val / 100.0), 2)
 
@@ -1395,7 +1469,7 @@ def run_single_cycle(exchange, cycle_num=1):
                     "sl_trigger_px": sl_trig,
                     "stage": cur_stage,
                     "stage_badge": stage_badge,
-                    "reason": snap_info.get("reason") or r_info.get("reason") or f"體質:{regime_t} | 空間比優選 | 滿+{STAGE1_TRIGGER_ROI_PCT}%平40%鎖+{STAGE1_LOCK_ROI_PCT}%保底"
+                    "reason": snap_info.get("reason") or r_info.get("reason") or f"體質:{regime_t} | 20%火力 | 滿+{BREAKEVEN_TRIGGER_ROI_PCT}%鎖手續費"
                 }
                 active_positions.append(pos_obj)
     except Exception as e:
@@ -1429,7 +1503,7 @@ def run_single_cycle(exchange, cycle_num=1):
         "ai_broadcast_signals": {
             "updated_at": datetime.now(TW_TZ).strftime("%H:%M:%S"),
             "confidence": ai_plan.get("overall_confidence", 94),
-            "summary": ai_plan.get("overall_summary", ""),
+            "summary": f"[{NEWS_RADAR_CACHE.get('alert_note', '新聞監控')}] {ai_plan.get('overall_summary', '')}",
             "half_a_orders": ai_plan.get("half_a_orders", []),
             "half_b_orders": ai_plan.get("half_b_orders", [])
         },
@@ -1452,7 +1526,7 @@ def run_single_cycle(exchange, cycle_num=1):
 
 def main():
     print("=========================================================================", flush=True)
-    print("🚀 QuantGuard AI v11.1 - 盤勢體質自適應 × 12h天地空間盈虧比 × 特徵指紋記憶引擎", flush=True)
+    print("🚀 QuantGuard AI v11.2 - 防軋空盾 × 20%火力 × 手續費保本鎖 × 新聞警戒引擎", flush=True)
     print("=========================================================================", flush=True)
     load_previous_state()
     exchange = init_okx_exchange()
