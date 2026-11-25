@@ -1,13 +1,13 @@
 {
-  "updated_at": "2026-11-25 16:50:26",
+  "updated_at": "2026-11-25 16:51:17",
   "epoch_cutoff": "2026-11-05 17:01:00",
-  "real_usdt": 123345.1,
-  "free_usdt": 105026.2,
-  "used_usdt": 18318.9,
+  "real_usdt": 123337.03,
+  "free_usdt": 105015.44,
+  "used_usdt": 18321.59,
   "allocations": {
-    "normal_80_usdt": 98676.08,
-    "hedge_10_usdt": 12334.51,
-    "sniper_10_usdt": 12334.51
+    "normal_80_usdt": 98669.62,
+    "hedge_10_usdt": 12333.7,
+    "sniper_10_usdt": 12333.7
   },
   "performance_stats": {
     "epoch_start": "2026-11-05 17:01:16",
@@ -18,7 +18,7 @@
     "gross_profit_usdt": 71940.8,
     "gross_loss_usdt": 79757.73,
     "total_fees_usdt": 8281.46,
-    "implied_initial_capital": 130460.47,
+    "implied_initial_capital": 130452.4,
     "profit_factor": 0.9,
     "total_settled_count": 100,
     "win_count": 51,
@@ -669,29 +669,29 @@
   ],
   "market_prices": {
     "BTC/USDT:USDT": {
-      "last_price": 59350.0,
-      "change_24h_pct": -1.54,
-      "bar_15m_change_pct": 0.24,
-      "vol_spike_ratio": 0.31,
+      "last_price": 59361.1,
+      "change_24h_pct": -1.5,
+      "bar_15m_change_pct": 0.2,
+      "vol_spike_ratio": 0.43,
       "funding_rate_pct": 0.01,
-      "open_interest": 2139913243.26,
-      "ma5": 59045.69,
-      "ma10": 59062.05,
-      "ma20": 59104.16,
-      "ma20_1h": 59580.56,
-      "ma60_1h": 60628.38,
-      "ma20_dist_pct": 0.42,
+      "open_interest": 2139936881.46,
+      "ma5": 59040.62,
+      "ma10": 59059.51,
+      "ma20": 59102.9,
+      "ma20_1h": 59579.92,
+      "ma60_1h": 60628.16,
+      "ma20_dist_pct": 0.44,
       "wick_signal": "BEAR_PINBAR_REVERSAL",
-      "rsi_14": 56.9,
-      "bb_upper": 59440.81,
-      "bb_lower": 58767.52,
-      "bb_pos_pct": 86.5,
-      "bb_width_pct": 1.14,
+      "rsi_14": 56.4,
+      "bb_upper": 59435.45,
+      "bb_lower": 58770.34,
+      "bb_pos_pct": 88.8,
+      "bb_width_pct": 1.13,
       "resistance_12h": 60221.0,
       "support_12h": 58561.11,
-      "range_pos_pct": 47.5,
-      "upside_room_pct": 1.47,
-      "downside_room_pct": 1.33,
+      "range_pos_pct": 48.2,
+      "upside_room_pct": 1.45,
+      "downside_room_pct": 1.35,
       "macro_structure_1h": "TRUE_BEAR_TREND",
       "market_regime_type": "TREND_BREAKOUT",
       "entry_zone_bucket": "HIGH_ZONE",
@@ -700,7 +700,7 @@
       "bear_reversal_confirmed": false,
       "bull_reversal_confirmed": false,
       "tactical_signal": "BUY",
-      "tactical_desc": "【強勢動能突破順勢追擊】量能/連K動能強(0.31x, +0.24%)，順勢追擊大波段！",
+      "tactical_desc": "【強勢動能突破順勢追擊】量能/連K動能強(0.43x, +0.20%)，順勢追擊大波段！",
       "trend_1h": "BEARISH",
       "trend": "BEARISH",
       "atr_15m_pct": 0.58,
@@ -710,15 +710,15 @@
       "max_safe_leverage": 4
     },
     "ETH/USDT:USDT": {
-      "last_price": 1651.78,
-      "change_24h_pct": -2.57,
+      "last_price": 1651.72,
+      "change_24h_pct": -2.58,
       "bar_15m_change_pct": 0.17,
-      "vol_spike_ratio": 0.38,
+      "vol_spike_ratio": 0.41,
       "funding_rate_pct": 0.0037,
-      "open_interest": 3137000124.13,
-      "ma5": 1645.39,
+      "open_interest": 3136992761.95,
+      "ma5": 1645.38,
       "ma10": 1650.02,
-      "ma20": 1654.03,
+      "ma20": 1654.02,
       "ma20_1h": 1669.96,
       "ma60_1h": 1703.65,
       "ma20_dist_pct": -0.14,
@@ -726,11 +726,11 @@
       "rsi_14": 45.0,
       "bb_upper": 1668.17,
       "bb_lower": 1639.88,
-      "bb_pos_pct": 42.1,
+      "bb_pos_pct": 41.9,
       "bb_width_pct": 1.71,
       "resistance_12h": 1688.95,
       "support_12h": 1624.78,
-      "range_pos_pct": 42.1,
+      "range_pos_pct": 42.0,
       "upside_room_pct": 2.25,
       "downside_room_pct": 1.63,
       "macro_structure_1h": "TRUE_BEAR_TREND",
@@ -741,7 +741,7 @@
       "bear_reversal_confirmed": false,
       "bull_reversal_confirmed": false,
       "tactical_signal": "BUY",
-      "tactical_desc": "【強勢動能突破順勢追擊】量能/連K動能強(0.38x, +0.17%)，順勢追擊大波段！",
+      "tactical_desc": "【強勢動能突破順勢追擊】量能/連K動能強(0.41x, +0.17%)，順勢追擊大波段！",
       "trend_1h": "BEARISH",
       "trend": "BEARISH",
       "atr_15m_pct": 0.58,
@@ -751,29 +751,29 @@
       "max_safe_leverage": 3
     },
     "SOL/USDT:USDT": {
-      "last_price": 68.09,
-      "change_24h_pct": -4.49,
-      "bar_15m_change_pct": 0.07,
-      "vol_spike_ratio": 0.15,
+      "last_price": 68.12,
+      "change_24h_pct": -4.43,
+      "bar_15m_change_pct": 0.12,
+      "vol_spike_ratio": 0.34,
       "funding_rate_pct": 0.01,
-      "open_interest": 13234573.98,
+      "open_interest": 13254784.3,
       "ma5": 67.96,
       "ma10": 68.26,
-      "ma20": 68.5,
+      "ma20": 68.51,
       "ma20_1h": 69.13,
       "ma60_1h": 71.07,
-      "ma20_dist_pct": -0.6,
+      "ma20_dist_pct": -0.56,
       "wick_signal": "BEAR_PINBAR_REVERSAL",
-      "rsi_14": 40.9,
+      "rsi_14": 41.6,
       "bb_upper": 69.32,
       "bb_lower": 67.69,
-      "bb_pos_pct": 24.5,
+      "bb_pos_pct": 26.4,
       "bb_width_pct": 2.38,
       "resistance_12h": 70.11,
       "support_12h": 67.53,
-      "range_pos_pct": 21.7,
-      "upside_room_pct": 2.97,
-      "downside_room_pct": 0.82,
+      "range_pos_pct": 22.9,
+      "upside_room_pct": 2.92,
+      "downside_room_pct": 0.87,
       "macro_structure_1h": "TRUE_BEAR_TREND",
       "market_regime_type": "TREND_BREAKOUT",
       "entry_zone_bucket": "LOW_ZONE",
@@ -782,7 +782,7 @@
       "bear_reversal_confirmed": false,
       "bull_reversal_confirmed": false,
       "tactical_signal": "BUY",
-      "tactical_desc": "【強勢動能突破順勢追擊】量能/連K動能強(0.15x, +0.07%)，順勢追擊大波段！",
+      "tactical_desc": "【強勢動能突破順勢追擊】量能/連K動能強(0.34x, +0.12%)，順勢追擊大波段！",
       "trend_1h": "BEARISH",
       "trend": "BEARISH",
       "atr_15m_pct": 0.55,
@@ -793,17 +793,17 @@
     }
   },
   "latest_news": [
+    "Live updates: Bitcoin slips back under $60,000 as HYPE leads altcoins lower",
     "Solana developers move to stop validators finishing work on blocks that already lost",
     "Just 10 accounts drove all of the XRP Ledger's trading growth last quarter",
-    "Crypto traders can now hedge Nvidia, Anthropic and oil bets on Derive",
+    "EU seeks up to $55B for AI and quantum computing fund: Report",
     "South Korea’s crypto bill could move stablecoin race beyond token issuance",
-    "Here’s what happened in crypto today",
-    "Solana DEX Velocity halts trading over bug just months after relaunch"
+    "Here’s what happened in crypto today"
   ],
   "ai_broadcast_signals": {
-    "updated_at": "16:50:26",
+    "updated_at": "16:51:17",
     "confidence": 94,
-    "summary": "[高波動新聞警戒(nvidia)] v11.3 BTC大盤聯動＋嚴格結構反轉＋正向盈虧比(-5%SL/+4.5%保本鎖)運行中（高波動新聞警戒(nvidia)）。",
+    "summary": "[新聞情緒平穩] v11.3 BTC大盤聯動＋嚴格結構反轉＋正向盈虧比(-5%SL/+4.5%保本鎖)運行中（新聞情緒平穩）。",
     "half_a_orders": [
       {
         "symbol": "BTC/USDT:USDT",
@@ -812,7 +812,7 @@
         "leverage": 4,
         "tp_pct": 3.62,
         "sl_pct": 1.25,
-        "reason": "【TREND_BREAKOUT】【強勢動能突破順勢追擊】量能/連K動能強(0.31x, +0.24%)，順勢追擊大波段！"
+        "reason": "【TREND_BREAKOUT】【強勢動能突破順勢追擊】量能/連K動能強(0.43x, +0.20%)，順勢追擊大波段！"
       },
       {
         "symbol": "ETH/USDT:USDT",
@@ -821,7 +821,7 @@
         "leverage": 3,
         "tp_pct": 4.2,
         "sl_pct": 1.67,
-        "reason": "【TREND_BREAKOUT】【強勢動能突破順勢追擊】量能/連K動能強(0.38x, +0.17%)，順勢追擊大波段！"
+        "reason": "【TREND_BREAKOUT】【強勢動能突破順勢追擊】量能/連K動能強(0.41x, +0.17%)，順勢追擊大波段！"
       },
       {
         "symbol": "SOL/USDT:USDT",
@@ -830,7 +830,7 @@
         "leverage": 4,
         "tp_pct": 3.62,
         "sl_pct": 1.25,
-        "reason": "【TREND_BREAKOUT】【強勢動能突破順勢追擊】量能/連K動能強(0.15x, +0.07%)，順勢追擊大波段！"
+        "reason": "【TREND_BREAKOUT】【強勢動能突破順勢追擊】量能/連K動能強(0.34x, +0.12%)，順勢追擊大波段！"
       }
     ],
     "half_b_orders": [
@@ -841,7 +841,7 @@
         "leverage": 4,
         "tp_pct": 3.98,
         "sl_pct": 1.25,
-        "reason": "【結構確認優選】【強勢動能突破順勢追擊】量能/連K動能強(0.31x, +0.24%)，順勢追擊大波段！"
+        "reason": "【結構確認優選】【強勢動能突破順勢追擊】量能/連K動能強(0.43x, +0.20%)，順勢追擊大波段！"
       },
       {
         "symbol": "ETH/USDT:USDT",
@@ -850,7 +850,7 @@
         "leverage": 3,
         "tp_pct": 4.62,
         "sl_pct": 1.67,
-        "reason": "【結構確認優選】【強勢動能突破順勢追擊】量能/連K動能強(0.38x, +0.17%)，順勢追擊大波段！"
+        "reason": "【結構確認優選】【強勢動能突破順勢追擊】量能/連K動能強(0.41x, +0.17%)，順勢追擊大波段！"
       },
       {
         "symbol": "SOL/USDT:USDT",
@@ -859,14 +859,14 @@
         "leverage": 4,
         "tp_pct": 3.98,
         "sl_pct": 1.25,
-        "reason": "【結構確認優選】【強勢動能突破順勢追擊】量能/連K動能強(0.15x, +0.07%)，順勢追擊大波段！"
+        "reason": "【結構確認優選】【強勢動能突破順勢追擊】量能/連K動能強(0.34x, +0.12%)，順勢追擊大波段！"
       }
     ]
   },
   "ai_last_decision": {
     "action": "今日已實現 $-3,842.39 | 本期累計 $-7,816.93 (盈虧比 0.9x)",
     "confidence": 94,
-    "reason": "v11.3 BTC大盤聯動＋嚴格結構反轉＋正向盈虧比(-5%SL/+4.5%保本鎖)運行中（高波動新聞警戒(nvidia)）。"
+    "reason": "v11.3 BTC大盤聯動＋嚴格結構反轉＋正向盈虧比(-5%SL/+4.5%保本鎖)運行中（新聞情緒平穩）。"
   },
   "orders": [
     {
