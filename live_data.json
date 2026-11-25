@@ -1,33 +1,33 @@
 {
-  "updated_at": "2026-11-25 17:28:47",
+  "updated_at": "2026-11-25 17:29:14",
   "epoch_cutoff": "2026-11-05 17:01:00",
-  "real_usdt": 124092.45,
-  "free_usdt": 87550.7,
-  "used_usdt": 36541.75,
+  "real_usdt": 124272.62,
+  "free_usdt": 87790.92,
+  "used_usdt": 36481.7,
   "allocations": {
-    "normal_80_usdt": 99273.96,
-    "hedge_10_usdt": 12409.25,
-    "sniper_10_usdt": 12409.25
+    "normal_80_usdt": 99418.1,
+    "hedge_10_usdt": 12427.26,
+    "sniper_10_usdt": 12427.26
   },
   "performance_stats": {
     "epoch_start": "2026-11-05 17:01:16",
     "today_date": "2026-11-25",
-    "today_realized_pnl": -3842.39,
-    "today_trades_count": 4,
-    "all_time_realized_pnl": -7816.93,
-    "gross_profit_usdt": 71940.8,
-    "gross_loss_usdt": 79757.73,
-    "total_fees_usdt": 8281.46,
-    "implied_initial_capital": 130432.75,
-    "profit_factor": 0.9,
+    "today_realized_pnl": -3382.51,
+    "today_trades_count": 5,
+    "all_time_realized_pnl": -2227.94,
+    "gross_profit_usdt": 72400.68,
+    "gross_loss_usdt": 74628.62,
+    "total_fees_usdt": 8157.83,
+    "implied_initial_capital": 124851.83,
+    "profit_factor": 0.97,
     "total_settled_count": 100,
-    "win_count": 51,
-    "loss_count": 49,
-    "win_rate_pct": 51.0,
+    "win_count": 52,
+    "loss_count": 48,
+    "win_rate_pct": 52.0,
     "daily_pnl_history": [
       {
         "date": "2026-11-25",
-        "pnl": -3842.39
+        "pnl": -3382.51
       },
       {
         "date": "2026-11-24",
@@ -57,8 +57,8 @@
     "asset_performance": {
       "BTC/USDT:USDT": {
         "wins": 15,
-        "total": 29,
-        "pnl": -4166.17
+        "total": 28,
+        "pnl": 962.94
       },
       "ETH/USDT:USDT": {
         "wins": 19,
@@ -66,9 +66,9 @@
         "pnl": -6386.94
       },
       "SOL/USDT:USDT": {
-        "wins": 17,
-        "total": 32,
-        "pnl": 2736.12
+        "wins": 18,
+        "total": 33,
+        "pnl": 3196.0
       }
     }
   },
@@ -275,7 +275,8 @@
       "4125888360449966080_1795537081393": "[🧠v11.2(TREND|MID_ZONE|20%倉|止損-7.5%ROI)] ✅ [v11.2 防軋空與空間核驗通過] 體質:TREND_BREAKOUT | 位置:MID_ZONE(BB:53.1%) | 向上:4.71% / 向下:2.27% | 【TREND_BREAKOUT】【強勢動能突破順勢追擊】量能/連K動能強(0.31x, +0.48%)，嚴禁逆勢硬扛，順勢追擊大波段！",
       "4126900562506166274_1795570380120": "[🧠v11.2(TREND|LOW_ZONE|20%倉|止損-7.5%ROI)] ✅ [v11.2 防軋空與空間核驗通過] 體質:TREND_BREAKOUT | 位置:LOW_ZONE(BB:29.4%) | 向上:4.15% / 向下:1.66% | 【TREND_BREAKOUT】【強勢動能突破順勢追擊】量能/連K動能強(0.63x, +0.13%)，嚴禁逆勢硬扛，順勢追擊大波段！",
       "4129500731345076224_1795595490110": "[👑v11.3(TREND|LOW_ZONE|止損-5.0%ROI)] ✅ [v11.3 BTC聯動與結構核驗通過] 體質:TREND_BREAKOUT | 位置:LOW_ZONE(BB:-4.6%) | 向上:3.2% / 向下:0.55% | 【TREND_BREAKOUT】【強勢動能突破順勢追擊】量能/連K動能強(0.01x, -0.12%)，順勢追擊大波段！",
-      "4130232697052868609_1795595505911": "[👑v11.3(TREND|LOW_ZONE|止損-5.0%ROI)] ✅ [v11.3 BTC聯動與結構核驗通過] 體質:TREND_BREAKOUT | 位置:LOW_ZONE(BB:-5.5%) | 向上:2.53% / 向下:0.23% | 【TREND_BREAKOUT】【強勢動能突破順勢追擊】量能/連K動能強(0.63x, -0.05%)，順勢追擊大波段！"
+      "4130232697052868609_1795595505911": "[👑v11.3(TREND|LOW_ZONE|止損-5.0%ROI)] ✅ [v11.3 BTC聯動與結構核驗通過] 體質:TREND_BREAKOUT | 位置:LOW_ZONE(BB:-5.5%) | 向上:2.53% / 向下:0.23% | 【TREND_BREAKOUT】【強勢動能突破順勢追擊】量能/連K動能強(0.63x, -0.05%)，順勢追擊大波段！",
+      "4128444375414484993_1795598952846": "[👑v11.3(TREND|LOW_ZONE|止損-5.0%ROI)] ✅ [v11.3 BTC聯動與結構核驗通過] 體質:TREND_BREAKOUT | 位置:LOW_ZONE(BB:26.6%) | 向上:4.35% / 向下:0.68% | 【TREND_BREAKOUT】【強勢動能突破順勢追擊】量能/連K動能強(0.0x, -0.06%)，順勢追擊大波段！"
     },
     "processed_pos_keys": [
       "4092103890504921091_1794498986834",
@@ -337,6 +338,7 @@
       "4089816920143572993_1794440256699",
       "4113896806692827139_1795196340262",
       "4088008502755864579_1794342050796",
+      "4128444375414484993_1795598952846",
       "4118271357920882691_1795243520684",
       "4112472077423489025_1795243706597",
       "4112472077423489025_1795268194779",
@@ -529,9 +531,9 @@
         "net_pnl": 1517.48
       },
       "SHORT_in_TREND_BREAKOUT_at_LOW_ZONE": {
-        "wins": 7,
+        "wins": 8,
         "losses": 1,
-        "net_pnl": 3842.86
+        "net_pnl": 4302.74
       },
       "LONG_in_TREND_BREAKOUT_at_HIGH_ZONE": {
         "wins": 2,
@@ -591,9 +593,9 @@
         "avg_loss": 0.0
       },
       "SOL/USDT:USDT_SHORT": {
-        "wins": 19,
+        "wins": 20,
         "losses": 11,
-        "net_pnl": 14764.04,
+        "net_pnl": 15223.92,
         "avg_win": 0.0,
         "avg_loss": 0.0
       }
@@ -601,7 +603,7 @@
     "consecutive_losses": {
       "BTC/USDT:USDT": 2,
       "ETH/USDT:USDT": 2,
-      "SOL/USDT:USDT": 3
+      "SOL/USDT:USDT": 0
     },
     "last_exit_info": {
       "BTC/USDT:USDT": {
@@ -612,11 +614,11 @@
         "pnl": -1077.08
       },
       "SOL/USDT:USDT": {
-        "timestamp_ms": 1795525845260,
-        "time_str": "2026-11-24 21:10:45",
-        "side": "LONG",
-        "close_px": 69.65,
-        "pnl": -1551.82
+        "timestamp_ms": 1795598952846,
+        "time_str": "2026-11-25 17:29:12",
+        "side": "SHORT",
+        "close_px": 67.46,
+        "pnl": 459.88
       },
       "ETH/USDT:USDT": {
         "timestamp_ms": 1795595490110,
@@ -642,11 +644,11 @@
     ]
   },
   "position_stage_map": {
-    "SOL/USDT:USDT_SHORT": 0.5,
+    "SOL/USDT:USDT_SHORT": 1,
     "ETH/USDT:USDT_SHORT": 0
   },
-  "total_unrealized_pnl": 1476.63,
-  "total_crypto_roi_pct": 1.19,
+  "total_unrealized_pnl": 1648.73,
+  "total_crypto_roi_pct": 1.33,
   "active_positions": [
     {
       "symbol": "ETH/USDT:USDT",
@@ -654,11 +656,11 @@
       "contracts": 336.0,
       "leverage": "3x",
       "entry_price": 1650.11,
-      "mark_price": 1640.25,
-      "margin_usdt": 18370.8,
-      "notional_usdt": 55036.34,
-      "unrealized_pnl": 331.22,
-      "roi_pct": 1.8,
+      "mark_price": 1637.77,
+      "margin_usdt": 18343.02,
+      "notional_usdt": 54953.13,
+      "unrealized_pnl": 414.55,
+      "roi_pct": 2.26,
       "tp_pct": 4.2,
       "sl_pct": 1.67,
       "tp_trigger_px": 1580.81,
@@ -670,48 +672,48 @@
     {
       "symbol": "SOL/USDT:USDT",
       "side": "SHORT",
-      "contracts": 807.0,
+      "contracts": 484,
       "leverage": "3x",
       "entry_price": 68.97,
-      "mark_price": 67.55,
-      "margin_usdt": 18170.95,
-      "notional_usdt": 54437.62,
-      "unrealized_pnl": 1145.41,
-      "roi_pct": 6.3,
+      "mark_price": 67.44,
+      "margin_usdt": 18141.36,
+      "notional_usdt": 54348.97,
+      "unrealized_pnl": 1234.18,
+      "roi_pct": 6.8,
       "tp_pct": 4.2,
       "sl_pct": 1.67,
       "tp_trigger_px": 66.07,
-      "sl_trigger_px": 68.65,
+      "sl_trigger_px": 68.46,
       "stage": 0.5,
-      "stage_badge": "🛡️ 已鎖本金+手續費 (+1.4%ROI)",
-      "reason": "[👑v11.3(TREND|LOW_ZONE|止損-5.0%ROI)] ✅ [v11.3 BTC聯動與結構核驗通過] 體質:TREND_BREAKOUT | 位置:LOW_ZONE(BB:26.6%) | 向上:4.35% / 向下:0.68% | 【TREND_BREAKOUT】【強勢動能突破順勢追擊】量能/連K動能強(0.0x, -0.06%)，順勢追擊大波段！"
+      "stage_badge": "💰 已平40%落袋 & 60%主力鎖+2.2%ROI",
+      "reason": "💰【已落袋40%倉位】剩餘 60% (484張) 止損鎖於 +2.2% ROI ($68.46)！"
     }
   ],
   "market_prices": {
     "BTC/USDT:USDT": {
-      "last_price": 59001.36,
-      "change_24h_pct": -1.46,
-      "bar_15m_change_pct": -0.08,
-      "vol_spike_ratio": 1.19,
+      "last_price": 58955.81,
+      "change_24h_pct": -1.64,
+      "bar_15m_change_pct": -0.11,
+      "vol_spike_ratio": 1.21,
       "funding_rate_pct": 0.01,
-      "open_interest": 2140079953.26,
-      "ma5": 59138.25,
-      "ma10": 59030.44,
-      "ma20": 59081.74,
-      "ma20_1h": 59531.75,
-      "ma60_1h": 60596.49,
-      "ma20_dist_pct": -0.14,
+      "open_interest": 2140064399.12,
+      "ma5": 59134.81,
+      "ma10": 59028.72,
+      "ma20": 59080.88,
+      "ma20_1h": 59529.58,
+      "ma60_1h": 60595.77,
+      "ma20_dist_pct": -0.21,
       "wick_signal": "BEAR_PINBAR_REVERSAL",
-      "rsi_14": 47.0,
-      "bb_upper": 59405.97,
-      "bb_lower": 58757.52,
-      "bb_pos_pct": 37.6,
+      "rsi_14": 46.7,
+      "bb_upper": 59406.02,
+      "bb_lower": 58755.75,
+      "bb_pos_pct": 30.8,
       "bb_width_pct": 1.1,
       "resistance_12h": 60221.0,
       "support_12h": 58561.11,
-      "range_pos_pct": 26.5,
-      "upside_room_pct": 2.07,
-      "downside_room_pct": 0.75,
+      "range_pos_pct": 23.8,
+      "upside_room_pct": 2.15,
+      "downside_room_pct": 0.67,
       "macro_structure_1h": "TRUE_BEAR_TREND",
       "market_regime_type": "RANGE_MEAN_REVERSION",
       "entry_zone_bucket": "LOW_ZONE",
@@ -720,7 +722,7 @@
       "bear_reversal_confirmed": true,
       "bull_reversal_confirmed": false,
       "tactical_signal": "SELL",
-      "tactical_desc": "【震盪盤結構轉弱做空】壓力區(BB:37.6%)且確認均線/K線轉弱，向下空間 0.75% > 向上 2.07%！",
+      "tactical_desc": "【震盪盤結構轉弱做空】壓力區(BB:30.8%)且確認均線/K線轉弱，向下空間 0.67% > 向上 2.15%！",
       "trend_1h": "BEARISH",
       "trend": "BULLISH",
       "atr_15m_pct": 0.59,
@@ -730,29 +732,29 @@
       "max_safe_leverage": 4
     },
     "ETH/USDT:USDT": {
-      "last_price": 1640.33,
-      "change_24h_pct": -2.57,
-      "bar_15m_change_pct": -0.12,
-      "vol_spike_ratio": 1.13,
+      "last_price": 1637.92,
+      "change_24h_pct": -2.78,
+      "bar_15m_change_pct": -0.28,
+      "vol_spike_ratio": 1.44,
       "funding_rate_pct": 0.0035,
-      "open_interest": 3136918129.35,
-      "ma5": 1646.45,
-      "ma10": 1646.83,
-      "ma20": 1652.13,
-      "ma20_1h": 1667.71,
-      "ma60_1h": 1702.38,
-      "ma20_dist_pct": -0.71,
+      "open_interest": 3137113486.84,
+      "ma5": 1645.92,
+      "ma10": 1646.57,
+      "ma20": 1651.99,
+      "ma20_1h": 1667.59,
+      "ma60_1h": 1702.34,
+      "ma20_dist_pct": -0.85,
       "wick_signal": "NONE",
-      "rsi_14": 37.4,
-      "bb_upper": 1667.04,
-      "bb_lower": 1637.21,
-      "bb_pos_pct": 10.5,
-      "bb_width_pct": 1.81,
+      "rsi_14": 35.9,
+      "bb_upper": 1667.36,
+      "bb_lower": 1636.63,
+      "bb_pos_pct": 4.2,
+      "bb_width_pct": 1.86,
       "resistance_12h": 1688.95,
       "support_12h": 1624.78,
-      "range_pos_pct": 24.2,
-      "upside_room_pct": 2.96,
-      "downside_room_pct": 0.95,
+      "range_pos_pct": 20.5,
+      "upside_room_pct": 3.12,
+      "downside_room_pct": 0.8,
       "macro_structure_1h": "TRUE_BEAR_TREND",
       "market_regime_type": "RANGE_MEAN_REVERSION",
       "entry_zone_bucket": "LOW_ZONE",
@@ -765,48 +767,48 @@
       "trend_1h": "BEARISH",
       "trend": "BEARISH",
       "atr_15m_pct": 0.6,
-      "recent_swing_pct": 2.55,
+      "recent_swing_pct": 2.56,
       "anchored_tp_pct": 4.2,
       "anchored_sl_pct": 1.67,
       "max_safe_leverage": 3
     },
     "SOL/USDT:USDT": {
-      "last_price": 67.55,
-      "change_24h_pct": -4.59,
-      "bar_15m_change_pct": 0.12,
-      "vol_spike_ratio": 0.9,
+      "last_price": 67.41,
+      "change_24h_pct": -4.86,
+      "bar_15m_change_pct": -0.1,
+      "vol_spike_ratio": 0.91,
       "funding_rate_pct": 0.01,
-      "open_interest": 13221824.81,
-      "ma5": 67.85,
-      "ma10": 68.01,
+      "open_interest": 13223293.33,
+      "ma5": 67.82,
+      "ma10": 67.99,
       "ma20": 68.34,
       "ma20_1h": 69.02,
       "ma60_1h": 71.02,
-      "ma20_dist_pct": -1.16,
+      "ma20_dist_pct": -1.36,
       "wick_signal": "BEAR_PINBAR_REVERSAL",
-      "rsi_14": 29.5,
-      "bb_upper": 69.23,
-      "bb_lower": 67.46,
-      "bb_pos_pct": 5.1,
-      "bb_width_pct": 2.59,
+      "rsi_14": 26.8,
+      "bb_upper": 69.25,
+      "bb_lower": 67.43,
+      "bb_pos_pct": -1.1,
+      "bb_width_pct": 2.66,
       "resistance_12h": 70.11,
       "support_12h": 67.38,
-      "range_pos_pct": 6.2,
-      "upside_room_pct": 3.79,
-      "downside_room_pct": 0.25,
+      "range_pos_pct": 1.1,
+      "upside_room_pct": 4.01,
+      "downside_room_pct": 0.05,
       "macro_structure_1h": "TRUE_BEAR_TREND",
       "market_regime_type": "RANGE_MEAN_REVERSION",
       "entry_zone_bucket": "LOW_ZONE",
       "anti_squeeze_block_short": false,
       "anti_knife_block_long": true,
-      "bear_reversal_confirmed": false,
+      "bear_reversal_confirmed": true,
       "bull_reversal_confirmed": false,
-      "tactical_signal": "HOLD",
-      "tactical_desc": "【等待結構確認】尚未出現明確 MA5/MA10 結構反轉訊號，不盲目進場。",
+      "tactical_signal": "SELL",
+      "tactical_desc": "【震盪盤結構轉弱做空】壓力區(BB:-1.1%)且確認均線/K線轉弱，向下空間 0.05% > 向上 4.01%！",
       "trend_1h": "BEARISH",
       "trend": "BEARISH",
       "atr_15m_pct": 0.57,
-      "recent_swing_pct": 2.65,
+      "recent_swing_pct": 2.66,
       "anchored_tp_pct": 4.2,
       "anchored_sl_pct": 1.67,
       "max_safe_leverage": 3
@@ -821,7 +823,7 @@
     "Here’s what happened in crypto today"
   ],
   "ai_broadcast_signals": {
-    "updated_at": "17:28:47",
+    "updated_at": "17:29:14",
     "confidence": 94,
     "summary": "[新聞情緒平穩] v11.3 BTC大盤聯動＋嚴格結構反轉＋正向盈虧比(-5%SL/+4.5%保本鎖)運行中（新聞情緒平穩）。",
     "half_a_orders": [
@@ -832,7 +834,7 @@
         "leverage": 4,
         "tp_pct": 3.62,
         "sl_pct": 1.25,
-        "reason": "【RANGE_MEAN_REVERSION】【震盪盤結構轉弱做空】壓力區(BB:39.5%)且確認均線/K線轉弱，向下空間 0.77% > 向上 2.04%！"
+        "reason": "【RANGE_MEAN_REVERSION】【震盪盤結構轉弱做空】壓力區(BB:30.8%)且確認均線/K線轉弱，向下空間 0.67% > 向上 2.15%！"
       },
       {
         "symbol": "ETH/USDT:USDT",
@@ -842,6 +844,15 @@
         "tp_pct": 4.2,
         "sl_pct": 1.67,
         "reason": "【RANGE_MEAN_REVERSION】【順勢偏空結構確認】1H偏空且15m結構轉弱確認，順勢偏空。"
+      },
+      {
+        "symbol": "SOL/USDT:USDT",
+        "action": "SELL",
+        "weight": 1.5,
+        "leverage": 3,
+        "tp_pct": 4.2,
+        "sl_pct": 1.67,
+        "reason": "【RANGE_MEAN_REVERSION】【震盪盤結構轉弱做空】壓力區(BB:-1.1%)且確認均線/K線轉弱，向下空間 0.05% > 向上 4.01%！"
       }
     ],
     "half_b_orders": [
@@ -852,7 +863,7 @@
         "leverage": 4,
         "tp_pct": 3.98,
         "sl_pct": 1.25,
-        "reason": "【結構確認優選】【震盪盤結構轉弱做空】壓力區(BB:39.5%)且確認均線/K線轉弱，向下空間 0.77% > 向上 2.04%！"
+        "reason": "【結構確認優選】【震盪盤結構轉弱做空】壓力區(BB:30.8%)且確認均線/K線轉弱，向下空間 0.67% > 向上 2.15%！"
       },
       {
         "symbol": "ETH/USDT:USDT",
@@ -862,15 +873,47 @@
         "tp_pct": 4.62,
         "sl_pct": 1.67,
         "reason": "【結構確認優選】【順勢偏空結構確認】1H偏空且15m結構轉弱確認，順勢偏空。"
+      },
+      {
+        "symbol": "SOL/USDT:USDT",
+        "action": "SELL",
+        "weight": 1.2,
+        "leverage": 3,
+        "tp_pct": 4.62,
+        "sl_pct": 1.67,
+        "reason": "【結構確認優選】【震盪盤結構轉弱做空】壓力區(BB:-1.1%)且確認均線/K線轉弱，向下空間 0.05% > 向上 4.01%！"
       }
     ]
   },
   "ai_last_decision": {
-    "action": "今日已實現 $-3,842.39 | 本期累計 $-7,816.93 (盈虧比 0.9x)",
+    "action": "今日已實現 $-3,382.51 | 本期累計 $-2,227.94 (盈虧比 0.97x)",
     "confidence": 94,
     "reason": "v11.3 BTC大盤聯動＋嚴格結構反轉＋正向盈虧比(-5%SL/+4.5%保本鎖)運行中（新聞情緒平穩）。"
   },
   "orders": [
+    {
+      "id": "POS-499384",
+      "full_id": "4128444375414484993_1795598952846",
+      "timestamp_ms": 1795598952846,
+      "open_timestamp_ms": 1795539630235,
+      "time": "2026-11-25 17:29:12",
+      "market": "crypto",
+      "marketBadge": "📦 歷史倉位 (323.0張)",
+      "asset": "SOL/USDT:USDT",
+      "direction": "做空倉位結算 (SHORT)",
+      "leverage": "3.0x 倉位槓桿",
+      "pool": "平倉張數: 323.0 張合約",
+      "entryExit": "開倉均價 $68.97 ➔ 平倉均價 $67.46",
+      "close_px_num": 67.46,
+      "roi": "已實現損益 +$459.88 USDT (+6.19%)",
+      "pnl": "倉位結算收益: +$459.88 USDT",
+      "realized_pnl_num": 459.88,
+      "fee_num": 38.7239,
+      "fee": "倉位累計手續費 38.7239 USDT",
+      "rr": "開倉 $68.97 / 平倉 $67.46",
+      "reason": "[👑v11.3(TREND|LOW_ZONE|止損-5.0%ROI)] ✅ [v11.3 BTC聯動與結構核驗通過] 體質:TREND_BREAKOUT | 位置:LOW_ZONE(BB:26.6%) | 向上:4.35% / 向下:0.68% | 【TREND_BREAKOUT】【強勢動能突破順勢追擊】量能/連K動能強(0.0x, -0.06%)，順勢追擊大波段！",
+      "hash": "0x33e217d5cf984d5d"
+    },
     {
       "id": "POS-860991",
       "full_id": "4130232697052868609_1795595505911",
@@ -3147,29 +3190,6 @@
       "rr": "開倉 $87.36 / 平倉 $86.37",
       "reason": "【SOL 倉位結算】開倉 $87.36 ➔ 平倉 $86.37 (5.0x 槓桿，結算 ROI +5.15%)",
       "hash": "0xa09ccbac42d80326"
-    },
-    {
-      "id": "POS-649681",
-      "full_id": "4075589924224106496_1794243453817",
-      "timestamp_ms": 1794243453817,
-      "open_timestamp_ms": 1793964444841,
-      "time": "2026-11-10 00:57:33",
-      "market": "crypto",
-      "marketBadge": "📦 歷史倉位 (250.0張)",
-      "asset": "BTC/USDT:USDT",
-      "direction": "做多倉位結算 (LONG)",
-      "leverage": "7.0x 倉位槓桿",
-      "pool": "平倉張數: 250.0 張合約",
-      "entryExit": "開倉均價 $76,403.63 ➔ 平倉均價 $74,416.96",
-      "close_px_num": 74416.9590772,
-      "roi": "已實現損益 $-5,129.11 USDT (-18.80%)",
-      "pnl": "倉位結算收益: $-5,129.11 USDT",
-      "realized_pnl_num": -5129.11,
-      "fee_num": 162.3485,
-      "fee": "倉位累計手續費 162.3485 USDT",
-      "rr": "開倉 $76,403.63 / 平倉 $74,416.96",
-      "reason": "【BTC 倉位結算】開倉 $76,403.63 ➔ 平倉 $74,416.96 (7.0x 槓桿，結算 ROI -18.80%)",
-      "hash": "0x55788672cb6c9d95"
     }
   ]
 }
