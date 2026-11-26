@@ -1,13 +1,13 @@
 {
-  "updated_at": "2026-11-27 04:37:09",
+  "updated_at": "2026-11-27 04:37:58",
   "epoch_cutoff": "2026-11-05 17:01:00",
-  "real_usdt": 119633.19,
-  "free_usdt": 83579.07,
-  "used_usdt": 36054.12,
+  "real_usdt": 119637.02,
+  "free_usdt": 83581.62,
+  "used_usdt": 36055.4,
   "allocations": {
-    "normal_80_usdt": 95706.55,
-    "hedge_10_usdt": 11963.32,
-    "sniper_10_usdt": 11963.32
+    "normal_80_usdt": 95709.62,
+    "hedge_10_usdt": 11963.7,
+    "sniper_10_usdt": 11963.7
   },
   "performance_stats": {
     "epoch_start": "2026-11-05 17:01:16",
@@ -669,7 +669,7 @@
     "ETH/USDT:USDT_LONG": 0.5,
     "SOL/USDT:USDT_LONG": 0
   },
-  "total_unrealized_pnl": 875.44,
+  "total_unrealized_pnl": 879.27,
   "total_crypto_roi_pct": 0.73,
   "active_positions": [
     {
@@ -680,7 +680,7 @@
       "entry_price": 71.19,
       "mark_price": 71.39,
       "margin_usdt": 17942.69,
-      "notional_usdt": 53758.62,
+      "notional_usdt": 53759.16,
       "unrealized_pnl": 152.92,
       "roi_pct": 0.85,
       "tp_pct": 4.2,
@@ -697,11 +697,11 @@
       "contracts": 319.0,
       "leverage": "3x",
       "entry_price": 1680.62,
-      "mark_price": 1703.27,
-      "margin_usdt": 18111.44,
-      "notional_usdt": 54264.22,
-      "unrealized_pnl": 722.52,
-      "roi_pct": 3.99,
+      "mark_price": 1703.39,
+      "margin_usdt": 18112.71,
+      "notional_usdt": 54268.59,
+      "unrealized_pnl": 726.35,
+      "roi_pct": 4.01,
       "tp_pct": 4.2,
       "sl_pct": 1.67,
       "tp_trigger_px": 1751.21,
@@ -713,29 +713,29 @@
   ],
   "market_prices": {
     "BTC/USDT:USDT": {
-      "last_price": 60720.24,
-      "change_24h_pct": 1.33,
-      "bar_15m_change_pct": 0.05,
-      "vol_spike_ratio": 0.09,
+      "last_price": 60715.6,
+      "change_24h_pct": 1.32,
+      "bar_15m_change_pct": 0.04,
+      "vol_spike_ratio": 0.1,
       "funding_rate_pct": 0.01,
-      "open_interest": 2140763184.94,
-      "ma5": 60695.49,
-      "ma10": 60632.56,
-      "ma20": 60569.72,
-      "ma20_1h": 60688.35,
-      "ma60_1h": 59917.64,
-      "ma20_dist_pct": 0.25,
+      "open_interest": 2140763874.69,
+      "ma5": 60694.56,
+      "ma10": 60632.1,
+      "ma20": 60569.49,
+      "ma20_1h": 60688.12,
+      "ma60_1h": 59917.56,
+      "ma20_dist_pct": 0.24,
       "wick_signal": "NONE",
-      "rsi_14": 59.4,
-      "bb_upper": 60763.3,
-      "bb_lower": 60376.13,
-      "bb_pos_pct": 88.9,
+      "rsi_14": 59.2,
+      "bb_upper": 60762.36,
+      "bb_lower": 60376.62,
+      "bb_pos_pct": 87.9,
       "bb_width_pct": 0.64,
       "resistance_12h": 61206.56,
       "support_12h": 59890.9,
-      "range_pos_pct": 63.0,
-      "upside_room_pct": 0.8,
-      "downside_room_pct": 1.37,
+      "range_pos_pct": 62.7,
+      "upside_room_pct": 0.81,
+      "downside_room_pct": 1.36,
       "macro_structure_1h": "TRUE_BULL_TREND",
       "market_regime_type": "RANGE_MEAN_REVERSION",
       "entry_zone_bucket": "HIGH_ZONE",
@@ -754,13 +754,13 @@
       "max_safe_leverage": 4
     },
     "ETH/USDT:USDT": {
-      "last_price": 1703.27,
+      "last_price": 1703.29,
       "change_24h_pct": 1.26,
       "bar_15m_change_pct": 0.0,
       "vol_spike_ratio": 0.05,
-      "funding_rate_pct": 0.009,
-      "open_interest": 3141836483.76,
-      "ma5": 1703.69,
+      "funding_rate_pct": 0.0091,
+      "open_interest": 3141831757.02,
+      "ma5": 1703.7,
       "ma10": 1702.37,
       "ma20": 1696.7,
       "ma20_1h": 1697.87,
@@ -770,12 +770,12 @@
       "rsi_14": 67.6,
       "bb_upper": 1708.82,
       "bb_lower": 1684.58,
-      "bb_pos_pct": 77.1,
+      "bb_pos_pct": 77.2,
       "bb_width_pct": 1.43,
       "resistance_12h": 1720.9,
       "support_12h": 1665.19,
       "range_pos_pct": 68.4,
-      "upside_room_pct": 1.04,
+      "upside_room_pct": 1.03,
       "downside_room_pct": 2.24,
       "macro_structure_1h": "TRUE_BULL_TREND",
       "market_regime_type": "RANGE_MEAN_REVERSION",
@@ -845,11 +845,67 @@
     "Crypto on notice as hawkish Fed risks December ‘meltdown’"
   ],
   "ai_broadcast_signals": {
-    "updated_at": "04:37:09",
+    "updated_at": "04:37:58",
     "confidence": 94,
     "summary": "[高波動新聞警戒(fed)] v11.3 BTC大盤聯動＋嚴格結構反轉＋正向盈虧比(-5%SL/+4.5%保本鎖)運行中（高波動新聞警戒(fed)）。",
-    "half_a_orders": [],
-    "half_b_orders": []
+    "half_a_orders": [
+      {
+        "symbol": "BTC/USDT:USDT",
+        "action": "BUY",
+        "weight": 1.5,
+        "leverage": 4,
+        "tp_pct": 3.62,
+        "sl_pct": 1.25,
+        "reason": "【RANGE_MEAN_REVERSION】【順勢偏多結構確認】1H偏多且15m結構止跌確認，順勢偏多。"
+      },
+      {
+        "symbol": "ETH/USDT:USDT",
+        "action": "BUY",
+        "weight": 1.5,
+        "leverage": 4,
+        "tp_pct": 3.62,
+        "sl_pct": 1.25,
+        "reason": "【RANGE_MEAN_REVERSION】【順勢偏多結構確認】1H偏多且15m結構止跌確認，順勢偏多。"
+      },
+      {
+        "symbol": "SOL/USDT:USDT",
+        "action": "BUY",
+        "weight": 1.5,
+        "leverage": 4,
+        "tp_pct": 3.62,
+        "sl_pct": 1.25,
+        "reason": "【TREND_BREAKOUT】【強勢動能突破順勢追擊】量能/連K動能強(0.15x, +0.00%)，順勢追擊大波段！"
+      }
+    ],
+    "half_b_orders": [
+      {
+        "symbol": "BTC/USDT:USDT",
+        "action": "BUY",
+        "weight": 1.2,
+        "leverage": 4,
+        "tp_pct": 3.98,
+        "sl_pct": 1.25,
+        "reason": "【結構確認優選】【順勢偏多結構確認】1H偏多且15m結構止跌確認，順勢偏多。"
+      },
+      {
+        "symbol": "ETH/USDT:USDT",
+        "action": "BUY",
+        "weight": 1.2,
+        "leverage": 4,
+        "tp_pct": 3.98,
+        "sl_pct": 1.25,
+        "reason": "【結構確認優選】【順勢偏多結構確認】1H偏多且15m結構止跌確認，順勢偏多。"
+      },
+      {
+        "symbol": "SOL/USDT:USDT",
+        "action": "BUY",
+        "weight": 1.2,
+        "leverage": 4,
+        "tp_pct": 3.98,
+        "sl_pct": 1.25,
+        "reason": "【結構確認優選】【強勢動能突破順勢追擊】量能/連K動能強(0.15x, +0.00%)，順勢追擊大波段！"
+      }
+    ]
   },
   "ai_last_decision": {
     "action": "今日已實現 $+198.94 | 本期累計 $-12,477.07 (盈虧比 0.83x)",
