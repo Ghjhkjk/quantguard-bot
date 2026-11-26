@@ -1,13 +1,13 @@
 {
-  "updated_at": "2026-11-26 10:16:40",
+  "updated_at": "2026-11-26 10:17:30",
   "epoch_cutoff": "2026-11-05 17:01:00",
-  "real_usdt": 119613.71,
-  "free_usdt": 101663.48,
-  "used_usdt": 17950.23,
+  "real_usdt": 119583.55,
+  "free_usdt": 101643.37,
+  "used_usdt": 17940.18,
   "allocations": {
-    "normal_80_usdt": 95690.97,
-    "hedge_10_usdt": 11961.37,
-    "sniper_10_usdt": 11961.37
+    "normal_80_usdt": 95666.84,
+    "hedge_10_usdt": 11958.36,
+    "sniper_10_usdt": 11958.36
   },
   "performance_stats": {
     "epoch_start": "2026-11-05 17:01:16",
@@ -664,8 +664,8 @@
   "position_stage_map": {
     "SOL/USDT:USDT_LONG": 0
   },
-  "total_unrealized_pnl": 34.51,
-  "total_crypto_roi_pct": 0.03,
+  "total_unrealized_pnl": 4.35,
+  "total_crypto_roi_pct": 0.0,
   "active_positions": [
     {
       "symbol": "SOL/USDT:USDT",
@@ -673,11 +673,11 @@
       "contracts": 754.0,
       "leverage": "3x",
       "entry_price": 71.37,
-      "mark_price": 71.42,
-      "margin_usdt": 17950.23,
-      "notional_usdt": 53775.83,
-      "unrealized_pnl": 34.51,
-      "roi_pct": 0.19,
+      "mark_price": 71.38,
+      "margin_usdt": 17940.17,
+      "notional_usdt": 53744.63,
+      "unrealized_pnl": 4.35,
+      "roi_pct": 0.02,
       "tp_pct": 4.2,
       "sl_pct": 1.67,
       "tp_trigger_px": 74.37,
@@ -689,29 +689,29 @@
   ],
   "market_prices": {
     "BTC/USDT:USDT": {
-      "last_price": 60903.82,
-      "change_24h_pct": 3.13,
-      "bar_15m_change_pct": 0.14,
+      "last_price": 60915.0,
+      "change_24h_pct": 3.11,
+      "bar_15m_change_pct": 0.17,
       "vol_spike_ratio": 0.04,
       "funding_rate_pct": 0.01,
-      "open_interest": 2140753244.54,
-      "ma5": 60805.98,
-      "ma10": 60769.04,
-      "ma20": 60492.05,
-      "ma20_1h": 59449.02,
-      "ma60_1h": 60034.96,
-      "ma20_dist_pct": 0.68,
+      "open_interest": 2140749615.37,
+      "ma5": 60808.93,
+      "ma10": 60770.52,
+      "ma20": 60492.79,
+      "ma20_1h": 59449.58,
+      "ma60_1h": 60035.15,
+      "ma20_dist_pct": 0.7,
       "wick_signal": "BULL_PINBAR_REVERSAL",
-      "rsi_14": 70.9,
-      "bb_upper": 61094.0,
-      "bb_lower": 59890.1,
-      "bb_pos_pct": 84.2,
-      "bb_width_pct": 1.99,
+      "rsi_14": 71.1,
+      "bb_upper": 61096.79,
+      "bb_lower": 59888.79,
+      "bb_pos_pct": 85.0,
+      "bb_width_pct": 2.0,
       "resistance_12h": 61488.95,
       "support_12h": 57206.58,
-      "range_pos_pct": 86.3,
-      "upside_room_pct": 0.96,
-      "downside_room_pct": 6.07,
+      "range_pos_pct": 86.6,
+      "upside_room_pct": 0.94,
+      "downside_room_pct": 6.09,
       "macro_structure_1h": "BULL_MARKET_PULLBACK",
       "market_regime_type": "RANGE_MEAN_REVERSION",
       "entry_zone_bucket": "HIGH_ZONE",
@@ -720,7 +720,7 @@
       "bear_reversal_confirmed": false,
       "bull_reversal_confirmed": true,
       "tactical_signal": "BUY",
-      "tactical_desc": "【震盪盤結構止跌做多】支撐區(BB:84.2%)且確認站回短均止跌，向上空間 0.96% > 向下 6.07%！",
+      "tactical_desc": "【震盪盤結構止跌做多】支撐區(BB:85.0%)且確認站回短均止跌，向上空間 0.94% > 向下 6.09%！",
       "trend_1h": "BULLISH",
       "trend": "BULLISH",
       "atr_15m_pct": 0.81,
@@ -730,27 +730,27 @@
       "max_safe_leverage": 4
     },
     "ETH/USDT:USDT": {
-      "last_price": 1703.87,
-      "change_24h_pct": 2.96,
-      "bar_15m_change_pct": 0.11,
+      "last_price": 1703.81,
+      "change_24h_pct": 2.89,
+      "bar_15m_change_pct": 0.12,
       "vol_spike_ratio": 0.07,
       "funding_rate_pct": 0.01,
-      "open_interest": 3135995327.6,
-      "ma5": 1702.11,
-      "ma10": 1701.54,
-      "ma20": 1694.59,
-      "ma20_1h": 1666.79,
+      "open_interest": 3136014396.07,
+      "ma5": 1702.13,
+      "ma10": 1701.55,
+      "ma20": 1694.6,
+      "ma20_1h": 1666.8,
       "ma60_1h": 1685.4,
-      "ma20_dist_pct": 0.55,
+      "ma20_dist_pct": 0.54,
       "wick_signal": "BULL_PINBAR_REVERSAL",
       "rsi_14": 70.4,
-      "bb_upper": 1709.64,
+      "bb_upper": 1709.66,
       "bb_lower": 1679.54,
-      "bb_pos_pct": 80.8,
+      "bb_pos_pct": 80.6,
       "bb_width_pct": 1.78,
       "resistance_12h": 1731.56,
       "support_12h": 1603.66,
-      "range_pos_pct": 78.4,
+      "range_pos_pct": 78.3,
       "upside_room_pct": 1.63,
       "downside_room_pct": 5.88,
       "macro_structure_1h": "BULL_MARKET_PULLBACK",
@@ -761,7 +761,7 @@
       "bear_reversal_confirmed": false,
       "bull_reversal_confirmed": true,
       "tactical_signal": "BUY",
-      "tactical_desc": "【震盪盤結構止跌做多】支撐區(BB:80.8%)且確認站回短均止跌，向上空間 1.63% > 向下 5.88%！",
+      "tactical_desc": "【震盪盤結構止跌做多】支撐區(BB:80.6%)且確認站回短均止跌，向上空間 1.63% > 向下 5.88%！",
       "trend_1h": "BULLISH",
       "trend": "BULLISH",
       "atr_15m_pct": 0.85,
@@ -771,29 +771,29 @@
       "max_safe_leverage": 3
     },
     "SOL/USDT:USDT": {
-      "last_price": 71.42,
+      "last_price": 71.4,
       "change_24h_pct": 3.9,
-      "bar_15m_change_pct": 0.21,
-      "vol_spike_ratio": 0.08,
+      "bar_15m_change_pct": 0.18,
+      "vol_spike_ratio": 0.12,
       "funding_rate_pct": 0.01,
-      "open_interest": 13896649.8,
+      "open_interest": 13887561.89,
       "ma5": 71.13,
       "ma10": 71.05,
       "ma20": 70.77,
       "ma20_1h": 69.07,
       "ma60_1h": 70.23,
-      "ma20_dist_pct": 0.92,
+      "ma20_dist_pct": 0.89,
       "wick_signal": "NONE",
-      "rsi_14": 69.7,
+      "rsi_14": 69.5,
       "bb_upper": 71.41,
       "bb_lower": 70.13,
-      "bb_pos_pct": 100.8,
+      "bb_pos_pct": 99.2,
       "bb_width_pct": 1.81,
       "resistance_12h": 71.9,
       "support_12h": 65.76,
-      "range_pos_pct": 92.2,
-      "upside_room_pct": 0.67,
-      "downside_room_pct": 7.92,
+      "range_pos_pct": 91.9,
+      "upside_room_pct": 0.7,
+      "downside_room_pct": 7.9,
       "macro_structure_1h": "BULL_MARKET_PULLBACK",
       "market_regime_type": "TREND_BREAKOUT",
       "entry_zone_bucket": "HIGH_ZONE",
@@ -802,7 +802,7 @@
       "bear_reversal_confirmed": false,
       "bull_reversal_confirmed": true,
       "tactical_signal": "BUY",
-      "tactical_desc": "【強勢動能突破順勢追擊】量能/連K動能強(0.08x, +0.21%)，順勢追擊大波段！",
+      "tactical_desc": "【強勢動能突破順勢追擊】量能/連K動能強(0.12x, +0.18%)，順勢追擊大波段！",
       "trend_1h": "BULLISH",
       "trend": "BULLISH",
       "atr_15m_pct": 0.79,
@@ -821,7 +821,7 @@
     "Switzerland clears 57 jurisdictions for crypto tax data sharing"
   ],
   "ai_broadcast_signals": {
-    "updated_at": "10:16:40",
+    "updated_at": "10:17:30",
     "confidence": 94,
     "summary": "[新聞情緒平穩] v11.3 BTC大盤聯動＋嚴格結構反轉＋正向盈虧比(-5%SL/+4.5%保本鎖)運行中（新聞情緒平穩）。",
     "half_a_orders": [
@@ -832,7 +832,7 @@
         "leverage": 4,
         "tp_pct": 3.62,
         "sl_pct": 1.25,
-        "reason": "【RANGE_MEAN_REVERSION】【震盪盤結構止跌做多】支撐區(BB:84.2%)且確認站回短均止跌，向上空間 0.96% > 向下 6.07%！"
+        "reason": "【RANGE_MEAN_REVERSION】【震盪盤結構止跌做多】支撐區(BB:85.0%)且確認站回短均止跌，向上空間 0.94% > 向下 6.09%！"
       },
       {
         "symbol": "ETH/USDT:USDT",
@@ -841,7 +841,7 @@
         "leverage": 3,
         "tp_pct": 4.2,
         "sl_pct": 1.67,
-        "reason": "【RANGE_MEAN_REVERSION】【震盪盤結構止跌做多】支撐區(BB:80.8%)且確認站回短均止跌，向上空間 1.63% > 向下 5.88%！"
+        "reason": "【RANGE_MEAN_REVERSION】【震盪盤結構止跌做多】支撐區(BB:80.6%)且確認站回短均止跌，向上空間 1.63% > 向下 5.88%！"
       },
       {
         "symbol": "SOL/USDT:USDT",
@@ -850,7 +850,7 @@
         "leverage": 3,
         "tp_pct": 4.2,
         "sl_pct": 1.67,
-        "reason": "【TREND_BREAKOUT】【強勢動能突破順勢追擊】量能/連K動能強(0.08x, +0.21%)，順勢追擊大波段！"
+        "reason": "【TREND_BREAKOUT】【強勢動能突破順勢追擊】量能/連K動能強(0.12x, +0.18%)，順勢追擊大波段！"
       }
     ],
     "half_b_orders": [
@@ -861,7 +861,7 @@
         "leverage": 4,
         "tp_pct": 3.98,
         "sl_pct": 1.25,
-        "reason": "【結構確認優選】【震盪盤結構止跌做多】支撐區(BB:84.2%)且確認站回短均止跌，向上空間 0.96% > 向下 6.07%！"
+        "reason": "【結構確認優選】【震盪盤結構止跌做多】支撐區(BB:85.0%)且確認站回短均止跌，向上空間 0.94% > 向下 6.09%！"
       },
       {
         "symbol": "ETH/USDT:USDT",
@@ -870,7 +870,7 @@
         "leverage": 3,
         "tp_pct": 4.62,
         "sl_pct": 1.67,
-        "reason": "【結構確認優選】【震盪盤結構止跌做多】支撐區(BB:80.8%)且確認站回短均止跌，向上空間 1.63% > 向下 5.88%！"
+        "reason": "【結構確認優選】【震盪盤結構止跌做多】支撐區(BB:80.6%)且確認站回短均止跌，向上空間 1.63% > 向下 5.88%！"
       },
       {
         "symbol": "SOL/USDT:USDT",
@@ -879,7 +879,7 @@
         "leverage": 3,
         "tp_pct": 4.62,
         "sl_pct": 1.67,
-        "reason": "【結構確認優選】【強勢動能突破順勢追擊】量能/連K動能強(0.08x, +0.21%)，順勢追擊大波段！"
+        "reason": "【結構確認優選】【強勢動能突破順勢追擊】量能/連K動能強(0.12x, +0.18%)，順勢追擊大波段！"
       }
     ]
   },
