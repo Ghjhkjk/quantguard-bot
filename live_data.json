@@ -1,13 +1,13 @@
 {
-  "updated_at": "2026-11-28 18:39:25",
+  "updated_at": "2026-11-28 18:40:16",
   "epoch_cutoff": "2026-11-05 17:01:00",
-  "real_usdt": 117300.67,
-  "free_usdt": 88419.02,
-  "used_usdt": 28881.65,
+  "real_usdt": 117294.81,
+  "free_usdt": 88411.69,
+  "used_usdt": 28883.12,
   "allocations": {
-    "normal_80_usdt": 93840.54,
-    "hedge_10_usdt": 11730.07,
-    "sniper_10_usdt": 11730.07
+    "normal_80_usdt": 93835.85,
+    "hedge_10_usdt": 11729.48,
+    "sniper_10_usdt": 11729.48
   },
   "performance_stats": {
     "epoch_start": "2026-11-05 17:01:16",
@@ -18,7 +18,7 @@
     "gross_profit_usdt": 64510.15,
     "gross_loss_usdt": 64405.71,
     "total_fees_usdt": 6970.39,
-    "implied_initial_capital": 116175.3,
+    "implied_initial_capital": 116175.69,
     "profit_factor": 1.0,
     "total_settled_count": 100,
     "win_count": 51,
@@ -702,7 +702,7 @@
     "SOL/USDT:USDT_SHORT": 1,
     "BTC/USDT:USDT_SHORT": 0
   },
-  "total_unrealized_pnl": 1020.92,
+  "total_unrealized_pnl": 1014.67,
   "total_crypto_roi_pct": 0.87,
   "active_positions": [
     {
@@ -711,11 +711,11 @@
       "contracts": 117.0,
       "leverage": "4x",
       "entry_price": 59635.2,
-      "mark_price": 59231.44,
-      "margin_usdt": 17325.2,
-      "notional_usdt": 69239.11,
-      "unrealized_pnl": 472.4,
-      "roi_pct": 2.73,
+      "mark_price": 59236.78,
+      "margin_usdt": 17326.76,
+      "notional_usdt": 69245.35,
+      "unrealized_pnl": 466.15,
+      "roi_pct": 2.69,
       "tp_pct": 2.25,
       "sl_pct": 1.25,
       "tp_trigger_px": 58293.41,
@@ -746,29 +746,29 @@
   ],
   "market_prices": {
     "BTC/USDT:USDT": {
-      "last_price": 59230.76,
-      "change_24h_pct": -3.86,
+      "last_price": 59234.7,
+      "change_24h_pct": -3.87,
       "bar_15m_change_pct": -0.13,
       "vol_spike_ratio": 2.61,
       "funding_rate_pct": 0.01,
-      "open_interest": 2142050458.93,
-      "ma5": 59408.26,
-      "ma10": 59500.53,
-      "ma20": 59619.81,
-      "ma20_1h": 59816.05,
-      "ma60_1h": 60536.88,
+      "open_interest": 2142050462.29,
+      "ma5": 59409.05,
+      "ma10": 59500.93,
+      "ma20": 59620.01,
+      "ma20_1h": 59816.25,
+      "ma60_1h": 60536.94,
       "ma20_dist_pct": -0.65,
       "wick_signal": "NONE",
-      "rsi_14": 26.3,
-      "bb_upper": 59934.03,
-      "bb_lower": 59305.59,
-      "bb_pos_pct": -11.9,
+      "rsi_14": 26.4,
+      "bb_upper": 59933.25,
+      "bb_lower": 59306.76,
+      "bb_pos_pct": -11.5,
       "bb_width_pct": 1.05,
       "resistance_12h": 60427.04,
       "support_12h": 59000.0,
-      "range_pos_pct": 16.2,
-      "upside_room_pct": 2.02,
-      "downside_room_pct": 0.39,
+      "range_pos_pct": 16.4,
+      "upside_room_pct": 2.01,
+      "downside_room_pct": 0.4,
       "macro_structure_1h": "TRUE_BEAR_TREND",
       "market_regime_type": "TREND_BREAKOUT",
       "entry_zone_bucket": "LOW_ZONE",
@@ -787,29 +787,29 @@
       "max_safe_leverage": 4
     },
     "ETH/USDT:USDT": {
-      "last_price": 1648.8,
-      "change_24h_pct": -4.62,
-      "bar_15m_change_pct": -0.19,
-      "vol_spike_ratio": 0.71,
+      "last_price": 1648.44,
+      "change_24h_pct": -4.63,
+      "bar_15m_change_pct": -0.2,
+      "vol_spike_ratio": 0.79,
       "funding_rate_pct": 0.0015,
-      "open_interest": 3150196716.03,
-      "ma5": 1650.8,
-      "ma10": 1651.23,
+      "open_interest": 3150198920.98,
+      "ma5": 1650.78,
+      "ma10": 1651.22,
       "ma20": 1653.77,
-      "ma20_1h": 1662.2,
+      "ma20_1h": 1662.19,
       "ma60_1h": 1691.34,
-      "ma20_dist_pct": -0.3,
+      "ma20_dist_pct": -0.32,
       "wick_signal": "NONE",
-      "rsi_14": 39.9,
-      "bb_upper": 1659.97,
-      "bb_lower": 1647.57,
-      "bb_pos_pct": 9.9,
+      "rsi_14": 39.8,
+      "bb_upper": 1659.98,
+      "bb_lower": 1647.55,
+      "bb_pos_pct": 7.2,
       "bb_width_pct": 0.75,
       "resistance_12h": 1672.14,
       "support_12h": 1635.0,
-      "range_pos_pct": 37.2,
-      "upside_room_pct": 1.42,
-      "downside_room_pct": 0.84,
+      "range_pos_pct": 36.2,
+      "upside_room_pct": 1.44,
+      "downside_room_pct": 0.82,
       "macro_structure_1h": "TRUE_BEAR_TREND",
       "market_regime_type": "RANGE_MEAN_REVERSION",
       "entry_zone_bucket": "LOW_ZONE",
@@ -828,29 +828,29 @@
       "max_safe_leverage": 4
     },
     "SOL/USDT:USDT": {
-      "last_price": 70.78,
-      "change_24h_pct": -3.52,
-      "bar_15m_change_pct": -0.28,
+      "last_price": 70.8,
+      "change_24h_pct": -3.49,
+      "bar_15m_change_pct": -0.25,
       "vol_spike_ratio": 0.45,
       "funding_rate_pct": 0.01,
-      "open_interest": 13927930.96,
-      "ma5": 70.93,
+      "open_interest": 13927930.95,
+      "ma5": 70.94,
       "ma10": 70.97,
       "ma20": 71.11,
       "ma20_1h": 71.62,
       "ma60_1h": 71.63,
-      "ma20_dist_pct": -0.46,
+      "ma20_dist_pct": -0.44,
       "wick_signal": "NONE",
-      "rsi_14": 34.4,
+      "rsi_14": 34.9,
       "bb_upper": 71.47,
       "bb_lower": 70.75,
-      "bb_pos_pct": 4.2,
+      "bb_pos_pct": 6.9,
       "bb_width_pct": 1.01,
       "resistance_12h": 72.25,
       "support_12h": 70.72,
-      "range_pos_pct": 3.9,
-      "upside_room_pct": 2.08,
-      "downside_room_pct": 0.08,
+      "range_pos_pct": 5.2,
+      "upside_room_pct": 2.05,
+      "downside_room_pct": 0.11,
       "macro_structure_1h": "TRUE_BEAR_TREND",
       "market_regime_type": "TREND_BREAKOUT",
       "entry_zone_bucket": "LOW_ZONE",
@@ -859,7 +859,7 @@
       "bear_reversal_confirmed": true,
       "bull_reversal_confirmed": false,
       "tactical_signal": "SELL",
-      "tactical_desc": "【強勢動能突破順勢追擊】量能/連K動能強(0.45x, -0.28%)，順勢追擊大波段！",
+      "tactical_desc": "【強勢動能突破順勢追擊】量能/連K動能強(0.45x, -0.25%)，順勢追擊大波段！",
       "trend_1h": "BEARISH",
       "trend": "BEARISH",
       "atr_15m_pct": 0.36,
@@ -873,14 +873,14 @@
     "Trump-linked crypto token WLFI plunges 50% to record lows",
     "Kalshi turns to small businesses as legal battles threaten forecasts on sports",
     "Bitcoin 'death cross' is coming. Here's what happened after previous 13.",
+    "ASEAN+3 agrees on initiative to explore crypto payments cooperation",
     "Binance receives in-principle approval, plans Asia hub in Bhutan",
-    "Here’s what happened in crypto today",
-    "Franklin Templeton makes room for HYPE in crypto index ETF"
+    "Here’s what happened in crypto today"
   ],
   "ai_broadcast_signals": {
-    "updated_at": "18:39:25",
+    "updated_at": "18:40:16",
     "confidence": 94,
-    "summary": "[高波動新聞警戒(etf,plunge,trump)] v11.4 BTC大盤聯動＋務實落袋(+4.5%平半/+9%總止盈/-5%止損)運行中（高波動新聞警戒(etf,plunge,trump)）。",
+    "summary": "[高波動新聞警戒(plunge,trump)] v11.4 BTC大盤聯動＋務實落袋(+4.5%平半/+9%總止盈/-5%止損)運行中（高波動新聞警戒(plunge,trump)）。",
     "half_a_orders": [
       {
         "symbol": "BTC/USDT:USDT",
@@ -889,7 +889,16 @@
         "leverage": 4,
         "tp_pct": 2.25,
         "sl_pct": 1.25,
-        "reason": "【TREND_BREAKOUT】【強勢動能突破順勢追擊】量能/連K動能強(1.15x, -0.02%)，順勢追擊大波段！"
+        "reason": "【TREND_BREAKOUT】【強勢動能突破順勢追擊】量能/連K動能強(2.61x, -0.13%)，順勢追擊大波段！"
+      },
+      {
+        "symbol": "ETH/USDT:USDT",
+        "action": "SELL",
+        "weight": 1.5,
+        "leverage": 4,
+        "tp_pct": 2.25,
+        "sl_pct": 1.25,
+        "reason": "【RANGE_MEAN_REVERSION】【順勢偏空結構確認】1H偏空且15m結構轉弱確認，順勢偏空。"
       },
       {
         "symbol": "SOL/USDT:USDT",
@@ -898,7 +907,7 @@
         "leverage": 4,
         "tp_pct": 2.25,
         "sl_pct": 1.25,
-        "reason": "【TREND_BREAKOUT】【強勢動能突破順勢追擊】量能/連K動能強(0.03x, -0.03%)，順勢追擊大波段！"
+        "reason": "【TREND_BREAKOUT】【強勢動能突破順勢追擊】量能/連K動能強(0.45x, -0.24%)，順勢追擊大波段！"
       }
     ],
     "half_b_orders": [
@@ -909,7 +918,16 @@
         "leverage": 4,
         "tp_pct": 2.48,
         "sl_pct": 1.25,
-        "reason": "【結構確認優選】【強勢動能突破順勢追擊】量能/連K動能強(1.15x, -0.02%)，順勢追擊大波段！"
+        "reason": "【結構確認優選】【強勢動能突破順勢追擊】量能/連K動能強(2.61x, -0.13%)，順勢追擊大波段！"
+      },
+      {
+        "symbol": "ETH/USDT:USDT",
+        "action": "SELL",
+        "weight": 1.2,
+        "leverage": 4,
+        "tp_pct": 2.48,
+        "sl_pct": 1.25,
+        "reason": "【結構確認優選】【順勢偏空結構確認】1H偏空且15m結構轉弱確認，順勢偏空。"
       },
       {
         "symbol": "SOL/USDT:USDT",
@@ -918,14 +936,14 @@
         "leverage": 4,
         "tp_pct": 2.48,
         "sl_pct": 1.25,
-        "reason": "【結構確認優選】【強勢動能突破順勢追擊】量能/連K動能強(0.03x, -0.03%)，順勢追擊大波段！"
+        "reason": "【結構確認優選】【強勢動能突破順勢追擊】量能/連K動能強(0.45x, -0.24%)，順勢追擊大波段！"
       }
     ]
   },
   "ai_last_decision": {
     "action": "今日已實現 $-1,598.56 | 本期累計 $+104.45 (盈虧比 1.0x)",
     "confidence": 94,
-    "reason": "v11.4 BTC大盤聯動＋務實落袋(+4.5%平半/+9%總止盈/-5%止損)運行中（高波動新聞警戒(etf,plunge,trump)）。"
+    "reason": "v11.4 BTC大盤聯動＋務實落袋(+4.5%平半/+9%總止盈/-5%止損)運行中（高波動新聞警戒(plunge,trump)）。"
   },
   "orders": [
     {
